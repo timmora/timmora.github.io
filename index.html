@@ -3,22 +3,25 @@
   <head>
     <title>Tim Mora</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Marcellus&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <header> 
-      Tim Mora
+      <a href="index.html"> Tim Mora </a>
       <nav>
         <ul>
-          <li><a href="#work"> Work </a></li>
-          <li><a href="#about"> About </a></li>
-          <li><a href="#blog"> Blog </a></li>
+          <li><a href="index.html"> Portfolio </a></li>
+          <li><a href="about.html"> About </a></li>
+          <li><a href="blog.html"> Blog </a></li>
         </ul>
       </nav>
     </header>
 
     <section id="hero">
-      <h1>Hello, I'm Tim!</h1>
+      <h1>Hello, I'm <a class="hero-header-name" href="about.html">Tim Mora</a>!</h1>
         <p id="subtitle">
           I'm passionate about the intersection between
           design and Computer Science. Human Centered Design
@@ -30,11 +33,11 @@
     </section>
 
     <section id="work">
-      <h2> My Work</h2>
+      <h2> Portfolio </h2>
       <div class="project-grid">
         <div class="project-card">
           <h3> <a href="#"> Aporia </a></h3>
-          <p></p> Preference based investment portfolio generator. </p>
+          <p> Preference based investment portfolio generator. </p>
         </div>
         <div class="project-card">
           <h3> <a href="#"> Ordo </a></h3>
@@ -46,5 +49,10 @@
         </div>
       </div>
     </section>
+
+    <footer>
+      <p> ™ Tim Mora 2026 </p>
+      <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
+    </footer>
   </body>
 </html>
