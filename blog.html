@@ -31,5 +31,23 @@
       <p> © Tim Mora 2026 </p>
       <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
     </footer>
+
+    <script>
+      window.addEventListener('scroll', () => {
+        document.querySelector('header').classList.toggle('scrolled', window.scrollY > 0);
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.slide-up').forEach(el => observer.observe(el));
+    </script>
   </body>
 </html>

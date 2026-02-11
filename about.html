@@ -23,13 +23,108 @@
     </header>
 
     <section id="about">
-      <h1 class="about-header"> More on Me </h1>
-      <p class="about-me">about me...</p>
+      <h1> More on Me </h1>
+      <p>
+        Hi, I'm Tim! I’m particularly interested in backend systems and how architectural decisions impact performance 
+        and maintainability. I care about writing clean, well-tested code and understanding tradeoffs rather 
+        than just getting features to work. I  also enjoy solving algorithmic problems and thinking about time/space 
+        complexity when designing solutions.
+      </p>
+      <p>
+        Aside from this, I care about equity, authenticity, and doing work that reflects real values. 
+        I'm especially drawn to work that's honest, that challenges how things are usually done, and 
+        that puts people first.  
+      </p>
+      <p>
+        This portfolio is where I'm collecting the things I make as I figure out what all of this looks like in practice.
+      </p>
+
+      <div class="slide-up">
+      <section id="skills">
+        <h2> Skills </h2>
+        <div class="skills-columns">
+          <div class="skills-category">
+            <h3>Languages</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">C++</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h3>Databases</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MongoDB</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h3>Backend</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">Node.js / Express</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">SQL (PostgreSQL, MySQL)</span>
+              <span class="skill-tag">NoSQL (MongoDB)</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h3>Tools and Infrastructure</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">AWS / GCP</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h3>Frontend</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">HTML/CSS</span>
+              <span class="skill-tag">NoSQL (MongoDB)</span>
+            </div>
+          </div>
+
+          <div class="skills-category">
+            <h3>Design and Creative Tools</h3>
+            <div class="skills-grid">
+              <span class="skill-tag">Photoshop</span>
+              <span class="skill-tag">Illustrator</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Affinity Designer</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
 
-    <footer>
-      <p> © Tim Mora 2026 </p>
-      <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
-    </footer>
+      <footer>
+        <p> © Tim Mora 2026 </p>
+        <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
+      </footer>
+      </div>
+
+    <script>
+      window.addEventListener('scroll', () => {
+        document.querySelector('header').classList.toggle('scrolled', window.scrollY > 0);
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.slide-up').forEach(el => observer.observe(el));
+    </script>
   </body>
 </html>

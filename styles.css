@@ -135,6 +135,17 @@ h2 {
   padding-top: 45px;
 }
 
+.slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 #subtitle {
   font-size: 25px;
   text-align: center;
@@ -203,14 +214,48 @@ h2 {
   padding: 0 30px;
 }
 
-.about-header {
+#about h1 {
   font-weight: bold;
   font-size: 60px;
 }
 
-.about-me {
-  text-align: left;
+#about h2 {
+  text-align: center;
+  font-size: 40px;
 }
+
+#about h3 {
+  font-size: 24px;
+  text-align: center;
+}
+
+#about p {
+  text-align: left;
+  font-size: 35px;
+  margin-bottom: 0;
+}
+
+.skills-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skill-tag {
+  font-size: 18px;
+  cursor: default;
+  padding: 8px 16px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
 
 /* Blog Page */
 #blog {
