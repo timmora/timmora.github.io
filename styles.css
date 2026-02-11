@@ -43,7 +43,7 @@ header.scrolled {
 }
 
 .header-name {
-  font-weight: bold;
+  font-weight: normal;
   transition: text-shadow 0.3s ease;
 }
 
@@ -59,7 +59,7 @@ nav ul {
 }
 
 nav a {
-  font-weight: bold;
+  font-weight: normal;
   position: relative;
   z-index: 1;
   text-decoration: none;
@@ -138,7 +138,7 @@ h2 {
 #subtitle {
   font-size: 25px;
   text-align: center;
-  width: 400px;
+  max-width: 400px;
   overflow: auto;
   margin-top: 0;
 }
@@ -146,7 +146,7 @@ h2 {
 #tagline {
   font-size: 20px;
   text-align: center;
-  width: 430px;
+  max-width: 430px;
   overflow: auto;
 }
 
@@ -184,7 +184,6 @@ h2 {
   height: 40%;
   background-color: rgba(255, 230, 50, 0.5);
   z-index: -1;
-  transform: rotate(-1deg);
   border-radius: 2px;
   transform: scaleX(0) rotate(-1deg);
   transform-origin: left;
@@ -197,7 +196,7 @@ h2 {
 
 /* About Page */
 #about {
-  height: 30vh;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -215,7 +214,7 @@ h2 {
 
 /* Blog Page */
 #blog {
-  height: 30vh;
+  min-height: 30vh;
   display: flex;
   text-align: left;
   flex-direction: column;
