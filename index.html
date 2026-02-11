@@ -10,7 +10,7 @@
 
   <body>
     <header> 
-      <a href="index.html"> Tim Mora </a>
+      <a href="index.html" class="header-name"> Tim Mora </a>
       <nav>
         <ul>
           <li><a href="index.html"> Portfolio </a></li>
@@ -21,9 +21,9 @@
     </header>
 
     <section id="hero">
-      <h1>Hello, I'm <a class="hero-header-name" href="about.html">Tim Mora</a>!</h1>
+      <h1> Hi, I'm <a class="hero-header-name" href="about.html">Tim Mora</a>! </h1>
         <p id="subtitle">
-          I'm passionate about the intersection between
+          I'm passionate about the relationship between
           design and Computer Science. Human Centered Design
           is at the forefront of my design language.
         </p>
@@ -33,7 +33,7 @@
     </section>
 
     <section id="work">
-      <h2> Portfolio </h2>
+      <h2> My Work </h2>
       <div class="project-grid">
         <div class="project-card">
           <h3> <a href="#"> Aporia </a></h3>
@@ -54,5 +54,11 @@
       <p> ™ Tim Mora 2026 </p>
       <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
     </footer>
+
+    <script>
+      window.addEventListener('scroll', () => {
+        document.querySelector('header').classList.toggle('scrolled', window.scrollY > 0);
+      });
+    </script>
   </body>
 </html>

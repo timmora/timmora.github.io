@@ -1,10 +1,17 @@
+@keyframes fadeIn {
+  from {opacity: 0; }
+  to { opacity: 1; }
+}
+
 body {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
-  margin: 10px;
+  margin: 0px;
   padding: 10px;
+  background-color: rgb(252, 251, 249);
+  animation: fadeIn 1s ease;
 }
 
 a {
@@ -13,14 +20,65 @@ a {
   color: inherit;
 }
 
+/* Header */
+
+header {
+  font-size: 22px;
+  font-family: "Helvetica", serif;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 0 40px;
+  margin: 0 -10px;
+  position: sticky;
+  top: 0;
+  background-color: rgb(252, 251, 249);
+  z-index: 10;
+  transition: box-shadow 0.3s ease;
+}
+
+header.scrolled {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-name {
+  font-weight: bold;
+  transition: text-shadow 0.3s ease;
+}
+
+.header-name:hover {
+  text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  padding: 0;
+}
+
+nav a {
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  transition: text-shadow 0.3s ease;
+}
+
+nav a:hover {
+  text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;
+}
+
 /* Footer */
 
 footer {
   display: flex;
+  font-size: small;
   flex-direction: column;
   align-items: center;
   gap: 0px;
-  padding-top: 30px;
+  padding-top: 45px;
   text-align: center;
   color: gray;
 }
@@ -30,36 +88,50 @@ footer p {
 }
 
 #footer-quote {
-  font-size: small;
+  font-size: smaller;
 }
 
 /* Home Page */
-header {
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  padding: 0 30px;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 40px;
-}
 
 h1 {
   font-size: 50px;
+  font-weight: normal;
+}
+
+h1 a {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+}
+
+h1 a::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 15%;
+  height: 40%;
+  background-color: rgba(255, 98, 50, 0.5);
+  z-index: -1;
+  transform: rotate(-1deg);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+h1 a:hover::after{
+  opacity: 1;
+}
+
+.hero-header-name {
+  font-weight: bold;
 }
 
 h2 {
   text-align: center;
   font-size: 30px;
-}
-
-.hero-header-name:hover {
-  color: rgb(47, 47, 47);
+  border-top: 1px solid #cccc;
+  padding-top: 45px;
 }
 
 #subtitle {
@@ -93,13 +165,44 @@ h2 {
   font-size: 17px;
 }
 
+.project-card a {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+}
+
+.project-card a::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 15%;
+  height: 40%;
+  background-color: rgba(255, 230, 50, 0.5);
+  z-index: -1;
+  transform: rotate(-1deg);
+  border-radius: 2px;
+  transform: scaleX(0) rotate(-1deg);
+  transform-origin: left;
+  transition: transform 0.25s ease-out;
+}
+
+.project-card a:hover::after{
+  transform: scaleX(1) rotate(-1deg);
+}
+
 /* About Page */
 #about {
   height: 30vh;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: left;
   padding: 0 30px;
+}
+
+.about-header {
+  font-weight: bold;
+  font-size: 60px;
 }
 
 .about-me {
@@ -110,9 +213,14 @@ h2 {
 #blog {
   height: 30vh;
   display: flex;
-  text-align: center;
+  text-align: left;
   flex-direction: column;
   padding: 0 30px;
+}
+
+.blog-header {
+  font-weight: bold;
+  font-size: 60px;
 }
 
 .entry {
