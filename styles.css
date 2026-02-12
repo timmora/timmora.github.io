@@ -229,10 +229,10 @@ h2 {
   text-align: center;
 }
 
-#about p {
+#about > p {
   text-align: left;
   font-size: 35px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 .skills-columns {
@@ -251,9 +251,8 @@ h2 {
 .skill-tag {
   font-size: 18px;
   cursor: default;
-  padding: 8px 16px;
-  border: 1px solid black;
-  border-radius: 20px;
+  padding: 2px 16px;
+  border: none;
 }
 
 
