@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('theme') || '';</script>
   <head>
     <title>Tim Mora - About</title>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@latest/dist/lenis.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,25 +27,31 @@
     <section id="about" class="section-cover">
       <h1> More on Me </h1>
       <p>
-        I'm particularly interested in backend systems and how architectural decisions impact performance
-        and maintainability. I think writing clean, well-tested code and understanding tradeoffs far outweights
-        simply getting features to work. I  also enjoy solving algorithmic problems and thinking about time/space
-        complexity when designing solutions.
+        I'm Tim, a CS + Education student at UIUC finishing up my final year. I got into computer science because I 
+        wanted to build things, and I stayed because I realized the most interesting problem in tech isn't the code, but 
+        the people that are using it.
       </p>
       <p>
-        I'm interested in building systems that are reliable and accessible, and I think thoughtful engineering
-        plays a direct role in user trust. I'm especially drawn to work that's honest, that challenges how things
-        are usually done, and that puts people first.
+        I've always been drawn to the space where technology meets people. That curiosity led me to project management, 
+        UX thinking, and building things that don't just work, but feel right to use. Most recently, I led an 8-person 
+        team through a full software development cycle and served as a Design Lead on HoloOrbits, a collaborative educational game 
+        developed by Professor Jina Kang and her team at UIUC, where I got to think about design, learning, and what it means to build
+        something genuinely useful for students.
       </p>
       <p>
-        This portfolio is where I'm collecting the things I make as I figure out what all of this looks like in practice!
+        Outside the screen, I have profound love for drawing, music, and pretty much anything creative. I think that background makes me a 
+        better builder — I notice details, I care about feel, and I ask questions that don't always show up in a product brief.
+      </p>
+      <p>
+        I'm currently looking for opportunities where I can bring both sides of that to the table — the technical foundation and 
+        the human instinct. If that sounds like something you're building toward, I'd love to connect!
       </p>
     </section>
 
     <div class="reveal-spacer" id="reveal-spacer"></div>
 
     <section id="skills" class="section-reveal">
-      <h2> Skills </h2>
+      <h2> Skills / Toolkit </h2>
       <div class="skills-columns">
         <div class="skills-category">
           <h3>Languages</h3>
@@ -104,7 +112,18 @@
       </footer>
     </section>
 
+    <button class="theme-toggle" id="theme-toggle">◑</button>
+
+    <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
     <script>
+      const lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
+
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const isDark = document.documentElement.dataset.theme === 'dark';
+        document.documentElement.dataset.theme = isDark ? '' : 'dark';
+        localStorage.setItem('theme', document.documentElement.dataset.theme);
+      });
+
       const header = document.querySelector('header');
       const reveal = document.querySelector('.section-reveal');
       const spacer = document.getElementById('reveal-spacer');

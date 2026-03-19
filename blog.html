@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="">
+  <script>document.documentElement.dataset.theme = localStorage.getItem('theme') || '';</script>
   <head>
     <title>Tim Mora - Blog</title>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@latest/dist/lenis.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +34,18 @@
       <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
     </footer>
 
+    <button class="theme-toggle" id="theme-toggle">◑</button>
+
+    <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
     <script>
+      const lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
+
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const isDark = document.documentElement.dataset.theme === 'dark';
+        document.documentElement.dataset.theme = isDark ? '' : 'dark';
+        localStorage.setItem('theme', document.documentElement.dataset.theme);
+      });
+
       let lastScrollY = window.scrollY;
       window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
