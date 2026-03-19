@@ -1,3 +1,5 @@
+/* Global */
+
 :root {
   --bg: rgb(252, 251, 249);
   --text: #000;
@@ -19,6 +21,11 @@
   to { opacity: 1; }
 }
 
+html {
+  background-color: var(--bg);
+  transition: background-color 0.5s ease;
+}
+
 body {
   font-family: "Libre Baskerville", serif;
   font-optical-sizing: auto;
@@ -31,12 +38,6 @@ body {
   color: var(--text);
 }
 
-html {
-  background-color: var(--bg);
-
-  transition: background-color 0.5s ease;
-}
-
 body, header, .section-cover, .section-reveal, footer {
   transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
@@ -45,6 +46,61 @@ a {
   text-decoration: none;
   font-weight: bolder;
   color: inherit;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+h1 a {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+}
+
+h1 a::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 15%;
+  height: 40%;
+  background-color: rgba(255, 98, 50, 0.5);
+  z-index: -1;
+  transform: rotate(-1deg);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+h1 a:hover::after{
+  opacity: 1;
+}
+
+h2 {
+  text-align: center;
+  font-size: 35px;
+  padding-top: 45px;
+}
+
+.section-cover {
+  position: relative;
+  z-index: 2;
+  background-color: var(--bg);
+  margin: 0 -10px;
+  padding: 0 10px;
+}
+
+.section-reveal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: var(--reveal-bg);
+  padding: 0px 30px 10px;
 }
 
 /* Header */
@@ -125,63 +181,16 @@ footer p {
 
 /* Home Page */
 
-h1 {
-  font-size: 50px;
-  font-weight: normal;
-  margin-bottom: 0;
-}
-
-h1 a {
-  position: relative;
-  z-index: 1;
-  text-decoration: none;
-}
-
-h1 a::after {
-  content: '';
-  position: absolute;
-  left: -4px;
-  right: -4px;
-  bottom: 15%;
-  height: 40%;
-  background-color: rgba(255, 98, 50, 0.5);
-  z-index: -1;
-  transform: rotate(-1deg);
-  border-radius: 2px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-h1 a:hover::after{
-  opacity: 1;
+#hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-header-name {
   font-weight: bold;
-}
-
-h2 {
-  text-align: center;
-  font-size: 35px;
-  padding-top: 45px;
-}
-
-.section-cover {
-  position: relative;
-  z-index: 2;
-  background-color: var(--bg);
-  margin: 0 -10px;
-  padding: 0 10px;
-}
-
-.section-reveal {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  background-color: var(--reveal-bg);
-  padding: 0px 30px 10px;
 }
 
 #subtitle {
@@ -199,12 +208,75 @@ h2 {
   overflow: auto;
 }
 
-#hero {
-  height: 100vh;
+#connect-text {
+  text-align: center;
+  font-size: 18px;
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+.connect-links {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  gap: 40px;
+  font-size: 18px;
+}
+
+.connect-links a {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+}
+
+.connect-links a::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 15%;
+  height: 40%;
+  background-color: rgba(255, 241, 50, 0.5);
+  z-index: -1;
+  transform: rotate(-1deg);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.connect-links a:hover::after {
+  opacity: 1;
+}
+
+/* About Page */
+
+#about {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: left;
+  padding: 30px 40px 50px;
+}
+
+#about h1 {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+#about h2 {
+  text-align: center;
+  font-size: 35px;
+}
+
+#about h3 {
+  font-size: 24px;
+  text-align: center;
+}
+
+#about > p {
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 
 .project-grid {
@@ -248,40 +320,8 @@ h2 {
   opacity: 1;
 }
 
-/* About Page */
-#about {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: 30px 40px 50px;
-}
-
-
-#about h1 {
-  font-weight: bold;
-  font-size: 50px;
-}
-
-#about h2 {
-  text-align: center;
-  font-size: 35px;
-}
-
-#about h3 {
-  font-size: 24px;
-  text-align: center;
-}
-
-
-#skills footer {
+#work footer {
   padding-top: 60px;
-}
-
-#about > p {
-  text-align: left;
-  font-size: 30px;
-  margin-bottom: 20px;
 }
 
 .skills-category {
@@ -313,8 +353,8 @@ h2 {
   border: none;
 }
 
-
 /* Blog Page */
+
 #blog {
   min-height: 30vh;
   display: flex;
@@ -334,6 +374,7 @@ h2 {
 }
 
 /* Theme Toggle */
+
 .theme-toggle {
   position: fixed;
   bottom: 20px;
@@ -353,4 +394,3 @@ h2 {
   color: var(--text);
   transform: rotate(180deg);
 }
-
