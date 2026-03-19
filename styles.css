@@ -1,17 +1,22 @@
 @keyframes fadeIn {
-  from {opacity: 0; }
+  from { opacity: 0; }
   to { opacity: 1; }
 }
 
 body {
-  font-family: "Playfair Display", serif;
+  font-family: "Libre Baskerville", serif;
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
   margin: 0px;
   padding: 10px;
-  background-color: rgb(252, 251, 249);
+  background-color: transparent;
   animation: fadeIn 1s ease;
+}
+
+html {
+  background-color: rgb(252, 251, 249);
+  scroll-behavior: smooth;
 }
 
 a {
@@ -35,7 +40,12 @@ header {
   top: 0;
   background-color: rgb(252, 251, 249);
   z-index: 10;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  margin-top: -40px;
+}
+
+header.hidden {
+  transform: translateY(-100%);
 }
 
 header.scrolled {
@@ -74,11 +84,11 @@ nav a:hover {
 
 footer {
   display: flex;
-  font-size: small;
+  font-size: 10px;
   flex-direction: column;
   align-items: center;
   gap: 0px;
-  padding-top: 45px;
+  padding-top: 50px;
   text-align: center;
   color: gray;
 }
@@ -130,20 +140,26 @@ h1 a:hover::after{
 
 h2 {
   text-align: center;
-  font-size: 30px;
-  border-top: 1px solid #cccc;
+  font-size: 35px;
   padding-top: 45px;
 }
 
-.slide-up {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+.section-cover {
+  position: relative;
+  z-index: 2;
+  background-color: rgb(252, 251, 249);
+  margin: 0 -10px;
+  padding: 0 10px;
 }
 
-.slide-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+.section-reveal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgb(244, 244, 244);
+  padding: 0px 30px 10px;
 }
 
 #subtitle {
@@ -177,7 +193,7 @@ h2 {
 
 .project-card {
   text-align: center;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .project-card a {
@@ -207,21 +223,22 @@ h2 {
 
 /* About Page */
 #about {
-  min-height: 30vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 0 30px;
+  padding: 30px 30px 0;
 }
+
 
 #about h1 {
   font-weight: bold;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 #about h2 {
   text-align: center;
-  font-size: 40px;
+  font-size: 35px;
 }
 
 #about h3 {
@@ -229,15 +246,21 @@ h2 {
   text-align: center;
 }
 
+
+#skills footer {
+  padding-top: 60px;
+}
+
 #about > p {
   text-align: left;
-  font-size: 35px;
+  font-size: 30px;
   margin-bottom: 20px;
 }
 
 .skills-columns {
+  text-align: center;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
 }
 
@@ -249,7 +272,7 @@ h2 {
 }
 
 .skill-tag {
-  font-size: 18px;
+  font-size: 17px;
   cursor: default;
   padding: 2px 16px;
   border: none;
@@ -262,12 +285,12 @@ h2 {
   display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 0 30px;
+  padding: 30px 30px;
 }
 
 .blog-header {
   font-weight: bold;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .entry {

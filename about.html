@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
   </head>
@@ -15,112 +15,112 @@
       <a href="index.html" class="header-name"> Tim Mora </a>
       <nav>
         <ul>
-          <li><a href="index.html"> Portfolio </a></li>
+          <li><a href="portfolio.html"> Portfolio </a></li>
           <li><a style="cursor: pointer;"> About </a></li>
           <li><a href="blog.html"> Blog </a></li>
         </ul>
       </nav>
     </header>
 
-    <section id="about">
+    <section id="about" class="section-cover">
       <h1> More on Me </h1>
       <p>
-        I’m particularly interested in backend systems and how architectural decisions impact performance 
-        and maintainability. I care about writing clean, well-tested code and understanding tradeoffs rather 
-        than just getting features to work. I  also enjoy solving algorithmic problems and thinking about time/space 
+        I'm particularly interested in backend systems and how architectural decisions impact performance
+        and maintainability. I think writing clean, well-tested code and understanding tradeoffs far outweights
+        simply getting features to work. I  also enjoy solving algorithmic problems and thinking about time/space
         complexity when designing solutions.
       </p>
       <p>
-        I’m interested in building systems that are reliable and accessible, and I think thoughtful engineering 
-        plays a direct role in user trust. I'm especially drawn to work that's honest, that challenges how things 
-        are usually done, and that puts people first.  
+        I'm interested in building systems that are reliable and accessible, and I think thoughtful engineering
+        plays a direct role in user trust. I'm especially drawn to work that's honest, that challenges how things
+        are usually done, and that puts people first.
       </p>
       <p>
         This portfolio is where I'm collecting the things I make as I figure out what all of this looks like in practice!
       </p>
+    </section>
 
-    <div class="slide-up">
-      <section id="skills">
-        <h2> Skills </h2>
-        <div class="skills-columns">
-          <div class="skills-category">
-            <h3>Languages</h3>
-            <div class="skills-grid">
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">C++</span>
-              <span class="skill-tag">Java</span>
-              <span class="skill-tag">JavaScript</span>
-            </div>
-          </div>
+    <div class="reveal-spacer" id="reveal-spacer"></div>
 
-          <div class="skills-category">
-            <h3>Databases</h3>
-            <div class="skills-grid">
-              <span class="skill-tag">PostgreSQL</span>
-              <span class="skill-tag">MySQL</span>
-              <span class="skill-tag">MongoDB</span>
-            </div>
-          </div>
-
-          <div class="skills-category">
-            <h3>Backend</h3>
-            <div class="skills-grid">
-              <span class="skill-tag">Node.js / Express</span>
-              <span class="skill-tag">REST APIs</span>
-            </div>
-          </div>
-
-          <div class="skills-category">
-            <h3>Tools and Infrastructure</h3>
-            <div class="skills-grid">
-              <span class="skill-tag">Git</span>
-              <span class="skill-tag">Docker</span>
-            </div>
-          </div>
-
-          <div class="skills-category">
-            <h3>Frontend</h3>
-            <div class="skills-grid">
-              <span class="skill-tag">React</span>
-              <span class="skill-tag">Next.js</span>
-              <span class="skill-tag">HTML / CSS</span>
-            </div>
-          </div>
-
-          <div class="skills-category">
-            <h3>Design and Creative Tools</h3>
-            <div class="skills-grid">
-              <span class="skill-tag">Photoshop</span>
-              <span class="skill-tag">Illustrator</span>
-              <span class="skill-tag">Figma</span>
-              <span class="skill-tag">Affinity Designer</span>
-            </div>
+    <section id="skills" class="section-reveal">
+      <h2> Skills </h2>
+      <div class="skills-columns">
+        <div class="skills-category">
+          <h3>Languages</h3>
+          <div class="skills-grid">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">JavaScript</span>
           </div>
         </div>
-      </section>
+
+        <div class="skills-category">
+          <h3>Databases</h3>
+          <div class="skills-grid">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Tools & Infrastructure</h3>
+          <div class="skills-grid">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Backend</h3>
+          <div class="skills-grid">
+            <span class="skill-tag">Node.js / Express</span>
+            <span class="skill-tag">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Frontend</h3>
+          <div class="skills-grid">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">HTML / CSS</span>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Design & Creative Tools</h3>
+          <div class="skills-grid">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Adobe Suite</span>
+            <span class="skill-tag">Affinity Designer</span>
+          </div>
+        </div>
+      </div>
       <footer>
         <p> © Tim Mora 2026 </p>
         <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
       </footer>
-    </div>
     </section>
 
     <script>
+      const header = document.querySelector('header');
+      const reveal = document.querySelector('.section-reveal');
+      const spacer = document.getElementById('reveal-spacer');
+
+      function updateSpacer() {
+        spacer.style.height = reveal.offsetHeight + 'px';
+      }
+      updateSpacer();
+      window.addEventListener('resize', updateSpacer);
+
+      let lastScrollY = window.scrollY;
       window.addEventListener('scroll', () => {
-        document.querySelector('header').classList.toggle('scrolled', window.scrollY > 0);
+        header.classList.toggle('scrolled', window.scrollY > 0);
+        header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
+        lastScrollY = window.scrollY;
       });
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.slide-up').forEach(el => observer.observe(el));
     </script>
   </body>
 </html>

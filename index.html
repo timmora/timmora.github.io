@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
   </head>
@@ -15,19 +15,19 @@
       <a style="cursor: pointer;" class="header-name"> Tim Mora </a>
       <nav>
         <ul>
-          <li><a href="index.html"> Portfolio </a></li>
+          <li><a href="portfolio.html"> Portfolio </a></li>
           <li><a href="about.html"> About </a></li>
           <li><a href="blog.html"> Blog </a></li>
         </ul>
       </nav>
     </header>
 
-    <section id="hero">
+    <section id="hero" class="section-cover">
       <h1> Hi, I'm <a class="hero-header-name" href="about.html">Tim Mora</a>! </h1>
         <p id="subtitle"> Senior CS student at UIUC. </p>
         <p id="tagline">
-          I love turning ideas into real products — 
-          from database to UI. I care about code that's 
+          I love turning ideas into real products —
+          from database to UI. I care about code that's
           maintainable and experiences that just work.
         </p>
         <p>
@@ -35,47 +35,47 @@
         </p>
     </section>
 
-    <div class="slide-up">
-      <section id="work">
-        <h2> Some of My Work </h2>
-        <div class="project-grid">
-          <div class="project-card">
-            <h3> <a href="#"> Aporia </a></h3>
-            <p> Preference based investment portfolio generator. </p>
-          </div>
-          <div class="project-card">
-            <h3> <a href="#"> Ordo </a></h3>
-            <p> Google Calendar, but for students. </p>
-          </div>
-          <div class="project-card">
-            <h3><a href="#"> Brandle </a></h3>
-            <p> Fun brand guessing game! </p>
-          </div>
-        </div>
-      </section>
+    <div class="reveal-spacer" id="reveal-spacer"></div>
 
+    <section id="work" class="section-reveal">
+      <h2> Some of My Work </h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3> <a href="#"> Aporia </a></h3>
+          <p> Preference based investment portfolio maker. </p>
+        </div>
+        <div class="project-card">
+          <h3> <a href="#"> Ordo </a></h3>
+          <p> Google Calendar, but for students. </p>
+        </div>
+        <div class="project-card">
+          <h3><a href="#"> Brandle </a></h3>
+          <p> Fun brand guessing game! </p>
+        </div>
+      </div>
       <footer>
-      <p> © Tim Mora 2026 </p>
-      <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
+        <p> © Tim Mora 2026 </p>
+        <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
       </footer>
-    </div>
+    </section>
 
     <script>
+      const header = document.querySelector('header');
+      const reveal = document.querySelector('.section-reveal');
+      const spacer = document.getElementById('reveal-spacer');
+
+      function updateSpacer() {
+        spacer.style.height = reveal.offsetHeight + 'px';
+      }
+      updateSpacer();
+      window.addEventListener('resize', updateSpacer);
+
+      let lastScrollY = window.scrollY;
       window.addEventListener('scroll', () => {
-        document.querySelector('header').classList.toggle('scrolled', window.scrollY > 0);
+        header.classList.toggle('scrolled', window.scrollY > 0);
+        header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
+        lastScrollY = window.scrollY;
       });
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          } else if (entry.boundingClientRect.top > 0) {
-            entry.target.classList.remove('visible');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.slide-up').forEach(el => observer.observe(el));
     </script>
   </body>
 </html>
