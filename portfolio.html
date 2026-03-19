@@ -2,7 +2,7 @@
 <html lang="en" data-theme="">
   <script>document.documentElement.dataset.theme = localStorage.getItem('theme') || '';</script>
   <head>
-    <title>Tim Mora - Blog</title>
+    <title>Tim Mora - Portfolio</title>
     <link rel="stylesheet" href="https://unpkg.com/lenis@latest/dist/lenis.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,9 +24,83 @@
       </nav>
     </header>
 
-    <section id="blog">
-      <h1 class="blog-header"> My Work </h1>
-      <p class="entry">about me...</p>
+    <section id="portfolio">
+      <h1 class="portfolio-header"> A collection of things I've built, led, and figured out </h1>
+      <div class="folder-stack">
+
+        <div class="folder" id="aporia" style="--folder-color: rgb(200, 190, 180);">
+          <div class="folder-tab">Aporia</div>
+          <div class="folder-body">
+            <div class="folder-content">
+              <p class="folder-role">Solo Developer</p>
+              <div class="folder-tags">
+                <span class="folder-tag">React</span>
+                <span class="folder-tag">Python</span>
+                <span class="folder-tag">FastAPI</span>
+                <span class="folder-tag">REST APIs</span>
+              </div>
+              <p class="folder-desc">A personal finance app that takes the guesswork out of investing. Aporia builds customized portfolios based on what users actually care about — their goals, risk tolerance, and dealbreakers — and delivers smart, ongoing suggestions that evolve with them. Think Robinhood, but with a point of view.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="folder" id="ordo" style="--folder-color: rgb(230, 200, 200);">
+          <div class="folder-tab">Ordo</div>
+          <div class="folder-body">
+            <div class="folder-content">
+              <p class="folder-role">Solo Developer</p>
+              <div class="folder-tags">
+                <span class="folder-tag">React</span>
+                <span class="folder-tag">Tailwind CSS</span>
+                <span class="folder-tag">FastAPI</span>
+                <span class="folder-tag">OpenAI API</span>
+                <span class="folder-tag">PostgreSQL</span>
+              </div>
+              <p class="folder-desc">A productivity app built for the way students actually think. Ordo combines AI-powered task management with smart scheduling to help students break down assignments, manage their time, and stay on top of their semester without burning out. Less noise, more momentum.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="folder" id="brandle" style="--folder-color: rgb(220, 215, 205);">
+          <div class="folder-tab">Brandle</div>
+          <div class="folder-body">
+            <div class="folder-content">
+              <p class="folder-role">Developer & UI Designer — extended from a class project</p>
+              <div class="folder-tags">
+                <span class="folder-tag">React</span>
+                <span class="folder-tag">CSS</span>
+                <span class="folder-tag">JavaScript</span>
+              </div>
+              <p class="folder-desc">A daily browser game where players guess the brand from the clues — no letters, just logos, colors, and vibes. Inspired by Wordle, Brandle taps into brand recognition and pop culture in a game anyone can pick up in under a minute. Originally a class project, I later rebuilt the UI and expanded the core functionality solo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="folder" id="holoorbits" style="--folder-color: rgb(235, 220, 200);">
+          <div class="folder-tab">HoloOrbits</div>
+          <div class="folder-body">
+            <div class="folder-content">
+              <p class="folder-role">Product Manager & UX Lead</p>
+              <div class="folder-tags">
+                <span class="folder-tag">Unity</span>
+                <span class="folder-tag">WebGL</span>
+                <span class="folder-tag">Figma</span>
+              </div>
+              <p class="folder-desc">A multiplayer educational game designed to make learning feel less like a lecture and more like a mission. As PM and UX lead, I drove the redesign of the game's navigation, collaborative mechanics, and in-game feedback systems — turning a solo simulation into a genuinely engaging group experience for secondary school students.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="folder" id="whatif" style="--folder-color: rgb(225, 210, 195);">
+          <div class="folder-tab">What if??</div>
+          <div class="folder-body">
+            <div class="folder-content">
+              <p>Coming soon...</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <footer>
@@ -53,6 +127,52 @@
         header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
         lastScrollY = window.scrollY;
       });
+
+      const stack = document.querySelector('.folder-stack');
+      const folders = document.querySelectorAll('.folder');
+      const firstFolder = folders[0];
+
+      function openFolder(folder) {
+        document.querySelectorAll('.folder.open').forEach(f => {
+          f.classList.remove('open');
+          f.style.transform = '';
+          f.querySelector('.folder-body').style.minHeight = '';
+        });
+        const offset = folder.getBoundingClientRect().top - firstFolder.getBoundingClientRect().top;
+        const body = folder.querySelector('.folder-body');
+        const content = folder.querySelector('.folder-content');
+        const contentHeight = content.scrollHeight + 80;
+        folder.style.transform = `translateY(${-offset}px)`;
+        body.style.minHeight = contentHeight + 'px';
+        folder.classList.add('open');
+        stack.classList.add('has-open');
+      }
+
+      function closeAll() {
+        document.querySelectorAll('.folder.open').forEach(f => {
+          f.classList.remove('open');
+          f.style.transform = '';
+          f.querySelector('.folder-body').style.minHeight = '';
+        });
+        stack.classList.remove('has-open');
+      }
+
+      document.querySelectorAll('.folder').forEach(folder => {
+        folder.addEventListener('click', () => {
+          if (folder.classList.contains('open')) {
+            closeAll();
+          } else {
+            openFolder(folder);
+          }
+        });
+      });
+
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target && target.classList.contains('folder')) {
+          openFolder(target);
+        }
+      }
 
     </script>
   </body>

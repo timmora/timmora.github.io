@@ -254,6 +254,7 @@ footer p {
 #about h1 {
   font-weight: bold;
   font-size: 50px;
+  text-align: center;
 }
 
 #about h2 {
@@ -351,6 +352,184 @@ footer p {
   padding: 2px 16px;
   border: none;
 }
+
+/* Portfolio Page */
+
+#portfolio {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-header {
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
+}
+
+.portfolio-subtitle {
+  font-size: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.folder-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+}
+
+.folder {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: translateY(0);
+  margin-top: -240px;
+}
+
+.folder:first-child {
+  margin-top: 0;
+}
+
+.folder:hover:not(.open) {
+  transform: translateY(-12px);
+}
+
+.folder-stack.has-open .folder:not(.open) {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(40px);
+}
+
+.folder-stack.has-open .folder:not(.open) .folder-tab {
+  color: transparent;
+  transition: color 0.15s ease;
+}
+
+.folder-tab {
+  display: inline-block;
+  background-color: var(--folder-color);
+  padding: 10px 34px;
+  border-radius: 8px 8px 0 0;
+  font-size: 25px;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  margin-left: var(--tab-offset, 30px);
+  transition: background-color 0.5s ease;
+}
+
+.folder:nth-child(1) { --tab-offset: 30px; z-index: 1; }
+.folder:nth-child(2) { --tab-offset: 200px; z-index: 2; }
+.folder:nth-child(3) { --tab-offset: 100px; z-index: 3; }
+.folder:nth-child(4) { --tab-offset: 280px; z-index: 4; }
+.folder:nth-child(5) { --tab-offset: 50px; z-index: 5; }
+
+.folder-tab::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background-color: var(--folder-color);
+  transition: background-color 0.5s ease;
+}
+
+.folder-body {
+  background-color: var(--folder-color);
+  width: 100%;
+  min-height: 255px;
+  padding: 10px 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: min-height 0.5s ease, padding 0.5s ease, background-color 0.5s ease;
+}
+
+.folder:not(:first-child):not(.open) .folder-body {
+  box-shadow: 0 -3px 8px var(--shadow);
+}
+
+.folder:not(:first-child):not(.open) .folder-tab {
+  box-shadow: 0 -3px 8px var(--shadow);
+  clip-path: inset(-10px -10px -1px -10px);
+}
+
+.folder-tab {
+  z-index: 1;
+}
+
+.folder.open .folder-body {
+  min-height: 200px;
+  padding: 40px 40px;
+}
+
+.folder.open {
+  margin-bottom: 0;
+}
+
+.folder.open {
+  z-index: 10;
+}
+
+.folder-body .folder-content {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.folder.open .folder-body .folder-content {
+  opacity: 1;
+  transition: opacity 0.4s ease 0.2s;
+}
+
+.folder-body p {
+  margin: 0;
+  font-size: 22px;
+  color: #333;
+}
+
+p.folder-role {
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.folder-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.folder-tag {
+  font-size: 13px;
+  padding: 3px 12px;
+  border: 1px solid #999;
+  border-radius: 20px;
+  color: #555;
+}
+
+.folder-desc {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+[data-theme="dark"] .folder-tag {
+  border-color: #ddd;
+  color: #eee;
+}
+
+[data-theme="dark"] .folder-tab,
+[data-theme="dark"] .folder-body p,
+[data-theme="dark"] .folder-desc {
+  color: rgb(238, 238, 238);
+}
+
 
 /* Blog Page */
 
