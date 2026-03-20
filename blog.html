@@ -90,23 +90,8 @@
     <button class="theme-toggle" id="theme-toggle">◑</button>
 
     <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+    <script src="app.js"></script>
     <script>
-      const lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
-
-      document.getElementById('theme-toggle').addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isDark = document.documentElement.dataset.theme === 'dark';
-        document.documentElement.dataset.theme = isDark ? '' : 'dark';
-        localStorage.setItem('theme', document.documentElement.dataset.theme);
-      });
-
-      let lastScrollY = window.scrollY;
-      window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        header.classList.toggle('scrolled', window.scrollY > 0);
-        header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
-        lastScrollY = window.scrollY;
-      });
 
       const envelopes = document.querySelectorAll('.envelope');
       const stack = document.querySelector('.envelope-stack');

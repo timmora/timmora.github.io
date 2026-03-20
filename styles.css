@@ -326,35 +326,6 @@ footer p {
   padding-top: 40px;
 }
 
-.skills-category {
-  border-right: 1px solid #ccc;
-}
-
-.skills-category:nth-child(3n) {
-  border-right: none;
-}
-
-.skills-columns {
-  text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-}
-
-.skills-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
-
-.skill-tag {
-  font-size: 17px;
-  cursor: default;
-  padding: 2px 16px;
-  border: none;
-}
-
 /* Portfolio Page */
 
 #portfolio {
@@ -372,12 +343,6 @@ footer p {
   text-align: center;
   padding-top: 40px;
   padding-bottom: 40px;
-}
-
-.portfolio-subtitle {
-  font-size: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ccc;
 }
 
 .folder-stack {
@@ -426,6 +391,7 @@ footer p {
   margin-left: var(--tab-offset, 30px);
   transition: background-color 0.5s ease, color 0.5s ease;
   cursor: pointer;
+  z-index: 1;
 }
 
 @media (max-width: 800px) {
@@ -475,10 +441,6 @@ footer p {
   box-shadow: 0 4px 20px var(--shadow);
 }
 
-.folder-tab {
-  z-index: 1;
-}
-
 .folder.open .folder-body {
   height: auto;
   min-height: 200px;
@@ -491,7 +453,8 @@ footer p {
 }
 
 
-.folder-close {
+.folder-close,
+.paper-close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -507,21 +470,25 @@ footer p {
   transition: opacity 0.3s ease, color 0.3s ease;
 }
 
-.folder.open .folder-close {
+.folder.open .folder-close,
+.open .paper-close {
   opacity: 1;
   pointer-events: auto;
   transition: opacity 0.4s 0.2s ease;
 }
 
-.folder-close:hover {
+.folder-close:hover,
+.paper-close:hover {
   color: #333;
 }
 
-[data-theme="dark"] .folder-close {
+[data-theme="dark"] .folder-close,
+[data-theme="dark"] .paper-close {
   color: rgb(120, 120, 120);
 }
 
-[data-theme="dark"] .folder-close:hover {
+[data-theme="dark"] .folder-close:hover,
+[data-theme="dark"] .paper-close:hover {
   color: rgb(220, 220, 220);
 }
 
@@ -778,40 +745,6 @@ p.folder-role {
   z-index: 2;
   border-radius: 8px;
   box-shadow: 0 4px 20px var(--shadow);
-}
-
-.paper-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: #999;
-  cursor: pointer;
-  padding: 4px 8px;
-  line-height: 1;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, color 0.3s ease;
-}
-
-.open .paper-close {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 0.4s 0.2s ease;
-}
-
-.paper-close:hover {
-  color: #333;
-}
-
-[data-theme="dark"] .paper-close {
-  color: rgb(120, 120, 120);
-}
-
-[data-theme="dark"] .paper-close:hover {
-  color: rgb(220, 220, 220);
 }
 
 /* Paper content */

@@ -64,31 +64,6 @@
     <button class="theme-toggle" id="theme-toggle">◑</button>
 
     <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
-    <script>
-      const lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
-
-      document.getElementById('theme-toggle').addEventListener('click', () => {
-        const isDark = document.documentElement.dataset.theme === 'dark';
-        document.documentElement.dataset.theme = isDark ? '' : 'dark';
-        localStorage.setItem('theme', document.documentElement.dataset.theme);
-      });
-
-      const header = document.querySelector('header');
-      const reveal = document.querySelector('.section-reveal');
-      const spacer = document.getElementById('reveal-spacer');
-
-      function updateSpacer() {
-        spacer.style.height = reveal.offsetHeight + 'px';
-      }
-      updateSpacer();
-      window.addEventListener('resize', updateSpacer);
-
-      let lastScrollY = window.scrollY;
-      window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 0);
-        header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
-        lastScrollY = window.scrollY;
-      });
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
