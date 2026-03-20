@@ -25,7 +25,7 @@
     </header>
 
     <section id="about" class="section-cover">
-      <h1> The Story (So Far) </h1>
+      <h1> My Story (So Far) </h1>
       <p>
         I'm Tim, a CS + Education student at UIUC finishing up my final year. I got into computer science because I 
         wanted to build things, and I sticked with it because I realized the most interesting problem in tech isn't the code, but 
@@ -76,5 +76,13 @@
 
     <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
     <script src="app.js"></script>
+    <script>
+      document.querySelectorAll('.project-card a').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          const angle = (Math.random() * 6 - 3).toFixed(1);
+          link.style.setProperty('--highlight-angle', angle + 'deg');
+        });
+      });
+    </script>
   </body>
 </html>

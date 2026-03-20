@@ -28,7 +28,7 @@
       <h1 class="portfolio-header"> A collection of things I've built, led, and figured out </h1>
       <div class="folder-stack">
 
-        <div class="folder" id="aporia" style="--folder-color: rgb(200, 190, 180);">
+        <div class="folder" id="aporia" style="--folder-color: #F1F3E0;">
           <div class="folder-tab">Aporia</div>
           <div class="folder-body">
             <button class="folder-close">&times;</button>
@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <div class="folder" id="ordo" style="--folder-color: rgb(230, 200, 200);">
+        <div class="folder" id="ordo" style="--folder-color: #D2DCB6;">
           <div class="folder-tab">Ordo</div>
           <div class="folder-body">
             <button class="folder-close">&times;</button>
@@ -63,7 +63,7 @@
           </div>
         </div>
 
-        <div class="folder" id="brandle" style="--folder-color: rgb(220, 215, 205);">
+        <div class="folder" id="brandle" style="--folder-color: #A1BC98;">
           <div class="folder-tab">Brandle</div>
           <div class="folder-body">
             <button class="folder-close">&times;</button>
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <div class="folder" id="holoorbits" style="--folder-color: rgb(235, 220, 200);">
+        <div class="folder" id="holoorbits" style="--folder-color: #778873;">
           <div class="folder-tab">HoloOrbits</div>
           <div class="folder-body">
             <button class="folder-close">&times;</button>
@@ -95,7 +95,7 @@
           </div>
         </div>
 
-        <div class="folder" id="whatif" style="--folder-color: rgb(225, 210, 195);">
+        <div class="folder" id="whatif" style="--folder-color: #313647;">
           <div class="folder-tab">More Soon</div>
           <div class="folder-body">
             <button class="folder-close">&times;</button>
@@ -118,6 +118,11 @@
     <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
     <script src="app.js"></script>
     <script>
+      document.querySelectorAll('.folder-tag').forEach(tag => {
+        const angle = (Math.random() * 6 - 3).toFixed(1);
+        tag.style.setProperty('--highlight-angle', angle + 'deg');
+      });
+
       const header = document.querySelector('header');
       let folderTransitioning = false;
       let scrollLocked = false;

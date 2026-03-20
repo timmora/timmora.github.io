@@ -65,5 +65,11 @@
 
     <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
     <script src="app.js"></script>
+    <script>
+      document.querySelector('.hero-header-name').addEventListener('mouseenter', function() {
+        const angle = (Math.random() * 6 - 3).toFixed(1);
+        this.style.setProperty('--highlight-angle', angle + 'deg');
+      });
+    </script>
   </body>
 </html>
