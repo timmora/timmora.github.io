@@ -129,6 +129,15 @@
       let folderTransitioning = false;
       let scrollLocked = false;
       let lastScrollY = window.scrollY;
+
+      window.addEventListener('wheel', () => {
+        if (scrollLocked) {
+          lenis.stop();
+          lenis.start();
+          scrollLocked = false;
+        }
+      }, { passive: true });
+
       window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
         if (!scrollLocked) {
@@ -178,10 +187,14 @@
           // Scroll to the open folder's final position (top of stack)
           const headerHeight = document.querySelector('header').offsetHeight;
           const stackTop = stack.getBoundingClientRect().top + window.scrollY;
-          const scrollTarget = stackTop - headerHeight - 80;
+          const scrollTarget = stackTop - headerHeight - 120;
           scrollLocked = true;
           const header = document.querySelector('header');
-          header.classList.add('hidden');
+          if (scrollTarget < window.scrollY) {
+            header.classList.remove('hidden');
+          } else {
+            header.classList.add('hidden');
+          }
           lenis.scrollTo(scrollTarget, {
             duration: 0.8,
             onComplete: () => {
