@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
   </head>
 
-  <body>
+  <body style="min-height: 100vh; display: flex; flex-direction: column;">
     <header> 
       <a href="index.html" class="header-name"> Tim Mora </a>
       <nav>
@@ -25,8 +25,61 @@
     </header>
 
     <section id="blog">
-      <h1 class="blog-header"> Some of my thoughts... </h1>
-      <p class="entry">about me...</p>
+      <h1 class="blog-header"> What I'm Thinking About </h1>
+      <div class="envelope-stack">
+
+        <div class="envelope" style="--envelope-color: rgb(222, 200, 170); --envelope-dark: rgb(192, 170, 140);">
+          <div class="envelope-flap"></div>
+          <div class="envelope-pocket"></div>
+          <div class="envelope-letter">
+            <button class="paper-close">&times;</button>
+            <div class="paper-content">
+              <h3>On Building Things</h3>
+              <p class="paper-date">March 15, 2026</p>
+              <p>I've been thinking a lot lately about what it means to build something well. Not just code that compiles or a feature that ships — but something that feels right. The kind of product where someone uses it and doesn't even notice the design, because it just works the way they expected it to. That's the bar I'm chasing.</p>
+            </div>
+          </div>
+          <div class="envelope-label-overlay">
+            <span class="envelope-label">On Building Things</span>
+            <span class="envelope-date">March 2026</span>
+          </div>
+        </div>
+
+        <div class="envelope" style="--envelope-color: rgb(210, 195, 185); --envelope-dark: rgb(180, 165, 155);">
+          <div class="envelope-flap"></div>
+          <div class="envelope-pocket"></div>
+          <div class="envelope-letter">
+            <button class="paper-close">&times;</button>
+            <div class="paper-content">
+              <h3>Design Isn't Decoration</h3>
+              <p class="paper-date">February 22, 2026</p>
+              <p>One of the biggest misconceptions I had early on was that design is something you add on top. You build the thing, then you make it pretty. But the more I work on real projects, the more I realize design is the structure itself. It's the decisions about what to show and what to hide, when to ask and when to assume. Good design disappears.</p>
+            </div>
+          </div>
+          <div class="envelope-label-overlay">
+            <span class="envelope-label">Design Isn't Decoration</span>
+            <span class="envelope-date">February 2026</span>
+          </div>
+        </div>
+
+        <div class="envelope" style="--envelope-color: rgb(200, 210, 195); --envelope-dark: rgb(170, 180, 165);">
+          <div class="envelope-flap"></div>
+          <div class="envelope-pocket"></div>
+          <div class="envelope-letter">
+            <button class="paper-close">&times;</button>
+            <div class="paper-content">
+              <h3>Learning to Lead</h3>
+              <p class="paper-date">January 10, 2026</p>
+              <p>Leading a team of eight people through a full development cycle taught me something I didn't expect: the hardest part isn't making decisions, it's creating space for other people to make good ones. You can't just have a vision — you have to communicate it clearly enough that everyone can run with it in their own way.</p>
+            </div>
+          </div>
+          <div class="envelope-label-overlay">
+            <span class="envelope-label">Learning to Lead</span>
+            <span class="envelope-date">January 2026</span>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <footer>
@@ -40,7 +93,8 @@
     <script>
       const lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
 
-      document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.getElementById('theme-toggle').addEventListener('click', (e) => {
+        e.stopPropagation();
         const isDark = document.documentElement.dataset.theme === 'dark';
         document.documentElement.dataset.theme = isDark ? '' : 'dark';
         localStorage.setItem('theme', document.documentElement.dataset.theme);
@@ -52,6 +106,113 @@
         header.classList.toggle('scrolled', window.scrollY > 0);
         header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
         lastScrollY = window.scrollY;
+      });
+
+      const envelopes = document.querySelectorAll('.envelope');
+      const stack = document.querySelector('.envelope-stack');
+
+      function setFlapSizes() {
+        envelopes.forEach(envelope => {
+          envelope.style.setProperty('--flap-size', (envelope.offsetWidth / 2) + 'px');
+        });
+      }
+      setFlapSizes();
+      window.addEventListener('resize', setFlapSizes);
+
+      const firstEnvelope = envelopes[0];
+      const blogSection = document.getElementById('blog');
+      const blogHeader = document.querySelector('.blog-header');
+
+      let justOpened = false;
+
+      function closeOpen() {
+        const openEnvelope = document.querySelector('.envelope.open');
+        if (!openEnvelope) return;
+        const letter = openEnvelope.querySelector('.envelope-letter');
+        openEnvelope.classList.remove('open');
+        openEnvelope.style.transform = '';
+        letter.style.width = '';
+        letter.style.left = '';
+        stack.classList.remove('has-open');
+        blogSection.classList.remove('has-open-envelope');
+      }
+
+      const peekDuration = 500;
+
+      envelopes.forEach(envelope => {
+        let peekTimeout = null;
+        let closingTimeout = null;
+
+        envelope.addEventListener('mouseenter', () => {
+          if (envelope.classList.contains('open')) return;
+          clearTimeout(closingTimeout);
+          envelope.classList.add('peeking');
+        });
+
+        envelope.addEventListener('mouseleave', () => {
+          if (envelope.classList.contains('open')) return;
+          if (!envelope.classList.contains('peeking')) return;
+          clearTimeout(peekTimeout);
+          peekTimeout = setTimeout(() => {
+            envelope.classList.remove('peeking');
+          }, peekDuration);
+        });
+
+        envelope.addEventListener('click', (e) => {
+          if (!envelope.classList.contains('open')) {
+            clearTimeout(peekTimeout);
+            envelope.classList.remove('peeking');
+            closeOpen();
+            envelope.classList.add('open');
+            stack.classList.add('has-open');
+            blogSection.classList.add('has-open-envelope');
+            justOpened = true;
+
+            const letter = envelope.querySelector('.envelope-letter');
+            letter.style.transition = 'transform 0.3s ease, height 0.3s ease';
+            letter.offsetHeight;
+            const stackRect = stack.getBoundingClientRect();
+            const envelopeRect = envelope.getBoundingClientRect();
+            const headerRect = blogHeader.getBoundingClientRect();
+            const offset = envelopeRect.top - headerRect.top - 20;
+
+            letter.style.width = stackRect.width + 'px';
+            letter.style.left = (stackRect.left - envelopeRect.left) + 'px';
+
+            setTimeout(() => {
+              letter.style.transition = '';
+            }, 50);
+
+            setTimeout(() => {
+              envelope.style.transform = `translateY(${-offset}px)`;
+            }, 50);
+          }
+        });
+
+        envelope.querySelector('.paper-close').addEventListener('click', (e) => {
+          e.stopPropagation();
+          closeOpen();
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (justOpened) {
+          justOpened = false;
+          return;
+        }
+        if (!stack.classList.contains('has-open')) return;
+        const openEnvelope = document.querySelector('.envelope.open');
+        if (!openEnvelope) return;
+        const letter = openEnvelope.querySelector('.envelope-letter');
+        if (!letter.contains(e.target)) {
+          closeOpen();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (stack.classList.contains('has-open')) {
+          closeOpen();
+        }
       });
 
     </script>

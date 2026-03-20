@@ -255,6 +255,8 @@ footer p {
   font-weight: bold;
   font-size: 50px;
   text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 #about h2 {
@@ -359,7 +361,7 @@ footer p {
   min-height: 80vh;
   display: flex;
   flex-direction: column;
-  padding: 30px 30px 50px;
+  padding: 30px 40px 50px;
   position: relative;
   z-index: 1;
 }
@@ -368,6 +370,8 @@ footer p {
   font-weight: bold;
   font-size: 50px;
   text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .portfolio-subtitle {
@@ -380,12 +384,12 @@ footer p {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
+  padding: 40px 80px 60px;
 }
 
 .folder {
   position: relative;
-  cursor: pointer;
+  cursor: default;
   transition: transform 0.4s ease, opacity 0.4s ease;
   transform: translateY(0);
   margin-top: -240px;
@@ -395,17 +399,17 @@ footer p {
   margin-top: 0;
 }
 
-.folder:hover:not(.open) {
+.folder:not(.open):has(.folder-tab:hover) {
   transform: translateY(-12px);
 }
 
 .folder-stack.has-open .folder:not(.open) {
-  opacity: 0;
-  pointer-events: none;
+  pointer-events: auto;
   transform: translateY(40px);
 }
 
 .folder-stack.has-open .folder:not(.open) .folder-tab {
+  cursor: pointer;
   color: transparent;
   transition: color 0.15s ease;
 }
@@ -420,14 +424,28 @@ footer p {
   color: #333;
   position: relative;
   margin-left: var(--tab-offset, 30px);
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  cursor: pointer;
 }
 
-.folder:nth-child(1) { --tab-offset: 30px; z-index: 1; }
-.folder:nth-child(2) { --tab-offset: 200px; z-index: 2; }
-.folder:nth-child(3) { --tab-offset: 100px; z-index: 3; }
-.folder:nth-child(4) { --tab-offset: 280px; z-index: 4; }
-.folder:nth-child(5) { --tab-offset: 50px; z-index: 5; }
+@media (max-width: 800px) {
+  .folder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .folder-tab {
+    margin-left: 0;
+  }
+}
+
+.folder:nth-child(1) { --tab-offset: 3%; z-index: 1; }
+.folder:nth-child(2) { --tab-offset: 25%; z-index: 2; }
+.folder:nth-child(3) { --tab-offset: 12%; z-index: 3; }
+.folder:nth-child(4) { --tab-offset: 35%; z-index: 4; }
+.folder:nth-child(5) { --tab-offset: 6%; z-index: 5; }
+.folder:nth-child(5) .folder-tab { cursor: default; color: #999; }
+[data-theme="dark"] .folder:nth-child(5) .folder-tab { color: rgb(160, 160, 160); }
 
 .folder-tab::before {
   content: '';
@@ -441,23 +459,20 @@ footer p {
 }
 
 .folder-body {
+  position: relative;
+  cursor: default;
   background-color: var(--folder-color);
   width: 100%;
-  min-height: 255px;
+  height: 255px;
   padding: 10px 40px;
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 12px;
-  transition: min-height 0.5s ease, padding 0.5s ease, background-color 0.5s ease;
+  transition: height 0.5s ease, padding 0.5s ease, background-color 0.5s ease;
 }
 
-.folder:not(:first-child):not(.open) .folder-body {
-  box-shadow: 0 -3px 8px var(--shadow);
-}
-
-.folder:not(:first-child):not(.open) .folder-tab {
-  box-shadow: 0 -3px 8px var(--shadow);
-  clip-path: inset(-10px -10px -1px -10px);
+.folder:not(.open) .folder-body {
+  box-shadow: 0 4px 20px var(--shadow);
 }
 
 .folder-tab {
@@ -465,16 +480,49 @@ footer p {
 }
 
 .folder.open .folder-body {
+  height: auto;
   min-height: 200px;
   padding: 40px 40px;
+  box-shadow: 0 4px 20px var(--shadow);
 }
 
 .folder.open {
   margin-bottom: 0;
 }
 
-.folder.open {
-  z-index: 10;
+
+.folder-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #999;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.folder.open .folder-close {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s 0.2s ease;
+}
+
+.folder-close:hover {
+  color: #333;
+}
+
+[data-theme="dark"] .folder-close {
+  color: rgb(120, 120, 120);
+}
+
+[data-theme="dark"] .folder-close:hover {
+  color: rgb(220, 220, 220);
 }
 
 .folder-body .folder-content {
@@ -491,6 +539,7 @@ footer p {
   margin: 0;
   font-size: 22px;
   color: #333;
+  transition: color 0.5s ease;
 }
 
 p.folder-role {
@@ -512,11 +561,13 @@ p.folder-role {
   border: 1px solid #999;
   border-radius: 20px;
   color: #555;
+  transition: color 0.5s ease, border-color 0.5s ease;
 }
 
 .folder-desc {
   font-size: 18px;
   line-height: 1.6;
+  transition: color 0.5s ease;
 }
 
 [data-theme="dark"] .folder-tag {
@@ -534,21 +585,285 @@ p.folder-role {
 /* Blog Page */
 
 #blog {
-  min-height: 30vh;
+  flex: 1;
   display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 30px 30px;
+  padding: 30px 90px 50px;
 }
 
 .blog-header {
   font-weight: bold;
   font-size: 50px;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  transition: opacity 0.4s ease;
 }
 
-.entry {
-  text-align: left;
+#blog.has-open-envelope .blog-header {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding-top: 70px;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: var(--envelope-color);
+  box-shadow: 0 4px 16px var(--shadow);
+  cursor: pointer;
+  transition: background-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-left: var(--flap-size) solid transparent;
+  border-right: var(--flap-size) solid transparent;
+  border-top: 75px solid var(--envelope-dark);
+  transform-origin: top center;
+  z-index: 3;
+}
+
+.envelope-pocket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  z-index: 3;
+}
+
+.envelope-pocket::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-left: var(--flap-size) solid var(--envelope-color);
+  border-right: var(--flap-size) solid var(--envelope-color);
+  border-bottom: 75px solid var(--envelope-color);
+  border-top: 75px solid transparent;
+}
+
+.envelope-pocket::after {
+  content: '';
+  position: absolute;
+  top: 75px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--envelope-color);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.envelope-letter {
+  position: relative;
+  background-color: rgb(255, 253, 248);
+  width: 90%;
+  height: 85%;
+  margin: 0 auto;
+  top: 8%;
+  border-radius: 6px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  overflow: hidden;
+  cursor: default;
+  transition: background-color 0.5s ease;
+}
+
+.envelope-label-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 20px;
+  right: 20px;
   display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.envelope-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  transition: color 0.5s ease;
+}
+
+.envelope-date {
+  font-size: 12px;
+  color: #666;
+  transition: color 0.5s ease;
+}
+
+/* Default flap/letter transitions (for un-hovering) */
+.envelope-flap {
+  transform: rotateX(0deg);
+  transition: transform 0.25s 0.3s ease, z-index 0s 0.3s;
+  z-index: 5;
+}
+
+.envelope-letter {
+  transform: translateY(0px);
+  transition: transform 0.3s ease, height 0.3s ease, background-color 0.5s ease;
+  z-index: 2;
+}
+
+/* Peeking state — flap opens, letter peeks */
+.envelope.peeking {
+  z-index: 5;
+}
+
+.envelope.peeking:not(.open) .envelope-flap {
+  transform: rotateX(180deg);
+  transition: transform 0.25s ease;
+  z-index: 1;
+}
+
+.envelope.peeking:not(.open) .envelope-letter {
+  transform: translateY(-70px);
+  transition: transform 0.25s 0.25s ease;
+  z-index: 2;
+}
+
+/* Open state — envelope fades out like the others, paper stands alone */
+.open .envelope-flap,
+.open .envelope-pocket,
+.open .envelope-label-overlay {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.open {
+  background-color: transparent;
+  box-shadow: none;
+  height: auto;
+  z-index: 9;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+/* Fade out other envelopes when one is open */
+.envelope-stack.has-open .envelope:not(.open) {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(40px);
+}
+
+.open .envelope-letter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  overflow: visible;
+  z-index: 2;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.paper-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #999;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.open .paper-close {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s 0.2s ease;
+}
+
+.paper-close:hover {
+  color: #333;
+}
+
+[data-theme="dark"] .paper-close {
+  color: rgb(120, 120, 120);
+}
+
+[data-theme="dark"] .paper-close:hover {
+  color: rgb(220, 220, 220);
+}
+
+/* Paper content */
+.paper-content {
+  padding: 28px 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #333;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.open .paper-content {
+  opacity: 1;
+  transition: opacity 0.4s 0.2s ease;
+}
+
+.paper-content h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.paper-date {
+  font-style: italic;
+  color: #888;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+/* Dark mode */
+[data-theme="dark"] .envelope-label {
+  color: rgb(238, 238, 238);
+}
+
+[data-theme="dark"] .envelope-date {
+  color: rgb(180, 180, 180);
+}
+
+[data-theme="dark"] .envelope-letter {
+  background-color: rgb(230, 230, 230);
+}
+
+[data-theme="dark"] .open .envelope-letter {
+  background-color: rgb(50, 48, 44);
+}
+
+[data-theme="dark"] .paper-content {
+  color: rgb(230, 230, 230);
+}
+
+[data-theme="dark"] .paper-date {
+  color: rgb(160, 160, 160);
 }
 
 /* Theme Toggle */

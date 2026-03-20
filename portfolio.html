@@ -31,6 +31,7 @@
         <div class="folder" id="aporia" style="--folder-color: rgb(200, 190, 180);">
           <div class="folder-tab">Aporia</div>
           <div class="folder-body">
+            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Solo Developer</p>
               <div class="folder-tags">
@@ -47,6 +48,7 @@
         <div class="folder" id="ordo" style="--folder-color: rgb(230, 200, 200);">
           <div class="folder-tab">Ordo</div>
           <div class="folder-body">
+            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Solo Developer</p>
               <div class="folder-tags">
@@ -64,6 +66,7 @@
         <div class="folder" id="brandle" style="--folder-color: rgb(220, 215, 205);">
           <div class="folder-tab">Brandle</div>
           <div class="folder-body">
+            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Developer & UI Designer — extended from a class project</p>
               <div class="folder-tags">
@@ -79,6 +82,7 @@
         <div class="folder" id="holoorbits" style="--folder-color: rgb(235, 220, 200);">
           <div class="folder-tab">HoloOrbits</div>
           <div class="folder-body">
+            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Product Manager & UX Lead</p>
               <div class="folder-tags">
@@ -92,8 +96,9 @@
         </div>
 
         <div class="folder" id="whatif" style="--folder-color: rgb(225, 210, 195);">
-          <div class="folder-tab">What if??</div>
+          <div class="folder-tab">More Soon</div>
           <div class="folder-body">
+            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p>Coming soon...</p>
             </div>
@@ -114,17 +119,22 @@
     <script>
       const lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
 
-      document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.getElementById('theme-toggle').addEventListener('click', (e) => {
+        e.stopPropagation();
         const isDark = document.documentElement.dataset.theme === 'dark';
         document.documentElement.dataset.theme = isDark ? '' : 'dark';
         localStorage.setItem('theme', document.documentElement.dataset.theme);
       });
 
+      let folderTransitioning = false;
+      let scrollLocked = false;
       let lastScrollY = window.scrollY;
       window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
-        header.classList.toggle('scrolled', window.scrollY > 0);
-        header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
+        if (!scrollLocked) {
+          header.classList.toggle('scrolled', window.scrollY > 0);
+          header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
+        }
         lastScrollY = window.scrollY;
       });
 
@@ -133,38 +143,119 @@
       const firstFolder = folders[0];
 
       function openFolder(folder) {
+        folderTransitioning = true;
+        stack.style.minHeight = stack.offsetHeight + 'px';
+        stack.style.height = '';
         document.querySelectorAll('.folder.open').forEach(f => {
           f.classList.remove('open');
           f.style.transform = '';
+          f.style.zIndex = '';
           f.querySelector('.folder-body').style.minHeight = '';
         });
         const offset = folder.getBoundingClientRect().top - firstFolder.getBoundingClientRect().top;
         const body = folder.querySelector('.folder-body');
         const content = folder.querySelector('.folder-content');
         const contentHeight = content.scrollHeight + 80;
-        folder.style.transform = `translateY(${-offset}px)`;
-        body.style.minHeight = contentHeight + 'px';
         folder.classList.add('open');
         stack.classList.add('has-open');
+
+        // Set opacities: frontmost unopened folder = 1, decreasing behind
+        const unopened = Array.from(folders).filter(f => f !== folder);
+        unopened.sort((a, b) => {
+          const zA = parseInt(getComputedStyle(a).zIndex) || 0;
+          const zB = parseInt(getComputedStyle(b).zIndex) || 0;
+          return zB - zA;
+        });
+        unopened.forEach((f, i) => {
+          f.style.opacity = Math.max(1 - i * 0.2, 0.15);
+        });
+
+        setTimeout(() => {
+          folder.style.zIndex = '10';
+          folder.style.transform = `translateY(${-offset}px)`;
+          body.style.minHeight = contentHeight + 'px';
+
+          // Scroll to the open folder's final position (top of stack)
+          const headerHeight = document.querySelector('header').offsetHeight;
+          const stackTop = stack.getBoundingClientRect().top + window.scrollY;
+          const scrollTarget = stackTop - headerHeight - 80;
+          scrollLocked = true;
+          const header = document.querySelector('header');
+          header.classList.add('hidden');
+          lenis.scrollTo(scrollTarget, {
+            duration: 0.8,
+            onComplete: () => {
+              lastScrollY = window.scrollY;
+              scrollLocked = false;
+            }
+          });
+          folderTransitioning = false;
+        }, 300);
       }
 
       function closeAll() {
+        folderTransitioning = true;
         document.querySelectorAll('.folder.open').forEach(f => {
           f.classList.remove('open');
           f.style.transform = '';
+          f.style.zIndex = '';
           f.querySelector('.folder-body').style.minHeight = '';
         });
+        folders.forEach(f => f.style.opacity = '');
         stack.classList.remove('has-open');
+        stack.style.minHeight = '';
+        setTimeout(() => { folderTransitioning = false; }, 500);
       }
 
+      const lastFolder = folders[folders.length - 1];
+
       document.querySelectorAll('.folder').forEach(folder => {
-        folder.addEventListener('click', () => {
+        const tab = folder.querySelector('.folder-tab');
+        const body = folder.querySelector('.folder-body');
+
+        tab.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (folderTransitioning) return;
+          if (folder === lastFolder) return;
           if (folder.classList.contains('open')) {
             closeAll();
           } else {
             openFolder(folder);
           }
         });
+
+        body.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (folderTransitioning) return;
+          if (folder === lastFolder) return;
+          if (!folder.classList.contains('open')) {
+            openFolder(folder);
+          }
+        });
+
+        folder.querySelector('.folder-close').addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (folderTransitioning) return;
+          closeAll();
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (folderTransitioning) return;
+        if (!stack.classList.contains('has-open')) return;
+        const openFolder = document.querySelector('.folder.open');
+        if (!openFolder) return;
+        const tab = openFolder.querySelector('.folder-tab');
+        const body = openFolder.querySelector('.folder-body');
+        if (!tab.contains(e.target) && !body.contains(e.target)) {
+          closeAll();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (stack.classList.contains('has-open')) {
+          closeAll();
+        }
       });
 
       if (window.location.hash) {
