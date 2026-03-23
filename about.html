@@ -76,13 +76,6 @@
 
     <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
     <script src="app.js"></script>
-    <script>
-      document.querySelectorAll('.project-card a').forEach(link => {
-        link.addEventListener('mouseenter', () => {
-          const angle = (Math.random() * 6 - 3).toFixed(1);
-          link.style.setProperty('--highlight-angle', angle + 'deg');
-        });
-      });
-    </script>
+    <script>randomHighlightAngle('.project-card a', true);</script>
   </body>
 </html>

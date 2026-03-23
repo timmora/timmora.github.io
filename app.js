@@ -20,15 +20,24 @@ if (reveal && spacer) {
   window.addEventListener('resize', updateSpacer);
 }
 
-// Header scroll show/hide (default — pages with data-custom-scroll handle their own)
-var lastScrollY = window.scrollY;
-if (!document.body.hasAttribute('data-custom-scroll')) {
-  (function() {
-    var header = document.querySelector('header');
-    window.addEventListener('scroll', function() {
-      header.classList.toggle('scrolled', window.scrollY > 0);
-      header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
-      lastScrollY = window.scrollY;
-    });
-  })();
+// Header scroll show/hide
+(function() {
+  var header = document.querySelector('header');
+  var lastScrollY = window.scrollY;
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.scrollY > 0);
+    header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
+    lastScrollY = window.scrollY;
+  });
+})();
+
+// Randomize highlight angles
+function randomHighlightAngle(selector, onHover) {
+  document.querySelectorAll(selector).forEach(function(el) {
+    function setAngle() {
+      el.style.setProperty('--highlight-angle', (Math.random() * 6 - 3).toFixed(1) + 'deg');
+    }
+    if (onHover) el.addEventListener('mouseenter', setAngle);
+    else setAngle();
+  });
 }

@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
   </head>
 
-  <body data-custom-scroll>
+  <body>
     <header> 
       <a href="index.html" class="header-name"> Tim Mora </a>
       <nav>
@@ -28,9 +28,37 @@
       <h1 class="portfolio-header"> A collection of things I've built, led, and figured out </h1>
       <div class="folder-stack">
 
-        <div class="folder" id="aporia" style="--folder-color: #F1F3E0;">
+        <div class="folder" data-folder="aporia">
           <div class="folder-tab">Aporia</div>
-          <div class="folder-body">
+          <div class="folder-body"></div>
+        </div>
+
+        <div class="folder" data-folder="ordo">
+          <div class="folder-tab">Ordo</div>
+          <div class="folder-body"></div>
+        </div>
+
+        <div class="folder" data-folder="brandle">
+          <div class="folder-tab">Brandle</div>
+          <div class="folder-body"></div>
+        </div>
+
+        <div class="folder" data-folder="holoorbits">
+          <div class="folder-tab">HoloOrbits</div>
+          <div class="folder-body"></div>
+        </div>
+
+        <div class="folder" data-folder="whatif">
+          <div class="folder-tab">More Soon!</div>
+          <div class="folder-body"></div>
+        </div>
+
+      </div>
+
+      <div class="folder-overlay" id="folder-overlay">
+        <div class="folder-panel" data-folder="aporia">
+          <div class="folder-panel-tab">Aporia</div>
+          <div class="folder-panel-body">
             <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Solo Developer</p>
@@ -44,10 +72,9 @@
             </div>
           </div>
         </div>
-
-        <div class="folder" id="ordo" style="--folder-color: #D2DCB6;">
-          <div class="folder-tab">Ordo</div>
-          <div class="folder-body">
+        <div class="folder-panel" data-folder="ordo">
+          <div class="folder-panel-tab">Ordo</div>
+          <div class="folder-panel-body">
             <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Solo Developer</p>
@@ -62,10 +89,9 @@
             </div>
           </div>
         </div>
-
-        <div class="folder" id="brandle" style="--folder-color: #A1BC98;">
-          <div class="folder-tab">Brandle</div>
-          <div class="folder-body">
+        <div class="folder-panel" data-folder="brandle">
+          <div class="folder-panel-tab">Brandle</div>
+          <div class="folder-panel-body">
             <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Developer & UI Designer — extended from a class project</p>
@@ -78,10 +104,9 @@
             </div>
           </div>
         </div>
-
-        <div class="folder" id="holoorbits" style="--folder-color: #778873;">
-          <div class="folder-tab">HoloOrbits</div>
-          <div class="folder-body">
+        <div class="folder-panel" data-folder="holoorbits">
+          <div class="folder-panel-tab">HoloOrbits</div>
+          <div class="folder-panel-body">
             <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Product Manager & UX Lead</p>
@@ -94,17 +119,6 @@
             </div>
           </div>
         </div>
-
-        <div class="folder" id="whatif" style="--folder-color: #313647;">
-          <div class="folder-tab">More Soon</div>
-          <div class="folder-body">
-            <button class="folder-close">&times;</button>
-            <div class="folder-content">
-              <p>Coming soon...</p>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -118,51 +132,36 @@
     <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
     <script src="app.js"></script>
     <script>
-      document.querySelectorAll('.folder-tag').forEach(tag => {
-        const angle = (Math.random() * 6 - 3).toFixed(1);
-        tag.style.setProperty('--highlight-angle', angle + 'deg');
-      });
-
-      const header = document.querySelector('header');
-      let folderTransitioning = false;
-      let scrollLocked = false;
-
-      window.addEventListener('wheel', () => {
-        if (scrollLocked) {
-          lenis.stop();
-          lenis.start();
-          scrollLocked = false;
-        }
-      }, { passive: true });
-
-      window.addEventListener('scroll', () => {
-        if (!scrollLocked) {
-          header.classList.toggle('scrolled', window.scrollY > 0);
-          header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
-        }
-        lastScrollY = window.scrollY;
-      });
+      randomHighlightAngle('.folder-tag', false);
 
       const stack = document.querySelector('.folder-stack');
       const folders = document.querySelectorAll('.folder');
-      const firstFolder = folders[0];
+      const overlay = document.getElementById('folder-overlay');
+      const portfolioSection = document.getElementById('portfolio');
+      let activePanel = null;
+
+      const lastFolder = folders[folders.length - 1];
+
+      folders.forEach(folder => {
+        const tab = folder.querySelector('.folder-tab');
+        tab.addEventListener('mouseenter', () => {
+          if (!activePanel) folder.classList.add('peeking');
+        });
+        tab.addEventListener('mouseleave', () => {
+          folder.classList.remove('peeking');
+        });
+      });
 
       function openFolder(folder) {
-        folderTransitioning = true;
-        stack.style.minHeight = stack.offsetHeight + 'px';
-        stack.style.height = '';
-        document.querySelectorAll('.folder.open').forEach(f => {
-          f.classList.remove('open');
-          f.style.transform = '';
-          f.style.zIndex = '';
-          f.querySelector('.folder-body').style.minHeight = '';
-        });
-        const offset = folder.getBoundingClientRect().top - firstFolder.getBoundingClientRect().top;
-        const body = folder.querySelector('.folder-body');
-        const content = folder.querySelector('.folder-content');
-        const contentHeight = content.scrollHeight + 80;
+        const folderId = folder.dataset.folder;
+        const panel = overlay.querySelector(`.folder-panel[data-folder="${folderId}"]`);
+        if (!panel) return;
+
+        closeAll();
+        panel.style.width = folder.offsetWidth + 'px';
         folder.classList.add('open');
         stack.classList.add('has-open');
+        portfolioSection.classList.add('has-open-folder');
 
         const unopened = Array.from(folders).filter(f => f !== folder);
         unopened.sort((a, b) => {
@@ -170,105 +169,75 @@
           const zB = parseInt(getComputedStyle(b).zIndex) || 0;
           return zB - zA;
         });
+        const opacitySteps = [1, 0.8, 0.6, 0.4, 0.2];
         unopened.forEach((f, i) => {
-          f.style.opacity = Math.max(1 - i * 0.2, 0.15);
+          f.style.opacity = opacitySteps[i] !== undefined ? opacitySteps[i] : 0.15;
+          f.style.filter = 'brightness(0.75)';
         });
 
-        setTimeout(() => {
-          folder.style.zIndex = '10';
-          folder.style.transform = `translateY(${-offset}px)`;
-          body.style.minHeight = contentHeight + 'px';
-
-          const headerHeight = header.offsetHeight;
-          const stackTop = stack.getBoundingClientRect().top + window.scrollY;
-          const scrollTarget = stackTop - headerHeight - 120;
-          scrollLocked = true;
-          if (scrollTarget < window.scrollY) {
-            header.classList.remove('hidden');
-          } else {
-            header.classList.add('hidden');
-          }
-          lenis.scrollTo(scrollTarget, {
-            duration: 0.8,
-            onComplete: () => {
-              lastScrollY = window.scrollY;
-              scrollLocked = false;
-            }
+        overlay.classList.add('active');
+        panel.classList.add('active');
+        activePanel = panel;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            panel.classList.add('visible');
           });
-          folderTransitioning = false;
-        }, 300);
+        });
       }
 
       function closeAll() {
-        folderTransitioning = true;
-        document.querySelectorAll('.folder.open').forEach(f => {
-          f.classList.remove('open');
-          f.style.transform = '';
-          f.style.zIndex = '';
-          f.querySelector('.folder-body').style.minHeight = '';
-        });
-        folders.forEach(f => f.style.opacity = '');
+        if (activePanel) {
+          activePanel.classList.remove('visible', 'active');
+          activePanel = null;
+        }
+        document.querySelectorAll('.folder.open').forEach(f => f.classList.remove('open'));
+        folders.forEach(f => { f.style.opacity = ''; f.style.filter = ''; });
         stack.classList.remove('has-open');
-        stack.style.minHeight = '';
-        setTimeout(() => { folderTransitioning = false; }, 500);
+        portfolioSection.classList.remove('has-open-folder');
+        overlay.classList.remove('active');
       }
 
-      const lastFolder = folders[folders.length - 1];
-
-      document.querySelectorAll('.folder').forEach(folder => {
+      folders.forEach(folder => {
         const tab = folder.querySelector('.folder-tab');
         const body = folder.querySelector('.folder-body');
 
         tab.addEventListener('click', (e) => {
           e.stopPropagation();
-          if (folderTransitioning) return;
+          if (activePanel) { closeAll(); return; }
           if (folder === lastFolder) return;
-          if (folder.classList.contains('open')) {
-            closeAll();
-          } else {
-            openFolder(folder);
-          }
+          openFolder(folder);
         });
 
         body.addEventListener('click', (e) => {
           e.stopPropagation();
-          if (folderTransitioning) return;
+          if (activePanel && !folder.classList.contains('open')) { closeAll(); return; }
           if (folder === lastFolder) return;
-          if (!folder.classList.contains('open')) {
-            openFolder(folder);
-          }
+          if (!folder.classList.contains('open')) openFolder(folder);
         });
+      });
 
-        folder.querySelector('.folder-close').addEventListener('click', (e) => {
+      overlay.querySelectorAll('.folder-close').forEach(btn => {
+        btn.addEventListener('click', (e) => {
           e.stopPropagation();
-          if (folderTransitioning) return;
           closeAll();
         });
       });
 
       document.addEventListener('click', (e) => {
-        if (folderTransitioning) return;
-        if (!stack.classList.contains('has-open')) return;
-        const openFolder = document.querySelector('.folder.open');
-        if (!openFolder) return;
-        const tab = openFolder.querySelector('.folder-tab');
-        const body = openFolder.querySelector('.folder-body');
-        if (!tab.contains(e.target) && !body.contains(e.target)) {
-          closeAll();
-        }
+        if (!activePanel) return;
+        const panelBody = activePanel.querySelector('.folder-panel-body');
+        const panelTab = activePanel.querySelector('.folder-panel-tab');
+        if (!panelBody.contains(e.target) && !panelTab.contains(e.target)) closeAll();
       });
 
       window.addEventListener('resize', () => {
-        if (stack.classList.contains('has-open')) {
-          closeAll();
-        }
+        if (activePanel) closeAll();
       });
 
       if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target && target.classList.contains('folder')) {
-          openFolder(target);
-        }
+        const folderId = window.location.hash.slice(1);
+        const target = document.querySelector(`.folder[data-folder="${folderId}"]`);
+        if (target) openFolder(target);
       }
     </script>
   </body>
