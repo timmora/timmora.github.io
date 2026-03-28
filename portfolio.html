@@ -134,6 +134,16 @@
     <script>
       randomHighlightAngle('.folder-tag', false);
 
+      document.querySelectorAll('.folder-stack .folder').forEach(function(folder) {
+        folder.addEventListener('animationend', function() {
+          folder.style.animation = 'none';
+        }, { once: true });
+      });
+
+      document.querySelector('.portfolio-header').addEventListener('animationend', function() {
+        this.style.animation = 'none';
+      }, { once: true });
+
       const stack = document.querySelector('.folder-stack');
       const folders = document.querySelectorAll('.folder');
       const overlay = document.getElementById('folder-overlay');
@@ -157,7 +167,9 @@
         const panel = overlay.querySelector(`.folder-panel[data-folder="${folderId}"]`);
         if (!panel) return;
 
-        closeAll();
+        closeAll(true);
+        folder.style.animation = 'none';
+        document.querySelector('.portfolio-header').style.animation = 'none';
         panel.style.width = folder.offsetWidth + 'px';
         folder.classList.add('open');
         stack.classList.add('has-open');
@@ -169,10 +181,8 @@
           const zB = parseInt(getComputedStyle(b).zIndex) || 0;
           return zB - zA;
         });
-        const opacitySteps = [1, 0.8, 0.6, 0.4, 0.2];
-        unopened.forEach((f, i) => {
-          f.style.opacity = opacitySteps[i] !== undefined ? opacitySteps[i] : 0.15;
-          f.style.filter = 'brightness(0.75)';
+        unopened.forEach(f => {
+          f.style.pointerEvents = 'none';
         });
 
         overlay.classList.add('active');
@@ -185,13 +195,21 @@
         });
       }
 
-      function closeAll() {
+      function closeAll(immediate) {
         if (activePanel) {
-          activePanel.classList.remove('visible', 'active');
+          activePanel.classList.remove('visible');
+          const panel = activePanel;
           activePanel = null;
+          if (immediate) {
+            panel.classList.remove('active');
+          } else {
+            panel.addEventListener('transitionend', function() {
+              panel.classList.remove('active');
+            }, { once: true });
+          }
         }
         document.querySelectorAll('.folder.open').forEach(f => f.classList.remove('open'));
-        folders.forEach(f => { f.style.opacity = ''; f.style.filter = ''; });
+        folders.forEach(f => { f.style.pointerEvents = ''; });
         stack.classList.remove('has-open');
         portfolioSection.classList.remove('has-open-folder');
         overlay.classList.remove('active');

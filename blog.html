@@ -99,6 +99,10 @@
     <script src="app.js"></script>
     <script>
 
+      document.querySelector('.blog-header').addEventListener('animationend', function() {
+        this.style.animation = 'none';
+      }, { once: true });
+
       const envelopes = document.querySelectorAll('.envelope');
       const stack = document.querySelector('.envelope-stack');
       const overlay = document.getElementById('paper-overlay');
@@ -117,14 +121,17 @@
 
       function closePaper() {
         if (activePaper) {
-          activePaper.classList.remove('active');
+          const paper = activePaper;
           activePaper = null;
+          overlay.classList.remove('active');
+          overlay.addEventListener('transitionend', function() {
+            paper.classList.remove('active');
+          }, { once: true });
         }
         const openEnvelope = document.querySelector('.envelope.open');
         if (openEnvelope) openEnvelope.classList.remove('open', 'peeking');
         stack.classList.remove('has-open');
         blogSection.classList.remove('has-open-envelope');
-        overlay.classList.remove('active');
       }
 
       const peekDuration = 500;

@@ -21,6 +21,19 @@
   to { opacity: 1; }
 }
 
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
 html {
   background-color: var(--bg);
   transition: background-color 0.5s ease;
@@ -102,6 +115,7 @@ header.hidden {
   transform: translateY(-100%);
 }
 
+
 header.scrolled {
   box-shadow: 0 2px 8px var(--shadow);
 }
@@ -161,6 +175,12 @@ footer p {
   justify-content: center;
   align-items: center;
 }
+
+#hero > h1           { animation: heroIn 0.7s ease both 0.05s; }
+#hero .hero-header-name { animation: heroIn 0.5s ease both 0.35s; }
+#hero > #subtitle    { animation: heroIn 0.5s ease both 0.35s; }
+#hero > #tagline     { animation: heroIn 0.6s ease both 0.65s; }
+#hero > p:last-child { animation: heroIn 0.6s ease both 0.75s; }
 
 .hero-header-name {
   font-weight: bold;
@@ -238,6 +258,12 @@ footer p {
 }
 
 /* About Page */
+
+#about > h1               { animation: heroIn 0.4s ease both 0.05s; }
+#about > p:nth-of-type(1) { animation: heroIn 0.4s ease both 0.15s; }
+#about > p:nth-of-type(2) { animation: heroIn 0.4s ease both 0.25s; }
+#about > p:nth-of-type(3) { animation: heroIn 0.4s ease both 0.35s; }
+#about > p:nth-of-type(4) { animation: heroIn 0.4s ease both 0.45s; }
 
 #about {
   min-height: 100vh;
@@ -325,6 +351,13 @@ footer p {
   z-index: 1;
 }
 
+.portfolio-header                   { animation: heroIn 0.4s ease both 0.05s; }
+.folder-stack .folder:nth-child(1) { animation: heroIn 0.4s ease both 0.15s; }
+.folder-stack .folder:nth-child(2) { animation: heroIn 0.4s ease both 0.25s; }
+.folder-stack .folder:nth-child(3) { animation: heroIn 0.4s ease both 0.35s; }
+.folder-stack .folder:nth-child(4) { animation: heroIn 0.4s ease both 0.45s; }
+.folder-stack .folder:nth-child(5) { animation: heroIn 0.4s ease both 0.55s; }
+
 .portfolio-header {
   font-weight: bold;
   text-align: center;
@@ -334,8 +367,12 @@ footer p {
 }
 
 #portfolio.has-open-folder .portfolio-header {
-  opacity: 0.5;
-  filter: brightness(0.7);
+  filter: blur(3px) brightness(0.6);
+  opacity: 0.8;
+}
+
+#portfolio.has-open-folder .folder-stack {
+  filter: blur(3px);
 }
 
 .folder-stack {
@@ -343,6 +380,7 @@ footer p {
   display: flex;
   flex-direction: column;
   padding: 40px 80px 60px;
+  transition: filter 0.4s ease, opacity 0.4s ease;
 }
 
 .folder {
@@ -470,6 +508,7 @@ footer p {
 }
 
 .folder.open {
+  animation: none !important;
   opacity: 0;
   transform: translateY(-40px);
   pointer-events: none;
@@ -707,16 +746,25 @@ body:has(#blog) {
 }
 
 #blog.has-open-envelope .blog-header {
-  opacity: 0.5;
-  filter: brightness(0.7);
+  filter: blur(3px) brightness(0.6);
+  opacity: 0.8;
 }
 
+#blog.has-open-envelope .envelope-stack {
+  filter: blur(3px);
+}
+
+.blog-header                           { animation: heroIn 0.4s ease both 0.05s; }
+.envelope-stack .envelope:nth-child(1) { animation: heroIn 0.4s ease both 0.15s; }
+.envelope-stack .envelope:nth-child(2) { animation: heroIn 0.4s ease both 0.25s; }
+.envelope-stack .envelope:nth-child(3) { animation: heroIn 0.4s ease both 0.35s; }
 
 .envelope-stack {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
   padding-top: 70px;
+  transition: filter 0.4s ease, opacity 0.4s ease;
 }
 
 .envelope:nth-child(1) { --envelope-color: #F1F3E0; --envelope-dark: #D2DCB6; }
@@ -858,8 +906,6 @@ body:has(#blog) {
 
 /* Open state — envelopes fade */
 .envelope-stack.has-open .envelope:not(.open) {
-  opacity: 0.5;
-  filter: brightness(0.7);
   pointer-events: none;
   transition: opacity 0.4s ease, filter 0.4s ease;
 }
