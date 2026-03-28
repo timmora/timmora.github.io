@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
@@ -105,6 +105,11 @@
 
       const envelopes = document.querySelectorAll('.envelope');
       const stack = document.querySelector('.envelope-stack');
+
+      stack.classList.add('loading');
+      envelopes[envelopes.length - 1].addEventListener('animationend', function() {
+        stack.classList.remove('loading');
+      }, { once: true });
       const overlay = document.getElementById('paper-overlay');
 
       function setFlapSizes() {
