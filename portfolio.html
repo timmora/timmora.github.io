@@ -17,7 +17,7 @@
       <a href="index.html" class="header-name"> Tim Mora </a>
       <nav>
         <ul>
-          <li><a style="cursor: pointer;"> Portfolio </a></li>
+          <li><a class="nav-active"> Portfolio </a></li>
           <li><a href="about.html"> About </a></li>
           <li><a href="blog.html"> Blog </a></li>
         </ul>
@@ -59,7 +59,6 @@
         <div class="folder-panel" data-folder="aporia">
           <div class="folder-panel-tab">Aporia</div>
           <div class="folder-panel-body">
-            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Solo Developer</p>
               <div class="folder-tags">
@@ -75,7 +74,6 @@
         <div class="folder-panel" data-folder="ordo">
           <div class="folder-panel-tab">Ordo</div>
           <div class="folder-panel-body">
-            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Solo Developer</p>
               <div class="folder-tags">
@@ -92,7 +90,6 @@
         <div class="folder-panel" data-folder="brandle">
           <div class="folder-panel-tab">Brandle</div>
           <div class="folder-panel-body">
-            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Developer & UI Designer — extended from a class project</p>
               <div class="folder-tags">
@@ -107,7 +104,6 @@
         <div class="folder-panel" data-folder="holoorbits">
           <div class="folder-panel-tab">HoloOrbits</div>
           <div class="folder-panel-body">
-            <button class="folder-close">&times;</button>
             <div class="folder-content">
               <p class="folder-role">Product Manager & UX Lead</p>
               <div class="folder-tags">
@@ -239,12 +235,6 @@
         });
       });
 
-      overlay.querySelectorAll('.folder-close').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          closeAll();
-        });
-      });
 
       document.addEventListener('click', (e) => {
         if (!activePanel) return;

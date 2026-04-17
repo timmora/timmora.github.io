@@ -19,7 +19,7 @@
         <ul>
           <li><a href="portfolio.html"> Portfolio </a></li>
           <li><a href="about.html"> About </a></li>
-          <li><a style="cursor: pointer;"> Blog </a></li>
+          <li><a class="nav-active"> Blog </a></li>
         </ul>
       </nav>
     </header>
@@ -62,7 +62,6 @@
 
       <div class="paper-overlay" id="paper-overlay">
         <div class="paper" data-entry="0">
-          <button class="paper-close">&times;</button>
           <div class="paper-content">
             <h3>On Building Things</h3>
             <p class="paper-date">March 15, 2026</p>
@@ -70,7 +69,6 @@
           </div>
         </div>
         <div class="paper" data-entry="1">
-          <button class="paper-close">&times;</button>
           <div class="paper-content">
             <h3>Design Isn't Decoration</h3>
             <p class="paper-date">February 22, 2026</p>
@@ -78,7 +76,6 @@
           </div>
         </div>
         <div class="paper" data-entry="2">
-          <button class="paper-close">&times;</button>
           <div class="paper-content">
             <h3>Learning to Lead</h3>
             <p class="paper-date">January 10, 2026</p>
@@ -191,12 +188,6 @@
         });
       });
 
-      overlay.querySelectorAll('.paper-close').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          closePaper();
-        });
-      });
 
       document.addEventListener('click', (e) => {
         if (!activePaper) return;

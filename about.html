@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+          <!DOCTYPE html>
 <html lang="en" data-theme="">
   <script>document.documentElement.dataset.theme = localStorage.getItem('theme') || '';</script>
   <head>
@@ -18,7 +18,7 @@
       <nav>
         <ul>
           <li><a href="portfolio.html"> Portfolio </a></li>
-          <li><a style="cursor: pointer;"> About </a></li>
+          <li><a class="nav-active"> About </a></li>
           <li><a href="blog.html"> Blog </a></li>
         </ul>
       </nav>
@@ -26,26 +26,34 @@
 
     <section id="about" class="section-cover">
       <h1> My Story (So Far) </h1>
-      <p>
-        I'm Tim, a CS + Education student at UIUC finishing up my final year. Initially, I got into computer science because I 
-        wanted to build things, but I stuck with it because I realized the most interesting problem in tech isn't the code, but 
-        the people that are using it.
-      </p>
-      <p>
-        I've always been drawn to the relationship between technology and people. Naturally, that led me to project management, 
-        UX thinking, and building things that don't just work, but also feel good to use. Most recently, I led an 8-person 
-        team through a full software development cycle and served as a Design Lead on HoloOrbits, a collaborative educational game 
-        developed by Professor Jina Kang and her team at UIUC, where I got to think about design, learning, and what it means to build
-        something genuinely useful for students.
-      </p>
-      <p>
-        Outside the screen, I have profound love for writing, music, and pretty much anything creative. I think that background makes me a 
-        better builder — I notice details, I care about feel, and I ask questions that don't always show up in a product brief.
-      </p>
-      <p>
-        I'm currently looking for opportunities where I can bring both sides of that to the table — the technical foundation and 
-        the human instinct. If that sounds like something you're building toward, I'd love to connect!
-      </p>
+      <div class="about-para" data-label="Origin">
+        <p>
+          I'm Tim, a <span class="about-highlight">CS + Education student at UIUC</span> finishing up my final year. Initially, I got into computer science because I
+          wanted to build things, but I stuck with it because I realized the most interesting problem in tech isn't the code, but
+          <span class="about-highlight">the people that are using it</span>.
+        </p>
+      </div>
+      <div class="about-para" data-label="Practice">
+        <p>
+          I've always been drawn to the relationship between technology and people. Naturally, that led me to project management,
+          UX thinking, and building things that don't just work, but also feel good to use. Most recently, I led an <span class="about-highlight">8-person
+          team</span> through a full software development cycle and served as a <span class="about-highlight">Design Lead</span> on HoloOrbits, a collaborative educational game
+          developed by Professor Jina Kang and her team at UIUC, where I got to think about design, learning, and what it means to build
+          something genuinely useful for students.
+        </p>
+      </div>
+      <div class="about-para" data-label="Outside">
+        <p>
+          Outside the screen, I have profound love for writing, music, and pretty much anything creative! I think that background makes me a
+          better builder — I notice details, I care about feel, and I ask questions that <span class="about-highlight">don't always show up in a product brief</span>.
+        </p>
+      </div>
+      <div class="about-para" data-label="Next">
+        <p>
+          I'm currently looking for opportunities where I can bring both sides of that to the table — the <span class="about-highlight">technical foundation</span> and
+          the <span class="about-highlight">human instinct</span>. If that sounds like something you're building toward, I'd love to connect!
+        </p>
+      </div>
     </section>
 
     <div class="reveal-spacer" id="reveal-spacer"></div>
