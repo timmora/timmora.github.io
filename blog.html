@@ -121,19 +121,29 @@
       let activePaper = null;
       let opening = false;
 
-      function closePaper() {
+      function closePaper(immediate) {
         if (activePaper) {
+          activePaper.classList.remove('visible');
           const paper = activePaper;
           activePaper = null;
-          overlay.classList.remove('active');
-          overlay.addEventListener('transitionend', function() {
+          if (immediate) {
             paper.classList.remove('active');
-          }, { once: true });
+            paper.style.width = '';
+          } else {
+            paper.addEventListener('transitionend', function onPaperTransitionEnd(e) {
+              if (e.target !== paper || e.propertyName !== 'transform') return;
+              paper.removeEventListener('transitionend', onPaperTransitionEnd);
+              paper.classList.remove('active');
+              paper.style.width = '';
+            });
+          }
         }
         const openEnvelope = document.querySelector('.envelope.open');
         if (openEnvelope) openEnvelope.classList.remove('open', 'peeking');
         stack.classList.remove('has-open');
         blogSection.classList.remove('has-open-envelope');
+        overlay.classList.remove('active');
+        document.body.classList.remove('blog-paper-open');
       }
 
       const peekDuration = 500;
@@ -177,6 +187,10 @@
           const delay = Math.max(0, 500 - elapsed);
 
           setTimeout(() => {
+            var overlayPad = 48;
+            var maxPaperW = Math.max(280, document.documentElement.clientWidth - overlayPad);
+            var targetPaperW = Math.max(envelope.offsetWidth, 920);
+            paper.style.width = Math.min(targetPaperW, maxPaperW) + 'px';
             envelope.classList.add('open');
             stack.classList.add('has-open');
             blogSection.classList.add('has-open-envelope');
@@ -184,6 +198,12 @@
             paper.classList.add('active');
             activePaper = paper;
             opening = false;
+            document.body.classList.add('blog-paper-open');
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                paper.classList.add('visible');
+              });
+            });
           }, delay);
         });
       });
@@ -197,7 +217,7 @@
       });
 
       window.addEventListener('resize', () => {
-        if (activePaper) closePaper();
+        if (activePaper) closePaper(true);
       });
 
     </script>

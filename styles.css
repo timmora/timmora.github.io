@@ -147,6 +147,12 @@ header.hidden {
   transform: translateY(-100%);
 }
 
+body.portfolio-folder-open header,
+body.blog-paper-open header {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
 
 header.scrolled {
   box-shadow: none;
@@ -650,9 +656,11 @@ footer p {
   bottom: 0;
   z-index: 200;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding-top: 20vh;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -682,7 +690,10 @@ footer p {
 .folder-panel.active {
   display: flex;
   flex-direction: column;
-  max-height: 80vh;
+  max-height: min(80vh, calc(100vh - 48px));
+  max-width: calc(100vw - 48px);
+  margin: auto;
+  flex-shrink: 0;
 }
 
 .folder-panel.visible {
@@ -733,9 +744,12 @@ footer p {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   box-shadow: 0 8px 40px var(--shadow);
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  isolation: isolate;
+  -webkit-overflow-scrolling: touch;
 }
 
 .folder-panel-body::-webkit-scrollbar {
@@ -781,14 +795,72 @@ footer p {
 p.folder-role {
   font-size: 20px;
   font-style: italic;
+  font-weight: 700;
   margin-bottom: 20px;
+}
+
+.folder-section {
+  margin-bottom: 18px;
+}
+
+.folder-list {
+  margin: 0 0 0 1.15em;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #333;
+  transition: color 0.5s ease;
+}
+
+.folder-list li {
+  margin-bottom: 0.4em;
+}
+
+.folder-list li:last-child {
+  margin-bottom: 0;
+}
+
+[data-theme="dark"] .folder-list {
+  color: rgb(238, 238, 238);
+}
+
+.folder-tag-group {
+  margin-bottom: 12px;
+}
+
+.folder-panel .folder-tag-label {
+  display: inline-block;
+  position: relative;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  padding: 3px 6px 2px;
+  color: #333;
+  isolation: isolate;
+  transition: color 0.5s ease;
+}
+
+.folder-panel .folder-tag-label::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 230, 100, 0.45);
+  border-radius: 3px;
+  z-index: -1;
+  transform: rotate(var(--highlight-angle, -1deg)) scaleY(1.1);
+  transition: background-color 0.5s ease;
 }
 
 .folder-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 0;
+}
+
+.folder-panel .folder-tags {
+  gap: 14px 20px;
 }
 
 .folder-tag {
@@ -812,10 +884,53 @@ p.folder-role {
   transition: background-color 0.5s ease;
 }
 
+.folder-tag-plain::before {
+  display: none;
+}
+
+.folder-tag-plain {
+  font-size: 18px;
+  line-height: 1.6;
+  padding: 0;
+}
+
+/* Wavy underline on stack / tech chips in open folder panels (not feature bullets) */
+.folder-panel .folder-tag:not(.folder-feature-tag) {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
 .folder-desc {
   font-size: 18px;
   line-height: 1.6;
   transition: color 0.5s ease;
+}
+
+.folder-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.folder-link {
+  font-size: 15px;
+  font-style: italic;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: color 0.5s ease, opacity 0.2s ease;
+}
+
+.folder-link:hover {
+  opacity: 0.6;
+}
+
+.folder-feature-tag::before {
+  background-color: rgba(100, 160, 255, 0.35);
 }
 
 [data-theme="dark"] .folder-tag {
@@ -826,11 +941,27 @@ p.folder-role {
   background-color: rgba(80, 160, 80, 0.4);
 }
 
+[data-theme="dark"] .folder-panel .folder-tag-label {
+  color: rgb(238, 238, 238);
+}
+
+[data-theme="dark"] .folder-panel .folder-tag-label::before {
+  background-color: rgba(80, 160, 80, 0.4);
+}
+
+[data-theme="dark"] .folder-feature-tag::before {
+  background-color: rgba(80, 120, 220, 0.4);
+}
+
 [data-theme="dark"] .folder-tab,
 [data-theme="dark"] .folder-body p,
 [data-theme="dark"] .folder-panel p,
 [data-theme="dark"] .folder-desc {
   color: rgb(238, 238, 238);
+}
+
+[data-theme="dark"] .folder-link {
+  color: rgb(220, 220, 220);
 }
 
 [data-theme="dark"] .folder:nth-child(1) { --folder-color: #E6501B; }
@@ -1027,7 +1158,7 @@ body:has(#blog) {
   transition: opacity 0.3s ease;
 }
 
-/* Paper overlay */
+/* Paper overlay — matches .folder-overlay positioning */
 .paper-overlay {
   position: fixed;
   top: 0;
@@ -1036,9 +1167,11 @@ body:has(#blog) {
   bottom: 0;
   z-index: 200;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding-top: 20vh;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -1051,18 +1184,28 @@ body:has(#blog) {
 
 .paper {
   display: none;
+  position: relative;
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
   background-color: rgb(255, 253, 248);
-  width: 800px;
-  max-width: 90vw;
-  max-height: 80vh;
+  max-width: calc(100vw - 48px);
+  max-height: min(80vh, calc(100vh - 48px));
+  margin: auto;
+  flex-shrink: 0;
+  box-sizing: border-box;
   overflow-y: auto;
   border-radius: 8px;
   box-shadow: 0 4px 20px var(--shadow);
-  position: relative;
 }
 
 .paper.active {
   display: block;
+}
+
+.paper.visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* Paper content */
