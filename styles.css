@@ -50,6 +50,8 @@ html {
   background-color: var(--bg);
   background-image: var(--bg-pattern);
   background-size: var(--bg-pattern-size);
+  /* Lenis adds overflow: clip on html when stopped (e.g. open folder); reserve gutter so layout doesn’t jump */
+  scrollbar-gutter: stable;
 
   transition: background-color 0.5s ease;
 }
@@ -656,11 +658,12 @@ footer p {
   bottom: 0;
   z-index: 200;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 24px;
+  padding: 48px 24px 32px;
   box-sizing: border-box;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -690,9 +693,9 @@ footer p {
 .folder-panel.active {
   display: flex;
   flex-direction: column;
-  max-height: min(80vh, calc(100vh - 48px));
+  /* Height follows content; overlay scrolls — uses full viewport instead of a nested body scroll */
   max-width: calc(100vw - 48px);
-  margin: auto;
+  margin: 0 auto;
   flex-shrink: 0;
 }
 
@@ -711,6 +714,7 @@ footer p {
   color: #333;
   position: relative;
   margin-left: var(--tab-offset, 30px);
+  margin-top: -5px;
   align-self: flex-start;
   z-index: 1;
 }
@@ -741,38 +745,12 @@ footer p {
   border-radius: 12px;
   padding: 40px;
   position: relative;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
+  flex: 0 1 auto;
+  overflow: visible;
   overflow-x: hidden;
   box-shadow: 0 8px 40px var(--shadow);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
   isolation: isolate;
-  -webkit-overflow-scrolling: touch;
 }
-
-.folder-panel-body::-webkit-scrollbar {
-  width: 6px;
-}
-
-.folder-panel-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.folder-panel-body::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
-[data-theme="dark"] .folder-panel-body {
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
-}
-
-[data-theme="dark"] .folder-panel-body::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 
 .folder-body .folder-content {
   opacity: 0;
@@ -797,6 +775,15 @@ p.folder-role {
   font-style: italic;
   font-weight: 700;
   margin-bottom: 20px;
+}
+
+p.folder-role:has(+ .folder-links) {
+  margin-bottom: 10px;
+}
+
+.folder-content > .folder-role + .folder-links {
+  margin-top: 0;
+  margin-bottom: 22px;
 }
 
 .folder-section {

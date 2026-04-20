@@ -1,6 +1,20 @@
 // Smooth scroll
 var lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
 
+// When a folder is open, Lenis stops so the folder overlay can scroll natively
+(function syncLenisWhenFolderOpen() {
+  if (typeof lenis === 'undefined' || !lenis.stop) return;
+  function sync() {
+    if (document.body.classList.contains('portfolio-folder-open')) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+  }
+  sync();
+  new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+})();
+
 // Theme toggle
 document.getElementById('theme-toggle').addEventListener('click', (e) => {
   e.stopPropagation();
