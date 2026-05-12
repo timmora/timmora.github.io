@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="">
-  <script>document.documentElement.dataset.theme = localStorage.getItem('theme') || '';</script>
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      if (stored === null) {
+        document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : '';
+      } else {
+        document.documentElement.dataset.theme = stored === 'dark' ? 'dark' : '';
+      }
+    })();
+  </script>
   <head>
     <title>Tim Mora</title>
     <link rel="stylesheet" href="https://unpkg.com/lenis@latest/dist/lenis.css">

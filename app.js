@@ -23,6 +23,16 @@ document.getElementById('theme-toggle').addEventListener('click', (e) => {
   localStorage.setItem('theme', document.documentElement.dataset.theme);
 });
 
+(function syncThemeWithOs() {
+  function apply() {
+    if (localStorage.getItem('theme') !== null) return;
+    document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : '';
+  }
+  var mq = matchMedia('(prefers-color-scheme: dark)');
+  if (mq.addEventListener) mq.addEventListener('change', apply);
+  else mq.addListener(apply);
+})();
+
 // Reveal spacer (index & about pages)
 var reveal = document.querySelector('.section-reveal');
 var spacer = document.getElementById('reveal-spacer');
