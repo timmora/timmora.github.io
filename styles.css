@@ -453,11 +453,6 @@ footer p {
 .project-card {
   text-align: center;
   font-size: 18px;
-  border-right: 1px solid #ccc;
-}
-
-.project-card:last-child {
-  border-right: none;
 }
 
 .project-card h3 {
