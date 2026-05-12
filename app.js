@@ -1,5 +1,22 @@
+// Reload + Lenis: browser scroll restoration can leave the page partway down; manual avoids that.
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 // Smooth scroll
 var lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
+
+(function alignLenisWithScrollStart() {
+  if (window.location.hash) return;
+  function snap() {
+    window.scrollTo(0, 0);
+    if (typeof lenis.scrollTo === 'function') {
+      lenis.scrollTo(0, { immediate: true });
+    }
+  }
+  snap();
+  requestAnimationFrame(snap);
+})();
 
 // When a folder is open, Lenis stops so the folder overlay can scroll natively
 (function syncLenisWhenFolderOpen() {
