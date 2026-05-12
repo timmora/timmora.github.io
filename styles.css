@@ -158,7 +158,8 @@ header.scrolled {
 
 .header-name {
   font-weight: normal;
-  transition: text-shadow 0.3s ease;
+  color: var(--text);
+  transition: color 0.5s ease, text-shadow 0.3s ease;
 }
 
 .header-name:hover {
@@ -193,7 +194,8 @@ nav a {
   z-index: 1;
   border-radius: 999px;
   padding: 8px 14px;
-  transition: text-shadow 0.3s ease, background-color 0.3s ease;
+  color: var(--text);
+  transition: color 0.5s ease, text-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 nav a:hover {
