@@ -141,12 +141,8 @@ header {
   background-color: transparent;
 
   z-index: 201;
-  transition: box-shadow 0.3s ease, transform 0.3s ease, color 0.5s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease;
   margin-top: -40px;
-}
-
-header.hidden {
-  transform: translateY(-100%);
 }
 
 body.portfolio-folder-open header,
@@ -162,7 +158,8 @@ header.scrolled {
 
 .header-name {
   font-weight: normal;
-  transition: text-shadow 0.3s ease;
+  color: var(--text);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .header-name:hover {

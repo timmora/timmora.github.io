@@ -44,14 +44,11 @@ if (reveal && spacer) {
   window.addEventListener('resize', updateSpacer);
 }
 
-// Header scroll show/hide
+// Header scroll state (e.g. shadow)
 (function() {
   var header = document.querySelector('header');
-  var lastScrollY = window.scrollY;
   window.addEventListener('scroll', function() {
     header.classList.toggle('scrolled', window.scrollY > 0);
-    header.classList.toggle('hidden', window.scrollY > lastScrollY && window.scrollY > 50);
-    lastScrollY = window.scrollY;
   });
 })();
 
