@@ -141,7 +141,7 @@ header {
   background-color: transparent;
 
   z-index: 201;
-  transition: box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
   margin-top: -40px;
 }
 
@@ -158,8 +158,7 @@ header.scrolled {
 
 .header-name {
   font-weight: normal;
-  color: var(--text);
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  transition: text-shadow 0.3s ease;
 }
 
 .header-name:hover {
@@ -179,6 +178,7 @@ nav ul {
   box-shadow: 0 8px 24px var(--shadow);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 nav a {
@@ -193,7 +193,7 @@ nav a {
   z-index: 1;
   border-radius: 999px;
   padding: 8px 14px;
-  transition: text-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  transition: text-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 nav a:hover {
@@ -344,7 +344,7 @@ footer p {
   display: flex;
   align-items: center;
   color: var(--footer-color);
-  transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+  transition: color 0.5s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .connect-links a:hover {
@@ -1268,7 +1268,7 @@ body:has(#blog) {
   color: var(--footer-color);
   cursor: pointer;
   padding: 6px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.5s ease, transform 0.3s ease;
   line-height: 1;
 }
 
