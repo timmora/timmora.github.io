@@ -1222,8 +1222,8 @@ body:has(#blog) {
   background-color: rgb(50, 48, 44);
 }
 
-.folder-panel[data-folder="aporia"] { --folder-color: #F1F3E0; --tab-offset: 3%; }
-.folder-panel[data-folder="ordo"] { --folder-color: #D2DCB6; --tab-offset: 25%; }
+.folder-panel[data-folder="aporia"] { --folder-color: #D2DCB6; --tab-offset: 3%; }
+.folder-panel[data-folder="ordo"] { --folder-color: #F1F3E0; --tab-offset: 25%; }
 .folder-panel[data-folder="brandle"] { --folder-color: #A1BC98; --tab-offset: 12%; }
 .folder-panel[data-folder="holoorbits"] { --folder-color: #778873; --tab-offset: 35%; }
 
@@ -1231,8 +1231,8 @@ body:has(#blog) {
   color: rgb(238, 238, 238);
 }
 
-[data-theme="dark"] .folder-panel[data-folder="aporia"] { --folder-color: #E6501B; }
-[data-theme="dark"] .folder-panel[data-folder="ordo"] { --folder-color: #C3110C; }
+[data-theme="dark"] .folder-panel[data-folder="aporia"] { --folder-color: #C3110C; }
+[data-theme="dark"] .folder-panel[data-folder="ordo"] { --folder-color: #E6501B; }
 [data-theme="dark"] .folder-panel[data-folder="brandle"] { --folder-color: #740A03; }
 [data-theme="dark"] .folder-panel[data-folder="holoorbits"] { --folder-color: #280905; }
 

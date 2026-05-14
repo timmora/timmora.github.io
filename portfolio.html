@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="">
   <script>
     (function () {
@@ -38,13 +38,13 @@
       <h1 class="portfolio-header"> A collection of things I've built, led, and figured out </h1>
       <div class="folder-stack">
 
-        <div class="folder" data-folder="aporia">
-          <div class="folder-tab">Aporia</div>
+        <div class="folder" data-folder="ordo">
+          <div class="folder-tab">Ordo</div>
           <div class="folder-body"></div>
         </div>
 
-        <div class="folder" data-folder="ordo">
-          <div class="folder-tab">Ordo</div>
+        <div class="folder" data-folder="aporia">
+          <div class="folder-tab">Aporia</div>
           <div class="folder-body"></div>
         </div>
 
@@ -70,7 +70,7 @@
           <div class="folder-panel-tab">Aporia</div>
           <div class="folder-panel-body">
             <div class="folder-content">
-              <p class="folder-role">Solo Developer</p>
+              <p class="folder-role">Solo Developer (in progress)</p>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Overview</span>
@@ -79,46 +79,49 @@
 
               <div class="folder-section">
                 <span class="folder-tag-label">What I built</span>
-                <p class="folder-desc"><em>[Add: main surfaces shipped — onboarding, portfolio views, recommendation flows, settings, etc.]</em></p>
+                <p class="folder-desc">End-to-end product in React and TypeScript — a 3-step onboarding questionnaire, an animated portfolio reveal, a live dashboard with real market data, and a suggestion engine that surfaces rebalancing and opportunity alerts.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Key features</span>
                 <ul class="folder-list">
-                  <li><em>[Add: feature or user flow to highlight.]</em></li>
-                  <li><em>[Add: feature or user flow to highlight.]</em></li>
-                  <li><em>[Add: feature or user flow to highlight.]</em></li>
+                  <li>Values-based onboarding: goals, risk profiling via behavioral scenarios, and ethical dealbreakers (fossil fuels, tobacco, weapons, etc.)</li>
+                  <li>Custom portfolio generation across 12 curated ETFs, with dealbreaker-driven swaps (e.g. fossil fuel exclusion triggers solar ETF)</li>
+                  <li>Live market data via Yahoo Finance API — real-time quotes, performance charts with SPY benchmark overlay, and 4 time ranges</li>
+                  <li>Institutional intelligence panel surfacing Q4 2024 SEC 13F filings from Berkshire, ARK, and Vanguard mapped back to the user's holdings</li>
+                  <li>Life event triggers (new job, baby, home, etc.) and an actionable suggestion inbox for rebalancing and milestone alerts</li>
                 </ul>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Tech stack</span>
                 <div class="folder-tags">
-                  <span class="folder-tag folder-tag-plain">React</span>
-                  <span class="folder-tag folder-tag-plain">Python</span>
-                  <span class="folder-tag folder-tag-plain">FastAPI</span>
-                  <span class="folder-tag folder-tag-plain">REST APIs</span>
+                  <span class="folder-tag folder-tag-plain">React 19</span>
+                  <span class="folder-tag folder-tag-plain">TypeScript</span>
+                  <span class="folder-tag folder-tag-plain">Tailwind CSS</span>
+                  <span class="folder-tag folder-tag-plain">Framer Motion</span>
+                  <span class="folder-tag folder-tag-plain">Zustand</span>
+                  <span class="folder-tag folder-tag-plain">React Query</span>
+                  <span class="folder-tag folder-tag-plain">Recharts</span>
+                  <span class="folder-tag folder-tag-plain">Express</span>
+                  <span class="folder-tag folder-tag-plain">Yahoo Finance API</span>
+                  <span class="folder-tag folder-tag-plain">Vite</span>
                 </div>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Data &amp; backend</span>
-                <p class="folder-desc"><em>[Add: persistence, auth, external APIs, and how recommendations are generated or served.]</em></p>
+                <p class="folder-desc">Express API server proxies Yahoo Finance for live quotes and historical OHLC data, with in-memory caching (5-min TTL for quotes, 24-hr for long-range history). React Query handles stale data gracefully — users see last-known prices if the market data feed is unavailable. Portfolio state is managed in Zustand with no backend sync required in the current build.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Deployment</span>
-                <p class="folder-desc"><em>[Add: host, environments, CI/CD.]</em></p>
+                <p class="folder-desc">Monorepo with concurrent dev setup (Vite frontend + Node backend via pnpm). Built for deployment; production environment and hosting TBD.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">What I'm proud of</span>
-                <p class="folder-desc"><em>[Add: the takeaway you want reviewers to remember.]</em></p>
-              </div>
-
-              <div class="folder-section">
-                <span class="folder-tag-label">Links</span>
-                <p class="folder-desc"><em>Live demo and repository — to add.</em></p>
+                <p class="folder-desc">The idea that your portfolio should reflect what you actually believe — and that enforcing that at the allocation level (not just as a filter) makes for a genuinely different product. The institutional 13F panel is also something I haven't seen in consumer investing tools, and it came together cleanly.</p>
               </div>
             </div>
           </div>
@@ -140,43 +143,55 @@
 
               <div class="folder-section">
                 <span class="folder-tag-label">What I built</span>
-                <p class="folder-desc">End-to-end product in React and FastAPI with Supabase for data, plus Claude-powered task breakdown, briefings, and ranking.</p>
+                <p class="folder-desc">Full-stack web and mobile product — an 8-step onboarding wizard with AI syllabus parsing, a React dashboard with calendar, task, focus, and journal tabs, a FastAPI backend with 17+ endpoints, and a companion Expo app mirroring the core experience on iOS and Android.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Key features</span>
                 <ul class="folder-list">
-                  <li>AI task decomposition for assignments</li>
-                  <li>Smart scheduling aligned to daily capacity</li>
-                  <li>Daily Three — ranked top tasks for today</li>
-                  <li>Daily briefings and focus sessions</li>
+                  <li>AI task decomposition — Claude breaks any assignment into 3–7 timed subtasks, with a fast-path rule-based fallback for simple tasks</li>
+                  <li>Constraint-based scheduler that maps subtasks into free slots respecting course blocks, calendar events, daily capacity limits, and preferred focus windows</li>
+                  <li>AI daily briefing summarizing the day's priorities, focus stats, and a personalized tip — cached per user per day to minimize API calls</li>
+                  <li>Syllabus PDF parsing during onboarding — Claude extracts course schedule and assignments directly from uploaded syllabi</li>
+                  <li>Pomodoro-style focus timer with per-subtask time tracking, session logs, and streak counters</li>
+                  <li>Encrypted journal with mood/energy tracking, three daily reflection prompts, and AI-generated weekly insights</li>
+                  <li>Google Calendar OAuth sync and FullCalendar v6 with full RRULE recurrence support</li>
                 </ul>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Tech stack</span>
                 <div class="folder-tags">
-                  <span class="folder-tag folder-tag-plain">React</span>
-                  <span class="folder-tag folder-tag-plain">Tailwind CSS</span>
+                  <span class="folder-tag folder-tag-plain">React 19</span>
+                  <span class="folder-tag folder-tag-plain">TypeScript</span>
+                  <span class="folder-tag folder-tag-plain">Tailwind CSS v4</span>
+                  <span class="folder-tag folder-tag-plain">shadcn/ui</span>
+                  <span class="folder-tag folder-tag-plain">React Query</span>
+                  <span class="folder-tag folder-tag-plain">Zustand</span>
+                  <span class="folder-tag folder-tag-plain">FullCalendar</span>
+                  <span class="folder-tag folder-tag-plain">dnd-kit</span>
                   <span class="folder-tag folder-tag-plain">FastAPI</span>
                   <span class="folder-tag folder-tag-plain">Claude API</span>
                   <span class="folder-tag folder-tag-plain">Supabase</span>
+                  <span class="folder-tag folder-tag-plain">Clerk</span>
+                  <span class="folder-tag folder-tag-plain">Expo</span>
+                  <span class="folder-tag folder-tag-plain">Vite</span>
                 </div>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Data &amp; backend</span>
-                <p class="folder-desc">Supabase for auth, data, and real-time–ready storage; FastAPI for app logic and Claude orchestration.</p>
+                <p class="folder-desc">Supabase (PostgreSQL) with RLS on every table — the frontend talks directly to the DB via the anon key, while FastAPI only steps in for AI, encryption, and OAuth. Auth uses Clerk with a custom token exchange endpoint that mints a Supabase session. Journal entries are AES-256 encrypted at rest with per-user keys and rotation support. Claude Sonnet 4.6 handles reasoning-heavy tasks; Haiku 4.5 handles syllabus parsing for cost. Prompt caching on system prompts reduces latency and spend across repeated calls.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Deployment</span>
-                <p class="folder-desc">Shipped alongside the live demo (see links above). <em>[Add: any extra infra notes — environments, workers, secrets.]</em></p>
+                <p class="folder-desc">Frontend on Vercel with enforcing CSP headers; FastAPI backend on Render via Docker (Python 3.12-slim, dynamic port injection); database on Supabase; mobile on Expo with EAS Build. GitHub Actions CI runs RLS policy checks, TypeScript type checks, and backend ruff + pytest on every push.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">What I'm proud of</span>
-                <p class="folder-desc">Turning “too much homework” into a concrete Daily Three and a schedule that fits how students actually work.</p>
+                <p class="folder-desc">The scheduling engine — building a free-slot map that actually respects how a student's day is structured (classes, capacity, focus windows) and greedily fitting the highest-priority work into it felt like solving a real problem, not just adding an AI wrapper. The multi-model strategy and prompt caching were also intentional choices I'm glad I made early.</p>
               </div>
             </div>
           </div>
@@ -247,24 +262,24 @@
           <div class="folder-panel-tab">HoloOrbits</div>
           <div class="folder-panel-body">
             <div class="folder-content">
-              <p class="folder-role">Product Manager &amp; UX Lead</p>
+              <p class="folder-role">UX Lead</p>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Overview</span>
-                <p class="folder-desc">A multiplayer educational game designed to make learning feel less like a lecture and more like a mission.</p>
+                <p class="folder-desc">HoloOrbit is a browser-based multiplayer simulation where secondary school students collaborate in real time to solve orbital mechanics challenges. Built to make abstract science concepts click through play.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">What I owned</span>
-                <p class="folder-desc">As PM and UX lead, I drove the redesign of the game's navigation, collaborative mechanics, and in-game feedback systems — turning a solo simulation into a genuinely engaging group experience for secondary school students.</p>
+                <p class="folder-desc">As UX lead, I drove the redesign of the game's navigation, collaborative mechanics, and in-game feedback systems — turning a solo simulation into a genuinely engaging group experience for secondary school students.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">Key outcomes</span>
                 <ul class="folder-list">
-                  <li><em>[Add: measurable outcome, release, or research insight.]</em></li>
-                  <li><em>[Add: collaboration or classroom / pilot detail.]</em></li>
-                  <li><em>[Add: UX or game-design problem solved.]</em></li>
+                  <li>Redesigned the experience for real classroom use — shifted the game from single-player simulation to multiplayer, where students work together toward shared objectives</li>
+                  <li>Replaced passive in-game prompts with a structured accuracy feedback system, giving students meaningful in-the-moment responses to their decisions</li>
+                  <li>Ran a pilot test with college students, gathering structured feedback that validated the redesigned collaborative mechanics and drove a final round of UX improvements</li>
                 </ul>
               </div>
 
@@ -279,17 +294,12 @@
 
               <div class="folder-section">
                 <span class="folder-tag-label">Team &amp; timeline</span>
-                <p class="folder-desc"><em>[Add: team size, stakeholders, dates or phases.]</em></p>
+                <p class="folder-desc">Team of 4 across the Spring semester. I led UX and product direction; collaborated closely with a teammate on the accuracy feedback system and Unity/WebGL build.</p>
               </div>
 
               <div class="folder-section">
                 <span class="folder-tag-label">What I'm proud of</span>
-                <p class="folder-desc"><em>[Add: the story you want to lead with.]</em></p>
-              </div>
-
-              <div class="folder-section">
-                <span class="folder-tag-label">Links</span>
-                <p class="folder-desc"><em>[Add: trailer, WebGL build, or design file if shareable.]</em></p>
+                <p class="folder-desc">Running a real pilot and watching students actually engage with the redesigned mechanics — not just complete the game, but debate decisions together. That shift from passive player to active collaborator was the whole design goal, and seeing it land made the semester worth it.</p>
               </div>
             </div>
           </div>
