@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brandle — Tim Mora</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="case-study-page theme-brandle">
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-name">Tim Mora</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#portfolio" class="nav-active">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<section class="hero">
+  <p class="hero-meta">Word Game &nbsp;·&nbsp; 2024</p>
+  <h1 class="hero-title">Brandle</h1>
+  <p class="hero-role">Developer &amp; UI Designer</p>
+</section>
+
+<div class="visual-band">
+  <svg viewBox="0 0 900 340" width="900" height="340" style="position:relative;z-index:1;max-width:100%">
+    <!-- Guess grid - Wordle-like -->
+    <g transform="translate(200,40)">
+      <!-- Row 1: all gray -->
+      <rect x="0"   y="0"  width="54" height="54" rx="8" fill="rgba(59,108,51,0.12)" stroke="rgba(59,108,51,0.2)" stroke-width="1"/>
+      <rect x="62"  y="0"  width="54" height="54" rx="8" fill="rgba(59,108,51,0.12)" stroke="rgba(59,108,51,0.2)" stroke-width="1"/>
+      <rect x="124" y="0"  width="54" height="54" rx="8" fill="rgba(59,108,51,0.12)" stroke="rgba(59,108,51,0.2)" stroke-width="1"/>
+      <rect x="186" y="0"  width="54" height="54" rx="8" fill="rgba(59,108,51,0.12)" stroke="rgba(59,108,51,0.2)" stroke-width="1"/>
+      <rect x="248" y="0"  width="54" height="54" rx="8" fill="rgba(59,108,51,0.12)" stroke="rgba(59,108,51,0.2)" stroke-width="1"/>
+      <!-- Row 2: yellow, gray, green, gray, yellow -->
+      <rect x="0"   y="62" width="54" height="54" rx="8" fill="rgba(200,160,40,0.55)"/>
+      <rect x="62"  y="62" width="54" height="54" rx="8" fill="rgba(59,108,51,0.12)" stroke="rgba(59,108,51,0.2)" stroke-width="1"/>
+      <rect x="124" y="62" width="54" height="54" rx="8" fill="rgba(60,140,80,0.65)"/>
+      <rect x="186" y="62" width="54" height="54" rx="8" fill="rgba(59,108,51,0.12)" stroke="rgba(59,108,51,0.2)" stroke-width="1"/>
+      <rect x="248" y="62" width="54" height="54" rx="8" fill="rgba(200,160,40,0.55)"/>
+      <!-- Row 3: green, green, green, green, green -->
+      <rect x="0"   y="124" width="54" height="54" rx="8" fill="rgba(60,140,80,0.75)"/>
+      <rect x="62"  y="124" width="54" height="54" rx="8" fill="rgba(60,140,80,0.75)"/>
+      <rect x="124" y="124" width="54" height="54" rx="8" fill="rgba(60,140,80,0.75)"/>
+      <rect x="186" y="124" width="54" height="54" rx="8" fill="rgba(60,140,80,0.75)"/>
+      <rect x="248" y="124" width="54" height="54" rx="8" fill="rgba(60,140,80,0.75)"/>
+      <!-- Row 4-5: empty -->
+      <rect x="0"   y="186" width="54" height="54" rx="8" fill="none" stroke="rgba(59,108,51,0.15)" stroke-width="1"/>
+      <rect x="62"  y="186" width="54" height="54" rx="8" fill="none" stroke="rgba(59,108,51,0.15)" stroke-width="1"/>
+      <rect x="124" y="186" width="54" height="54" rx="8" fill="none" stroke="rgba(59,108,51,0.15)" stroke-width="1"/>
+      <rect x="186" y="186" width="54" height="54" rx="8" fill="none" stroke="rgba(59,108,51,0.15)" stroke-width="1"/>
+      <rect x="248" y="186" width="54" height="54" rx="8" fill="none" stroke="rgba(59,108,51,0.15)" stroke-width="1"/>
+    </g>
+    <!-- Attribute labels -->
+    <text x="220" y="310" font-family="'DM Sans',sans-serif" font-size="9" fill="#3b6c33" opacity="0.55" text-anchor="middle">CATEGORY</text>
+    <text x="282" y="310" font-family="'DM Sans',sans-serif" font-size="9" fill="#3b6c33" opacity="0.55" text-anchor="middle">COUNTRY</text>
+    <text x="344" y="310" font-family="'DM Sans',sans-serif" font-size="9" fill="#3b6c33" opacity="0.55" text-anchor="middle">YEAR</text>
+    <text x="406" y="310" font-family="'DM Sans',sans-serif" font-size="9" fill="#3b6c33" opacity="0.55" text-anchor="middle">REVENUE</text>
+    <text x="468" y="310" font-family="'DM Sans',sans-serif" font-size="9" fill="#3b6c33" opacity="0.55" text-anchor="middle">EMPLOYEES</text>
+    <!-- Stats panel -->
+    <rect x="600" y="60" width="240" height="200" rx="16" fill="rgba(59,108,51,0.07)" stroke="rgba(59,108,51,0.15)" stroke-width="1"/>
+    <text x="620" y="90" font-family="'DM Sans',sans-serif" font-size="10" fill="#3b6c33" font-weight="600" letter-spacing="2">STATISTICS</text>
+    <text x="620" y="118" font-family="'Instrument Serif',serif" font-size="28" fill="#3b6c33" font-weight="700" opacity="0.85">84%</text>
+    <text x="660" y="118" font-family="'DM Sans',sans-serif" font-size="10" fill="#3b6c33" opacity="0.5">win rate</text>
+    <text x="620" y="148" font-family="'Instrument Serif',serif" font-size="28" fill="#3b6c33" font-weight="700" opacity="0.85">12</text>
+    <text x="655" y="148" font-family="'DM Sans',sans-serif" font-size="10" fill="#3b6c33" opacity="0.5">streak</text>
+    <rect x="620" y="162" width="180" height="1" fill="rgba(59,108,51,0.12)"/>
+    <rect x="620" y="175" width="40" height="36" rx="4" fill="rgba(59,108,51,0.20)"/>
+    <rect x="668" y="183" width="30" height="28" rx="4" fill="rgba(59,108,51,0.20)"/>
+    <rect x="706" y="193" width="20" height="18" rx="4" fill="rgba(59,108,51,0.20)"/>
+    <rect x="734" y="187" width="25" height="24" rx="4" fill="rgba(59,108,51,0.20)"/>
+    <rect x="767" y="175" width="15" height="36" rx="4" fill="rgba(59,108,51,0.40)"/>
+  </svg>
+</div>
+
+<div class="content">
+  <div class="content-grid">
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-block"><p class="sidebar-label">Year</p><p class="sidebar-val">2024</p></div>
+        <div class="sidebar-block"><p class="sidebar-label">Role</p><p class="sidebar-val">Developer &amp; UI Designer</p></div>
+        <div class="sidebar-block"><p class="sidebar-label">Status</p><p class="sidebar-val" style="color:var(--accent);font-weight:500">Live ↗</p></div>
+        <div class="sidebar-block"><p class="sidebar-label">Origin</p><p class="sidebar-val">Extended from a class project</p></div>
+        <hr class="sidebar-rule">
+        <a class="live-link" href="https://brandle-iota.vercel.app/" target="_blank" rel="noopener">Play Brandle ↗</a>
+      </div>
+    </aside>
+    <main class="main-col">
+      <div class="reveal">
+        <hr class="section-rule">
+        <p class="section-head">Overview</p>
+        <p class="overview-text">Brandle is a daily and unlimited Wordle-like game where you guess a mystery brand and receive color-coded feedback across five attributes: category, country of origin, founding year, revenue range, and employee count. The mechanic is tight; the content is surprisingly deep. Guess Apple — it's easier than you think. Guess Reckitt — it isn't.</p>
+      </div>
+      <div class="reveal">
+        <hr class="section-rule">
+        <p class="section-head">The Problem</p>
+        <p class="body-text">Brandle started as a class project: build something with a Supabase backend. I built a Wordle clone in a weekend and submitted it. But halfway through building it, I noticed something: the interesting version wasn't about words. It was about brands. Everyone has fuzzy mental models of companies — where they're from, how big they are, what they do — but those models are rarely tested. The guessing mechanic felt like a perfect fit for surfacing that uncertainty.</p>
+        <p class="body-text">The question was whether it had legs beyond the classroom. A daily constraint-based guessing game based on brand attributes isn't an obvious hit. But Wordle proved the format works, and brands have a property that words don't: people have actual opinions about them.</p>
+      </div>
+      <div class="reveal">
+        <hr class="section-rule">
+        <p class="section-head">Highlights</p>
+        <ul class="highlights">
+          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Multi-attribute feedback across five dimensions — green for exact, yellow for close, with higher/lower arrows on numeric fields. Five signals at once without feeling overwhelming.</p></li>
+          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Daily mode uses a deterministic seed so all players get the same brand each day. Unlimited mode picks randomly for replay. Both modes share stats, streaks, and a shareable result grid.</p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Difficulty modes with different guess limits and thresholds on numeric tolerance — the same brand can feel easy or brutal depending on how tight the proximity windows are.</p></li>
+          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Local stats and streak tracking with win rate, guess distribution, and current/best streak. A Supabase data model sits ready for leaderboards when auth is added.</p></li>
+          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Hard mode constraints force you to use revealed information in subsequent guesses — a meaningful constraint that changes how you reason through the remaining possibility space.</p></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <hr class="section-rule">
+        <p class="section-head">Under the Hood</p>
+        <p class="body-text">The daily mode uses a deterministic seeding function — the same brand, same day, for every player, derived from the date. This means consistent results without needing to store a "today's puzzle" record in the database and no server-side state management for puzzle selection. Unlimited mode uses a pseudo-random picker that excludes the last 30 days of daily brands to avoid repetition.</p>
+        <p class="body-text">The feedback algorithm evaluates five attributes simultaneously. Categorical and geographic fields are binary — exact or not. Three numeric fields (founding year, revenue, employee count) use graduated proximity feedback with higher/lower directional arrows. Tolerance thresholds are configurable per difficulty mode, which is what makes hard mode genuinely hard: the proximity windows tighten, so guesses that would score yellow in normal mode score gray.</p>
+        <p class="callout">"For content-driven games, curation is design work. Getting 200 brands with consistent, verifiable data across five attributes took longer than building the game itself."</p>
+      </div>
+      <div class="reveal">
+        <hr class="section-rule">
+        <p class="section-head">Reflection</p>
+        <p class="body-text">The most interesting design problem in Brandle wasn't the game mechanic — it was the dataset. Inconsistent founding year data (acquisition vs. original founding), revenue figures that lag by a year, subsidiary vs. parent company ambiguity — data quality directly determined game quality. I spent more time on data normalization than on React components.</p>
+        <p class="body-text">The stats model was designed with future features in mind. Local state handles current and best streak; a Supabase table is populated on every completed game with a structure ready for a global leaderboard once authentication is wired up. Building the data model before the feature was the right call — retrofitting persistence is a pain.</p>
+      </div>
+      <div class="reveal">
+        <hr class="section-rule">
+        <p class="section-head">Tech Stack</p>
+        <div class="stack-list">
+          <span class="stack-tag">React 18</span><span class="stack-tag">React Router</span><span class="stack-tag">Supabase</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">JavaScript</span><span class="stack-tag">MUI</span><span class="stack-tag">Vercel</span>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="case-nav">
+  <a class="case-nav-link" href="index.html#portfolio"><span style="font-size:18px">←</span><span>All Work</span></a>
+  <a class="case-nav-link" href="holoorbits.html" style="text-align:right">
+    <div><div class="case-nav-label">Next Project</div><div class="case-nav-title">HoloOrbits →</div></div>
+  </a>
+</div>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  var hdr = document.querySelector('header');
+  window.addEventListener('scroll', function() { hdr.classList.toggle('scrolled', window.scrollY > 0); });
+</script>
+</body>
+</html>
