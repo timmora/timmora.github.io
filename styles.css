@@ -3,12 +3,12 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
-  --bg: #F6F3EB;
+  --bg: #F9F8F6;
   --text: #000;
-  --reveal-bg: #EDE9DF;
+  --reveal-bg: #D9CFC7;
   --shadow: rgba(0, 0, 0, 0.1);
   --footer-color: gray;
-  --glass-nav-bg: rgba(246, 243, 235, 0.62);
+  --glass-nav-bg: rgba(249, 248, 246, 0.62);
   --glass-nav-border: rgba(0, 0, 0, 0.08);
   --glass-link-hover: rgba(0, 0, 0, 0.05);
   --glass-link-active: rgba(0, 0, 0, 0.08);
@@ -143,16 +143,18 @@ body.blog-paper-open header {
 .header-name {
   font-family: 'Instrument Serif', serif;
   font-weight: bold;
-  font-style: italic;
+  font-style: normal;
   font-size: 28px;
   letter-spacing: -0.02em;
   color: var(--text);
   text-align: center;
-  transition: color 0.5s ease, opacity 0.2s ease;
+  display: inline-block;
+  transform: skewX(0deg);
+  transition: color 0.5s ease, opacity 0.2s ease, transform 0.3s ease;
 }
 
 .header-name:hover {
-  opacity: 0.65;
+  opacity: 0.8;
 }
 
 nav ul {
@@ -2057,10 +2059,10 @@ body.case-study-page.theme-holoorbits {
 
 .case-study-page .case-nav-link {
   font-family: "DM Sans", sans-serif;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 14px;
   color: var(--muted);
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.25s ease;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2068,6 +2070,14 @@ body.case-study-page.theme-holoorbits {
 
 .case-study-page .case-nav-link:hover {
   color: var(--text);
+}
+
+.case-study-page .case-nav-link:not(.case-nav-next):hover {
+  transform: translateX(-6px);
+}
+
+.case-study-page .case-nav-next:hover {
+  transform: translateX(6px);
 }
 
 .case-study-page .case-nav-label {
@@ -2086,9 +2096,7 @@ body.case-study-page.theme-holoorbits {
   color: var(--text);
 }
 
-.case-study-page .case-nav-next { text-align: right; }
-.case-study-page .case-nav-back-arrow { font-size: 18px; }
-.case-study-page .status-live { color: var(--accent); font-weight: 500; }
+.case-study-page .case-nav-next { text-align: right; }.case-study-page .status-live { color: var(--accent); font-weight: 500; }
 
 @media (max-width: 900px) {
   .case-study-page .content-grid {
