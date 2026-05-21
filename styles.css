@@ -373,10 +373,10 @@ footer p {
 
 #tagline {
   font-family: "DM Sans", sans-serif;
-  font-size: 20px;
+  font-size: 23px;
   text-align: center;
   color: var(--text);
-  max-width: 650px;
+  max-width: 550px;
   margin-top: 36px;
   line-height: 1.7;
 }
@@ -387,6 +387,7 @@ footer p {
   font-style: italic;
   position: relative;
   white-space: nowrap;
+  color: #778873;
 }
 
 @keyframes taglineUnderline {
@@ -461,8 +462,8 @@ footer p {
 }
 
 .connect-links svg {
-  width: 36px;
-  height: 36px;
+  width: 33px;
+  height: 33px;
 }
 
 /* About Page */
@@ -487,6 +488,16 @@ footer p {
   text-align: center;
   padding-bottom: 20px;
   margin-bottom: 50px;
+}
+
+#about h1::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.25;
+  margin: 0 auto 14px;
 }
 
 .about-para {
@@ -1089,6 +1100,16 @@ body:has(#blog) {
   padding-bottom: 24px;
   margin-bottom: 46px;
   transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.blog-header::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.25;
+  margin: 0 auto 14px;
 }
 
 #blog.has-open-envelope .blog-header {
