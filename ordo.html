@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="case-study-page theme-ordo">
@@ -63,7 +63,7 @@
       <div class="sidebar-inner">
         <div class="sidebar-block"><p class="sidebar-label">Year</p><p class="sidebar-val">2025</p></div>
         <div class="sidebar-block"><p class="sidebar-label">Role</p><p class="sidebar-val">Solo Developer</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Status</p><p class="sidebar-val" style="color:var(--accent);font-weight:500">Live ↗</p></div>
+        <div class="sidebar-block"><p class="sidebar-label">Status</p><p class="sidebar-val status-live">Live ↗</p></div>
         <div class="sidebar-block"><p class="sidebar-label">Discipline</p><p class="sidebar-val">Full-Stack Development<br>Product Design<br>AI Integration</p></div>
         <hr class="sidebar-rule">
         <a class="live-link" href="https://ordo.study" target="_blank" rel="noopener">Visit Ordo ↗</a>
@@ -117,17 +117,13 @@
 </div>
 
 <div class="case-nav">
-  <a class="case-nav-link" href="index.html#portfolio"><span style="font-size:18px">←</span><span>All Work</span></a>
-  <a class="case-nav-link" href="brandle.html" style="text-align:right">
+  <a class="case-nav-link" href="index.html#portfolio"><span class="case-nav-back-arrow">←</span><span>All Work</span></a>
+  <a class="case-nav-link case-nav-next" href="brandle.html">
     <div><div class="case-nav-label">Next Project</div><div class="case-nav-title">Brandle →</div></div>
   </a>
 </div>
 
-<script>
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.07 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  var hdr = document.querySelector('header');
-  window.addEventListener('scroll', function() { hdr.classList.toggle('scrolled', window.scrollY > 0); });
-</script>
+<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

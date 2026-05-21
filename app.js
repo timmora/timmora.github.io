@@ -3,7 +3,6 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
-// Smooth scroll
 var lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
 
 (function alignLenisWithScrollStart() {
@@ -54,7 +53,6 @@ if (reveal && spacer) {
   window.addEventListener('resize', updateSpacer);
 }
 
-// Animate portfolio items individually as each enters the viewport
 (function() {
   var portfolio = document.getElementById('portfolio');
   if (!portfolio) return;
@@ -62,11 +60,13 @@ if (reveal && spacer) {
     .concat(Array.from(portfolio.querySelectorAll('.folder-stack .folder')))
     .filter(Boolean);
   items.forEach(function(el) { el.classList.add('scroll-hidden'); });
+  var threshold = window.innerHeight * 0.88;
+  window.addEventListener('resize', function() { threshold = window.innerHeight * 0.88; });
   function check() {
     var remaining = false;
     items.forEach(function(el) {
       if (el.classList.contains('has-revealed') || el.classList.contains('is-visible')) return;
-      if (el.getBoundingClientRect().top < window.innerHeight * 0.88) {
+      if (el.getBoundingClientRect().top < threshold) {
         el.classList.add('is-visible');
         el.addEventListener('animationend', function() {
           el.classList.add('has-revealed');
@@ -81,7 +81,29 @@ if (reveal && spacer) {
   lenis.on('scroll', check);
 })();
 
-// Smooth scroll anchor links via Lenis
+(function() {
+  var homeLink = document.querySelector('nav a:not([href])');
+  if (homeLink) {
+    homeLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      lenis.scrollTo(0);
+    });
+  }
+})();
+
+(function() {
+  var portfolioSection = document.getElementById('portfolio');
+  if (!portfolioSection) return;
+  var portfolioLink = document.querySelector('nav a[href="#portfolio"]');
+  var homeLink = document.querySelector('nav a:not([href])');
+  if (!portfolioLink || !homeLink) return;
+  new IntersectionObserver(function(entries) {
+    var visible = entries[0].isIntersecting;
+    portfolioLink.classList.toggle('nav-active', visible);
+    homeLink.classList.toggle('nav-active', !visible);
+  }, { rootMargin: '0px 0px -50% 0px', threshold: 0 }).observe(portfolioSection);
+})();
+
 document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
   anchor.addEventListener('click', function(e) {
     var target = document.querySelector(this.getAttribute('href'));
@@ -95,8 +117,13 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
 // Header scroll state (e.g. shadow)
 (function() {
   var header = document.querySelector('header');
+  var wasScrolled = false;
   window.addEventListener('scroll', function() {
-    header.classList.toggle('scrolled', window.scrollY > 0);
+    var isScrolled = window.scrollY > 0;
+    if (isScrolled !== wasScrolled) {
+      header.classList.toggle('scrolled', isScrolled);
+      wasScrolled = isScrolled;
+    }
   });
 })();
 
@@ -135,7 +162,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
   }
 })();
 
-// Randomize highlight angles
 function randomHighlightAngle(selector, onHover) {
   document.querySelectorAll(selector).forEach(function(el) {
     function setAngle() {

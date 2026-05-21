@@ -109,7 +109,7 @@ h2::before {
 
 header {
   font-size: 22px;
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   background-color: transparent;
   border-top: 2px solid transparent;
   border-bottom: 1px solid transparent;
@@ -144,6 +144,7 @@ body.blog-paper-open header {
   font-family: 'Instrument Serif', serif;
   font-weight: bold;
   font-style: italic;
+  font-size: 28px;
   letter-spacing: -0.02em;
   color: var(--text);
   text-align: center;
@@ -177,33 +178,19 @@ nav a {
   padding: 8px 14px;
   color: var(--text);
   opacity: 0.6;
-  transition: color 0.5s ease, opacity 0.2s ease;
+  cursor: pointer;
+  transition: color 0.5s ease, opacity 0.2s ease, letter-spacing 0.3s ease;
 }
 
 nav a:hover {
   opacity: 1;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  left: 14px;
-  right: 14px;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
-}
-
-nav a:hover::after {
-  transform: scaleX(1);
+  letter-spacing: 0.22em;
 }
 
 nav a.nav-active {
   cursor: default;
   opacity: 1;
+  font-weight: 700;
 }
 
 nav a.nav-active::after {
@@ -238,7 +225,7 @@ nav a.nav-active::after {
   border-radius: 999px;
   padding: 7px 16px;
   font-size: 14px;
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   color: var(--text);
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
@@ -309,6 +296,7 @@ footer p {
 }
 
 #hero.section-cover > h1           { font-size: 100px; line-height: 1; text-align: center; animation: heroIn 0.7s ease both 0.05s; }
+#hero.section-cover > h1::before   { content: ''; display: block; width: 24px; height: 1px; background-color: currentColor; opacity: 0.25; margin: 0 auto 14px; }
 #hero.section-cover .hero-header-name { animation: heroIn 0.5s ease both 0.35s; }
 #hero.section-cover > #subtitle    { animation: heroIn 0.5s ease both 0.35s; }
 #hero.section-cover > #tagline     { animation: heroIn 0.6s ease both 0.65s; }
@@ -317,7 +305,7 @@ footer p {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   color: var(--text);
   display: flex;
   flex-direction: column;
@@ -375,7 +363,7 @@ footer p {
 }
 
 #subtitle {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 22px;
   text-align: center;
   color: var(--footer-color);
@@ -384,14 +372,42 @@ footer p {
 }
 
 #tagline {
-  font-family: "Helvetica", sans-serif;
-  font-size: 18px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
   text-align: center;
   color: var(--text);
-  max-width: 550px;
+  max-width: 650px;
   margin-top: 36px;
   line-height: 1.7;
 }
+
+.tagline-serif {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 700;
+  font-style: italic;
+  position: relative;
+  white-space: nowrap;
+}
+
+@keyframes taglineUnderline {
+  to { transform: scaleX(1); }
+}
+
+.tagline-serif::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: taglineUnderline 0.5s ease forwards;
+}
+
+#tagline span:nth-of-type(1)::after { animation-delay: 1.3s; }
+#tagline span:nth-of-type(2)::after { animation-delay: 1.6s; }
 
 #hero.section-cover > p:last-child {
   font-size: 16px;
@@ -415,11 +431,12 @@ footer p {
 }
 
 #connect-text {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   text-align: center;
   font-size: 23px;
   max-width: 620px;
   margin: 0 auto 20px;
+  color: var(--footer-color);
 }
 
 .connect-links {
@@ -486,7 +503,7 @@ footer p {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   color: var(--footer-color);
   white-space: nowrap;
   transition: color 0.5s ease;
@@ -709,7 +726,7 @@ footer p {
 }
 
 .folder-peek-card p {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 14px;
   line-height: 1.55;
   color: var(--text);
@@ -1345,7 +1362,7 @@ body:has(#blog) {
 }
 
 .cs-back a {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1367,7 +1384,7 @@ body:has(#blog) {
 }
 
 .cs-eyebrow {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.24em;
@@ -1421,7 +1438,7 @@ body:has(#blog) {
 }
 
 .cs-meta-label {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -1457,7 +1474,7 @@ body:has(#blog) {
 }
 
 .cs-section-label {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -1525,7 +1542,7 @@ body:has(#blog) {
 }
 
 .cs-feature-title {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -1550,7 +1567,7 @@ body:has(#blog) {
 }
 
 .cs-stack-item {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 11px;
   letter-spacing: 0.04em;
   padding: 4px 10px;
@@ -1588,7 +1605,7 @@ body:has(#blog) {
 }
 
 .cs-outcome-num {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 10px;
   color: var(--cs-muted);
   padding-top: 4px;
@@ -1605,7 +1622,7 @@ body:has(#blog) {
 }
 
 .cs-nav-all {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -1634,7 +1651,7 @@ body:has(#blog) {
 }
 
 .cs-nav-label {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -1778,7 +1795,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .hero-meta {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1800,7 +1817,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .hero-role {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: clamp(16px, 1.8vw, 20px);
   font-weight: 300;
   color: var(--muted);
@@ -1847,7 +1864,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .sidebar-label {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 10px;
   font-weight: normal;
   letter-spacing: 0.16em;
@@ -1869,7 +1886,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .live-link {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1893,7 +1910,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .section-head {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 11px;
   font-weight: normal;
   letter-spacing: 0.16em;
@@ -1999,7 +2016,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .case-nav-link {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: normal;
   font-size: 14px;
   color: var(--muted);
@@ -2014,7 +2031,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .case-nav-label {
-  font-family: "Helvetica", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: normal;
   font-size: 11px;
   text-transform: uppercase;
@@ -2028,6 +2045,10 @@ body.case-study-page.theme-holoorbits {
   font-size: 20px;
   color: var(--text);
 }
+
+.case-study-page .case-nav-next { text-align: right; }
+.case-study-page .case-nav-back-arrow { font-size: 18px; }
+.case-study-page .status-live { color: var(--accent); font-weight: 500; }
 
 @media (max-width: 900px) {
   .case-study-page .content-grid {
