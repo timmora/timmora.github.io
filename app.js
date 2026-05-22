@@ -82,11 +82,13 @@ if (reveal && spacer) {
 })();
 
 (function() {
-  var homeLink = document.querySelector('nav a:not([href])');
+  var homeLink = document.querySelector('nav a[href="index.html"]');
   if (homeLink) {
     homeLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      lenis.scrollTo(0);
+      if (window.location.pathname.replace(/\/index\.html$/, '/') === new URL(homeLink.href).pathname.replace(/\/index\.html$/, '/')) {
+        e.preventDefault();
+        lenis.scrollTo(0);
+      }
     });
   }
 })();
@@ -95,7 +97,7 @@ if (reveal && spacer) {
   var portfolioSection = document.getElementById('portfolio');
   if (!portfolioSection) return;
   var portfolioLink = document.querySelector('nav a[href="#portfolio"]');
-  var homeLink = document.querySelector('nav a:not([href])');
+  var homeLink = document.querySelector('nav a[href="index.html"]');
   if (!portfolioLink || !homeLink) return;
   new IntersectionObserver(function(entries) {
     var visible = entries[0].isIntersecting;

@@ -18,7 +18,7 @@
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#portfolio" class="nav-active">Portfolio</a></li>
+        <li><a href="index.html#portfolio" class="nav-active" aria-current="page">Portfolio</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="blog.html">Blog</a></li>
       </ul>
@@ -31,46 +31,11 @@
   <p class="hero-role">Solo Developer</p>
 </section>
 
-<div class="visual-band">
-  <svg viewBox="0 0 900 340" width="900" height="340" style="position:relative;z-index:1;max-width:100%">
-    <!-- Onboarding questionnaire card -->
-    <rect x="60" y="50" width="220" height="240" rx="16" fill="rgba(79,101,53,0.08)" stroke="rgba(79,101,53,0.18)" stroke-width="1"/>
-    <text x="80" y="82" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" font-weight="600" letter-spacing="2">YOUR VALUES</text>
-    <rect x="80" y="96" width="160" height="24" rx="6" fill="rgba(79,101,53,0.12)" stroke="rgba(79,101,53,0.2)" stroke-width="1"/>
-    <text x="92" y="113" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" opacity="0.8">✓  No fossil fuels</text>
-    <rect x="80" y="128" width="160" height="24" rx="6" fill="rgba(79,101,53,0.07)"/>
-    <text x="92" y="145" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" opacity="0.5">✓  No tobacco</text>
-    <rect x="80" y="160" width="160" height="24" rx="6" fill="rgba(79,101,53,0.07)"/>
-    <text x="92" y="177" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" opacity="0.5">✓  No weapons</text>
-    <rect x="80" y="210" width="120" height="28" rx="14" fill="#4f6535" opacity="0.8"/>
-    <text x="140" y="229" font-family="'DM Sans',sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="500">Build Portfolio</text>
-    <!-- Portfolio allocation chart -->
-    <g transform="translate(340,40)">
-      <text x="0" y="20" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" font-weight="600" letter-spacing="2">ALLOCATION</text>
-      <rect x="0" y="36" width="44" height="200" rx="6" fill="#4f6535" opacity="0.70"/>
-      <text x="22" y="252" font-family="'DM Sans',sans-serif" font-size="9" fill="#4f6535" text-anchor="middle" opacity="0.6">VTI</text>
-      <rect x="52" y="76" width="44" height="160" rx="6" fill="#4f6535" opacity="0.50"/>
-      <text x="74" y="252" font-family="'DM Sans',sans-serif" font-size="9" fill="#4f6535" text-anchor="middle" opacity="0.6">ICLN</text>
-      <rect x="104" y="116" width="44" height="120" rx="6" fill="#4f6535" opacity="0.35"/>
-      <text x="126" y="252" font-family="'DM Sans',sans-serif" font-size="9" fill="#4f6535" text-anchor="middle" opacity="0.6">AGG</text>
-      <rect x="156" y="146" width="44" height="90" rx="6" fill="#4f6535" opacity="0.25"/>
-      <text x="178" y="252" font-family="'DM Sans',sans-serif" font-size="9" fill="#4f6535" text-anchor="middle" opacity="0.6">ESGU</text>
-    </g>
-    <!-- 13F institutional panel -->
-    <rect x="620" y="50" width="220" height="240" rx="16" fill="rgba(79,101,53,0.07)" stroke="rgba(79,101,53,0.16)" stroke-width="1"/>
-    <text x="640" y="82" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" font-weight="600" letter-spacing="2">13F FILINGS</text>
-    <text x="640" y="106" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" opacity="0.55">Berkshire Hathaway</text>
-    <rect x="640" y="114" width="150" height="7" rx="3.5" fill="#4f6535" opacity="0.15"/>
-    <rect x="640" y="125" width="110" height="7" rx="3.5" fill="#4f6535" opacity="0.10"/>
-    <line x1="640" y1="145" x2="820" y2="145" stroke="rgba(79,101,53,0.12)" stroke-width="1"/>
-    <text x="640" y="163" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" opacity="0.55">ARK Invest</text>
-    <rect x="640" y="171" width="140" height="7" rx="3.5" fill="#4f6535" opacity="0.15"/>
-    <rect x="640" y="182" width="100" height="7" rx="3.5" fill="#4f6535" opacity="0.10"/>
-    <line x1="640" y1="202" x2="820" y2="202" stroke="rgba(79,101,53,0.12)" stroke-width="1"/>
-    <text x="640" y="220" font-family="'DM Sans',sans-serif" font-size="10" fill="#4f6535" opacity="0.55">Vanguard</text>
-    <rect x="640" y="228" width="155" height="7" rx="3.5" fill="#4f6535" opacity="0.15"/>
-    <rect x="640" y="239" width="120" height="7" rx="3.5" fill="#4f6535" opacity="0.10"/>
-  </svg>
+<div class="cs-hero-media" data-todo="hero-screenshot">
+  <!-- TODO(asset): replace this wrapper with <picture><img src="images/aporia/hero.webp" alt="Aporia portfolio dashboard with values-aligned allocation"></picture> -->
+  <div class="cs-media-placeholder cs-media-16x9">
+    <span class="cs-media-label">Hero screenshot</span>
+  </div>
 </div>
 
 <div class="content">
@@ -79,17 +44,37 @@
       <div class="sidebar-inner">
         <div class="sidebar-block"><p class="sidebar-label">Year</p><p class="sidebar-val">2025</p></div>
         <div class="sidebar-block"><p class="sidebar-label">Role</p><p class="sidebar-val">Solo Developer</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Status</p><p class="sidebar-val">In Progress</p></div>
+        <div class="sidebar-block"><p class="sidebar-label">Status</p><p class="sidebar-val">In Progress — beta stage</p></div>
         <div class="sidebar-block"><p class="sidebar-label">Discipline</p><p class="sidebar-val">Full-Stack Development<br>Product Design<br>Data Visualization</p></div>
         <hr class="sidebar-rule">
         <div class="sidebar-block"><p class="sidebar-label">Stack</p><p class="sidebar-val">React 19, TypeScript,<br>Express, Yahoo Finance API</p></div>
+        <hr class="sidebar-rule">
+        <a class="live-link" href="#" target="_blank" rel="noopener">Request beta access ↗</a>
       </div>
     </aside>
     <main class="main-col">
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Overview</p>
-        <p class="overview-text">Aporia is a personal finance app that generates customized investment portfolios from a 3-step values questionnaire — goals, risk tolerance via behavioral scenarios, and ethical dealbreakers — and keeps them updated with intelligent suggestions as your life changes. Existing investing tools optimize for returns. Aporia optimizes for alignment.</p>
+        <p class="overview-text">Aporia generates a personalized investment portfolio from a 3-step values questionnaire — goals, risk tolerance via behavioral scenarios, and ethical dealbreakers — and keeps it updated as your life changes. Every other investing tool optimizes for returns; Aporia optimizes for alignment.</p>
+      </div>
+      <div class="reveal">
+        <hr class="section-rule">
+        <p class="section-head">Inside Aporia</p>
+        <div class="cs-gallery">
+          <div class="cs-media-placeholder cs-media-4x3" data-todo="detail-screenshot">
+            <!-- TODO(asset): replace with <picture><img src="images/aporia/values-questionnaire.webp" alt="Values-based onboarding questionnaire"></picture> -->
+            <span class="cs-media-label">Values onboarding</span>
+          </div>
+          <div class="cs-media-placeholder cs-media-4x3" data-todo="detail-screenshot">
+            <!-- TODO(asset): replace with <picture><img src="images/aporia/allocation.webp" alt="Generated portfolio allocation chart"></picture> -->
+            <span class="cs-media-label">Allocation reveal</span>
+          </div>
+          <div class="cs-media-placeholder cs-media-4x3" data-todo="detail-screenshot">
+            <!-- TODO(asset): replace with <picture><img src="images/aporia/13f-panel.webp" alt="Institutional 13F intelligence panel"></picture> -->
+            <span class="cs-media-label">13F intelligence</span>
+          </div>
+        </div>
       </div>
       <div class="reveal">
         <hr class="section-rule">

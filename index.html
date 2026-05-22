@@ -18,7 +18,7 @@
         <a href="index.html" class="header-name">Tim Mora</a>
         <nav>
           <ul>
-            <li><a class="nav-active">Home</a></li>
+            <li><a href="index.html" class="nav-active" aria-current="page">Home</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="blog.html">Blog</a></li>
@@ -28,8 +28,8 @@
     </header>
 
     <section id="hero" class="section-cover">
-      <h1> Hi, I'm <a class="hero-header-name" href="about.html">Tim Mora</a> </h1>
-        <p id="subtitle"> UIUC CS Graduate </p>
+      <h1> Hi, I'm <span class="hero-header-name">Tim Mora</span> </h1>
+        <p id="subtitle"> B.S. Computer Science + Education, UIUC '26 </p>
         <p id="tagline">
           <span class="tagline-line">I like making things that <span class="tagline-serif">feel good to use</span></span>
           <span class="tagline-line">I care just as much about code that's <span class="tagline-serif">maintainable</span></span>
@@ -47,15 +47,23 @@
 
         <div class="folder" data-folder="ordo" data-href="ordo.html">
           <div class="folder-tab-area">
-            <div class="folder-tab">Ordo</div>
+            <div class="folder-tab">Ordo <span class="folder-tab-role">Full-Stack</span></div>
             <div class="folder-peek-card"><p>AI productivity app for students. Schedules work around your real day — classes, capacity, focus windows.</p></div>
+          </div>
+          <div class="folder-body"></div>
+        </div>
+
+        <div class="folder" data-folder="holoorbits" data-href="holoorbits.html">
+          <div class="folder-tab-area">
+            <div class="folder-tab">HoloOrbits <span class="folder-tab-role">UX Lead</span></div>
+            <div class="folder-peek-card"><p>Multiplayer orbital mechanics simulation redesigned for real classroom collaboration.</p></div>
           </div>
           <div class="folder-body"></div>
         </div>
 
         <div class="folder" data-folder="aporia" data-href="aporia.html">
           <div class="folder-tab-area">
-            <div class="folder-tab">Aporia</div>
+            <div class="folder-tab">Aporia <span class="folder-tab-role">Solo FE</span></div>
             <div class="folder-peek-card"><p>Personal finance app that builds your investment portfolio around your values, not just your returns.</p></div>
           </div>
           <div class="folder-body"></div>
@@ -63,16 +71,8 @@
 
         <div class="folder" data-folder="brandle" data-href="brandle.html">
           <div class="folder-tab-area">
-            <div class="folder-tab">Brandle</div>
+            <div class="folder-tab">Brandle <span class="folder-tab-role">Game / FE</span></div>
             <div class="folder-peek-card"><p>Daily Wordle-like game for brand knowledge. Guess the mystery brand across five attributes.</p></div>
-          </div>
-          <div class="folder-body"></div>
-        </div>
-
-        <div class="folder" data-folder="holoorbits" data-href="holoorbits.html">
-          <div class="folder-tab-area">
-            <div class="folder-tab">HoloOrbits</div>
-            <div class="folder-peek-card"><p>Multiplayer orbital mechanics simulation redesigned for real classroom collaboration.</p></div>
           </div>
           <div class="folder-body"></div>
         </div>
@@ -87,76 +87,6 @@
 
       </div>
 
-      <div class="folder-overlay" id="folder-overlay" data-lenis-prevent>
-        <div class="folder-panel" data-folder="toolkit">
-          <div class="folder-panel-tab">Toolkit</div>
-          <div class="folder-panel-body">
-            <div class="folder-content">
-              <p class="folder-role">What I reach for</p>
-              <div class="folder-section">
-                <span class="folder-tag-label">Interface</span>
-                <div class="folder-tags">
-                  <span class="folder-tag folder-tag-plain">React 19</span>
-                  <span class="folder-tag folder-tag-plain">TypeScript</span>
-                  <span class="folder-tag folder-tag-plain">Tailwind CSS</span>
-                  <span class="folder-tag folder-tag-plain">shadcn/ui</span>
-                  <span class="folder-tag folder-tag-plain">Framer Motion</span>
-                  <span class="folder-tag folder-tag-plain">Zustand</span>
-                  <span class="folder-tag folder-tag-plain">React Query</span>
-                  <span class="folder-tag folder-tag-plain">Vite</span>
-                </div>
-              </div>
-              <div class="folder-section">
-                <span class="folder-tag-label">Backend &amp; data</span>
-                <div class="folder-tags">
-                  <span class="folder-tag folder-tag-plain">FastAPI</span>
-                  <span class="folder-tag folder-tag-plain">Express</span>
-                  <span class="folder-tag folder-tag-plain">Supabase</span>
-                  <span class="folder-tag folder-tag-plain">PostgreSQL</span>
-                  <span class="folder-tag folder-tag-plain">Clerk</span>
-                  <span class="folder-tag folder-tag-plain">Python</span>
-                  <span class="folder-tag folder-tag-plain">Node.js</span>
-                </div>
-              </div>
-              <div class="folder-section">
-                <span class="folder-tag-label">Mobile</span>
-                <div class="folder-tags">
-                  <span class="folder-tag folder-tag-plain">Expo</span>
-                  <span class="folder-tag folder-tag-plain">React Native</span>
-                  <span class="folder-tag folder-tag-plain">EAS Build</span>
-                </div>
-              </div>
-              <div class="folder-section">
-                <span class="folder-tag-label">AI &amp; integrations</span>
-                <div class="folder-tags">
-                  <span class="folder-tag folder-tag-plain">Claude API</span>
-                  <span class="folder-tag folder-tag-plain">Prompt caching</span>
-                  <span class="folder-tag folder-tag-plain">Multi-model strategy</span>
-                  <span class="folder-tag folder-tag-plain">Yahoo Finance API</span>
-                </div>
-              </div>
-              <div class="folder-section">
-                <span class="folder-tag-label">Design</span>
-                <div class="folder-tags">
-                  <span class="folder-tag folder-tag-plain">Figma</span>
-                  <span class="folder-tag folder-tag-plain">Adobe Suite</span>
-                  <span class="folder-tag folder-tag-plain">Affinity</span>
-                </div>
-              </div>
-              <div class="folder-section">
-                <span class="folder-tag-label">Infra &amp; tooling</span>
-                <div class="folder-tags">
-                  <span class="folder-tag folder-tag-plain">Git</span>
-                  <span class="folder-tag folder-tag-plain">Docker</span>
-                  <span class="folder-tag folder-tag-plain">GitHub Actions</span>
-                  <span class="folder-tag folder-tag-plain">Vercel</span>
-                  <span class="folder-tag folder-tag-plain">Render</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
     </section>
 
@@ -182,9 +112,78 @@
       <p> © Tim Mora 2026 </p>
       <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
     </footer>
-<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<div class="folder-overlay" id="folder-overlay" data-lenis-prevent>
+      <div class="folder-panel" data-folder="toolkit">
+        <div class="folder-panel-tab">Toolkit</div>
+        <div class="folder-panel-body">
+          <div class="folder-content">
+            <p class="folder-role">What I reach for</p>
+            <div class="folder-section">
+              <span class="folder-tag-label">Interface</span>
+              <div class="folder-tags">
+                <span class="folder-tag folder-tag-plain">React 19</span>
+                <span class="folder-tag folder-tag-plain">TypeScript</span>
+                <span class="folder-tag folder-tag-plain">Tailwind CSS</span>
+                <span class="folder-tag folder-tag-plain">shadcn/ui</span>
+                <span class="folder-tag folder-tag-plain">Framer Motion</span>
+                <span class="folder-tag folder-tag-plain">Zustand</span>
+                <span class="folder-tag folder-tag-plain">React Query</span>
+                <span class="folder-tag folder-tag-plain">Vite</span>
+              </div>
+            </div>
+            <div class="folder-section">
+              <span class="folder-tag-label">Backend &amp; data</span>
+              <div class="folder-tags">
+                <span class="folder-tag folder-tag-plain">FastAPI</span>
+                <span class="folder-tag folder-tag-plain">Express</span>
+                <span class="folder-tag folder-tag-plain">Supabase</span>
+                <span class="folder-tag folder-tag-plain">PostgreSQL</span>
+                <span class="folder-tag folder-tag-plain">Clerk</span>
+                <span class="folder-tag folder-tag-plain">Python</span>
+                <span class="folder-tag folder-tag-plain">Node.js</span>
+              </div>
+            </div>
+            <div class="folder-section">
+              <span class="folder-tag-label">Mobile</span>
+              <div class="folder-tags">
+                <span class="folder-tag folder-tag-plain">Expo</span>
+                <span class="folder-tag folder-tag-plain">React Native</span>
+                <span class="folder-tag folder-tag-plain">EAS Build</span>
+              </div>
+            </div>
+            <div class="folder-section">
+              <span class="folder-tag-label">AI &amp; integrations</span>
+              <div class="folder-tags">
+                <span class="folder-tag folder-tag-plain">Claude API</span>
+                <span class="folder-tag folder-tag-plain">Prompt caching</span>
+                <span class="folder-tag folder-tag-plain">Multi-model strategy</span>
+                <span class="folder-tag folder-tag-plain">Yahoo Finance API</span>
+              </div>
+            </div>
+            <div class="folder-section">
+              <span class="folder-tag-label">Design</span>
+              <div class="folder-tags">
+                <span class="folder-tag folder-tag-plain">Figma</span>
+                <span class="folder-tag folder-tag-plain">Adobe Suite</span>
+                <span class="folder-tag folder-tag-plain">Affinity</span>
+              </div>
+            </div>
+            <div class="folder-section">
+              <span class="folder-tag-label">Infra &amp; tooling</span>
+              <div class="folder-tags">
+                <span class="folder-tag folder-tag-plain">Git</span>
+                <span class="folder-tag folder-tag-plain">Docker</span>
+                <span class="folder-tag folder-tag-plain">GitHub Actions</span>
+                <span class="folder-tag folder-tag-plain">Vercel</span>
+                <span class="folder-tag folder-tag-plain">Render</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
     <script src="app.js"></script>
-    <script>randomHighlightAngle('.hero-header-name', true);</script>
     <script>
       const folders = document.querySelectorAll('.folder');
       const overlay = document.getElementById('folder-overlay');

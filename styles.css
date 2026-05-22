@@ -3,12 +3,12 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
-  --bg: #F9F8F6;
+  --bg: #F8F8F8;
   --text: #000;
-  --reveal-bg: #D9CFC7;
+  --reveal-bg: #E5E0D8;
   --shadow: rgba(0, 0, 0, 0.1);
   --footer-color: #4a4a4a;
-  --glass-nav-bg: rgba(249, 248, 246, 0.62);
+  --glass-nav-bg: rgba(248, 248, 248, 0.62);
   --glass-nav-border: rgba(0, 0, 0, 0.08);
   --glass-link-hover: rgba(0, 0, 0, 0.05);
   --glass-link-active: rgba(0, 0, 0, 0.08);
@@ -344,24 +344,6 @@ footer p {
   z-index: 1;
 }
 
-.hero-header-name::after {
-  content: '';
-  position: absolute;
-  left: -4px;
-  right: -4px;
-  bottom: 20%;
-  height: 45%;
-  background-color: rgba(195, 17, 12, 0.45);
-  z-index: -1;
-  transform: rotate(var(--highlight-angle, -1deg));
-  border-radius: 3px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.hero-header-name:hover::after {
-  opacity: 1;
-}
 
 #subtitle {
   font-family: "DM Sans", sans-serif;
@@ -508,6 +490,18 @@ footer p {
   background-color: currentColor;
   opacity: 0.25;
   margin: 0 auto 14px;
+}
+
+.about-status {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--footer-color);
+  text-align: center;
+  margin: -48px 0 50px;
+  opacity: 0.75;
+  animation: heroIn 0.4s ease both 0.1s;
 }
 
 .about-para {
@@ -664,6 +658,13 @@ footer p {
   filter: blur(3px);
 }
 
+body.portfolio-folder-open #hero,
+body.portfolio-folder-open #connect,
+body.portfolio-folder-open footer {
+  filter: blur(3px);
+  transition: filter 0.4s ease;
+}
+
 .folder-stack {
   max-width: 1200px;                                                                                        
   align-self: center;                                                                                                                      width: 100%; 
@@ -804,6 +805,17 @@ footer p {
 .folder-panel[data-folder="toolkit"] .folder-tag-label,
 .folder-panel[data-folder="toolkit"] .folder-tag { color: rgba(255, 255, 255, 0.88); }
 .folder-panel[data-folder="toolkit"] .folder-tag-label { font-family: "DM Sans", sans-serif; }
+
+.folder-tab-role {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-left: 10px;
+  vertical-align: middle;
+}
 
 .folder-tab::before {
   content: '';
@@ -1383,7 +1395,7 @@ body:has(#blog) {
 
 /* Override global h2 styles within case studies */
 .case-study h2 {
-  font-family: 'Cormorant Garamond', 'Instrument Serif', serif;
+  font-family: 'Instrument Serif', serif;
   font-size: clamp(26px, 4.5vw, 46px);
   font-weight: 400;
   font-style: italic;
@@ -1442,7 +1454,7 @@ body:has(#blog) {
 }
 
 .cs-title {
-  font-family: 'Cormorant Garamond', 'Instrument Serif', serif;
+  font-family: 'Instrument Serif', serif;
   font-size: clamp(68px, 13vw, 124px);
   font-weight: 500;
   line-height: 0.88;
@@ -1558,7 +1570,7 @@ body:has(#blog) {
 
 /* Pull quote / callout */
 .cs-callout {
-  font-family: 'Cormorant Garamond', 'Instrument Serif', serif;
+  font-family: 'Instrument Serif', serif;
   font-size: clamp(22px, 3.5vw, 34px);
   font-style: italic;
   font-weight: 400;
@@ -1707,7 +1719,7 @@ body:has(#blog) {
 }
 
 .cs-nav-title {
-  font-family: 'Cormorant Garamond', 'Instrument Serif', serif;
+  font-family: 'Instrument Serif', serif;
   font-size: 26px;
   font-weight: 500;
   color: var(--text);
@@ -1787,22 +1799,22 @@ body.case-study-page.theme-ordo {
 }
 
 body.case-study-page.theme-aporia {
-  --accent: #4f6535;
-  --asoft: rgb(217, 221, 210);
-  --band: #D2DCB6;
-}
-
-body.case-study-page.theme-brandle {
   --accent: #3b6c33;
   --asoft: rgb(213, 222, 209);
   --band: #A1BC98;
+}
+
+body.case-study-page.theme-brandle {
+  --accent: #3e5240;
+  --asoft: rgb(214, 217, 212);
+  --band: #778873;
   --hero-title-size: clamp(80px, 15vw, 200px);
 }
 
 body.case-study-page.theme-holoorbits {
-  --accent: #3e5240;
-  --asoft: rgb(214, 217, 212);
-  --band: #778873;
+  --accent: #4f6535;
+  --asoft: rgb(217, 221, 210);
+  --band: #D2DCB6;
   --hero-title-size: clamp(56px, 10vw, 140px);
 }
 
@@ -1886,6 +1898,97 @@ body.case-study-page.theme-holoorbits {
   position: relative;
   margin-bottom: 80px;
   animation: heroIn 0.4s ease both 0.35s;
+}
+
+/* Real-asset placeholders (hero, gallery, video, code).
+   Reserved aspect ratios so swapping in <img> causes zero layout shift. */
+.case-study-page .cs-hero-media {
+  width: 100%;
+  margin-bottom: 80px;
+  animation: heroIn 0.4s ease both 0.35s;
+}
+
+.case-study-page .cs-hero-media .cs-media-placeholder {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  aspect-ratio: auto;
+  height: clamp(260px, 32vw, 420px);
+}
+
+.case-study-page .cs-media-placeholder {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--band);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 0.8px, transparent 1px);
+  background-size: 14px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.case-study-page .cs-media-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.case-study-page .cs-media-16x9 { aspect-ratio: 16 / 9; }
+.case-study-page .cs-media-4x3  { aspect-ratio: 4 / 3; }
+
+.case-study-page .cs-media-label {
+  position: relative;
+  z-index: 1;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.case-study-page .cs-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.case-study-page .cs-video {
+  margin-bottom: 56px;
+}
+
+.case-study-page .cs-code {
+  margin-bottom: 56px;
+  padding: 24px 26px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg2);
+  overflow-x: auto;
+}
+
+.case-study-page .cs-code pre {
+  margin: 0;
+}
+
+.case-study-page .cs-code code {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre;
+}
+
+@media (max-width: 900px) {
+  .case-study-page .cs-gallery {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Body content */
@@ -2125,11 +2228,39 @@ body.case-study-page.theme-holoorbits {
     margin-bottom: 52px;
   }
 
+  .case-study-page .cs-hero-media {
+    margin-bottom: 52px;
+  }
+
   .case-study-page .content {
     padding: 0 24px;
   }
 
   .case-study-page .case-nav {
     padding: 32px 24px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Reveal elements start invisible and rely on JS + transition to appear;
+     with motion disabled, make them visible immediately so nothing stays blank. */
+  .reveal,
+  .scroll-hidden {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Folder stack reveal flags */
+  #portfolio.portfolio-animate .portfolio-header,
+  #portfolio.portfolio-animate .folder-stack .folder {
+    opacity: 1 !important;
   }
 }
