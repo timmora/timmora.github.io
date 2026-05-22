@@ -423,6 +423,10 @@ footer p {
   padding: 0 56px 40px;
 }
 
+#connect.section-reveal {
+  background-color: #EFE9E3;
+}
+
 #connect-text {
   font-family: "DM Sans", sans-serif;
   text-align: center;
@@ -597,6 +601,7 @@ footer p {
 
 .section-reveal > footer {
   padding-top: 40px;
+  background-color: transparent;
 }
 
 #connect h2 {
