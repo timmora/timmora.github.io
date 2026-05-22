@@ -796,8 +796,14 @@ footer p {
 .folder:nth-child(3) { --folder-color: #A1BC98; --tab-offset: 12%; z-index: 3; }
 .folder:nth-child(4) { --folder-color: #778873; --tab-offset: 35%; z-index: 4; }
 .folder:nth-child(5) { --folder-color: #313647; --tab-offset: 6%; z-index: 5; }
-.folder:nth-child(5) .folder-tab { cursor: default; color: #999; }
-.folder:nth-child(5) .folder-body { cursor: default; }
+.folder:nth-child(5) .folder-tab { cursor: pointer; color: rgba(255, 255, 255, 0.88); }
+.folder:nth-child(5) .folder-body { cursor: pointer; }
+.folder-panel[data-folder="toolkit"] { --folder-color: #313647; --tab-offset: 6%; }
+.folder-panel[data-folder="toolkit"] .folder-panel-tab,
+.folder-panel[data-folder="toolkit"] p,
+.folder-panel[data-folder="toolkit"] .folder-tag-label,
+.folder-panel[data-folder="toolkit"] .folder-tag { color: rgba(255, 255, 255, 0.88); }
+.folder-panel[data-folder="toolkit"] .folder-tag-label { font-family: "DM Sans", sans-serif; }
 
 .folder-tab::before {
   content: '';

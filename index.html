@@ -77,12 +77,87 @@
           <div class="folder-body"></div>
         </div>
 
-        <div class="folder" data-folder="whatif">
-          <div class="folder-tab">More Soon!</div>
+        <div class="folder" data-folder="toolkit">
+          <div class="folder-tab-area">
+            <div class="folder-tab">Toolkit</div>
+            <div class="folder-peek-card"><p>Languages, frameworks, and tools I reach for.</p></div>
+          </div>
           <div class="folder-body"></div>
         </div>
 
       </div>
+
+      <div class="folder-overlay" id="folder-overlay" data-lenis-prevent>
+        <div class="folder-panel" data-folder="toolkit">
+          <div class="folder-panel-tab">Toolkit</div>
+          <div class="folder-panel-body">
+            <div class="folder-content">
+              <p class="folder-role">What I reach for</p>
+              <div class="folder-section">
+                <span class="folder-tag-label">Interface</span>
+                <div class="folder-tags">
+                  <span class="folder-tag folder-tag-plain">React 19</span>
+                  <span class="folder-tag folder-tag-plain">TypeScript</span>
+                  <span class="folder-tag folder-tag-plain">Tailwind CSS</span>
+                  <span class="folder-tag folder-tag-plain">shadcn/ui</span>
+                  <span class="folder-tag folder-tag-plain">Framer Motion</span>
+                  <span class="folder-tag folder-tag-plain">Zustand</span>
+                  <span class="folder-tag folder-tag-plain">React Query</span>
+                  <span class="folder-tag folder-tag-plain">Vite</span>
+                </div>
+              </div>
+              <div class="folder-section">
+                <span class="folder-tag-label">Backend &amp; data</span>
+                <div class="folder-tags">
+                  <span class="folder-tag folder-tag-plain">FastAPI</span>
+                  <span class="folder-tag folder-tag-plain">Express</span>
+                  <span class="folder-tag folder-tag-plain">Supabase</span>
+                  <span class="folder-tag folder-tag-plain">PostgreSQL</span>
+                  <span class="folder-tag folder-tag-plain">Clerk</span>
+                  <span class="folder-tag folder-tag-plain">Python</span>
+                  <span class="folder-tag folder-tag-plain">Node.js</span>
+                </div>
+              </div>
+              <div class="folder-section">
+                <span class="folder-tag-label">Mobile</span>
+                <div class="folder-tags">
+                  <span class="folder-tag folder-tag-plain">Expo</span>
+                  <span class="folder-tag folder-tag-plain">React Native</span>
+                  <span class="folder-tag folder-tag-plain">EAS Build</span>
+                </div>
+              </div>
+              <div class="folder-section">
+                <span class="folder-tag-label">AI &amp; integrations</span>
+                <div class="folder-tags">
+                  <span class="folder-tag folder-tag-plain">Claude API</span>
+                  <span class="folder-tag folder-tag-plain">Prompt caching</span>
+                  <span class="folder-tag folder-tag-plain">Multi-model strategy</span>
+                  <span class="folder-tag folder-tag-plain">Yahoo Finance API</span>
+                </div>
+              </div>
+              <div class="folder-section">
+                <span class="folder-tag-label">Design</span>
+                <div class="folder-tags">
+                  <span class="folder-tag folder-tag-plain">Figma</span>
+                  <span class="folder-tag folder-tag-plain">Adobe Suite</span>
+                  <span class="folder-tag folder-tag-plain">Affinity</span>
+                </div>
+              </div>
+              <div class="folder-section">
+                <span class="folder-tag-label">Infra &amp; tooling</span>
+                <div class="folder-tags">
+                  <span class="folder-tag folder-tag-plain">Git</span>
+                  <span class="folder-tag folder-tag-plain">Docker</span>
+                  <span class="folder-tag folder-tag-plain">GitHub Actions</span>
+                  <span class="folder-tag folder-tag-plain">Vercel</span>
+                  <span class="folder-tag folder-tag-plain">Render</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <section id="connect">
@@ -112,14 +187,37 @@
     <script>randomHighlightAngle('.hero-header-name', true);</script>
     <script>
       const folders = document.querySelectorAll('.folder');
+      const overlay = document.getElementById('folder-overlay');
+      const portfolioSection = document.getElementById('portfolio');
+
+      function closeOverlay() {
+        const panel = overlay.querySelector('.folder-panel.active');
+        const openFolder = document.querySelector('.folder.open');
+        if (panel) panel.classList.remove('visible');
+        overlay.classList.remove('active');
+        portfolioSection.classList.remove('has-open-folder');
+        document.body.classList.remove('portfolio-folder-open');
+        if (openFolder) openFolder.classList.remove('open');
+        if (panel) {
+          panel.addEventListener('transitionend', function h() {
+            panel.classList.remove('active');
+            panel.removeEventListener('transitionend', h);
+          });
+        }
+      }
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeOverlay();
+      });
 
       folders.forEach(folder => {
         const href = folder.dataset.href;
+        const folderKey = folder.dataset.folder;
         const tab = folder.querySelector('.folder-tab');
 
         if (tab) {
           tab.addEventListener('mouseenter', () => {
-            if (href) folder.classList.add('peeking');
+            if (href || folderKey === 'toolkit') folder.classList.add('peeking');
           });
           tab.addEventListener('mouseleave', () => {
             folder.classList.remove('peeking');
@@ -129,6 +227,16 @@
         if (href) {
           folder.addEventListener('click', () => {
             window.location.href = href;
+          });
+        } else if (folderKey === 'toolkit') {
+          folder.addEventListener('click', () => {
+            const panel = overlay.querySelector('.folder-panel[data-folder="toolkit"]');
+            folder.classList.add('open');
+            overlay.classList.add('active');
+            portfolioSection.classList.add('has-open-folder');
+            document.body.classList.add('portfolio-folder-open');
+            panel.classList.add('active');
+            requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('visible')));
           });
         }
       });
