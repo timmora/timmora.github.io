@@ -29,7 +29,10 @@
 
     <section id="hero" class="section-cover">
       <h1> Hi, I'm <span class="hero-header-name">Tim Mora</span> </h1>
-        <p id="subtitle"> B.S. Computer Science + Education, UIUC '26 </p>
+        <p id="subtitle">
+          B.S. CS + Education, UIUC '26
+          <span id="subtitle-rotator"></span>
+        </p>
         <p id="tagline">
           <span class="tagline-line">I like making things that <span class="tagline-serif">feel good to use</span></span>
           <span class="tagline-line">I care just as much about code that's <span class="tagline-serif">maintainable</span></span>
@@ -118,7 +121,7 @@
         <div class="folder-panel-body">
           <div class="folder-content">
             <p class="folder-role">What I reach for</p>
-            <div class="folder-section">
+            <div class="folder-section" data-category="interface">
               <span class="folder-tag-label">Interface</span>
               <div class="folder-tags">
                 <span class="folder-tag folder-tag-plain">React 19</span>
@@ -131,7 +134,7 @@
                 <span class="folder-tag folder-tag-plain">Vite</span>
               </div>
             </div>
-            <div class="folder-section">
+            <div class="folder-section" data-category="backend">
               <span class="folder-tag-label">Backend &amp; data</span>
               <div class="folder-tags">
                 <span class="folder-tag folder-tag-plain">FastAPI</span>
@@ -143,7 +146,7 @@
                 <span class="folder-tag folder-tag-plain">Node.js</span>
               </div>
             </div>
-            <div class="folder-section">
+            <div class="folder-section" data-category="mobile">
               <span class="folder-tag-label">Mobile</span>
               <div class="folder-tags">
                 <span class="folder-tag folder-tag-plain">Expo</span>
@@ -151,7 +154,7 @@
                 <span class="folder-tag folder-tag-plain">EAS Build</span>
               </div>
             </div>
-            <div class="folder-section">
+            <div class="folder-section" data-category="ai">
               <span class="folder-tag-label">AI &amp; integrations</span>
               <div class="folder-tags">
                 <span class="folder-tag folder-tag-plain">Claude API</span>
@@ -160,7 +163,7 @@
                 <span class="folder-tag folder-tag-plain">Yahoo Finance API</span>
               </div>
             </div>
-            <div class="folder-section">
+            <div class="folder-section" data-category="design">
               <span class="folder-tag-label">Design</span>
               <div class="folder-tags">
                 <span class="folder-tag folder-tag-plain">Figma</span>
@@ -168,7 +171,7 @@
                 <span class="folder-tag folder-tag-plain">Affinity</span>
               </div>
             </div>
-            <div class="folder-section">
+            <div class="folder-section" data-category="infra">
               <span class="folder-tag-label">Infra &amp; tooling</span>
               <div class="folder-tags">
                 <span class="folder-tag folder-tag-plain">Git</span>
@@ -239,6 +242,30 @@
           });
         }
       });
+    </script>
+    <script>
+      (function () {
+        const roles = [
+          'UX Engineer',
+          'Front End Developer',
+          'Creative',
+        ];
+        const el = document.getElementById('subtitle-rotator');
+        let i = 0;
+        el.textContent = roles[0];
+        el.classList.add('blur-in');
+
+        setInterval(() => {
+          el.classList.add('blur-out');
+          el.classList.remove('blur-in');
+          setTimeout(() => {
+            i = (i + 1) % roles.length;
+            el.textContent = roles[i];
+            el.classList.remove('blur-out');
+            el.classList.add('blur-in');
+          }, 400);
+        }, 2800);
+      })();
     </script>
   </body>
 </html>

@@ -51,6 +51,7 @@ body {
   font-style: normal;
   margin: 0px;
   padding: 0;
+  min-width: 425px;
   background-color: transparent;
   animation: fadeIn 1s ease;
   color: var(--text);
@@ -119,9 +120,13 @@ header {
   transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
 }
 
-header.scrolled {
+header.scrolled,
+body.page-about header {
   background-color: var(--bg);
   border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+header.scrolled {
   border-bottom-color: var(--glass-nav-border);
 }
 
@@ -354,6 +359,21 @@ footer p {
   margin-bottom: 0;
 }
 
+#subtitle-rotator {
+  display: block;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+#subtitle-rotator.blur-out {
+  filter: blur(8px);
+  opacity: 0;
+}
+
+#subtitle-rotator.blur-in {
+  filter: blur(0px);
+  opacity: 1;
+}
+
 #tagline {
   font-family: "DM Sans", sans-serif;
   font-size: 23px;
@@ -425,6 +445,7 @@ footer p {
 
 #connect.section-reveal {
   background-color: #EFE9E3;
+  box-shadow: 0 -20px 0 0 #EFE9E3;
 }
 
 #connect-text {
@@ -810,6 +831,26 @@ body.portfolio-folder-open footer {
 .folder-panel[data-folder="toolkit"] .folder-tag-label,
 .folder-panel[data-folder="toolkit"] .folder-tag { color: rgba(255, 255, 255, 0.88); }
 .folder-panel[data-folder="toolkit"] .folder-tag-label { font-family: "DM Sans", sans-serif; }
+
+/* Color-coded category label highlights */
+.folder-panel[data-folder="toolkit"] .folder-section[data-category="interface"] .folder-tag-label::before {
+  background-color: rgba(120, 165, 255, 0.35);
+}
+.folder-panel[data-folder="toolkit"] .folder-section[data-category="backend"] .folder-tag-label::before {
+  background-color: rgba(100, 215, 160, 0.35);
+}
+.folder-panel[data-folder="toolkit"] .folder-section[data-category="mobile"] .folder-tag-label::before {
+  background-color: rgba(190, 140, 255, 0.35);
+}
+.folder-panel[data-folder="toolkit"] .folder-section[data-category="ai"] .folder-tag-label::before {
+  background-color: rgba(255, 175, 90, 0.35);
+}
+.folder-panel[data-folder="toolkit"] .folder-section[data-category="design"] .folder-tag-label::before {
+  background-color: rgba(255, 135, 165, 0.35);
+}
+.folder-panel[data-folder="toolkit"] .folder-section[data-category="infra"] .folder-tag-label::before {
+  background-color: rgba(90, 220, 220, 0.35);
+}
 
 .folder-tab-role {
   font-family: "DM Sans", sans-serif;
