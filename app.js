@@ -32,7 +32,7 @@ var lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
 (function syncLenisWhenFolderOpen() {
   if (typeof lenis === 'undefined' || !lenis.stop) return;
   function sync() {
-    if (document.body.classList.contains('portfolio-folder-open')) {
+    if (document.body.classList.contains('portfolio-folder-open') || document.body.classList.contains('blog-paper-open')) {
       lenis.stop();
     } else {
       lenis.start();
