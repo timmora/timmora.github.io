@@ -82,24 +82,37 @@
             <span class="cs-media-label">60s walkthrough · Loom</span>
           </div>
         </div>
-        <div class="cs-code" data-todo="scheduler-snippet">
-<pre><code>// TODO(code): replace with real excerpt from src/scheduler/buildDailyThree.ts
-function buildDailyThree(subtasks, calendar, capacity) {
-  const today = startOfDay(new Date());
-  const free = subtractBusyBlocks(calendar.windowsFor(today), capacity);
+        <div class="cs-code">
+          <div class="cs-code-title">
+            <span class="cs-code-what">AI task decomposition</span>
+          </div>
+<pre><code># Seen an identical task before? Return the saved breakdown, skip the model.
+fp = _fingerprint(task["title"], task.get("due_date"), body.description, file_head)
+cached = sb.table("decompose_cache").select("result").eq("fingerprint", fp).maybe_single().execute()
+if cached and cached.data:
+    return DecomposeResponse(subtasks=[SubtaskSuggestion(**s) for s in cached.data["result"]])
 
-  const scored = subtasks
-    .filter(s => !s.done && daysUntil(s.dueAt) <= s.horizon)
-    .map(s => ({
-      subtask: s,
-      score: urgency(s) * weight.urgency
-           + cognitiveFit(s, free) * weight.fit
-           + courseLoad(s) * weight.balance,
-    }))
-    .sort((a, b) => b.score - a.score);
+consume_ai_credit_or_429(user_id)
 
-  return packIntoSlots(scored, free, { max: 3, respect: capacity });
-}</code></pre>
+# A syllabus PDF can run 30k+ tokens. Score its paragraphs against this task
+# and keep only the most relevant — cheaper calls, sharper subtasks.
+context = _filter_task_context(extracted_file_text, title=task["title"],
+                               course_name=course_name, description=body.description)
+
+# Haiku handles most tasks; fall back to Sonnet only when it struggles.
+# The shared system prompt is marked for prompt caching to cut repeat cost.
+subtasks = call_ai_with_retry(
+    ai,
+    model=ANTHROPIC_MODEL_HAIKU,
+    fallback_model=ANTHROPIC_MODEL_SONNET,
+    system=make_cached_system(SYSTEM_PROMPT),
+    messages=_build_user_prompt(task, context, decomposition_style, target),
+    parse_fn=_parse_subtasks,
+)
+
+# Memoize so the next identical request is free.
+sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
+    "result": [s.model_dump() for s in subtasks]}).execute()</code></pre>
         </div>
       </div>
       <div class="reveal">
@@ -114,23 +127,23 @@ function buildDailyThree(subtasks, calendar, capacity) {
         <ul class="highlights">
           <li class="highlight-item"><span class="h-num">01</span><p class="h-text">AI task decomposition with a constraint-based scheduler that maps subtasks into free slots respecting course blocks, daily capacity limits, and preferred focus windows. Not just a to-do list — a daily plan that actually fits.</p></li>
           <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Syllabus PDF parsing during onboarding — Claude extracts the full course schedule and assignments directly, eliminating manual entry entirely.</p></li>
-          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">AI daily briefing summarizing priorities, yesterday's focus stats, and a personalized tip. Cached per user per day to keep latency low and API costs manageable.</p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">AI daily briefing summarizing priorities, this week's focus stats, and a personalized tip. Cached per user per day to keep latency low and API costs manageable.</p></li>
           <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Pomodoro focus timer with per-subtask time tracking, session logs, and streak counters — a tight feedback loop between planning and doing.</p></li>
-          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">AES-256 encrypted journal with per-user keys, mood and energy tracking, and AI-generated weekly insights connecting patterns across workload, mood, and productivity.</p></li>
+          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Journal encrypted at rest with authenticated encryption (Fernet) and key rotation, plus mood and energy tracking. The AI briefing reads only those mood and energy signals — never the written entries themselves.</p></li>
         </ul>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Under the Hood</p>
-        <p class="body-text">The scheduling engine is the core of Ordo. It takes a task graph — assignments decomposed by Claude into subtasks with estimated durations — and maps them into a weekly schedule, respecting course blocks, preferred focus windows, daily capacity limits, and hard deadlines. The algorithm runs on each login, so the plan adapts continuously as tasks are completed or delayed.</p>
-        <p class="body-text">The AI layer has two distinct jobs. During onboarding, Claude parses syllabus PDFs and extracts the full course schedule — assignment dates, exam weights, recitation times — eliminating the input problem entirely. During operation, Claude writes the daily briefing: a personalized summary of today's priorities, yesterday's focus stats, and one concrete suggestion. The briefing is cached per user per day; the first request generates it, subsequent ones return the cache.</p>
+        <p class="body-text">The scheduling engine is the core of Ordo. It takes a task graph — assignments decomposed by Claude into subtasks with estimated durations — and maps them into a weekly schedule, respecting course blocks, preferred focus windows, daily capacity limits, and hard deadlines. It also imports events from Google Calendar over read-only OAuth, so external commitments count as busy time the plan works around. The algorithm runs on each login, so the plan adapts continuously as tasks are completed or delayed.</p>
+        <p class="body-text">The AI layer has two distinct jobs. During onboarding, Claude parses syllabus PDFs and extracts the full course schedule — assignment dates, exam weights, recitation times — eliminating the input problem entirely. During operation, Claude writes the daily briefing: a personalized summary of today's priorities, this week's focus stats, and one concrete suggestion. The briefing is cached per user per day; the first request generates it, subsequent ones return the cache.</p>
         <p class="callout">"The hard part wasn't the scheduling algorithm. It was making the Daily Three feel trustworthy enough that a student would actually follow it."</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Reflection</p>
         <p class="body-text">The most interesting thing about building Ordo was discovering what the hard problem actually was. I expected the scheduling algorithm to be the challenge. It wasn't — constraint solvers are well-understood. The hard part was making the Daily Three feel trustworthy. If a student looks at their three tasks and thinks "that's not what I should be doing today," the whole product fails. Getting the priority logic right — especially for long-horizon projects that shouldn't surface until they need to — took more iteration than anything else.</p>
-        <p class="body-text">One architectural decision I'm glad I made early: the journal is encrypted at rest with AES-256 per-user keys. The AI insights run on anonymized summaries, not raw entries. I could have cut that corner. I didn't.</p>
+        <p class="body-text">One architectural decision I'm glad I made early: the journal is encrypted at rest with authenticated encryption and key rotation, and the AI briefing only ever sees mood and energy signals — never the raw written entries. I could have cut that corner. I didn't.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
