@@ -175,7 +175,7 @@ body.blog-paper-open header {
   font-family: 'Instrument Serif', serif;
   font-weight: bold;
   font-style: normal;
-  font-size: 31px;
+  font-size: 36px;
   letter-spacing: -0.02em;
   color: var(--text);
   text-align: center;
@@ -201,7 +201,7 @@ nav ul {
 
 nav a {
   font-weight: normal;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   display: inline-flex;
@@ -258,7 +258,7 @@ nav a.nav-active::after {
   border: 1px solid var(--glass-nav-border);
   border-radius: 999px;
   padding: 7px 16px;
-  font-size: 15px;
+  font-size: 17px;
   font-family: "DM Sans", sans-serif;
   color: var(--text);
   transition: background-color 0.2s ease, border-color 0.2s ease;
@@ -593,7 +593,7 @@ footer p {
 
 .about-now-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: rgba(0,0,0,0.38);
@@ -601,7 +601,8 @@ footer p {
 }
 
 .about-now-status {
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 300;
   line-height: 1.5;
   margin-bottom: 14px;
   padding-bottom: 14px;
@@ -612,7 +613,6 @@ footer p {
   display: flex;
   gap: 12px;
   font-family: "DM Sans", sans-serif;
-  font-size: 13px;
   padding: 8px 0;
   border-bottom: 1px solid rgba(0,0,0,0.07);
 }
@@ -622,12 +622,16 @@ footer p {
 }
 
 .about-now-key {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: rgba(0,0,0,0.38);
-  width: 68px;
+  width: 76px;
   flex-shrink: 0;
 }
 
 .about-now-val {
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -678,7 +682,7 @@ footer p {
 
 .about-sec-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(0,0,0,0.38);
@@ -687,7 +691,8 @@ footer p {
 }
 
 .about-sec-body {
-  font-size: clamp(20px, 2vw, 22px);
+  font-size: clamp(24px, 2.4vw, 26px);
+  font-weight: 300;
   line-height: 1.78;
   margin: 0;
 }
@@ -703,7 +708,7 @@ footer p {
 
 .about-values-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(0,0,0,0.38);
@@ -718,7 +723,7 @@ footer p {
 
 .about-chip {
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   padding: 5px 13px;
   border: 1px solid rgba(0,0,0,0.18);
   border-radius: 999px;
@@ -1017,7 +1022,7 @@ body.portfolio-folder-open footer {
 
 .folder-peek-card p {
   font-family: "DM Sans", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--text);
   margin: 0;
@@ -1027,6 +1032,33 @@ body.portfolio-folder-open footer {
 
 .folder:not(.open).peeking .folder-peek-card {
   transform: translateY(0);
+  opacity: 1;
+}
+
+.folder-peek-icon {
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.2));
+  transform: scale(0) rotate(-25deg);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s, opacity 0.2s ease 0.1s;
+  pointer-events: none;
+}
+
+.folder-peek-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.folder:not(.open).peeking .folder-peek-icon {
+  transform: scale(1) rotate(0deg);
   opacity: 1;
 }
 
@@ -1139,7 +1171,8 @@ body.portfolio-folder-open footer {
   bottom: 0;
   z-index: 200;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  align-items: safe center;
   justify-content: center;
   padding: 48px 24px 32px;
   box-sizing: border-box;
@@ -1555,7 +1588,7 @@ body:has(#blog) {
 }
 
 .envelope-label {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;
   transition: color 0.5s ease;
@@ -1651,19 +1684,20 @@ body:has(#blog) {
 .paper-content {
   padding: 28px 24px;
   color: #333;
-  font-size: clamp(20px, 2vw, 22px);
+  font-size: clamp(24px, 2.4vw, 26px);
+  font-weight: 300;
   line-height: 1.7;
 }
 
 .paper-content h3 {
   margin-top: 0;
-  font-size: 24px;
+  font-size: 30px;
 }
 
 .paper-date {
   font-style: italic;
   color: #888;
-  font-size: 15px;
+  font-size: 17px;
   margin-bottom: 16px;
 }
 
@@ -1671,385 +1705,6 @@ body:has(#blog) {
 .folder-panel[data-folder="ordo"] { --folder-color: #F1F3E0; --tab-offset: 25%; }
 .folder-panel[data-folder="brandle"] { --folder-color: #A1BC98; --tab-offset: 12%; }
 .folder-panel[data-folder="holoorbits"] { --folder-color: #778873; --tab-offset: 35%; }
-
-/* Theme Toggle */
-
-/* ============================================================
-   CASE STUDY PAGES
-   ============================================================ */
-
-/* Override global h2 styles within case studies */
-.case-study h2 {
-  font-family: 'Instrument Serif', serif;
-  font-size: clamp(26px, 4.5vw, 46px);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.15;
-  text-align: left;
-  padding-top: 0;
-  margin: 0 0 20px;
-  max-width: 640px;
-}
-
-.case-study h2::before {
-  display: none;
-}
-
-/* Wrapper */
-.case-study {
-  padding: 0 40px 80px;
-}
-
-/* Back link */
-.cs-back {
-  padding: 32px 0 0;
-  animation: heroIn 0.4s ease both 0s;
-}
-
-.cs-back a {
-  font-family: "DM Sans", sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cs-muted);
-  text-decoration: none;
-  font-weight: normal;
-  transition: color 0.25s ease;
-}
-
-.cs-back a:hover {
-  color: var(--text);
-}
-
-/* Hero */
-.cs-hero {
-  padding: 52px 0 52px;
-  border-bottom: 1px solid var(--cs-border);
-  animation: heroIn 0.5s ease both 0.1s;
-}
-
-.cs-eyebrow {
-  font-family: "DM Sans", sans-serif;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
-  color: var(--cs-muted);
-  display: block;
-  margin-bottom: 16px;
-}
-
-.cs-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: clamp(68px, 13vw, 124px);
-  font-weight: 500;
-  line-height: 0.88;
-  margin: 0 0 24px;
-  letter-spacing: -0.025em;
-  color: var(--text);
-}
-
-.cs-tagline {
-  font-size: 20px;
-  line-height: 1.55;
-  max-width: 540px;
-  margin: 0 0 40px;
-  color: var(--cs-muted);
-  font-style: italic;
-  font-family: 'Instrument Serif', serif;
-}
-
-.cs-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  border-top: 1px solid var(--cs-border);
-  padding-top: 20px;
-}
-
-.cs-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding-right: 36px;
-  margin-right: 36px;
-  border-right: 1px solid var(--cs-border);
-  padding-bottom: 4px;
-}
-
-.cs-meta-item:last-child {
-  border-right: none;
-  padding-right: 0;
-  margin-right: 0;
-}
-
-.cs-meta-label {
-  font-family: "DM Sans", sans-serif;
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--cs-muted);
-}
-
-.cs-meta-value {
-  font-family: 'Instrument Serif', serif;
-  font-size: 14px;
-  color: var(--text);
-}
-
-.cs-meta-value a {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: normal;
-  border-bottom: 1px solid var(--cs-border);
-  transition: border-color 0.2s ease;
-}
-
-.cs-meta-value a:hover {
-  border-bottom-color: var(--text);
-}
-
-/* Sections */
-.cs-section {
-  padding: 52px 0;
-  border-bottom: 1px solid var(--cs-border);
-}
-
-.cs-section:last-of-type {
-  border-bottom: none;
-}
-
-.cs-section-label {
-  font-family: "DM Sans", sans-serif;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--cs-muted);
-  display: block;
-  margin-bottom: 28px;
-}
-
-.cs-lead {
-  font-family: 'Instrument Serif', serif;
-  font-size: 21px;
-  line-height: 1.65;
-  max-width: 640px;
-  margin: 0 0 20px;
-  color: var(--text);
-}
-
-.cs-body {
-  font-family: 'Instrument Serif', serif;
-  font-size: 17px;
-  line-height: 1.8;
-  max-width: 640px;
-  color: var(--text);
-}
-
-.cs-body p {
-  margin: 0 0 18px;
-}
-
-.cs-body p:last-child {
-  margin-bottom: 0;
-}
-
-/* Pull quote / callout */
-.cs-callout {
-  font-family: 'Instrument Serif', serif;
-  font-size: clamp(22px, 3.5vw, 34px);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.35;
-  max-width: 600px;
-  padding: 36px 0;
-  border-top: 1px solid var(--cs-border);
-  border-bottom: 1px solid var(--cs-border);
-  margin: 40px 0 0;
-  color: var(--text);
-}
-
-/* Feature grid */
-.cs-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1px;
-  background-color: var(--cs-border);
-  border: 1px solid var(--cs-border);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-top: 8px;
-}
-
-.cs-feature {
-  padding: 24px 22px;
-  background-color: var(--bg);
-  transition: background-color 0.5s ease;
-}
-
-.cs-feature-title {
-  font-family: "DM Sans", sans-serif;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--cs-muted);
-  margin-bottom: 8px;
-  display: block;
-}
-
-.cs-feature-body {
-  font-family: 'Instrument Serif', serif;
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--text);
-}
-
-/* Tech stack chips */
-.cs-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 4px;
-}
-
-.cs-stack-item {
-  font-family: "DM Sans", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  padding: 4px 10px;
-  border: 1px solid var(--cs-border);
-  border-radius: 2px;
-  color: var(--cs-muted);
-  transition: color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Outcomes list */
-.cs-outcomes {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.cs-outcomes li {
-  font-family: 'Instrument Serif', serif;
-  font-size: 17px;
-  line-height: 1.7;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--cs-border);
-  color: var(--text);
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 12px;
-  align-items: baseline;
-}
-
-.cs-outcomes li:first-child {
-  border-top: 1px solid var(--cs-border);
-}
-
-.cs-outcome-num {
-  font-family: "DM Sans", sans-serif;
-  font-size: 10px;
-  color: var(--cs-muted);
-  padding-top: 4px;
-}
-
-/* Project navigation */
-.cs-project-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 48px 0 0;
-  border-top: 1px solid var(--cs-border);
-  margin-top: 52px;
-}
-
-.cs-nav-all {
-  font-family: "DM Sans", sans-serif;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--cs-muted);
-  text-decoration: none;
-  font-weight: normal;
-  transition: color 0.25s ease;
-}
-
-.cs-nav-all:hover {
-  color: var(--text);
-}
-
-.cs-nav-next {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-  text-decoration: none;
-  color: var(--text);
-  transition: opacity 0.25s ease;
-}
-
-.cs-nav-next:hover {
-  opacity: 0.55;
-}
-
-.cs-nav-label {
-  font-family: "DM Sans", sans-serif;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--cs-muted);
-}
-
-.cs-nav-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 26px;
-  font-weight: 500;
-  color: var(--text);
-}
-
-/* Divider within a section */
-.cs-divider {
-  border: none;
-  border-top: 1px solid var(--cs-border);
-  margin: 36px 0;
-}
-
-@media (max-width: 700px) {
-  .case-study {
-    padding: 0 20px 60px;
-  }
-
-  .cs-meta {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .cs-meta-item {
-    border-right: none;
-    padding-right: 0;
-    margin-right: 0;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--cs-border);
-  }
-
-  .cs-meta-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .cs-project-nav {
-    flex-direction: column;
-    gap: 28px;
-    align-items: flex-start;
-  }
-
-  .cs-nav-next {
-    align-items: flex-start;
-  }
-}
 
 /* ============================================================
    CASE STUDY DETAIL PAGES (Ordo, Aporia, Brandle, HoloOrbits)
@@ -2358,7 +2013,7 @@ body.case-study-page.theme-holoorbits {
 
 .case-study-page .sidebar-label {
   font-family: "DM Sans", sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: normal;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -2367,7 +2022,8 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .sidebar-val {
-  font-size: 20px;
+  font-size: 23px;
+  font-weight: 300;
   color: var(--text);
   line-height: 1.5;
 }
@@ -2383,17 +2039,21 @@ body.case-study-page.theme-holoorbits {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 22px;
+  padding: 13px 26px;
   border-radius: 999px;
   background: var(--band);
   color: var(--text);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  transition: opacity 0.2s ease;
+  box-shadow: 0 0 0 0 var(--accent);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
 }
 
 .case-study-page .live-link:hover {
-  opacity: 0.85;
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px var(--accent);
 }
 
 .case-study-page .section-rule {
@@ -2413,7 +2073,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .overview-text {
-  font-size: clamp(20px, 2vw, 22px);
+  font-size: clamp(24px, 2.4vw, 26px);
   font-weight: 300;
   line-height: 1.78;
   color: var(--text);
@@ -2472,7 +2132,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .body-text {
-  font-size: clamp(20px, 2vw, 22px);
+  font-size: clamp(24px, 2.4vw, 26px);
   font-weight: 300;
   line-height: 1.82;
   color: var(--text);
@@ -2485,9 +2145,9 @@ body.case-study-page.theme-holoorbits {
 
 .case-study-page .callout {
   font-family: 'Instrument Serif', serif;
-  font-size: clamp(16px, 1.8vw, 20px);
+  font-size: clamp(28px, 3.2vw, 34px);
   font-style: italic;
-  line-height: 1.7;
+  line-height: 1.5;
   padding: 28px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -2511,9 +2171,9 @@ body.case-study-page.theme-holoorbits {
 
 .case-study-page .quote-card p {
   font-family: 'Instrument Serif', serif;
-  font-size: 18px;
+  font-size: 22px;
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--text);
   margin-bottom: 10px;
 }
