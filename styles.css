@@ -175,7 +175,7 @@ body.blog-paper-open header {
   font-family: 'Instrument Serif', serif;
   font-weight: bold;
   font-style: normal;
-  font-size: 36px;
+  font-size: 28px;
   letter-spacing: -0.02em;
   color: var(--text);
   text-align: center;
@@ -201,7 +201,7 @@ nav ul {
 
 nav a {
   font-weight: normal;
-  font-size: 16px;
+  font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   display: inline-flex;
@@ -275,11 +275,11 @@ nav a.nav-active::after {
   }
 
   .header-name {
-    font-size: 20px;
+    font-size: 17px;
   }
 
   nav a {
-    font-size: 11px;
+    font-size: 10px;
     padding: 7px 10px;
   }
 
@@ -334,12 +334,12 @@ footer p {
   align-items: center;
 }
 
-#hero.section-cover > h1           { font-size: 120px; line-height: 1; text-align: center; will-change: transform, opacity, filter; animation: heroFade 0.45s ease both 0.05s, heroSlide 1.4s ease-out both 0.05s; }
+#hero.section-cover > h1           { font-size: 104px; line-height: 1; text-align: center; will-change: transform, opacity, filter; animation: heroFade 0.45s ease both 0.05s, heroSlide 1.4s ease-out both 0.05s; }
 #hero.section-cover > h1::before   { content: ''; display: block; width: 24px; height: 1px; background-color: currentColor; opacity: 0.25; margin: 0 auto 14px; }
 #hero.section-cover .hero-header-name { will-change: opacity, filter; animation: heroNameFade 1.0s ease both 0.15s; }
 #hero.section-cover > #subtitle    { will-change: transform, opacity, filter; animation: heroFade 0.45s ease both 0.3s, heroSlide 1.1s ease-out both 0.3s; }
 #view-my-work {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -385,7 +385,7 @@ footer p {
 
 #subtitle {
   font-family: "DM Sans", sans-serif;
-  font-size: 26px;
+  font-size: 22px;
   text-align: center;
   color: var(--footer-color);
   margin-top: 0;
@@ -409,7 +409,7 @@ footer p {
 
 #tagline {
   font-family: "DM Sans", sans-serif;
-  font-size: 27px;
+  font-size: 23px;
   text-align: center;
   color: var(--text);
   max-width: 620px;
