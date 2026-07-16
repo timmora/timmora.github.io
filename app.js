@@ -106,7 +106,7 @@ if (reveal && spacer) {
   }, { rootMargin: '0px 0px -50% 0px', threshold: 0 }).observe(portfolioSection);
 })();
 
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab)').forEach(function(anchor) {
   anchor.addEventListener('click', function(e) {
     var target = document.querySelector(this.getAttribute('href'));
     if (target) {
@@ -115,6 +115,37 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     }
   });
 });
+
+// Hero drawer tabs: scroll to the portfolio, then pulse the matching folder
+// so the clicked tab visibly "arrives" as its folder in the stack.
+(function() {
+  var portfolio = document.getElementById('portfolio');
+  if (!portfolio) return;
+  var pulseTimer;
+  document.querySelectorAll('.hero-peek-tab[data-folder]').forEach(function(tab) {
+    var folder = document.querySelector('.folder[data-folder="' + tab.dataset.folder + '"]');
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Explicit duration keeps onComplete prompt — lerp-mode scrolling has a
+      // long settling tail that would delay the pulse.
+      lenis.scrollTo(portfolio, {
+        duration: 0.7,
+        onComplete: function() {
+          if (!folder || folder.classList.contains('open')) return;
+          clearTimeout(pulseTimer);
+          document.querySelectorAll('.folder.hero-pulse').forEach(function(f) {
+            f.classList.remove('hero-pulse');
+          });
+          void folder.offsetWidth; // restart the animation on repeat clicks
+          folder.classList.add('hero-pulse');
+          pulseTimer = setTimeout(function() {
+            folder.classList.remove('hero-pulse');
+          }, 1350);
+        }
+      });
+    });
+  });
+})();
 
 // Header scroll state (e.g. shadow)
 (function() {

@@ -394,11 +394,16 @@ footer p {
 .hero-drawer .hero-peek-tab:nth-child(4) { --folder-color: #778873; top: 32px; animation-delay: 1.49s; }
 .hero-drawer .hero-peek-tab:nth-child(5) { --folder-color: #313647; top: 32px; animation-delay: 1.57s; }
 
-.hero-drawer .hero-peek-tab:nth-child(1):hover { top: 20px; }
-.hero-drawer .hero-peek-tab:nth-child(2):hover { top: 20px; }
-.hero-drawer .hero-peek-tab:nth-child(3):hover { top: 16px; }
-.hero-drawer .hero-peek-tab:nth-child(4):hover { top: 22px; }
-.hero-drawer .hero-peek-tab:nth-child(5):hover { top: 22px; }
+.hero-drawer .hero-peek-tab:nth-child(1):hover,
+.hero-drawer .hero-peek-tab:nth-child(1):focus-visible { top: 20px; }
+.hero-drawer .hero-peek-tab:nth-child(2):hover,
+.hero-drawer .hero-peek-tab:nth-child(2):focus-visible { top: 20px; }
+.hero-drawer .hero-peek-tab:nth-child(3):hover,
+.hero-drawer .hero-peek-tab:nth-child(3):focus-visible { top: 16px; }
+.hero-drawer .hero-peek-tab:nth-child(4):hover,
+.hero-drawer .hero-peek-tab:nth-child(4):focus-visible { top: 22px; }
+.hero-drawer .hero-peek-tab:nth-child(5):hover,
+.hero-drawer .hero-peek-tab:nth-child(5):focus-visible { top: 22px; }
 
 @media (max-width: 700px) {
   .hero-drawer {
@@ -1037,6 +1042,21 @@ body.portfolio-folder-open footer {
   transform: translateY(-12px);
 }
 
+/* Arrival pulse from the hero drawer tabs: lift only (no peek card), then a
+   quick drop that overshoots and settles */
+@keyframes heroPulse {
+  0%   { transform: translateY(0); }
+  15%  { transform: translateY(-20px); }
+  72%  { transform: translateY(-20px); }
+  84%  { transform: translateY(3px); }
+  93%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+.folder:not(.open).hero-pulse {
+  animation: heroPulse 1.3s ease both;
+}
+
 .folder-stack.has-open .folder:not(.open) {
   pointer-events: auto;
   margin-top: -225px;
@@ -1217,6 +1237,18 @@ body.portfolio-folder-open footer {
   height: 6px;
   background-color: var(--folder-color);
   transition: background-color 0.5s ease;
+}
+
+/* While peeking, the folder lifts 12px and the tab can slide out from under
+   the cursor, firing mouseleave and dropping the peek. This invisible buffer
+   below the tab keeps the pointer inside the tab's hover area. */
+.folder:not(.open).peeking .folder-tab::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 16px;
 }
 
 .folder-body {
