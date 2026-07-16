@@ -195,7 +195,7 @@ nav ul {
   list-style: none;
   gap: 4px;
   padding: 0;
-  margin: 12px 0;
+  margin: 13px 0;
   width: fit-content;
 }
 
@@ -209,7 +209,7 @@ nav a {
   justify-content: center;
   line-height: 1.1;
   position: relative;
-  padding: 8px 14px;
+  padding: 7px 14px;
   color: var(--text);
   opacity: 0.6;
   cursor: pointer;
@@ -280,7 +280,7 @@ nav a.nav-active::after {
 
   nav a {
     font-size: 10px;
-    padding: 7px 10px;
+    padding: 5px 10px;
   }
 
   .header-right {
@@ -327,7 +327,7 @@ footer p {
    doesn't inherit the home hero's full-viewport height. */
 #hero.section-cover {
   height: 100vh;
-  margin-top: -60px;
+  margin-top: -58px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -351,12 +351,12 @@ footer p {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 76px;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 16px;
+  gap: 6px;
   pointer-events: none;
 }
 
@@ -366,42 +366,49 @@ footer p {
   background-color: var(--folder-color, #F1F3E0);
   color: #333;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   white-space: nowrap;
-  padding: 8px 24px 20px;
+  padding: 11px 32px 25px;
   border-radius: 8px 8px 0 0;
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.07);
   pointer-events: auto;
   cursor: pointer;
-  transition: top 0.3s ease, background-color 0.5s ease;
+  /* Sideways dodge uses `left` (not transform) because drawerRise's fill
+     keeps owning the transform property after the entrance finishes. */
+  left: 0;
+  transition: top 0.3s ease, left 0.3s ease, background-color 0.5s ease;
   animation: drawerRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+/* Neighbors lean away from the hovered tab */
+.hero-peek-tab:hover ~ .hero-peek-tab { left: 12px; }
+.hero-drawer .hero-peek-tab:has(~ .hero-peek-tab:hover) { left: -12px; }
 
 .hero-peek-tab.tab-dark {
   color: rgba(255, 255, 255, 0.88);
 }
 
 .hero-drawer .hero-peek-tab:nth-child(1) { --folder-color: #F1F3E0; top: 30px; animation-delay: 1.25s; }
-.hero-drawer .hero-peek-tab:nth-child(2) { --folder-color: #D2DCB6; top: 38px; animation-delay: 1.33s; }
+.hero-drawer .hero-peek-tab:nth-child(2) { --folder-color: #D2DCB6; top: 30px; animation-delay: 1.33s; }
 .hero-drawer .hero-peek-tab:nth-child(3) { --folder-color: #A1BC98; top: 26px; animation-delay: 1.41s; }
-.hero-drawer .hero-peek-tab:nth-child(4) { --folder-color: #778873; top: 40px; animation-delay: 1.49s; }
+.hero-drawer .hero-peek-tab:nth-child(4) { --folder-color: #778873; top: 32px; animation-delay: 1.49s; }
 .hero-drawer .hero-peek-tab:nth-child(5) { --folder-color: #313647; top: 32px; animation-delay: 1.57s; }
 
 .hero-drawer .hero-peek-tab:nth-child(1):hover { top: 20px; }
-.hero-drawer .hero-peek-tab:nth-child(2):hover { top: 28px; }
+.hero-drawer .hero-peek-tab:nth-child(2):hover { top: 20px; }
 .hero-drawer .hero-peek-tab:nth-child(3):hover { top: 16px; }
-.hero-drawer .hero-peek-tab:nth-child(4):hover { top: 30px; }
+.hero-drawer .hero-peek-tab:nth-child(4):hover { top: 22px; }
 .hero-drawer .hero-peek-tab:nth-child(5):hover { top: 22px; }
 
 @media (max-width: 700px) {
   .hero-drawer {
     gap: 8px;
-    height: 52px;
+    height: 58px;
   }
 
   .hero-peek-tab {
-    font-size: 12px;
-    padding: 6px 14px 16px;
+    font-size: 14px;
+    padding: 7px 16px 18px;
   }
 }
 
@@ -1985,6 +1992,16 @@ body.case-study-page.theme-holoorbits {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+.case-study-page .cs-media-title {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 2px 2px 12px;
 }
 
 .case-study-page .cs-gallery {
