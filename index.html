@@ -235,6 +235,7 @@
 
         if (tab) {
           tab.addEventListener('mouseenter', () => {
+            folder.classList.remove('hero-pulse');
             if (href || folderKey === 'toolkit') folder.classList.add('peeking');
           });
           tab.addEventListener('mouseleave', () => {

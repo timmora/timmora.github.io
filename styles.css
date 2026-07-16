@@ -633,16 +633,54 @@ footer p {
   gap: 20px;
 }
 
+/* Portrait as a taped-on photo: white frame, slight tilt, tape at the corners */
 .about-portrait-wrap {
+  position: relative;
   width: 100%;
-  aspect-ratio: 3/4;
-  border-radius: 10px;
+  padding: 22px 18px 8px;
+}
+
+.about-portrait-photo {
+  position: relative;
+  background: #fff;
+  padding: 10px;
+  border-radius: 3px;
+  transform: rotate(-1.6deg);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
+}
+
+.about-portrait-crop {
+  aspect-ratio: 5 / 6;
   overflow: hidden;
+  border-radius: 2px;
   background-color: var(--bg);
-  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Tape strips sit on the un-rotated wrap so they read as holding the photo */
+.about-portrait-wrap::before,
+.about-portrait-wrap::after {
+  content: '';
+  position: absolute;
+  width: 72px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  z-index: 2;
+}
+
+.about-portrait-wrap::before {
+  top: 20px;
+  left: 6px;
+  transform: rotate(-38deg);
+}
+
+.about-portrait-wrap::after {
+  top: 24px;
+  right: 4px;
+  transform: rotate(42deg);
 }
 
 .about-portrait-img {
@@ -663,12 +701,6 @@ footer p {
   padding: 20px 22px;
 }
 
-.about-now-card .about-portrait-wrap {
-  border-radius: 9px;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  box-shadow: inset 0 0 0 4px #EBF4DD;
-}
 
 .about-now-label {
   font-family: "DM Sans", sans-serif;
@@ -1046,15 +1078,15 @@ body.portfolio-folder-open footer {
    quick drop that overshoots and settles */
 @keyframes heroPulse {
   0%   { transform: translateY(0); }
-  15%  { transform: translateY(-20px); }
-  72%  { transform: translateY(-20px); }
-  84%  { transform: translateY(3px); }
-  93%  { transform: translateY(-2px); }
+  29%  { transform: translateY(-20px); }
+  60%  { transform: translateY(-20px); }
+  76%  { transform: translateY(3px); }
+  87%  { transform: translateY(-2px); }
   100% { transform: translateY(0); }
 }
 
 .folder:not(.open).hero-pulse {
-  animation: heroPulse 1.3s ease both;
+  animation: heroPulse 1.2s ease both;
 }
 
 .folder-stack.has-open .folder:not(.open) {

@@ -131,7 +131,8 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab)').forEach(function(a
       lenis.scrollTo(portfolio, {
         duration: 0.7,
         onComplete: function() {
-          if (!folder || folder.classList.contains('open')) return;
+          // .peeking = already hovered; hover owns the folder, skip the pulse
+          if (!folder || folder.classList.contains('open') || folder.classList.contains('peeking')) return;
           clearTimeout(pulseTimer);
           document.querySelectorAll('.folder.hero-pulse').forEach(function(f) {
             f.classList.remove('hero-pulse');
@@ -140,7 +141,7 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab)').forEach(function(a
           folder.classList.add('hero-pulse');
           pulseTimer = setTimeout(function() {
             folder.classList.remove('hero-pulse');
-          }, 1350);
+          }, 1250);
         }
       });
     });
