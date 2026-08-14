@@ -59,26 +59,138 @@
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Inside Ordo</p>
-        <div class="cs-gallery cs-gallery-stack">
-          <div class="cs-media-photo cs-media-16x9">
-            <p class="cs-media-title">The Daily Three — your morning briefing</p>
-            <img src="images/ordo/daily-three.png" alt="Daily briefing showing the Daily Three priority list and Bean's Briefing summary">
-          </div>
-          <div class="cs-media-photo cs-media-16x9">
-            <p class="cs-media-title">Syllabus import — 29 tasks in one upload</p>
-            <img src="images/ordo/syllabus-import.png" alt="Add Course dialog importing 29 tasks parsed from a syllabus PDF, with duplicate tasks dimmed and skipped">
-          </div>
-          <div class="cs-media-photo cs-media-16x9">
-            <p class="cs-media-title">Focus sessions — one subtask at a time</p>
-            <img src="images/ordo/focus-session.png" alt="Pomodoro focus session in progress with a 25-minute timer on the current subtask">
+        <p class="body-text">Six screens carry the whole loop. Warm paper rather than dashboard chrome, a serif for anything the student reads slowly, and a mascot that reacts to the day instead of grading it.</p>
+
+        <div class="cs-media-photo" style="padding: 46px 40px 40px; margin: 32px 0 16px">
+          <p class="cs-media-title" style="margin: 0 0 34px">The six screens</p>
+          <div class="cs-screen-grid">
+            <div class="cs-screen-item">
+              <div class="cs-screen-frame"><img src="images/ordo/screens/onboarding.png" alt="Ordo onboarding screen showing three setup steps and a Get Started button" loading="lazy"></div>
+              <div class="cs-screen-caption">
+                <p class="cs-screen-eyebrow">Onboarding</p>
+                <p class="cs-screen-desc">Three promises and one button.</p>
+              </div>
+            </div>
+            <div class="cs-screen-item">
+              <div class="cs-screen-frame"><img src="images/ordo/screens/overview.png" alt="Ordo overview screen showing the Daily Three priority list, Bean's message, and a focus streak" loading="lazy"></div>
+              <div class="cs-screen-caption">
+                <p class="cs-screen-eyebrow">Overview</p>
+                <p class="cs-screen-desc">The Daily Three, a streak, a briefing.</p>
+              </div>
+            </div>
+            <div class="cs-screen-item">
+              <div class="cs-screen-frame"><img src="images/ordo/screens/decompose.png" alt="Ordo AI decompose screen suggesting six subtasks with time estimates for a lit review assignment" loading="lazy"></div>
+              <div class="cs-screen-caption">
+                <p class="cs-screen-eyebrow">AI decompose</p>
+                <p class="cs-screen-desc">Six subtasks with honest estimates.</p>
+              </div>
+            </div>
+            <div class="cs-screen-item">
+              <div class="cs-screen-frame"><img src="images/ordo/screens/focus.png" alt="Ordo focus screen with a 25-minute Pomodoro timer running on a subtask" loading="lazy"></div>
+              <div class="cs-screen-caption">
+                <p class="cs-screen-eyebrow">Focus</p>
+                <p class="cs-screen-desc">One subtask, twenty-five minutes.</p>
+              </div>
+            </div>
+            <div class="cs-screen-item">
+              <div class="cs-screen-frame"><img src="images/ordo/screens/journal.png" alt="Ordo journal screen with mood and energy tracking and two reflection prompts" loading="lazy"></div>
+              <div class="cs-screen-caption">
+                <p class="cs-screen-eyebrow">Journal</p>
+                <p class="cs-screen-desc">Mood, energy, three prompts.</p>
+              </div>
+            </div>
+            <div class="cs-screen-item">
+              <div class="cs-screen-frame"><img src="images/ordo/screens/tasks.png" alt="Ordo tasks screen listing every in-flight assignment with subtask progress" loading="lazy"></div>
+              <div class="cs-screen-caption">
+                <p class="cs-screen-eyebrow">Tasks</p>
+                <p class="cs-screen-desc">Every task with its own runway.</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="cs-video" data-todo="loom-walkthrough">
-          <!-- TODO(asset): replace with a Loom/MP4 embed walking through the Daily Three end-to-end (~60s). -->
-          <div class="cs-media-placeholder cs-media-16x9">
-            <span class="cs-media-label">60s walkthrough · Loom</span>
+
+        <div class="cs-media-photo" style="margin-bottom: 56px">
+          <p class="cs-media-title">Bean — six states, one character</p>
+          <div class="cs-bean-row">
+            <div class="cs-bean-item">
+              <svg width="52" height="52" viewBox="0 0 100 100">
+                <path d="M50 15 C72 15 85 28 85 50 C85 72 72 85 50 85 C28 85 15 72 15 50 C15 28 28 15 50 15 Z" fill="#E78A45" stroke="#2E2118" stroke-width="2.5"/>
+                <ellipse cx="38" cy="35" rx="10" ry="5" fill="#fff" opacity="0.22"/>
+                <circle cx="42" cy="46" r="1.8" fill="#2E2118"/>
+                <circle cx="58" cy="46" r="1.8" fill="#2E2118"/>
+                <path d="M45 56 Q50 59 55 56" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+              </svg>
+              <span class="cs-bean-label">Ready</span>
+            </div>
+            <div class="cs-bean-item">
+              <svg width="52" height="52" viewBox="0 0 100 100">
+                <path d="M50 15 C72 15 85 28 85 50 C85 72 72 85 50 85 C28 85 15 72 15 50 C15 28 28 15 50 15 Z" fill="#E78A45" stroke="#2E2118" stroke-width="2.5"/>
+                <ellipse cx="38" cy="35" rx="10" ry="5" fill="#fff" opacity="0.22"/>
+                <circle cx="42" cy="46" r="2.4" fill="#2E2118"/>
+                <circle cx="58" cy="46" r="2.4" fill="#2E2118"/>
+                <path d="M46 58 L54 58" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+              </svg>
+              <span class="cs-bean-label">Focused</span>
+            </div>
+            <div class="cs-bean-item">
+              <svg width="52" height="52" viewBox="0 0 100 100">
+                <path d="M50 15 C72 15 85 28 85 50 C85 72 72 85 50 85 C28 85 15 72 15 50 C15 28 28 15 50 15 Z" fill="#E78A45" stroke="#2E2118" stroke-width="2.5"/>
+                <ellipse cx="38" cy="35" rx="10" ry="5" fill="#fff" opacity="0.22"/>
+                <circle cx="42" cy="46" r="1.8" fill="#2E2118"/>
+                <circle cx="58" cy="46" r="1.8" fill="#2E2118"/>
+                <path d="M44 58 Q50 55 56 58" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+              </svg>
+              <span class="cs-bean-label">Thinking</span>
+            </div>
+            <div class="cs-bean-item">
+              <svg width="52" height="52" viewBox="0 0 100 100">
+                <path d="M50 15 C72 15 85 28 85 50 C85 72 72 85 50 85 C28 85 15 72 15 50 C15 28 28 15 50 15 Z" fill="#E78A45" stroke="#2E2118" stroke-width="2.5"/>
+                <ellipse cx="38" cy="35" rx="10" ry="5" fill="#fff" opacity="0.22"/>
+                <ellipse cx="33" cy="52" rx="3" ry="1.8" fill="#D4726A" opacity="0.7"/>
+                <ellipse cx="67" cy="52" rx="3" ry="1.8" fill="#D4726A" opacity="0.7"/>
+                <path d="M39 47 Q42 43.5 45 47" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M55 47 Q58 43.5 61 47" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M42 54 Q50 64 58 54" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+              </svg>
+              <span class="cs-bean-label">Cheering</span>
+            </div>
+            <div class="cs-bean-item">
+              <svg width="52" height="52" viewBox="0 0 100 100">
+                <path d="M50 15 C72 15 85 28 85 50 C85 72 72 85 50 85 C28 85 15 72 15 50 C15 28 28 15 50 15 Z" fill="#E78A45" stroke="#2E2118" stroke-width="2.5"/>
+                <ellipse cx="38" cy="35" rx="10" ry="5" fill="#fff" opacity="0.22"/>
+                <ellipse cx="33" cy="52" rx="3" ry="1.8" fill="#D4726A" opacity="0.7"/>
+                <ellipse cx="67" cy="52" rx="3" ry="1.8" fill="#D4726A" opacity="0.7"/>
+                <path d="M39 47 Q42 43.5 45 47" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M55 47 Q58 43.5 61 47" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M44 56 Q50 60 56 56" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M17 16 L20 8 L23 16 L31 13 L26 20 L32 26 L23 25 L20 33 L17 25 L8 26 L14 20 L9 13 Z" fill="#E8D080" stroke="#2E2118" stroke-width="1.5"/>
+              </svg>
+              <span class="cs-bean-label">Proud</span>
+            </div>
+            <div class="cs-bean-item">
+              <svg width="52" height="52" viewBox="0 0 100 100">
+                <path d="M50 15 C72 15 85 28 85 50 C85 72 72 85 50 85 C28 85 15 72 15 50 C15 28 28 15 50 15 Z" fill="#E78A45" stroke="#2E2118" stroke-width="2.5"/>
+                <ellipse cx="38" cy="35" rx="10" ry="5" fill="#fff" opacity="0.22"/>
+                <path d="M39 46 Q42 48 45 46" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M55 46 Q58 48 61 46" stroke="#2E2118" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <circle cx="50" cy="58" r="3" fill="none" stroke="#2E2118" stroke-width="1.5"/>
+                <text x="78" y="28" font-family="'Instrument Serif', serif" font-style="italic" font-size="10" fill="#2E2118">z</text>
+                <text x="85" y="20" font-family="'Instrument Serif', serif" font-style="italic" font-size="10" fill="#2E2118">z</text>
+              </svg>
+              <span class="cs-bean-label">Sleepy</span>
+            </div>
           </div>
         </div>
+
+        <div class="cs-video">
+          <div class="cs-media-photo" style="padding: 14px">
+            <p class="cs-media-title">60-second walkthrough — one assignment, start to finish</p>
+            <video class="cs-screen-video" data-autoplay-in-view controls muted loop preload="metadata" playsinline poster="images/ordo/video-poster.png">
+              <source src="images/ordo/ordo-walkthrough.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
         <div class="cs-code">
           <div class="cs-code-title">
             <span class="cs-code-what">AI task decomposition</span>
@@ -128,6 +240,57 @@ sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
           <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Pomodoro focus timer with per-subtask time tracking, session logs, and streak counters — a tight feedback loop between planning and doing.</p></li>
           <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Journal encrypted at rest with authenticated encryption (Fernet) and key rotation, plus mood and energy tracking. The AI briefing reads only those mood and energy signals — never the written entries themselves.</p></li>
         </ul>
+      </div>
+      <div class="reveal">
+        <hr class="section-rule">
+        <p class="section-head">Architecture</p>
+        <p class="body-text">Clients talk straight to Postgres for CRUD under row-level security. The FastAPI service holds the service-role key and exists only for the three things a client cannot be trusted to do: call Claude, schedule across a user's whole task graph, and run calendar sync.</p>
+        <div class="cs-arch">
+          <div class="cs-arch-col">
+            <p class="cs-media-title cs-arch-col-title">Clients</p>
+            <div class="cs-arch-box">
+              <div class="cs-arch-name">Mobile</div>
+              <div class="cs-arch-meta">Expo Router · NativeWind<br>React Query · Clerk</div>
+            </div>
+            <div class="cs-arch-box">
+              <div class="cs-arch-name">Web</div>
+              <div class="cs-arch-meta">React 19 · Vite 7 · Tailwind<br>FullCalendar · dnd-kit</div>
+            </div>
+          </div>
+          <div class="cs-arch-arrow">
+            <svg width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M0 6h28M23 1.5L28 6l-5 4.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="cs-arch-arrow-label">JWT<br>bearer</span>
+          </div>
+          <div class="cs-arch-col">
+            <p class="cs-media-title cs-arch-col-title">Service</p>
+            <div class="cs-arch-box cs-arch-box-accent">
+              <div class="cs-arch-name">FastAPI</div>
+              <div class="cs-arch-routes">
+                <div class="cs-arch-route">POST /decompose</div>
+                <div class="cs-arch-route">POST /schedule</div>
+                <div class="cs-arch-route">GET&nbsp;&nbsp;/summary</div>
+                <div class="cs-arch-route">POST /syllabus</div>
+              </div>
+              <div class="cs-arch-note">JWKS validation · rate limit<br>per-user AI quota</div>
+            </div>
+          </div>
+          <div class="cs-arch-arrow">
+            <svg width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M0 6h28M23 1.5L28 6l-5 4.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="cs-arch-arrow-label">service<br>role</span>
+          </div>
+          <div class="cs-arch-col">
+            <p class="cs-media-title cs-arch-col-title">Data &amp; AI</p>
+            <div class="cs-arch-box">
+              <div class="cs-arch-name">Supabase Postgres</div>
+              <div class="cs-arch-meta">30 migrations · RLS on every<br>table · auth.uid() = user_id</div>
+            </div>
+            <div class="cs-arch-box">
+              <div class="cs-arch-name">Claude</div>
+              <div class="cs-arch-meta">Haiku with Sonnet fallback<br>cached per task fingerprint</div>
+            </div>
+          </div>
+        </div>
+        <p class="body-text cs-arch-footnote">Clients also read and write Postgres directly.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">

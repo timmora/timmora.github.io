@@ -196,6 +196,25 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab)').forEach(function(a
   }
 })();
 
+// Case study walkthrough videos: play while scrolled into view, pause
+// otherwise. Muted/inline so the browser allows autoplay without a gesture;
+// controls stay on so a visitor can unmute or scrub manually.
+(function() {
+  var videos = document.querySelectorAll('.cs-screen-video[data-autoplay-in-view]');
+  if (!videos.length || !('IntersectionObserver' in window)) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      var video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(function() {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.4 });
+  videos.forEach(function(video) { observer.observe(video); });
+})();
+
 function randomHighlightAngle(selector, onHover) {
   document.querySelectorAll(selector).forEach(function(el) {
     function setAngle() {
