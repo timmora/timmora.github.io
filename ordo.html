@@ -54,12 +54,12 @@
     <main class="main-col">
       <div class="reveal">
         <p class="section-head">Overview</p>
-        <p class="overview-text">Ordo uses Claude AI to turn a student's course load into a prioritized daily plan — parsing syllabi, decomposing assignments into subtasks, and scheduling them around real constraints like class blocks, focus windows, and hard deadlines. The result is a Daily Three each morning: the three tasks that actually matter today.</p>
+        <p class="overview-text">Ordo takes your whole course load and turns it into an actual daily plan. It reads your syllabi, breaks assignments into smaller subtasks, and slots them into your real schedule (class blocks, focus windows, deadlines you're dreading). Every morning you get the Daily Three: the only three things you actually need to do today.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Inside Ordo</p>
-        <p class="body-text">Six screens carry the whole loop. Warm paper rather than dashboard chrome, a serif for anything the student reads slowly, and a mascot that reacts to the day instead of grading it.</p>
+        <p class="body-text">The whole app is six screens. I wanted it to feel like a notebook, not a dashboard, so it's warm and paper-toned with a serif font for anything you're actually supposed to sit and read. Bean (the little guy) reacts to your day instead of judging it.</p>
 
         <div class="cs-media-photo" style="padding: 46px 40px 40px; margin: 32px 0 16px">
           <p class="cs-media-title" style="margin: 0 0 34px">The six screens</p>
@@ -110,7 +110,7 @@
         </div>
 
         <div class="cs-media-photo" style="margin-bottom: 56px">
-          <p class="cs-media-title">Bean — six states, one character</p>
+          <p class="cs-media-title">Bean, in six moods</p>
           <div class="cs-bean-row">
             <div class="cs-bean-item">
               <svg width="52" height="52" viewBox="0 0 100 100">
@@ -184,7 +184,7 @@
 
         <div class="cs-video">
           <div class="cs-media-photo" style="padding: 14px">
-            <p class="cs-media-title">60-second walkthrough — one assignment, start to finish</p>
+            <p class="cs-media-title">A 60-second walkthrough, start to finish on one assignment</p>
             <video class="cs-screen-video" data-autoplay-in-view controls muted loop preload="metadata" playsinline poster="images/ordo/video-poster.png">
               <source src="images/ordo/ordo-walkthrough.mp4" type="video/mp4">
             </video>
@@ -204,7 +204,7 @@ if cached and cached.data:
 consume_ai_credit_or_429(user_id)
 
 # A syllabus PDF can run 30k+ tokens. Score its paragraphs against this task
-# and keep only the most relevant — cheaper calls, sharper subtasks.
+# and keep only the most relevant bits: cheaper calls, sharper subtasks.
 context = _filter_task_context(extracted_file_text, title=task["title"],
                                course_name=course_name, description=body.description)
 
@@ -227,24 +227,24 @@ sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">The Problem</p>
-        <p class="body-text">Every student productivity app I tried had the same failure mode: it treated time as uniform. Monday at 10am looks identical to Thursday at 9pm in a calendar, but for a student those slots have completely different characters. One is before a 300-person lecture; the other is the night before a midterm. Generic to-do lists don't know the difference — and scheduling tools that ignore cognitive load and context aren't really scheduling tools at all.</p>
-        <p class="body-text">The other problem was the gap between planning and starting. Students know they have a lot to do. The anxiety comes from not knowing what to do first, or how to fit everything around a schedule that changes week to week. I wanted Ordo to close that gap — not just list the tasks, but tell you what to do today and why.</p>
+        <p class="body-text">Every student productivity app I tried made the same mistake: it treats every hour like it's the same hour. Monday at 10am and Thursday at 9pm look identical on a calendar, but they're not even close. One's right before a 300-person lecture, the other's the night before a midterm. A regular to-do list has no idea, and if a scheduling tool doesn't get that either, it's not really scheduling anything.</p>
+        <p class="body-text">The other problem is the gap between knowing you have a lot to do and actually starting. Every student already knows their list is long. The anxious part is not knowing what to open first, especially when your schedule changes every week. I wanted Ordo to close that gap, not just dump a list on you, but actually tell you what to do today and why.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Highlights</p>
         <ul class="highlights">
-          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">AI task decomposition with a constraint-based scheduler that maps subtasks into free slots respecting course blocks, daily capacity limits, and preferred focus windows. Not just a to-do list — a daily plan that actually fits.</p></li>
-          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Syllabus PDF parsing during onboarding — Claude extracts the full course schedule and assignments directly, eliminating manual entry entirely.</p></li>
-          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">AI daily briefing summarizing priorities, this week's focus stats, and a personalized tip. Cached per user per day to keep latency low and API costs manageable.</p></li>
-          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Pomodoro focus timer with per-subtask time tracking, session logs, and streak counters — a tight feedback loop between planning and doing.</p></li>
-          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Journal encrypted at rest with authenticated encryption (Fernet) and key rotation, plus mood and energy tracking. The AI briefing reads only those mood and energy signals — never the written entries themselves.</p></li>
+          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">AI decomposition plus a scheduler that actually respects your real week: class blocks, how much you can realistically focus, deadlines. It's not a to-do list, it's a plan that fits.</p></li>
+          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Upload your syllabus during onboarding and Claude pulls out every assignment and due date for you. No manual entry.</p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Every morning you get an AI briefing: what matters today, how your week's going, one actual suggestion. Cached per day so it's fast and doesn't burn through API credits.</p></li>
+          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Built-in Pomodoro timer that tracks time per subtask, logs sessions, and counts your streak. Keeps planning and actually doing close together.</p></li>
+          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Journal entries are encrypted at rest (Fernet, with key rotation). The AI briefing only ever sees your mood and energy, never what you actually wrote.</p></li>
         </ul>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Architecture</p>
-        <p class="body-text">Clients talk straight to Postgres for CRUD under row-level security. The FastAPI service holds the service-role key and exists only for the three things a client cannot be trusted to do: call Claude, schedule across a user's whole task graph, and run calendar sync.</p>
+        <p class="body-text">Clients hit Postgres directly for basic reads and writes, locked down with row-level security. The FastAPI backend only exists for the stuff a client shouldn't be trusted with: calling Claude, running the scheduler across your whole task graph, and syncing your calendar.</p>
         <div class="cs-arch">
           <div class="cs-arch-col">
             <p class="cs-media-title cs-arch-col-title">Clients</p>
@@ -290,20 +290,19 @@ sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
             </div>
           </div>
         </div>
-        <p class="body-text cs-arch-footnote">Clients also read and write Postgres directly.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Under the Hood</p>
-        <p class="body-text">The scheduling engine is the core of Ordo. It takes a task graph — assignments decomposed by Claude into subtasks with estimated durations — and maps them into a weekly schedule, respecting course blocks, preferred focus windows, daily capacity limits, and hard deadlines. It also imports events from Google Calendar over read-only OAuth, so external commitments count as busy time the plan works around. The algorithm runs on each login, so the plan adapts continuously as tasks are completed or delayed.</p>
-        <p class="body-text">The AI layer has two distinct jobs. During onboarding, Claude parses syllabus PDFs and extracts the full course schedule — assignment dates, exam weights, recitation times — eliminating the input problem entirely. During operation, Claude writes the daily briefing: a personalized summary of today's priorities, this week's focus stats, and one concrete suggestion. The briefing is cached per user per day; the first request generates it, subsequent ones return the cache.</p>
-        <p class="callout">"The hard part wasn't the scheduling algorithm. It was making the Daily Three feel trustworthy enough that a student would actually follow it."</p>
+        <p class="body-text">The scheduler is really the core of Ordo. It takes your tasks, already broken into subtasks with time estimates by Claude, and fits them into your week around class blocks, focus windows, daily capacity, and hard deadlines. It also pulls in your Google Calendar over read-only OAuth, so anything already on there counts as busy time. It reruns on every login, so the plan keeps adjusting as you finish things or fall behind.</p>
+        <p class="body-text">Claude's other job is reading, not just decomposing. During onboarding it parses your syllabus PDFs and pulls out the whole course schedule, dates, weights, recitation times, so you don't type any of it in yourself. The briefing works the same way but is cached per user per day: the first request generates it, everyone after that just reads the cache.</p>
+        <p class="callout">"Honestly, the scheduling algorithm was the easy part. Getting the Daily Three to feel trustworthy enough that I'd actually listen to it took way longer."</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Reflection</p>
-        <p class="body-text">The most interesting thing about building Ordo was discovering what the hard problem actually was. I expected the scheduling algorithm to be the challenge. It wasn't — constraint solvers are well-understood. The hard part was making the Daily Three feel trustworthy. If a student looks at their three tasks and thinks "that's not what I should be doing today," the whole product fails. Getting the priority logic right — especially for long-horizon projects that shouldn't surface until they need to — took more iteration than anything else.</p>
-        <p class="body-text">One architectural decision I'm glad I made early: the journal is encrypted at rest with authenticated encryption and key rotation, and the AI briefing only ever sees mood and energy signals — never the raw written entries. I could have cut that corner. I didn't.</p>
+        <p class="body-text">The most surprising part of building Ordo was realizing what the actually hard problem was. I thought it'd be the scheduling algorithm. It wasn't, constraint solving is a pretty solved problem at this point. The hard part was trust. If you look at your Daily Three and think "that's not what I should be doing today," the whole thing falls apart. Getting the priority logic right, especially for the long-horizon projects that shouldn't show up until they actually need to, took way more iteration than anything else.</p>
+        <p class="body-text">One decision I'm glad I made early: the journal is encrypted at rest with key rotation, and the AI briefing only ever sees mood and energy, never what you actually wrote. I could've cut that corner. Didn't.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">

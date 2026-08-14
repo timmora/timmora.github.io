@@ -56,7 +56,7 @@
     <main class="main-col">
       <div class="reveal">
         <p class="section-head">Overview</p>
-        <p class="overview-text">HoloOrbits is a browser-based multiplayer simulation where secondary school students collaborate in real time to solve orbital mechanics challenges. As UX Lead on a 4-person team, I drove the redesign of the game's navigation, collaborative mechanics, and in-game feedback systems — shifting the experience from passive simulation to active, role-based problem-solving.</p>
+        <p class="overview-text">HoloOrbits is a browser-based multiplayer sim where secondary school students work together in real time to solve orbital mechanics challenges. As UX Lead on a 4-person team, I led the redesign of the navigation, the collaborative mechanics, and the in-game feedback, basically turning it from a passive simulation into something students actually had to problem-solve through together.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
@@ -79,33 +79,34 @@
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">The Challenge</p>
-        <p class="body-text">The original HoloOrbits was a single-player simulation. A student loaded it, moved through a series of orbital mechanics scenarios, and clicked through prompts. It worked, in the sense that it delivered content. But students weren't engaging with the physics — they were navigating past it.</p>
-        <p class="body-text">Two things were broken. First, the experience was passive: prompts told students what was happening rather than putting them in a position to figure it out themselves. Second, it was solo: there was no reason to talk to anyone, no shared objective, no productive disagreement about what to do next.</p>
-        <p class="body-text">The redesign question was: what does genuine collaboration look like in a physics simulation? Not just "two people can see the same screen," but shared decision-making with real stakes attached to the outcome.</p>
+        <p class="body-text">The original HoloOrbits was single-player. A student loaded it up, moved through a series of orbital mechanics scenarios, and clicked through prompts. It worked, in the sense that it delivered content. But students weren't really engaging with the physics, they were just clicking past it.</p>
+        <p class="body-text">Two things were broken. First, it was passive: prompts just told students what was happening instead of making them figure it out. Second, it was solo: no reason to talk to anyone, no shared objective, nothing to actually disagree about.</p>
+        <p class="body-text">So the redesign question became: what does real collaboration actually look like in a physics simulation? Not just two people staring at the same screen, but shared decisions that actually matter to the outcome.</p>
         <p class="callout">"There's a difference between two students watching the same simulation and two students disagreeing about what to do next. We wanted the second one."</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">My Approach</p>
-        <p class="body-text">I led UX from Figma to pilot, working closely with one teammate on the accuracy feedback system and Unity/WebGL implementation. My focus was on three interlocking problems: navigation redesign, multiplayer mechanic design, and in-game feedback.</p>
-        <p class="body-text">Navigation: the original flow was linear and opaque — students didn't know where they were in the experience or what success looked like. I redesigned the navigation structure to make progress legible and the objective clear before students made any decisions.</p>
-        <p class="body-text">Multiplayer mechanic: I designed a model where students have differentiated roles within each scenario — not just "two players controlling the same thing," but distinct responsibilities that require coordination to complete the objective. The design forces communication. Feedback system: passive prompts were replaced with a structured accuracy system giving students a response tied to the physics of what they just did — not a grade, but information: how close was the trajectory to the target orbit, and why.</p>
+        <p class="body-text">I led UX from Figma all the way to the pilot, working closely with one teammate on the accuracy feedback system and the Unity/WebGL build. My focus was three interlocking problems: navigation, the multiplayer mechanic, and in-game feedback.</p>
+        <p class="body-text">Navigation was the first fix. The original flow was linear and kind of opaque, students didn't know where they were in the experience or what success even looked like, so I redesigned it to make progress legible and the objective clear before anyone made a decision.</p>
+        <p class="body-text">For the multiplayer mechanic, I gave students differentiated roles within each scenario. Not just two people controlling the same thing, but distinct responsibilities that actually require coordinating to finish the objective. That's what forces the communication.</p>
+        <p class="body-text">And for feedback, passive prompts got replaced with a structured accuracy system tied to the actual physics of what a student just did. Not a grade, just information: how close was the trajectory to the target orbit, and why.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Key Outcomes</p>
         <ul class="highlights">
-          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Redesigned the experience for real classroom use — shifted the game from single-player simulation to multiplayer, where students work toward shared objectives with distinct, interdependent roles.</p></li>
-          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Replaced passive in-game prompts with a structured accuracy feedback system, giving students meaningful in-the-moment responses to their physics decisions rather than narrative descriptions of what is happening.</p></li>
-          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Ran a structured pilot with college students, gathering feedback that validated the collaborative mechanics and drove a final round of refinements before handoff.</p></li>
+          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Redesigned the whole experience for real classroom use, shifting it from single-player to multiplayer, where students work toward shared objectives with roles that actually depend on each other.</p></li>
+          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Replaced passive prompts with a structured accuracy feedback system, so students get a real response to their physics decisions instead of just being told a story about what's happening.</p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Ran a structured pilot with college students that validated the collaborative mechanics and drove a final round of refinements before handoff.</p></li>
         </ul>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">The Pilot</p>
-        <p class="body-text">We ran a structured pilot test with college students — not our target secondary school audience, but close enough to validate the core mechanics and surface friction in the new collaboration model.</p>
-        <p class="body-text">We structured the session around specific hypotheses: would students understand the differentiated roles without explicit instruction? Would the accuracy feedback system prompt them to adjust their approach or ignore it? Were there points in the flow where both players stalled?</p>
-        <p class="body-text">The results were mostly positive and useful in specific ways. Students understood the roles faster than expected once they saw the objective screen. The accuracy feedback prompted visible discussion — students turned to each other to interpret the numbers — which was exactly the behavior we were designing for. The main friction was in the transition between scenarios, which we addressed in the final round of changes.</p>
+        <p class="body-text">We ran a structured pilot with college students. Not our actual target audience of secondary schoolers, but close enough to validate the core mechanics and surface friction in the new collaboration model.</p>
+        <p class="body-text">We built the session around a few specific questions. Would students get the differentiated roles without being told? Would the accuracy feedback actually change their approach, or would they just ignore it? Were there spots in the flow where both players got stuck?</p>
+        <p class="body-text">The results were mostly good, and useful in specific ways. Students picked up their roles faster than expected once they saw the objective screen. The accuracy feedback actually got students talking, turning to each other to figure out what the numbers meant, which is exactly the behavior we were designing for. The main friction point was the transition between scenarios, and we fixed that in the final round of changes.</p>
         <ul class="highlights">
           <li class="highlight-item"><span class="h-num">5</span><p class="h-text">participants (college students proxying for target secondary-school audience)</p></li>
           <li class="highlight-item"><span class="h-num">4.8–5/5</span><p class="h-text">average rating across collaboration, teamwork, and navigation clarity</p></li>
@@ -113,23 +114,23 @@
         <div class="quote-grid">
           <div class="quote-card">
             <p>"Because the data is incomplete, and an individual can only find one piece of the data set, everyone has to work together to complete the mission — meaning everyone's contribution is essential."</p>
-            <cite>— Pilot participant</cite>
+            <cite>Pilot participant</cite>
           </div>
           <div class="quote-card">
             <p>"This is a really thoughtful design that stimulates collaboration early so that it comes naturally in later activities. I really liked how the game balances individual and collaborative tasks."</p>
-            <cite>— Pilot participant</cite>
+            <cite>Pilot participant</cite>
           </div>
           <div class="quote-card">
             <p>"I like that they left the bones of the simulation the same while adding content to make it more collaborative."</p>
-            <cite>— Pilot participant</cite>
+            <cite>Pilot participant</cite>
           </div>
         </div>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Reflection</p>
-        <p class="body-text">The moment in the pilot that made the semester worth it was watching two students debate which trajectory correction to apply. They were wrong about the physics, but they were genuinely disagreeing about it — treating it as a real problem with a real answer that mattered. That shift from passive player to active collaborator was the whole design goal.</p>
-        <p class="body-text">Working on an educational game pushed me to think about engagement differently. In a consumer app, engagement means return visits and session length. In a classroom simulation, engagement means whether a student is actually thinking. Designing for genuine cognitive engagement — not just satisfying UI — was a different kind of design problem, and one I found genuinely compelling.</p>
+        <p class="body-text">The moment that made the whole semester worth it was watching two students argue about which trajectory correction to use. They were wrong about the physics, but they were genuinely arguing about it, treating it like a real problem with a real answer. That shift from passive player to active collaborator was basically the whole design goal.</p>
+        <p class="body-text">Working on an educational game changed how I think about engagement. In a consumer app, engagement means return visits and session length. In a classroom sim, it means whether a student is actually thinking. Designing for real cognitive engagement, not just a satisfying UI, was a genuinely different kind of problem, and I found it really compelling.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">

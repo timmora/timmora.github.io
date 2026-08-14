@@ -59,7 +59,7 @@
     <main class="main-col">
       <div class="reveal">
         <p class="section-head">Overview</p>
-        <p class="overview-text">Aporia generates a personalized investment portfolio from a 3-step values questionnaire — goals, risk tolerance via behavioral scenarios, and ethical dealbreakers — and keeps it updated as your life changes. Every other investing tool optimizes for returns; Aporia optimizes for alignment.</p>
+        <p class="overview-text">Aporia builds you a personalized investment portfolio from a 3-step values questionnaire (your goals, risk tolerance through some behavioral scenarios, and any ethical dealbreakers) and keeps updating it as your life changes. Basically every other investing app optimizes for returns. Aporia optimizes for whether you can actually stand behind what you own.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
@@ -82,32 +82,32 @@
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">The Problem</p>
-        <p class="body-text">Every personal finance app on the market optimizes for the same thing: returns. Robinhood teaches you to gamble. Vanguard gives you target-date funds. Even the "responsible investing" ETFs are mostly marketing — their screening criteria are opaque, inconsistently applied, and buried in prospectus footnotes. There was no tool that let someone say "I don't want to own fossil fuel companies" and actually understand what that meant at the allocation level.</p>
-        <p class="body-text">The other problem was opacity. Most portfolio tools feel like vending machines: inputs in, outputs out, no explanation. I wanted Aporia to work more like a conversation — one where the reasoning is visible and the user understands not just what they own, but why.</p>
+        <p class="body-text">Every personal finance app out there optimizes for the same thing: returns. Robinhood basically teaches you to gamble. Vanguard hands you a target-date fund and calls it a day. Even the "responsible investing" ETFs are mostly marketing, their screening criteria are vague, inconsistent, and buried three pages into a prospectus. Nothing let you say "I don't want to own fossil fuel companies" and actually see what that means for your allocation.</p>
+        <p class="body-text">The other problem is opacity. Most portfolio tools feel like vending machines, you put inputs in, get outputs out, no explanation in between. I wanted Aporia to feel more like a conversation, where you can actually see the reasoning and understand not just what you own, but why.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Highlights</p>
         <ul class="highlights">
-          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Values-based onboarding that translates ethical dealbreakers into actual allocation decisions — a fossil fuel exclusion doesn't just filter a fund, it triggers a solar ETF swap at the allocation level.</p></li>
-          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Custom portfolio generation across 12 curated ETFs with an animated reveal that shows why each holding was selected or swapped, making the logic transparent rather than opaque.</p></li>
-          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Live market data via Yahoo Finance — real-time quotes, historical OHLC, and performance charts with SPY benchmark overlay across four time ranges. React Query handles stale states gracefully when the feed is unavailable.</p></li>
-          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Institutional intelligence panel surfacing Q4 2024 SEC 13F filings from Berkshire, ARK, and Vanguard — mapped back to the user's specific holdings. A feature I haven't seen in any consumer investing tool.</p></li>
-          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Life event triggers and a suggestion inbox: new job, baby, home purchase each generate a tailored review of the current allocation. Rebalancing alerts surface when relevant, not on a fixed schedule.</p></li>
+          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Values-based onboarding that turns your ethical dealbreakers into real allocation decisions. Exclude fossil fuels and it doesn't just filter a fund, it swaps in a solar ETF at the same weight.</p></li>
+          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Custom portfolio generation across 12 curated ETFs, with an animated reveal that actually shows why each holding got picked or swapped instead of just dropping a pie chart on you.</p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Live market data through Yahoo Finance: real-time quotes, historical OHLC, performance charts with an SPY overlay across four time ranges. React Query handles it gracefully if the feed ever goes down.</p></li>
+          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">An institutional intelligence panel that surfaces Q4 2024 SEC 13F filings from Berkshire, ARK, and Vanguard, mapped back to your specific holdings. I haven't seen this in any other consumer investing app.</p></li>
+          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Life event triggers and a suggestion inbox. New job, baby, home purchase, each one kicks off a tailored review of your allocation. Rebalancing alerts show up when they're actually relevant, not on some fixed schedule.</p></li>
         </ul>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Under the Hood</p>
-        <p class="body-text">The values pipeline works in three stages. First, the onboarding questionnaire converts ethical dealbreakers into exclusion rules — "no fossil fuels" maps to screening out specific sectors and tickers, then replacing them with clean energy alternatives at the same allocation weight. Second, the portfolio generator runs an allocation algorithm across 12 curated ETFs, weighting for risk tolerance and time horizon while enforcing the exclusion rules. Third, the 13F parser pulls institutional holdings from quarterly SEC filings and cross-references them against the user's specific holdings.</p>
-        <p class="body-text">The trickiest part was making rebalancing feel smart rather than mechanical. Triggering a full portfolio review every time interest rates shift would be noise. I built a life event model — job change, major purchase, family change — that maps each event type to a prioritized set of questions, so rebalancing suggestions feel earned and relevant rather than automatic.</p>
-        <p class="callout">"The institutional intelligence panel — surfacing what Berkshire, ARK, and Vanguard are actually holding this quarter — was an afterthought that became the product's most distinctive feature."</p>
+        <p class="body-text">The values pipeline runs in three stages. First, the onboarding questionnaire turns your ethical dealbreakers into exclusion rules. "No fossil fuels" means screening out specific sectors and tickers, then swapping in clean energy alternatives at the same weight. Second, the portfolio generator runs an allocation algorithm across those 12 ETFs, weighting for your risk tolerance and time horizon while respecting the exclusions. Third, a 13F parser pulls institutional holdings straight from quarterly SEC filings and cross-references them against what you actually own.</p>
+        <p class="body-text">The trickiest part was making rebalancing feel smart instead of mechanical. Triggering a full review every time interest rates twitch would just be noise. So I built a life event model (job change, major purchase, family change) that maps each event to a prioritized set of questions, so suggestions feel earned instead of automatic.</p>
+        <p class="callout">"The institutional intelligence panel started as an afterthought. Showing what Berkshire, ARK, and Vanguard are actually holding this quarter ended up being the most distinctive thing about the product."</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Reflection</p>
-        <p class="body-text">I built Aporia because I wanted to use it. The 13F intelligence panel was the most unexpected outcome — I didn't plan it as a core feature, but once I had the parsing working, it felt like the most genuinely novel piece of the product. I haven't seen it in any consumer investing tool. The SEC publishes that data quarterly; it just takes someone willing to parse it.</p>
-        <p class="body-text">Building a values-aligned portfolio tool also made me think differently about what financial advice means. The algorithms make suggestions, but the user's ethics drive the logic. That inversion — putting values ahead of the optimizer's objective function — is the whole product philosophy.</p>
+        <p class="body-text">I built Aporia because I wanted to use it myself. The 13F panel was the biggest surprise. I didn't plan it as a core feature, but once I had the parsing working it felt like the most genuinely new part of the product. I still haven't seen it anywhere else. The SEC already publishes that data every quarter, it just takes someone willing to actually parse it.</p>
+        <p class="body-text">Building a values-aligned portfolio tool also changed how I think about financial advice. The algorithm makes suggestions, but your ethics drive the logic, not the other way around. Putting values ahead of the optimizer's objective function is basically the whole product philosophy.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">

@@ -57,7 +57,7 @@
     <main class="main-col">
       <div class="reveal">
         <p class="section-head">Overview</p>
-        <p class="overview-text">Brandle is a daily brand-guessing game built on a hand-curated, normalized dataset of 200+ companies — the real design challenge wasn't the Wordle mechanic but the data: inconsistent founding years, lagged revenue figures, and subsidiary ambiguity directly determine whether a game feels fair or arbitrary. Guess the mystery brand across five attributes (category, country, founding year, revenue, employees) and receive color-coded proximity feedback.</p>
+        <p class="overview-text">Brandle is a daily brand-guessing game built on a hand-curated dataset of 200+ companies. Turns out the real design challenge wasn't the Wordle mechanic, it was the data. Inconsistent founding years, lagged revenue figures, subsidiary ambiguity: all of that decides whether the game feels fair or just random. You guess the mystery brand across five attributes (category, country, founding year, revenue, employees) and get color-coded feedback on how close you are.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
@@ -80,32 +80,32 @@
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">The Problem</p>
-        <p class="body-text">Brandle started as a class project: build something with a Supabase backend. I built a Wordle clone in a weekend and submitted it. But halfway through building it, I noticed something: the interesting version wasn't about words. It was about brands. Everyone has fuzzy mental models of companies — where they're from, how big they are, what they do — but those models are rarely tested. The guessing mechanic felt like a perfect fit for surfacing that uncertainty.</p>
-        <p class="body-text">The question was whether it had legs beyond the classroom. A daily constraint-based guessing game based on brand attributes isn't an obvious hit. But Wordle proved the format works, and brands have a property that words don't: people have actual opinions about them.</p>
+        <p class="body-text">Brandle started as a class project: build something with a Supabase backend. I threw together a Wordle clone in a weekend and submitted it. But halfway through, I realized the interesting version wasn't about words at all, it was about brands. Everyone has some fuzzy mental model of a company (where it's from, how big it is, what it actually does) and those models basically never get tested. The guessing mechanic felt like a perfect way to surface that.</p>
+        <p class="body-text">The real question was whether it had legs outside the classroom. A daily guessing game about brand attributes isn't an obvious hit. But Wordle already proved the format works, and brands have something words don't: people actually have opinions about them.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Highlights</p>
         <ul class="highlights">
-          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Multi-attribute feedback across five dimensions — green for exact, yellow for close, with higher/lower arrows on numeric fields. Five signals at once without feeling overwhelming.</p></li>
-          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Daily mode uses a deterministic seed so all players get the same brand each day. Unlimited mode picks randomly for replay. Both modes share stats, streaks, and a shareable result grid.</p></li>
-          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Difficulty modes with different guess limits and thresholds on numeric tolerance — the same brand can feel easy or brutal depending on how tight the proximity windows are.</p></li>
-          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Local stats and streak tracking with win rate, guess distribution, and current/best streak. A Supabase data model sits ready for leaderboards when auth is added.</p></li>
-          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Hard mode constraints force you to use revealed information in subsequent guesses — a meaningful constraint that changes how you reason through the remaining possibility space.</p></li>
+          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Feedback across five attributes at once: green for exact, yellow for close, arrows showing higher or lower on the numeric ones. Five signals without it feeling like a mess.</p></li>
+          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Daily mode uses a deterministic seed so everyone gets the same brand each day. Unlimited mode picks randomly if you want to keep playing. Both share stats, streaks, and a shareable result grid.</p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Difficulty modes change your guess limit and how tight the numeric tolerance is. The same brand can feel easy or brutal depending on how narrow those windows are.</p></li>
+          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Local stats and streaks: win rate, guess distribution, current and best streak. The Supabase data model is already set up for leaderboards once I add auth.</p></li>
+          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Hard mode forces you to actually use the info you've already revealed in your next guess. It genuinely changes how you think through what's left.</p></li>
         </ul>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Under the Hood</p>
-        <p class="body-text">The daily mode uses a deterministic seeding function — the same brand, same day, for every player, derived from the date. This means consistent results without needing to store a "today's puzzle" record in the database and no server-side state management for puzzle selection. Unlimited mode uses a pseudo-random picker that excludes the last 30 days of daily brands to avoid repetition.</p>
-        <p class="body-text">The feedback algorithm evaluates five attributes simultaneously. Categorical and geographic fields are binary — exact or not. Three numeric fields (founding year, revenue, employee count) use graduated proximity feedback with higher/lower directional arrows. Tolerance thresholds are configurable per difficulty mode, which is what makes hard mode genuinely hard: the proximity windows tighten, so guesses that would score yellow in normal mode score gray.</p>
-        <p class="callout">"For content-driven games, curation is design work. Getting 200 brands with consistent, verifiable data across five attributes took longer than building the game itself."</p>
+        <p class="body-text">Daily mode uses a deterministic seed derived from the date, so it's the same brand for every player on the same day. That means consistent results without storing a "today's puzzle" record anywhere or managing server-side state for puzzle selection. Unlimited mode just picks randomly, excluding the last 30 days of daily brands so you don't see repeats.</p>
+        <p class="body-text">The feedback algorithm checks all five attributes at once. Category and country are binary, you're either right or you're not. The three numeric fields (founding year, revenue, employee count) get graduated proximity feedback with directional arrows. Tolerance thresholds change per difficulty mode, which is what actually makes hard mode hard: the windows get tighter, so a guess that would've scored yellow on normal mode just scores gray.</p>
+        <p class="callout">"For a content-driven game, curation basically is the design work. Getting 200 brands with consistent, verifiable data across five attributes took longer than building the actual game."</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Reflection</p>
-        <p class="body-text">The most interesting design problem in Brandle wasn't the game mechanic — it was the dataset. Inconsistent founding year data (acquisition vs. original founding), revenue figures that lag by a year, subsidiary vs. parent company ambiguity — data quality directly determined game quality. I spent more time on data normalization than on React components.</p>
-        <p class="body-text">The stats model was designed with future features in mind. Local state handles current and best streak; a Supabase table is populated on every completed game with a structure ready for a global leaderboard once authentication is wired up. Building the data model before the feature was the right call — retrofitting persistence is a pain.</p>
+        <p class="body-text">The most interesting design problem in Brandle wasn't the game mechanic, it was the dataset. Inconsistent founding year data (acquisition date vs. original founding), revenue figures that lag by a year, subsidiary vs. parent company ambiguity: data quality directly decided game quality. I genuinely spent more time normalizing data than writing React components.</p>
+        <p class="body-text">The stats model was built with future features in mind. Local state handles your current and best streak, and a Supabase table gets populated on every completed game with a structure that's ready for a global leaderboard once auth is wired up. Building the data model before the feature existed was the right call. Retrofitting persistence later is miserable.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
