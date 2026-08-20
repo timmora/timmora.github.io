@@ -54,12 +54,12 @@
     <main class="main-col">
       <div class="reveal">
         <p class="section-head">Overview</p>
-        <p class="overview-text">Ordo takes your whole course load and turns it into an actual daily plan. It reads your syllabi, breaks assignments into smaller subtasks, and slots them into your real schedule (class blocks, focus windows, deadlines you're dreading). Every morning you get the Daily Three: the only three things you actually need to do today.</p>
+        <p class="overview-text">Ordo takes your whole course load and turns it into an actual daily plan. It reads your syllabi, breaks assignments into smaller subtasks, and slots them into your day-to-day schedule (class blocks, focus windows, deadlines you're dreading). Every morning you get the Daily Three: the three things you need to prioritize today.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Inside Ordo</p>
-        <p class="body-text">The whole app is six screens. I wanted it to feel like a notebook, not a dashboard, so it's warm and paper-toned with a serif font for anything you're actually supposed to sit and read. Bean (the little guy) reacts to your day instead of judging it.</p>
+        <p class="body-text">The whole app is six screens. I wanted it to feel like a notebook, which is why I went for a warm and paper-toned design with a serif font. After a friend suggested that the app needed a little more life, I added Bean (the little guy) as a way to add a little personality to the app and give it a little more life. </p>
 
         <div class="cs-media-photo" style="padding: 46px 40px 40px; margin: 32px 0 16px">
           <p class="cs-media-title" style="margin: 0 0 34px">The six screens</p>
@@ -227,8 +227,8 @@ sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">The Problem</p>
-        <p class="body-text">Every student productivity app I tried made the same mistake: it treats every hour like it's the same hour. Monday at 10am and Thursday at 9pm look identical on a calendar, but they're not even close. One's right before a 300-person lecture, the other's the night before a midterm. A regular to-do list has no idea, and if a scheduling tool doesn't get that either, it's not really scheduling anything.</p>
-        <p class="body-text">The other problem is the gap between knowing you have a lot to do and actually starting. Every student already knows their list is long. The anxious part is not knowing what to open first, especially when your schedule changes every week. I wanted Ordo to close that gap, not just dump a list on you, but actually tell you what to do today and why.</p>
+        <p class="body-text">Every student productivity app I tried made the same mistake: it treats every hour like it's the same hour. Monday at 10am and Thursday at 9pm look identical on a calendar, but they're not even close. One's right before a 300-person lecture, the other's the night before a midterm. A regular to-do list has no idea, and if a scheduling tool doesn't get that either, it's failing to do its job.</p>
+        <p class="body-text">The other problem is the disconnect between knowing you have a lot to do and actually starting. Every student already knows their list is long. The hard part is not knowing what to open first, especially when your schedule changes every week. I wanted Ordo to close that gap, not just dump a list on you, but actually tell you what to do today and why.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
@@ -296,13 +296,13 @@ sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
         <p class="section-head">Under the Hood</p>
         <p class="body-text">The scheduler is really the core of Ordo. It takes your tasks, already broken into subtasks with time estimates by Claude, and fits them into your week around class blocks, focus windows, daily capacity, and hard deadlines. It also pulls in your Google Calendar over read-only OAuth, so anything already on there counts as busy time. It reruns on every login, so the plan keeps adjusting as you finish things or fall behind.</p>
         <p class="body-text">Claude's other job is reading, not just decomposing. During onboarding it parses your syllabus PDFs and pulls out the whole course schedule, dates, weights, recitation times, so you don't type any of it in yourself. The briefing works the same way but is cached per user per day: the first request generates it, everyone after that just reads the cache.</p>
-        <p class="callout">"Honestly, the scheduling algorithm was the easy part. Getting the Daily Three to feel trustworthy enough that I'd actually listen to it took way longer."</p>
+        <p class="callout">"The scheduling algorithm was the easy part. Getting the Daily Three to feel trustworthy enough that I'd actually listen to it took way longer."</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Reflection</p>
-        <p class="body-text">The most surprising part of building Ordo was realizing what the actually hard problem was. I thought it'd be the scheduling algorithm. It wasn't, constraint solving is a pretty solved problem at this point. The hard part was trust. If you look at your Daily Three and think "that's not what I should be doing today," the whole thing falls apart. Getting the priority logic right, especially for the long-horizon projects that shouldn't show up until they actually need to, took way more iteration than anything else.</p>
-        <p class="body-text">One decision I'm glad I made early: the journal is encrypted at rest with key rotation, and the AI briefing only ever sees mood and energy, never what you actually wrote. I could've cut that corner. Didn't.</p>
+        <p class="body-text">The most surprising part of building Ordo was realizing what the real hard problem was. I thought it'd be the scheduling algorithm. It wasn't, constraint solving is a pretty solved problem at this point. The hard part was trust. If you look at your Daily Three and think "that's not what I should be doing today," the everything falls apart. Getting the priority logic right, especially for the long-horizon projects that shouldn't show up until they actually need to, took way more iteration than anything else.</p>
+        <p class="body-text">One decision I'm glad I made early: the journal is encrypted at rest with key rotation, and the AI briefing only ever sees mood and energy, never what you actually wrote in your journal entries. I could've cut that corner, but my point was to build Ordo with privacy in mind from the start.</p>
       </div>
       <div class="reveal">
         <hr class="section-rule">
