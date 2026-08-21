@@ -301,7 +301,7 @@ sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
       <div class="reveal">
         <hr class="section-rule">
         <p class="section-head">Reflection</p>
-        <p class="body-text">The most surprising part of building Ordo was realizing what the real hard problem was. I thought it'd be the scheduling algorithm. It wasn't, constraint solving is a pretty solved problem at this point. The hard part was trust. If you look at your Daily Three and think "that's not what I should be doing today," the everything falls apart. Getting the priority logic right, especially for the long-horizon projects that shouldn't show up until they actually need to, took way more iteration than anything else.</p>
+        <p class="body-text">The most surprising part of building Ordo was realizing what the real hard problem was. I thought it'd be the scheduling algorithm. It wasn't, constraint solving is a pretty solved problem at this point. The hard part was trust. If you look at your Daily Three and think "that's not what I should be doing today," everything falls apart. Getting the priority logic right, especially for the long-horizon projects that shouldn't show up until they actually need to, took way more iteration than anything else.</p>
         <p class="body-text">One decision I'm glad I made early: the journal is encrypted at rest with key rotation, and the AI briefing only ever sees mood and energy, never what you actually wrote in your journal entries. I could've cut that corner, but my point was to build Ordo with privacy in mind from the start.</p>
       </div>
       <div class="reveal">
