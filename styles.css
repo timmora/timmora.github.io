@@ -431,9 +431,15 @@ footer p {
   background-color: var(--folder-color, #F1F3E0);
   color: #333;
   font-weight: bold;
-  font-size: clamp(16px, 1.7vw, 20px);
+  /* Floor is 18px so the size never drops when crossing out of the 700px
+     block, which tops out at 18px. Still 20px from ~1176px up, as before. */
+  font-size: clamp(18px, 1.7vw, 20px);
   white-space: nowrap;
-  padding: 11px 32px 25px;
+  /* The deep bottom padding is deliberate: it all sits below the drawer's
+     clipped edge. On hover a tab lifts by up to 10px, and without the extra
+     height its squared-off bottom edge slid into view instead of running
+     off the screen. */
+  padding: 11px 32px 39px;
   border-radius: 8px 8px 0 0;
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.07);
   pointer-events: auto;
@@ -485,14 +491,19 @@ footer p {
     padding: 180px 0 88px;
   }
 
+  /* Five tabs share the width, so type and padding scale together instead
+     of sitting at a flat 14px. At 320px the old row measured 370px and the
+     end tabs were quietly clipped by the drawer's overflow: hidden. */
   .hero-drawer {
-    gap: 8px;
-    height: 58px;
+    gap: clamp(5px, 1.6vw, 8px);
+    /* Floor is 66px, not 58: the tabs are staggered 26-32px down inside the
+       drawer, and at 58px the lowest one (Brandle) had its label clipped. */
+    height: clamp(66px, 15vw, 70px);
   }
 
   .hero-peek-tab {
-    font-size: 14px;
-    padding: 7px 16px 18px;
+    font-size: clamp(15px, 4vw, 18px);
+    padding: 10px clamp(10px, 2.6vw, 24px) 32px;
   }
 }
 
