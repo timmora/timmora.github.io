@@ -32,32 +32,71 @@
 <section class="hero">
   <p class="hero-meta">Word Game &nbsp;·&nbsp; 2024</p>
   <h1 class="hero-title">Brandle</h1>
-  <p class="hero-role">Developer &amp; UI Designer</p>
+  <p class="hero-sub">A daily brand-guessing game where the dataset, not the mechanic, turned out to be the design problem.</p>
 </section>
 
-<div class="cs-hero-media">
-  <picture><img src="images/brandle/hero.png" alt="Brandle shown in two browser windows: the difficulty-select screen and a completed puzzle with a Correct! result"></picture>
+<div class="cs-banner">
+  <img src="images/brandle/hero.png" alt="Brandle shown in two browser windows: the difficulty-select screen and a completed puzzle with a Correct! result">
 </div>
+
+<section class="cs-summary">
+  <div class="cs-summary-inner">
+    <p class="cs-summary-eyebrow">At a glance</p>
+    <div class="cs-summary-grid">
+      <div>
+        <p class="cs-summary-label">Problem</p>
+        <p class="cs-summary-val">A weekend class project that had to justify existing outside the classroom. Everyone carries a fuzzy mental model of a company, and nothing ever tests it.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">What I built</p>
+        <p class="cs-summary-val">A daily guessing game over a hand-curated set of 200+ brands, scored across five attributes with graduated, directional feedback.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">My role</p>
+        <p class="cs-summary-val">Developer and UI designer. Game logic, the feedback algorithm, dataset curation, and the Supabase schema.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">Where it landed</p>
+        <p class="cs-summary-val">Live on Vercel. Daily and unlimited modes, three difficulties, local stats and streaks, a share grid.</p>
+      </div>
+    </div>
+    <div class="cs-summary-foot">
+      <a class="cs-cta" href="https://brandle-iota.vercel.app/" target="_blank" rel="noopener">Play Brandle ↗</a>
+      <span class="cs-chip">React 18</span>
+      <span class="cs-chip">Supabase</span>
+      <span class="cs-chip">PostgreSQL</span>
+      <span class="cs-chip">MUI</span>
+      <span class="cs-chip">Vercel</span>
+    </div>
+  </div>
+</section>
 
 <div class="content">
   <div class="content-grid">
-    <aside class="sidebar">
-      <div class="sidebar-inner">
-        <div class="sidebar-block"><p class="sidebar-label">Year</p><p class="sidebar-val">2024</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Role</p><p class="sidebar-val">Developer &amp; UI Designer</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Status</p><p class="sidebar-val status-live">Live ↗</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Origin</p><p class="sidebar-val">Extended from a class project</p></div>
-        <hr class="sidebar-rule">
-        <a class="live-link" href="https://brandle-iota.vercel.app/" target="_blank" rel="noopener">Play Brandle ↗</a>
-      </div>
+    <aside>
+      <nav class="cs-rail" aria-label="Contents">
+        <p class="cs-rail-head">Contents</p>
+        <a class="cs-rail-link" data-rail="cs-ov" href="#cs-ov"><span class="cs-rail-dot"></span>Overview</a>
+        <a class="cs-rail-link" data-rail="cs-in" href="#cs-in"><span class="cs-rail-dot"></span>Inside Brandle</a>
+        <a class="cs-rail-link" data-rail="cs-pr" href="#cs-pr"><span class="cs-rail-dot"></span>The problem</a>
+        <a class="cs-rail-link" data-rail="cs-hl" href="#cs-hl"><span class="cs-rail-dot"></span>Highlights</a>
+        <a class="cs-rail-link" data-rail="cs-uh" href="#cs-uh"><span class="cs-rail-dot"></span>Under the hood</a>
+        <a class="cs-rail-link" data-rail="cs-rf" href="#cs-rf"><span class="cs-rail-dot"></span>Reflection</a>
+        <a class="cs-rail-link" data-rail="cs-ts" href="#cs-ts"><span class="cs-rail-dot"></span>Tech stack</a>
+        <div class="cs-rail-meta">
+          <p class="sidebar-label">Year</p>
+          <p class="sidebar-val">2024</p>
+          <p class="sidebar-label">Status</p>
+          <p class="sidebar-val status-live">Live ↗</p>
+        </div>
+      </nav>
     </aside>
     <main class="main-col">
-      <div class="reveal">
+      <section id="cs-ov" class="cs-section reveal">
         <p class="section-head">Overview</p>
         <p class="overview-text">Brandle is a daily brand-guessing game built on a hand-curated dataset of 200+ companies. Turns out the real design challenge wasn't the Wordle mechanic, it was the data. Inconsistent founding years, lagged revenue figures, subsidiary ambiguity: all of that decides whether the game feels fair or just random. You guess the mystery brand across five attributes (category, country, founding year, revenue, employees) and get color-coded feedback on how close you are.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
+      </section>
+      <section id="cs-in" class="cs-section reveal">
         <p class="section-head">Inside Brandle</p>
         <div class="cs-panel">
           <p class="cs-panel-eyebrow">Setting up</p>
@@ -105,15 +144,13 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">The Problem</p>
+      </section>
+      <section id="cs-pr" class="cs-section reveal">
+        <p class="section-head">The problem</p>
         <p class="body-text">Brandle started as a class project: build something with a Supabase backend. I threw together a Wordle clone in a weekend and submitted it. But halfway through, I realized the interesting version wasn't about words at all, it was about brands. Everyone has some fuzzy mental model of a company (where it's from, how big it is, what it actually does) and those models basically never get tested. The guessing mechanic felt like a perfect way to surface that.</p>
         <p class="body-text">The real question was whether it had legs outside the classroom. A daily guessing game about brand attributes isn't an obvious hit. But Wordle already proved the format works, and brands have something words don't: people actually have opinions about them.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
+      </section>
+      <section id="cs-hl" class="cs-section reveal">
         <p class="section-head">Highlights</p>
         <ul class="highlights">
           <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Feedback across five attributes at once: green for exact, yellow for close, arrows showing higher or lower on the numeric ones. Five signals without it feeling like a mess.</p></li>
@@ -122,27 +159,24 @@
           <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Local stats and streaks: win rate, guess distribution, current and best streak. The Supabase data model is already set up for leaderboards once I add auth.</p></li>
           <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Hard mode forces you to actually use the info you've already revealed in your next guess. It genuinely changes how you think through what's left.</p></li>
         </ul>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Under the Hood</p>
+      </section>
+      <section id="cs-uh" class="cs-section reveal">
+        <p class="section-head">Under the hood</p>
         <p class="body-text">Daily mode uses a deterministic seed derived from the date, so it's the same brand for every player on the same day. That means consistent results without storing a "today's puzzle" record anywhere or managing server-side state for puzzle selection. Unlimited mode just picks randomly, excluding the last 30 days of daily brands so you don't see repeats.</p>
         <p class="body-text">The feedback algorithm checks all five attributes at once. Category and country are binary, you're either right or you're not. The three numeric fields (founding year, revenue, employee count) get graduated proximity feedback with directional arrows. Tolerance thresholds change per difficulty mode, which is what actually makes hard mode hard: the windows get tighter, so a guess that would've scored yellow on normal mode just scores gray.</p>
         <p class="callout">"For a content-driven game, curation basically is the design work. Getting 200 brands with consistent, verifiable data across five attributes took longer than building the actual game."</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
+      </section>
+      <section id="cs-rf" class="cs-section reveal">
         <p class="section-head">Reflection</p>
         <p class="body-text">The most interesting design problem in Brandle wasn't the game mechanic, it was the dataset. Inconsistent founding year data (acquisition date vs. original founding), revenue figures that lag by a year, subsidiary vs. parent company ambiguity: data quality directly decided game quality. I genuinely spent more time normalizing data than writing React components.</p>
         <p class="body-text">The stats model was built with future features in mind. Local state handles your current and best streak, and a Supabase table gets populated on every completed game with a structure that's ready for a global leaderboard once auth is wired up. Building the data model before the feature existed was the right call. Retrofitting persistence later is miserable.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Tech Stack</p>
+      </section>
+      <section id="cs-ts" class="cs-section reveal">
+        <p class="section-head">Tech stack</p>
         <div class="stack-list">
           <span class="stack-tag">React 18</span><span class="stack-tag">React Router</span><span class="stack-tag">Supabase</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">JavaScript</span><span class="stack-tag">MUI</span><span class="stack-tag">Vercel</span>
         </div>
-      </div>
+      </section>
     </main>
   </div>
 </div>

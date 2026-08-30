@@ -302,7 +302,14 @@
         }
       });
 
+      // The paper's width is computed once on open, so a width change has to
+      // close it. Height changes must not: on mobile the collapsing URL bar
+      // fires resize during ordinary scrolling, which slammed the article
+      // shut mid-read.
+      var lastPaperWidth = window.innerWidth;
       window.addEventListener('resize', () => {
+        if (window.innerWidth === lastPaperWidth) return;
+        lastPaperWidth = window.innerWidth;
         if (activePaper) closePaper(true);
       });
 

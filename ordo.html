@@ -29,85 +29,151 @@
     </nav>
   </div>
 </header>
+
 <section class="hero">
   <p class="hero-meta">AI Productivity App &nbsp;·&nbsp; 2025</p>
   <h1 class="hero-title">Ordo</h1>
-  <p class="hero-role">Solo Developer</p>
+  <p class="hero-sub">Syllabus in, executable week out. <br> Solo build — product, design, full stack.</p>
 </section>
 
-<div class="cs-hero-media">
-  <picture><img src="images/ordo/hero.png" alt="Ordo shown on a phone with the daily briefing and on a laptop with the focus-capacity onboarding step"></picture>
+<div class="cs-banner">
+  <img src="images/ordo/banner.png" alt="Ordo on mobile and desktop: the daily plan with Bean's briefing, and the onboarding step that asks how much focus you can realistically give">
 </div>
+
+<section class="cs-summary">
+  <div class="cs-summary-inner">
+    <p class="cs-summary-eyebrow">At a glance</p>
+    <div class="cs-summary-grid">
+      <div>
+        <p class="cs-summary-label">Problem</p>
+        <p class="cs-summary-val">Every planner treats 10am Monday and 9pm Thursday as the same hour. Plenty of to do list/planner apps already exist, but none of them give students a clear answer to where to start and how to finish.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">What I built</p>
+        <p class="cs-summary-val">A scheduler that reads your syllabi, decomposes assignments with Claude, and fits the pieces around your week. A journal tab that tracks your mood, energy, and focus time.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">My role</p>
+        <p class="cs-summary-val">Ordo has been a solo passion project since day one. Ive learned a lot about product thinking, interface design, React&nbsp;19 web apps, Expo mobile, FastAPI, Postgres schemas, and more.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">Where it landed</p>
+        <p class="cs-summary-val">Live at ordo.study and currently in closed beta!</p>
+      </div>
+    </div>
+    <div class="cs-summary-foot">
+      <a class="cs-cta" href="https://ordo.study" target="_blank" rel="noopener">Visit Ordo ↗</a>
+      <span class="cs-chip">React 19</span>
+      <span class="cs-chip">FastAPI</span>
+      <span class="cs-chip">Claude API</span>
+      <span class="cs-chip">Supabase</span>
+      <span class="cs-chip">Expo</span>
+    </div>
+  </div>
+</section>
 
 <div class="content">
   <div class="content-grid">
-    <aside class="sidebar">
-      <div class="sidebar-inner">
-        <div class="sidebar-block"><p class="sidebar-label">Year</p><p class="sidebar-val">2025</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Role</p><p class="sidebar-val">Solo Developer</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Status</p><p class="sidebar-val status-live">Live ↗</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Discipline</p><p class="sidebar-val">Full-Stack Development<br>Product Design<br>AI Integration</p></div>
-        <hr class="sidebar-rule">
-        <a class="live-link" href="https://ordo.study" target="_blank" rel="noopener">Visit Ordo ↗</a>
-      </div>
+    <aside>
+      <nav class="cs-rail" aria-label="Contents">
+        <p class="cs-rail-head">Contents</p>
+        <a class="cs-rail-link" data-rail="cs-ov" href="#cs-ov"><span class="cs-rail-dot"></span>Overview</a>
+        <a class="cs-rail-link" data-rail="cs-pr" href="#cs-pr"><span class="cs-rail-dot"></span>The problem</a>
+        <a class="cs-rail-link" data-rail="cs-ba" href="#cs-ba"><span class="cs-rail-dot"></span>v0 → today</a>
+        <a class="cs-rail-link" data-rail="cs-in" href="#cs-in"><span class="cs-rail-dot"></span>Inside Ordo</a>
+        <a class="cs-rail-link" data-rail="cs-hl" href="#cs-hl"><span class="cs-rail-dot"></span>Highlights</a>
+        <a class="cs-rail-link" data-rail="cs-uh" href="#cs-uh"><span class="cs-rail-dot"></span>Under the hood</a>
+        <a class="cs-rail-link" data-rail="cs-rf" href="#cs-rf"><span class="cs-rail-dot"></span>Reflection</a>
+        <div class="cs-rail-meta">
+          <p class="sidebar-label">Year</p>
+          <p class="sidebar-val">2025</p>
+          <p class="sidebar-label">Status</p>
+          <p class="sidebar-val status-live">Live ↗</p>
+        </div>
+      </nav>
     </aside>
     <main class="main-col">
-      <div class="reveal">
-        <p class="section-head">Overview</p>
-        <p class="overview-text">Ordo takes your whole course load and turns it into an actual daily plan. It reads your syllabi, breaks assignments into smaller subtasks, and slots them into your day-to-day schedule (class blocks, focus windows, deadlines you're dreading). Every morning you get the Daily Three: the three things you need to prioritize today.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Inside Ordo</p>
-        <p class="body-text">The whole app is six screens. I wanted it to feel like a notebook, which is why I went for a warm and paper-toned design with a serif font. After a friend suggested that the app needed a little more life, I added Bean (the little guy) as a way to add a little personality to the app and give it a little more life. </p>
 
-        <div class="cs-media-photo" style="padding: 46px 40px 40px; margin: 32px 0 16px">
-          <p class="cs-media-title" style="margin: 0 0 34px">The six screens</p>
-          <div class="cs-screen-grid">
-            <div class="cs-screen-item">
-              <div class="cs-screen-frame"><img src="images/ordo/screens/onboarding.png" alt="Ordo onboarding screen showing three setup steps and a Get Started button" loading="lazy"></div>
-              <div class="cs-screen-caption">
-                <p class="cs-screen-eyebrow">Onboarding</p>
-                <p class="cs-screen-desc">Three promises and one button.</p>
-              </div>
+      <section id="cs-ov" class="cs-section reveal">
+        <p class="section-head">Overview</p>
+        <p class="overview-text">Ordo takes your whole course load and turns it into an actual daily plan. It reads your syllabi, breaks assignments into smaller subtasks, and slots them into your day-to-day schedule — class blocks, focus windows, deadlines you're dreading. Every morning you get Today's Focus: the things you need to prioritize first today.</p>
+      </section>
+
+      <section id="cs-pr" class="cs-section reveal">
+        <p class="section-head">The problem</p>
+        <p class="body-text">Every student productivity app I tried made the same mistake: it treats every hour like it's the same hour. Monday at 10am and Thursday at 9pm look identical on a calendar, but they're not even close. One's right before a 300-person lecture, the other's the night before a midterm. A regular to-do list has no idea, and if a scheduling tool doesn't get that either, it's failing to do its job.</p>
+        <p class="body-text">The other problem is the disconnect between knowing you have a lot to do and actually starting. Every student already knows their list is long. The hard part is not knowing what to open first, especially when your schedule changes every week.</p>
+      </section>
+
+      <section id="cs-ba" class="cs-section reveal">
+        <p class="section-head">v0 → today</p>
+        <p class="body-text">The first version of Ordo was a to-do list with a calendar bolted on. It worked, and I used it for about two weeks before admitting it hadn't solved the problem I built it for — it still made me decide what to do next.</p>
+
+        <div class="cs-compare">
+          <div class="cs-compare-card">
+            <div class="cs-compare-head">
+              <p class="cs-compare-when">Before</p>
+              <p class="cs-compare-tag">Ordo v0</p>
             </div>
-            <div class="cs-screen-item">
-              <div class="cs-screen-frame"><img src="images/ordo/screens/overview.png" alt="Ordo overview screen showing the Daily Three priority list, Bean's message, and a focus streak" loading="lazy"></div>
-              <div class="cs-screen-caption">
-                <p class="cs-screen-eyebrow">Overview</p>
-                <p class="cs-screen-desc">The Daily Three, a streak, a briefing.</p>
-              </div>
+            <div class="cs-compare-shot" data-zoom><img src="images/ordo/v0/overview.webp" alt="Ordo v0: top-centre nav, a daily briefing panel that failed to load, four zeroed counters, and empty Events and Tasks lists under Today/Upcoming/To-do tabs" loading="lazy"></div>
+            <p class="cs-compare-desc">A flat list of assignments and a month grid. Nothing knew how long anything took, so nothing could be scheduled — only displayed.</p>
+          </div>
+          <div class="cs-compare-arrow">
+            <svg width="26" height="12" viewBox="0 0 26 12" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M0 6h21M16 1.5L21 6l-5 4.5"/></svg>
+          </div>
+          <div class="cs-compare-card is-after">
+            <div class="cs-compare-head">
+              <p class="cs-compare-when">After</p>
+              <p class="cs-compare-tag">Shipped</p>
             </div>
-            <div class="cs-screen-item">
-              <div class="cs-screen-frame"><img src="images/ordo/screens/decompose.png" alt="Ordo AI decompose screen suggesting six subtasks with time estimates for a lit review assignment" loading="lazy"></div>
-              <div class="cs-screen-caption">
-                <p class="cs-screen-eyebrow">AI decompose</p>
-                <p class="cs-screen-desc">Six subtasks with honest estimates.</p>
-              </div>
-            </div>
-            <div class="cs-screen-item">
-              <div class="cs-screen-frame"><img src="images/ordo/screens/focus.png" alt="Ordo focus screen with a 25-minute Pomodoro timer running on a subtask" loading="lazy"></div>
-              <div class="cs-screen-caption">
-                <p class="cs-screen-eyebrow">Focus</p>
-                <p class="cs-screen-desc">One subtask, twenty-five minutes.</p>
-              </div>
-            </div>
-            <div class="cs-screen-item">
-              <div class="cs-screen-frame"><img src="images/ordo/screens/journal.png" alt="Ordo journal screen with mood and energy tracking and two reflection prompts" loading="lazy"></div>
-              <div class="cs-screen-caption">
-                <p class="cs-screen-eyebrow">Journal</p>
-                <p class="cs-screen-desc">Mood, energy, three prompts.</p>
-              </div>
-            </div>
-            <div class="cs-screen-item">
-              <div class="cs-screen-frame"><img src="images/ordo/screens/tasks.png" alt="Ordo tasks screen listing every in-flight assignment with subtask progress" loading="lazy"></div>
-              <div class="cs-screen-caption">
-                <p class="cs-screen-eyebrow">Tasks</p>
-                <p class="cs-screen-desc">Every task with its own runway.</p>
-              </div>
-            </div>
+            <div class="cs-compare-shot" data-zoom><img src="images/ordo/desktop/overview.webp" alt="Ordo today: Today's Focus lists three tasks, each with the reason it was picked, above Bean's briefing and a three-week streak" loading="lazy"></div>
+            <p class="cs-compare-desc">Same data, three new questions answered: how long, when, and what first. The list became a plan with the Daily Three at the top.</p>
           </div>
         </div>
+
+        <div class="cs-changes">
+          <div class="cs-change">
+            <p class="cs-change-label">Time estimates</p>
+            <p class="cs-change-text">v0 asked you to type how long each thing would take, up front, in an empty box. Nobody does that. The field is still there under advanced options, but the front of the form now asks for the assignment instead and Claude breaks it into steps with its own estimates — a much easier ask than a blank field.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change-label">Setup</p>
+            <p class="cs-change-text">Entering a semester by hand took me forty-five minutes for four courses. That was the whole reason v0 died. Syllabus upload replaced it: the app does the typing, you check its work.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change-label">The daily ask</p>
+            <p class="cs-change-text">v0 opened on everything due this month. Today it opens on three things, with the reason each was picked. Every other view is still there, one tap away — it just isn't the front door anymore.</p>
+          </div>
+        </div>
+
+        <p class="body-text" style="margin-top: 38px">The task form is where that first change is easiest to see.</p>
+
+        <div class="cs-compare">
+          <div class="cs-compare-card">
+            <div class="cs-compare-head">
+              <p class="cs-compare-when">Before</p>
+              <p class="cs-compare-tag">New task, v0</p>
+            </div>
+            <div class="cs-compare-shot" data-zoom><img src="images/ordo/v0/new-task.webp" alt="Ordo v0's New Task dialog with an empty Estimated hours field shown at full size in the middle of the form" loading="lazy"></div>
+            <p class="cs-compare-desc">An empty <em>Estimated hours</em> box, given the same weight as the due date. It's the one field nobody can answer honestly before starting the work.</p>
+          </div>
+          <div class="cs-compare-arrow">
+            <svg width="26" height="12" viewBox="0 0 26 12" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M0 6h21M16 1.5L21 6l-5 4.5"/></svg>
+          </div>
+          <div class="cs-compare-card is-after">
+            <div class="cs-compare-head">
+              <p class="cs-compare-when">After</p>
+              <p class="cs-compare-tag">New task, shipped</p>
+            </div>
+            <div class="cs-compare-shot" data-zoom><img src="images/ordo/desktop/new-task.webp" alt="Ordo's New Task dialog today: estimated hours sits under advanced options while Bean offers to break the assignment into steps from a description or a PDF" loading="lazy"></div>
+            <p class="cs-compare-desc">The estimate moved under <em>advanced options</em>, and the space it left went to Bean offering to draft the steps from a description or a dropped PDF.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cs-in" class="cs-section reveal">
+        <p class="section-head">Inside Ordo</p>
+        <p class="body-text">I wanted it to feel like a notebook rather than a dashboard — warm paper tones, a serif for anything the app says to you, and Bean, who exists because a friend told me the app felt like a spreadsheet with feelings turned off.</p>
 
         <div class="cs-media-photo" style="margin-bottom: 56px">
           <p class="cs-media-title">Bean, in six moods</p>
@@ -182,6 +248,43 @@
           </div>
         </div>
 
+        <figure class="cs-figure" data-zoom>
+          <img src="images/ordo/desktop/onboarding-capacity.webp" alt="Ordo onboarding step five: a slider for hours of focused work per day shown as blocks of thirty minutes, a time-of-day preference, and a live summary of how many focus blocks that allows" loading="lazy">
+          <div class="cs-pins" aria-hidden="true">
+            <span class="cs-pin" style="left: 51%; top: 24.2%">1</span>
+            <span class="cs-pin" style="left: 90.6%; top: 3.8%">2</span>
+            <span class="cs-pin" style="left: 62.8%; top: 60.2%">3</span>
+            <span class="cs-pin" style="left: 13.2%; top: 86.9%">4</span>
+          </div>
+        </figure>
+
+        <div class="cs-notes">
+          <div class="cs-note">
+            <span class="cs-note-num">01</span>
+            <p class="cs-note-text">Capacity is hours, not a vibe. The scheduler needs a real number, so the question is answered with a slider and shown back as blocks of thirty minutes.</p>
+          </div>
+          <div class="cs-note">
+            <span class="cs-note-num">02</span>
+            <p class="cs-note-text">Step 5 of 6, counted out loud. Onboarding asks for real work, so it says exactly how much is left.</p>
+          </div>
+          <div class="cs-note">
+            <span class="cs-note-num">03</span>
+            <p class="cs-note-text">The consequence, before you commit. Four hours in the evening becomes "room for about 8 focused blocks between your classes" — the input translated into the thing you actually care about.</p>
+          </div>
+        </div>
+
+        <div class="cs-shots">
+          <p class="cs-shots-title">The rest of the app, at desktop width</p>
+          <div class="cs-shots-grid">
+            <div class="cs-shot" data-zoom><img src="images/ordo/desktop/calendar.webp" alt="Ordo's calendar: a full week of colour-coded class blocks and scheduled work, with an Up next queue alongside it" loading="lazy"></div>
+            <div class="cs-shot" data-zoom><img src="images/ordo/desktop/tasks.webp" alt="Ordo's task list: four tasks grouped by whether they still need a slot, each with a Break it down action" loading="lazy"></div>
+            <div class="cs-shot" data-zoom><img src="images/ordo/desktop/focus.webp" alt="Ordo's focus timer counting down 25 minutes against step 1 of 5 of an organic chemistry problem set" loading="lazy"></div>
+            <div class="cs-shot" data-zoom><img src="images/ordo/desktop/journal.webp" alt="Ordo's journal: mood faces, an energy gradient, and the day's focus time, tasks done, and streak" loading="lazy"></div>
+          </div>
+        </div>
+
+
+
         <div class="cs-video">
           <div class="cs-media-photo" style="padding: 14px">
             <p class="cs-media-title">A 60-second walkthrough, start to finish on one assignment</p>
@@ -190,11 +293,27 @@
             </video>
           </div>
         </div>
+      </section>
 
-        <div class="cs-code">
-          <div class="cs-code-title">
-            <span class="cs-code-what">AI task decomposition</span>
-          </div>
+      <section id="cs-hl" class="cs-section reveal">
+        <p class="section-head">Highlights</p>
+        <ul class="highlights">
+          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">AI decomposition plus a scheduler that actually respects your real week: class blocks, how much you can realistically focus, deadlines. It's not a to-do list, it's a plan that fits.</p></li>
+          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Upload your syllabus during onboarding and Claude pulls out every assignment and due date for you. No manual entry.</p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Every morning you get an AI briefing: what matters today, how your week's going, one actual suggestion. Cached per day so it's fast and doesn't burn through API credits.</p></li>
+          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Built-in Pomodoro timer that tracks time per subtask, logs sessions, and counts your streak. Keeps planning and actually doing close together.</p></li>
+          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Journal entries are encrypted at rest (Fernet, with key rotation). The AI briefing only ever sees your mood and energy, never what you actually wrote.</p></li>
+        </ul>
+      </section>
+
+      <section id="cs-uh" class="cs-section reveal">
+        <p class="section-head">Under the hood</p>
+        <p class="body-text">The scheduler is the core. It takes tasks already broken into subtasks with estimates, then fits them into your week around class blocks, focus windows, daily capacity, and hard deadlines. Google Calendar comes in over read-only OAuth, so anything already on there counts as busy. It reruns on every login, so the plan keeps adjusting as you finish things or fall behind.</p>
+        <p class="body-text">Claude's other job is reading, not decomposing. During onboarding it parses syllabus PDFs and pulls out the whole course schedule — dates, weights, recitation times — so you don't type any of it in.</p>
+
+        <details class="cs-deep">
+          <summary>Deep dive — AI decomposition, cache first</summary>
+          <p class="cs-deep-text">A syllabus PDF can run 30k tokens. Paragraphs get scored against the task and only the relevant ones travel, Haiku handles most calls with Sonnet as fallback, and identical requests never reach the model twice.</p>
 <pre><code># Seen an identical task before? Return the saved breakdown, skip the model.
 fp = _fingerprint(task["title"], task.get("due_date"), body.description, file_head)
 cached = sb.table("decompose_cache").select("result").eq("fingerprint", fp).maybe_single().execute()
@@ -222,95 +341,70 @@ subtasks = call_ai_with_retry(
 # Memoize so the next identical request is free.
 sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
     "result": [s.model_dump() for s in subtasks]}).execute()</code></pre>
-        </div>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">The Problem</p>
-        <p class="body-text">Every student productivity app I tried made the same mistake: it treats every hour like it's the same hour. Monday at 10am and Thursday at 9pm look identical on a calendar, but they're not even close. One's right before a 300-person lecture, the other's the night before a midterm. A regular to-do list has no idea, and if a scheduling tool doesn't get that either, it's failing to do its job.</p>
-        <p class="body-text">The other problem is the disconnect between knowing you have a lot to do and actually starting. Every student already knows their list is long. The hard part is not knowing what to open first, especially when your schedule changes every week. I wanted Ordo to close that gap, not just dump a list on you, but actually tell you what to do today and why.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Highlights</p>
-        <ul class="highlights">
-          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">AI decomposition plus a scheduler that actually respects your real week: class blocks, how much you can realistically focus, deadlines. It's not a to-do list, it's a plan that fits.</p></li>
-          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Upload your syllabus during onboarding and Claude pulls out every assignment and due date for you. No manual entry.</p></li>
-          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Every morning you get an AI briefing: what matters today, how your week's going, one actual suggestion. Cached per day so it's fast and doesn't burn through API credits.</p></li>
-          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Built-in Pomodoro timer that tracks time per subtask, logs sessions, and counts your streak. Keeps planning and actually doing close together.</p></li>
-          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Journal entries are encrypted at rest (Fernet, with key rotation). The AI briefing only ever sees your mood and energy, never what you actually wrote.</p></li>
-        </ul>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Architecture</p>
-        <p class="body-text">Clients hit Postgres directly for basic reads and writes, locked down with row-level security. The FastAPI backend only exists for the stuff a client shouldn't be trusted with: calling Claude, running the scheduler across your whole task graph, and syncing your calendar.</p>
-        <div class="cs-arch">
-          <div class="cs-arch-col">
-            <p class="cs-media-title cs-arch-col-title">Clients</p>
-            <div class="cs-arch-box">
-              <div class="cs-arch-name">Mobile</div>
-              <div class="cs-arch-meta">Expo Router · NativeWind<br>React Query · Clerk</div>
-            </div>
-            <div class="cs-arch-box">
-              <div class="cs-arch-name">Web</div>
-              <div class="cs-arch-meta">React 19 · Vite 7 · Tailwind<br>FullCalendar · dnd-kit</div>
-            </div>
-          </div>
-          <div class="cs-arch-arrow">
-            <svg width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M0 6h28M23 1.5L28 6l-5 4.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="cs-arch-arrow-label">JWT<br>bearer</span>
-          </div>
-          <div class="cs-arch-col">
-            <p class="cs-media-title cs-arch-col-title">Service</p>
-            <div class="cs-arch-box cs-arch-box-accent">
-              <div class="cs-arch-name">FastAPI</div>
-              <div class="cs-arch-routes">
-                <div class="cs-arch-route">POST /decompose</div>
-                <div class="cs-arch-route">POST /schedule</div>
-                <div class="cs-arch-route">GET&nbsp;&nbsp;/summary</div>
-                <div class="cs-arch-route">POST /syllabus</div>
+        </details>
+
+        <details class="cs-deep">
+          <summary>Deep dive — architecture</summary>
+          <p class="cs-deep-text">Clients hit Postgres directly for basic reads and writes, locked down with row-level security. The backend only exists for what a client shouldn't be trusted with: calling Claude, running the scheduler across the whole task graph, syncing calendars.</p>
+          <div class="cs-arch">
+            <div class="cs-arch-col">
+              <p class="cs-media-title cs-arch-col-title">Clients</p>
+              <div class="cs-arch-box">
+                <div class="cs-arch-name">Mobile</div>
+                <div class="cs-arch-meta">Expo Router · NativeWind<br>React Query · Clerk</div>
               </div>
-              <div class="cs-arch-note">JWKS validation · rate limit<br>per-user AI quota</div>
+              <div class="cs-arch-box">
+                <div class="cs-arch-name">Web</div>
+                <div class="cs-arch-meta">React 19 · Vite 7 · Tailwind<br>FullCalendar · dnd-kit</div>
+              </div>
+            </div>
+            <div class="cs-arch-arrow">
+              <svg width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M0 6h28M23 1.5L28 6l-5 4.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="cs-arch-arrow-label">JWT<br>bearer</span>
+            </div>
+            <div class="cs-arch-col">
+              <p class="cs-media-title cs-arch-col-title">Service</p>
+              <div class="cs-arch-box cs-arch-box-accent">
+                <div class="cs-arch-name">FastAPI</div>
+                <div class="cs-arch-routes">
+                  <div class="cs-arch-route">POST /decompose</div>
+                  <div class="cs-arch-route">POST /schedule</div>
+                  <div class="cs-arch-route">GET&nbsp;&nbsp;/summary</div>
+                  <div class="cs-arch-route">POST /syllabus</div>
+                </div>
+                <div class="cs-arch-note">JWKS validation · rate limit<br>per-user AI quota</div>
+              </div>
+            </div>
+            <div class="cs-arch-arrow">
+              <svg width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M0 6h28M23 1.5L28 6l-5 4.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="cs-arch-arrow-label">service<br>role</span>
+            </div>
+            <div class="cs-arch-col">
+              <p class="cs-media-title cs-arch-col-title">Data &amp; AI</p>
+              <div class="cs-arch-box">
+                <div class="cs-arch-name">Supabase Postgres</div>
+                <div class="cs-arch-meta">30 migrations · RLS on every<br>table · auth.uid() = user_id</div>
+              </div>
+              <div class="cs-arch-box">
+                <div class="cs-arch-name">Claude</div>
+                <div class="cs-arch-meta">Haiku with Sonnet fallback<br>cached per task fingerprint</div>
+              </div>
             </div>
           </div>
-          <div class="cs-arch-arrow">
-            <svg width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M0 6h28M23 1.5L28 6l-5 4.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="cs-arch-arrow-label">service<br>role</span>
-          </div>
-          <div class="cs-arch-col">
-            <p class="cs-media-title cs-arch-col-title">Data &amp; AI</p>
-            <div class="cs-arch-box">
-              <div class="cs-arch-name">Supabase Postgres</div>
-              <div class="cs-arch-meta">30 migrations · RLS on every<br>table · auth.uid() = user_id</div>
-            </div>
-            <div class="cs-arch-box">
-              <div class="cs-arch-name">Claude</div>
-              <div class="cs-arch-meta">Haiku with Sonnet fallback<br>cached per task fingerprint</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Under the Hood</p>
-        <p class="body-text">The scheduler is really the core of Ordo. It takes your tasks, already broken into subtasks with time estimates by Claude, and fits them into your week around class blocks, focus windows, daily capacity, and hard deadlines. It also pulls in your Google Calendar over read-only OAuth, so anything already on there counts as busy time. It reruns on every login, so the plan keeps adjusting as you finish things or fall behind.</p>
-        <p class="body-text">Claude's other job is reading, not just decomposing. During onboarding it parses your syllabus PDFs and pulls out the whole course schedule, dates, weights, recitation times, so you don't type any of it in yourself. The briefing works the same way but is cached per user per day: the first request generates it, everyone after that just reads the cache.</p>
+        </details>
+
         <p class="callout">"The scheduling algorithm was the easy part. Getting the Daily Three to feel trustworthy enough that I'd actually listen to it took way longer."</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
+      </section>
+
+      <section id="cs-rf" class="cs-section reveal">
         <p class="section-head">Reflection</p>
-        <p class="body-text">The most surprising part of building Ordo was realizing what the real hard problem was. I thought it'd be the scheduling algorithm. It wasn't, constraint solving is a pretty solved problem at this point. The hard part was trust. If you look at your Daily Three and think "that's not what I should be doing today," everything falls apart. Getting the priority logic right, especially for the long-horizon projects that shouldn't show up until they actually need to, took way more iteration than anything else.</p>
-        <p class="body-text">One decision I'm glad I made early: the journal is encrypted at rest with key rotation, and the AI briefing only ever sees mood and energy, never what you actually wrote in your journal entries. I could've cut that corner, but my point was to build Ordo with privacy in mind from the start.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Tech Stack</p>
+        <p class="body-text">The most surprising part of building Ordo was realizing what the real hard problem was. I thought it'd be the scheduling algorithm. It wasn't — constraint solving is fairly solved. The hard part was trust. If you look at your Daily Three and think "that's not what I should be doing today," everything falls apart. Getting the priority logic right, especially for long-horizon projects that shouldn't surface until they need to, took more iteration than anything else.</p>
+        <p class="body-text">One decision I'm glad I made early: the journal is encrypted at rest with key rotation, and the AI briefing only ever sees mood and energy, never what you wrote. I could've cut that corner.</p>
         <div class="stack-list">
           <span class="stack-tag">React 19</span><span class="stack-tag">TypeScript</span><span class="stack-tag">Tailwind v4</span><span class="stack-tag">shadcn/ui</span><span class="stack-tag">FastAPI</span><span class="stack-tag">Claude API</span><span class="stack-tag">Supabase</span><span class="stack-tag">Clerk</span><span class="stack-tag">Expo</span><span class="stack-tag">Vite</span>
         </div>
-      </div>
+      </section>
+
     </main>
   </div>
 </div>

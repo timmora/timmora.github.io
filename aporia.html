@@ -32,37 +32,73 @@
 <section class="hero">
   <p class="hero-meta">Personal Finance App &nbsp;·&nbsp; 2025</p>
   <h1 class="hero-title">Aporia</h1>
-  <p class="hero-role">Solo Developer</p>
+  <p class="hero-sub">A portfolio built from what you're willing to own, not just how much risk you'll take.</p>
 </section>
 
-<div class="cs-hero-media" data-todo="hero-screenshot">
-  <!-- TODO(asset): replace this wrapper with <picture><img src="images/aporia/hero.webp" alt="Aporia portfolio dashboard with values-aligned allocation"></picture> -->
+<div class="cs-banner">
+  <!-- TODO(asset): replace with <img src="images/aporia/banner.png" alt="Aporia portfolio dashboard with values-aligned allocation"> -->
   <div class="cs-media-placeholder cs-media-16x9">
     <span class="cs-media-label">Hero screenshot</span>
   </div>
 </div>
 
+<section class="cs-summary">
+  <div class="cs-summary-inner">
+    <p class="cs-summary-eyebrow">At a glance</p>
+    <div class="cs-summary-grid">
+      <div>
+        <p class="cs-summary-label">Problem</p>
+        <p class="cs-summary-val">Every investing app optimizes for returns. None let you say "I don't want to own fossil fuel companies" and then show you what that actually does to your allocation.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">What I built</p>
+        <p class="cs-summary-val">A portfolio generator driven by a values questionnaire, with live market data and institutional 13F holdings cross-referenced against what you own.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">My role</p>
+        <p class="cs-summary-val">Solo. Product design, the allocation algorithm, a React&nbsp;19 front end, an Express API, and the SEC 13F parser.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">Where it landed</p>
+        <p class="cs-summary-val">In progress. 12 curated ETFs, four chart ranges with an SPY overlay, life-event triggered rebalancing.</p>
+      </div>
+    </div>
+    <div class="cs-summary-foot">
+      <span class="cs-chip">React 19</span>
+      <span class="cs-chip">TypeScript</span>
+      <span class="cs-chip">Express</span>
+      <span class="cs-chip">React Query</span>
+      <span class="cs-chip">Recharts</span>
+    </div>
+  </div>
+</section>
+
 <div class="content">
   <div class="content-grid">
-    <aside class="sidebar">
-      <div class="sidebar-inner">
-        <div class="sidebar-block"><p class="sidebar-label">Year</p><p class="sidebar-val">2025</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Role</p><p class="sidebar-val">Solo Developer</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Status</p><p class="sidebar-val">In Progress</p></div>
-        <div class="sidebar-block"><p class="sidebar-label">Discipline</p><p class="sidebar-val">Full-Stack Development<br>Product Design<br>Data Visualization</p></div>
-        <hr class="sidebar-rule">
-        <div class="sidebar-block"><p class="sidebar-label">Stack</p><p class="sidebar-val">React 19, TypeScript,<br>Express, Yahoo Finance API</p></div>
-        <hr class="sidebar-rule">
-        <!-- <a class="live-link" href="#" target="_blank" rel="noopener">Request beta access ↗</a> -->
-      </div>
+    <aside>
+      <nav class="cs-rail" aria-label="Contents">
+        <p class="cs-rail-head">Contents</p>
+        <a class="cs-rail-link" data-rail="cs-ov" href="#cs-ov"><span class="cs-rail-dot"></span>Overview</a>
+        <a class="cs-rail-link" data-rail="cs-in" href="#cs-in"><span class="cs-rail-dot"></span>Inside Aporia</a>
+        <a class="cs-rail-link" data-rail="cs-pr" href="#cs-pr"><span class="cs-rail-dot"></span>The problem</a>
+        <a class="cs-rail-link" data-rail="cs-hl" href="#cs-hl"><span class="cs-rail-dot"></span>Highlights</a>
+        <a class="cs-rail-link" data-rail="cs-uh" href="#cs-uh"><span class="cs-rail-dot"></span>Under the hood</a>
+        <a class="cs-rail-link" data-rail="cs-rf" href="#cs-rf"><span class="cs-rail-dot"></span>Reflection</a>
+        <a class="cs-rail-link" data-rail="cs-ts" href="#cs-ts"><span class="cs-rail-dot"></span>Tech stack</a>
+        <div class="cs-rail-meta">
+          <p class="sidebar-label">Year</p>
+          <p class="sidebar-val">2025</p>
+          <p class="sidebar-label">Status</p>
+          <p class="sidebar-val">In Progress</p>
+        </div>
+      </nav>
     </aside>
     <main class="main-col">
-      <div class="reveal">
+      <section id="cs-ov" class="cs-section reveal">
         <p class="section-head">Overview</p>
         <p class="overview-text">Aporia builds you a personalized investment portfolio from a 3-step values questionnaire (your goals, risk tolerance through some behavioral scenarios, and any ethical dealbreakers) and keeps updating it as your life changes. Basically every other investing app optimizes for returns. Aporia optimizes for whether you can actually stand behind what you own.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
+      </section>
+      <section id="cs-in" class="cs-section reveal">
         <p class="section-head">Inside Aporia</p>
         <div class="cs-gallery">
           <div class="cs-media-placeholder cs-media-4x3" data-todo="detail-screenshot">
@@ -78,15 +114,13 @@
             <span class="cs-media-label">13F intelligence</span>
           </div>
         </div>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">The Problem</p>
+      </section>
+      <section id="cs-pr" class="cs-section reveal">
+        <p class="section-head">The problem</p>
         <p class="body-text">Every personal finance app out there optimizes for the same thing: returns. Robinhood basically teaches you to gamble. Vanguard hands you a target-date fund and calls it a day. Even the "responsible investing" ETFs are mostly marketing, their screening criteria are vague, inconsistent, and buried three pages into a prospectus. Nothing let you say "I don't want to own fossil fuel companies" and actually see what that means for your allocation.</p>
         <p class="body-text">The other problem is opacity. Most portfolio tools feel like vending machines, you put inputs in, get outputs out, no explanation in between. I wanted Aporia to feel more like a conversation, where you can actually see the reasoning and understand not just what you own, but why.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
+      </section>
+      <section id="cs-hl" class="cs-section reveal">
         <p class="section-head">Highlights</p>
         <ul class="highlights">
           <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Values-based onboarding that turns your ethical dealbreakers into real allocation decisions. Exclude fossil fuels and it doesn't just filter a fund, it swaps in a solar ETF at the same weight.</p></li>
@@ -95,27 +129,24 @@
           <li class="highlight-item"><span class="h-num">04</span><p class="h-text">An institutional intelligence panel that surfaces Q4 2024 SEC 13F filings from Berkshire, ARK, and Vanguard, mapped back to your specific holdings. I haven't seen this in any other consumer investing app.</p></li>
           <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Life event triggers and a suggestion inbox. New job, baby, home purchase, each one kicks off a tailored review of your allocation. Rebalancing alerts show up when they're actually relevant, not on some fixed schedule.</p></li>
         </ul>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Under the Hood</p>
+      </section>
+      <section id="cs-uh" class="cs-section reveal">
+        <p class="section-head">Under the hood</p>
         <p class="body-text">The values pipeline runs in three stages. First, the onboarding questionnaire turns your ethical dealbreakers into exclusion rules. "No fossil fuels" means screening out specific sectors and tickers, then swapping in clean energy alternatives at the same weight. Second, the portfolio generator runs an allocation algorithm across those 12 ETFs, weighting for your risk tolerance and time horizon while respecting the exclusions. Third, a 13F parser pulls institutional holdings straight from quarterly SEC filings and cross-references them against what you actually own.</p>
         <p class="body-text">The trickiest part was making rebalancing feel smart instead of mechanical. Triggering a full review every time interest rates twitch would just be noise. So I built a life event model (job change, major purchase, family change) that maps each event to a prioritized set of questions, so suggestions feel earned instead of automatic.</p>
         <p class="callout">"The institutional intelligence panel started as an afterthought. Showing what Berkshire, ARK, and Vanguard are actually holding this quarter ended up being the most distinctive thing about the product."</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
+      </section>
+      <section id="cs-rf" class="cs-section reveal">
         <p class="section-head">Reflection</p>
         <p class="body-text">I built Aporia because I wanted to use it myself. The 13F panel was the biggest surprise. I didn't plan it as a core feature, but once I had the parsing working it felt like the most genuinely new part of the product. I still haven't seen it anywhere else. The SEC already publishes that data every quarter, it just takes someone willing to actually parse it.</p>
         <p class="body-text">Building a values-aligned portfolio tool also changed how I think about financial advice. The algorithm makes suggestions, but your ethics drive the logic, not the other way around. Putting values ahead of the optimizer's objective function is basically the whole product philosophy.</p>
-      </div>
-      <div class="reveal">
-        <hr class="section-rule">
-        <p class="section-head">Tech Stack</p>
+      </section>
+      <section id="cs-ts" class="cs-section reveal">
+        <p class="section-head">Tech stack</p>
         <div class="stack-list">
           <span class="stack-tag">React 19</span><span class="stack-tag">TypeScript</span><span class="stack-tag">Tailwind CSS</span><span class="stack-tag">Framer Motion</span><span class="stack-tag">Zustand</span><span class="stack-tag">React Query</span><span class="stack-tag">Recharts</span><span class="stack-tag">Express</span><span class="stack-tag">Vite</span>
         </div>
-      </div>
+      </section>
     </main>
   </div>
 </div>
