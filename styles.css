@@ -126,7 +126,6 @@ header {
   font-size: 22px;
   font-family: "DM Sans", sans-serif;
   background-color: transparent;
-  border-top: 2px solid transparent;
   border-bottom: 1px solid transparent;
   position: sticky;
   top: 0;
@@ -137,7 +136,6 @@ header {
 header.scrolled,
 body.page-about header {
   background-color: var(--bg);
-  border-top-color: rgba(0, 0, 0, 0.1);
 }
 
 header.scrolled {
@@ -480,9 +478,11 @@ footer p {
      sits in. #hero also carries margin-top: -58px to tuck under the header,
      so the top padding must cover that before it becomes visible space. */
   #hero.section-cover {
-    height: auto;
+    /* Stays a full-viewport cover on mobile. The content is top-aligned rather
+       than centred, so the slack falls below it instead of splitting into a
+       large gap above the copy and another down to the drawer. */
     justify-content: flex-start;
-    padding: 110px 0 88px;
+    padding: 180px 0 88px;
   }
 
   .hero-drawer {
