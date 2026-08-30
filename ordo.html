@@ -178,10 +178,10 @@
 
       <section id="cs-bn" class="cs-section reveal">
         <p class="section-head">Meet Bean</p>
-        <p class="body-text">The way Ordo looks today came out of a single piece of feedback. A friend was the first person other than me to use it properly. When I asked what he thought, he said it worked fine, and then admitted he didn't really want to open it again. He called it stale. His fix was blunt: give it a mascot, and make the thing look like it wants to be opened.</p>
-        <p class="body-text">My first instinct was that this was a cosmetic note and I had real problems to work on. But, that was wrong. I realized that Ordo asks for an unreasonable amount of trust — it wants to tell you how to spend your evening, every evening — and at that point it was delivering those verdicts with all the warmth of a tax form. Cold competence is fine for something you open twice a semester. It is the wrong register entirely for something that has to become a habit.</p>
+        <p class="body-text">The way Ordo looks today came from a single piece of feedback. A friend of mine was the first person other than me to use the app properly. When I asked what he thought, he said it worked fine, but then admitted he didn't really want to open it again (ouch!). He called it stale and suggested a couple of changes: give it a mascot, and make the thing look like it wants to be opened again.</p>
+        <p class="body-text">My first instinct was that this was a cosmetic note and I had other things to work on. But, I was wrong. I realized that Ordo asks for an unreasonable amount of trust — it wants to tell you how to spend your evening, every evening — and at that point it was delivering those verdicts with all the warmth of a tax form. This would be fine for something you open twice a semester, but it's the wrong register entirely for something that has to become a habit.</p>
         <p class="body-text">So everything warmed up! I went for paper tones instead of dashboard grey. I used a serif for anything the app says to you. I gave color an actual job rather than just decoration: which course a block belongs to, whether a task is scheduled or still floating, when a focus session is running. The inspiration was a real, physical planner made to be used every day.</p>
-        <p class="body-text">And Bean! He is a coffee bean, he has opinions, and he shows up in the morning briefing, the focus timer, and anywhere else I could fit him in (without him being too much of a distraction)! His expression tracks what is going on — proud when you close out a week, sleepy well past midnight, faintly concerned when the plan has quietly come apart. The one rule I set was that he never blocks anything and never congratulates you for something you didn't do. Looking back at it now, my friend was definitely right about the app feeling stale — I can't imagine Ordo without Bean.</p>
+        <p class="body-text">And Bean! He is a coffee bean, he has opinions, and he shows up in the morning briefing, the focus timer, and anywhere else I could fit him in (without him being too much of a distraction)! His expression tracks what is going on — proud when you close out a week, sleepy well past midnight, and faintly concerned when the plan has quietly come apart. The one rule I set was that he never blocks anything and never congratulates you for something you didn't do. Looking back at it now, my friend was definitely right about the app feeling stale — I can't imagine Ordo without Bean.</p>
         <div class="cs-media-photo">
           <p class="cs-media-title">Bean, in six moods</p>
           <div class="cs-bean-row">
@@ -258,7 +258,7 @@
 
       <section id="cs-in" class="cs-section reveal">
         <p class="section-head">Inside Ordo</p>
-        <p class="body-text">That warmth had to survive contact with the parts of the app that do real work. Onboarding is the hardest test of it: the scheduler needs real numbers before it can do anything useful, so the app has to ask for genuine effort up front and make every question feel worth answering.</p>
+        <p class="body-text">That warmth had to survive contact with the parts of the app that do the real work. Onboarding is the hardest test of it: the scheduler needs real numbers before it can do anything useful, so the app has to ask for genuine effort up front and make every question feel worth answering.</p>
 
         <figure class="cs-figure" data-zoom>
           <img src="images/ordo/desktop/onboarding-capacity.webp" alt="Ordo onboarding step five: a slider for hours of focused work per day shown as blocks of thirty minutes, a time-of-day preference, and a live summary of how many focus blocks that allows" loading="lazy">
@@ -320,8 +320,8 @@
 
       <section id="cs-uh" class="cs-section reveal">
         <p class="section-head">Under the hood</p>
-        <p class="body-text">The scheduler is the core of the whole thing. It takes tasks already broken into subtasks with estimates and fits them into your week around class blocks, focus windows, daily capacity, and deadlines that don't negotiate. Google Calendar comes in over read-only OAuth, so anything already on there counts as busy. It reruns on every login, which matters more than it sounds: the plan has to survive you falling behind, because you will.</p>
-        <p class="body-text">Claude's other job is reading rather than decomposing. During onboarding it parses syllabus PDFs and pulls out the whole course schedule — dates, weights, recitation times — so none of it lands on you.</p>
+        <p class="body-text">The scheduler is the core Ordo. It takes tasks already broken into subtasks with estimates and fits them into your week around class blocks, focus windows, daily capacity, and deadlines. Google Calendar comes in over read-only OAuth, so anything already on there counts as busy. It reruns on every login, which matters more than it sounds: the plan has to survive you falling behind, because you inevitably will.</p>
+        <p class="body-text">Claude's other job is reading. During onboarding (and later on, if you add a new course) it parses syllabus PDFs and pulls out the whole course schedule — dates, weights, recitation times, and mode.</p>
 
         <details class="cs-deep">
           <summary>Deep dive — AI decomposition, cache first</summary>
