@@ -477,7 +477,7 @@ footer p {
 .hero-drawer .hero-peek-tab:nth-child(5):focus-visible { top: 22px; }
 
 @media (max-width: 700px) {
-  /* The hero is a full-viewport cover with its content centred, so on a tall
+  /* The hero is a full-viewport cover with its content centered, so on a tall
      phone the copy floats mid-screen with ~270px of dead space above it and
      another gap down to the drawer. Let it be as tall as its content instead;
      the bottom padding reserves the band the absolutely-positioned drawer
@@ -485,7 +485,7 @@ footer p {
      so the top padding must cover that before it becomes visible space. */
   #hero.section-cover {
     /* Stays a full-viewport cover on mobile. The content is top-aligned rather
-       than centred, so the slack falls below it instead of splitting into a
+       than centered, so the slack falls below it instead of splitting into a
        large gap above the copy and another down to the drawer. */
     justify-content: flex-start;
     padding: 180px 0 88px;
@@ -1937,6 +1937,7 @@ body:has(#blog) {
 }
 
 .folder-panel[data-folder="aporia"] { --folder-color: #D2DCB6; --tab-offset: 3%; }
+.folder-panel[data-folder="jennyfigment"] { --folder-color: #A1BC98; --tab-offset: 3%; }
 .folder-panel[data-folder="ordo"] { --folder-color: #F1F3E0; --tab-offset: 25%; }
 .folder-panel[data-folder="brandle"] { --folder-color: #A1BC98; --tab-offset: 12%; }
 .folder-panel[data-folder="holoorbits"] { --folder-color: #778873; --tab-offset: 35%; }
@@ -1985,6 +1986,14 @@ body.case-study-page.theme-ordo {
 }
 
 body.case-study-page.theme-aporia {
+  --accent: #3b6c33;
+  --asoft: rgb(213, 222, 209);
+  --band: #A1BC98;
+  --panel: #E9F0E6;
+  --accent-dark: #2c5226;
+}
+
+body.case-study-page.theme-jennyfigment {
   --accent: #3b6c33;
   --asoft: rgb(213, 222, 209);
   --band: #A1BC98;
@@ -3025,7 +3034,7 @@ body.case-study-page.theme-holoorbits {
   padding: 7px 0;
   transition: color 0.25s ease;
   /* This rail is a <nav>, so the global `nav a` rule reaches it. Undo the
-     header-nav treatment: it centred each label, uppercased it, widened the
+     header-nav treatment: it centered each label, uppercased it, widened the
      tracking, and dimmed it to 0.6. */
   text-transform: none;
   letter-spacing: normal;
@@ -3033,7 +3042,7 @@ body.case-study-page.theme-holoorbits {
 }
 
 /* `nav a:hover` widens tracking to 0.22em, which would jitter the whole rail
-   on hover. The rail signals hover with colour instead. */
+   on hover. The rail signals hover with color instead. */
 .case-study-page .cs-rail-link:hover { letter-spacing: normal; }
 
 .case-study-page .cs-rail-link .cs-rail-dot {
@@ -3169,6 +3178,45 @@ body.case-study-page.theme-holoorbits {
 }
 
 .case-study-page .cs-compare-arrow svg { stroke: var(--accent); }
+
+/* — information-architecture comparison: the menus themselves, not screenshots.
+     Sits in the same card as .cs-compare-shot but is text, so it can't borrow
+     that class's fixed image aspect-ratio. — */
+.case-study-page .cs-ia {
+  list-style: none;
+  margin: 0;
+  padding: 4px 14px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.5;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.case-study-page .cs-ia li {
+  padding: 9px 0;
+  color: #6b675f;
+  border-top: 1px solid var(--border);
+}
+
+.case-study-page .cs-ia li:first-child { border-top: none; }
+
+/* The "after" rows carry a group label, so they need more room to breathe. */
+.case-study-page .cs-compare-card.is-after .cs-ia li {
+  padding: 12px 0;
+  color: #504c45;
+}
+
+.case-study-page .cs-ia-group {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
 
 /* — striped what-changed rows — */
 .case-study-page .cs-changes {
@@ -3331,6 +3379,23 @@ body.case-study-page.theme-holoorbits {
      app's own UI is too small to read. */
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 16px;
+}
+
+/* .cs-shot clips to a fixed ratio, so a caption can't live inside it. The
+   figure wraps both and owns the spacing between them. */
+.case-study-page .cs-shot-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.case-study-page .cs-shot-cap {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: #6b675f;
 }
 
 .case-study-page .cs-shot {

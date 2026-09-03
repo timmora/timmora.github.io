@@ -276,7 +276,7 @@ function randomHighlightAngle(selector, onHover) {
 }
 
 // Case-study contents rail: highlight the section currently under the reader.
-// The rootMargin band is narrow and centred, so the active dot tracks what's
+// The rootMargin band is narrow and centered, so the active dot tracks what's
 // actually being read rather than whatever merely touched the viewport edge.
 (function() {
   var links = document.querySelectorAll('.cs-rail-link[data-rail]');

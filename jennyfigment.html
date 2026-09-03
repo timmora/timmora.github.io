@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tim Mora - Jenny Figment</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="case-study-page theme-jennyfigment">
+
+<header>
+  <div class="header-inner">
+    <nav class="nav-left">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#portfolio" class="nav-active" aria-current="page">Portfolio</a></li>
+      </ul>
+    </nav>
+    <a href="index.html" class="header-name">Tim Mora</a>
+    <nav class="nav-right">
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <p class="hero-meta">Client Site &nbsp;·&nbsp; 2026</p>
+  <h1 class="hero-title">Jenny Figment</h1>
+  <p class="hero-sub">One site, three audiences: a seven-year-old, <br> a parent, and a librarian with a booking budget.</p>
+</section>
+
+<div class="cs-banner">
+  <img src="images/jennyfigment/banner.webp" alt="Two browser windows side by side: the jennyfigment.com homepage reading Simple stories, BIG imagination over lined-paper texture with the Lucky Penny card taped up beside it, and behind it the hot pink Imagination Zone landing for kids">
+</div>
+
+<section class="cs-summary">
+  <div class="cs-summary-inner">
+    <p class="cs-summary-eyebrow">At a glance</p>
+    <div class="cs-summary-grid">
+      <div>
+        <p class="cs-summary-label">Problem</p>
+        <p class="cs-summary-val">A children's author's site had grown a page at a time as each book came out, until one flat menu was being asked to serve three people at once: a kid looking for something to play with, a parent deciding what to buy, and a school librarian trying to work out whether an author visit fits their budget.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">What I built</p>
+        <p class="cs-summary-val">A 16-page site with no framework and no dependencies. A CSS design system with per-audience theming, five interactive activities for kids, a bilingual book page, two forms, and a 43-line build step to keep the header and footer honest across every page.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">My role</p>
+        <p class="cs-summary-val">Solo, and every part of it: interviewing the client, the information architecture, the visual design, the whole front end, the deployment, and the second engagement four months later when a new book needed a home.</p>
+      </div>
+      <div>
+        <p class="cs-summary-label">Where it landed</p>
+        <p class="cs-summary-val">Live at jennyfigment.com. Five months, 51 commits, and roughly half of the final stretch spent on things no visitor will ever see.</p>
+      </div>
+    </div>
+    <div class="cs-summary-foot">
+      <a class="cs-cta" href="https://jennyfigment.com" target="_blank" rel="noopener">Visit jennyfigment.com ↗</a>
+      <span class="cs-chip">Vanilla JS</span>
+      <span class="cs-chip">Canvas API</span>
+      <span class="cs-chip">CSS Design System</span>
+      <span class="cs-chip">Node</span>
+      <span class="cs-chip">Apache</span>
+    </div>
+  </div>
+</section>
+
+<div class="content">
+  <div class="content-grid">
+    <aside>
+      <nav class="cs-rail" aria-label="Contents">
+        <p class="cs-rail-head">Contents</p>
+        <a class="cs-rail-link" data-rail="cs-ov" href="#cs-ov"><span class="cs-rail-dot"></span>Overview</a>
+        <a class="cs-rail-link" data-rail="cs-ba" href="#cs-ba"><span class="cs-rail-dot"></span>Before → after</a>
+        <a class="cs-rail-link" data-rail="cs-in" href="#cs-in"><span class="cs-rail-dot"></span>Inside the site</a>
+        <a class="cs-rail-link" data-rail="cs-pr" href="#cs-pr"><span class="cs-rail-dot"></span>The problem</a>
+        <a class="cs-rail-link" data-rail="cs-hl" href="#cs-hl"><span class="cs-rail-dot"></span>Highlights</a>
+        <a class="cs-rail-link" data-rail="cs-uh" href="#cs-uh"><span class="cs-rail-dot"></span>Under the hood</a>
+        <a class="cs-rail-link" data-rail="cs-rf" href="#cs-rf"><span class="cs-rail-dot"></span>Reflection</a>
+        <a class="cs-rail-link" data-rail="cs-ts" href="#cs-ts"><span class="cs-rail-dot"></span>Tech stack</a>
+        <div class="cs-rail-meta">
+          <p class="sidebar-label">Year</p>
+          <p class="sidebar-val">2026</p>
+          <p class="sidebar-label">Status</p>
+          <p class="sidebar-val status-live">Live ↗</p>
+        </div>
+      </nav>
+    </aside>
+    <main class="main-col">
+
+      <section id="cs-ov" class="cs-section reveal">
+        <p class="section-head">Overview</p>
+        <p class="overview-text">Jennifer Hayes writes the Jenny Figment books. Her site has to sell books, but it also has to book school visits, hand teachers a lesson plan they can print, and give a seven-year-old something to do that isn't a purchase. I rebuilt it as three tracks running off one design system, hand-written in HTML, CSS, and JavaScript with nothing else in the stack.</p>
+      </section>
+
+      <section id="cs-ba" class="cs-section reveal">
+        <p class="section-head">Before → after</p>
+        <p class="body-text">The clearest way to show what changed isn't a screenshot, it's the menu. Everything else on this page follows from the difference between these two lists.</p>
+
+        <div class="cs-compare">
+          <div class="cs-compare-card">
+            <div class="cs-compare-head">
+              <p class="cs-compare-when">Before</p>
+              <p class="cs-compare-tag">One flat menu</p>
+            </div>
+            <ul class="cs-ia">
+              <li>Home</li>
+              <li>School Visit Information</li>
+              <li>Parent and Teacher Guide</li>
+              <li>Media Kit for Schools, Bookstores, and Press</li>
+              <li>Bookish Events</li>
+              <li>Extraordinary Kids Campaign</li>
+              <li>Leave a Review!</li>
+            </ul>
+            <p class="cs-compare-desc">Seven links in a single row, ordered by when each thing was added rather than by who needed it. A parent, a seven-year-old, and a school librarian all arrived at the same list in the same order.</p>
+          </div>
+          <div class="cs-compare-arrow">
+            <svg width="26" height="12" viewBox="0 0 26 12" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M0 6h21M16 1.5L21 6l-5 4.5"/></svg>
+          </div>
+          <div class="cs-compare-card is-after">
+            <div class="cs-compare-head">
+              <p class="cs-compare-when">After</p>
+              <p class="cs-compare-tag">Three audience paths</p>
+            </div>
+            <ul class="cs-ia">
+              <li><span class="cs-ia-group">For kids</span>Kids Zone — four activities, its own color, its own door</li>
+              <li><span class="cs-ia-group">For readers &amp; parents</span>Home · Books · About</li>
+              <li><span class="cs-ia-group">For schools</span>Educators &amp; Parents · School Visits · Contact</li>
+            </ul>
+            <p class="cs-compare-desc">The same content, sorted by who came for it. Each path carries its own accent color, and the Kids Zone gets a separate entry point entirely, so a child never has to read a menu written for adults.</p>
+          </div>
+        </div>
+
+        <div class="cs-changes">
+          <div class="cs-change">
+            <p class="cs-change-label">Who the menu is for</p>
+            <p class="cs-change-text">The old order was chronological — each book launch added a link and nothing was ever taken away, which is how nearly every author site ends up. Reordering by audience meant deciding what the site is <em>for</em> before deciding what goes on it. That was the longest part of the project and the part with the least code in it.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change-label">Where the proof lives</p>
+            <p class="cs-change-text">Reviews and press coverage are what actually sell a book and win a school visit, and they were one undifferentiated link among seven. They now sit on the two pages where the decision actually gets made — the homepage and the school-visits page — as real text in a carousel rather than a destination you have to go looking for.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change-label">A separate door for kids</p>
+            <p class="cs-change-text">Kids Zone stopped being a menu item and became a different mode: its own accent color, its own root class, a rounder typeface, and a confirmation step before any link leaves the site. Serving a seven-year-old and a booking enquiry through the same navigation was the one thing the old structure could never do well.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cs-in" class="cs-section reveal">
+        <p class="section-head">Inside the site</p>
+        <p class="body-text">The Kids Zone is the part I'd point at first. It's four activities tied to four characters from the books — a coloring canvas, a joke generator, a recipe stepper, and a Q&amp;A with Jenny herself — and it's deliberately walled off from the rest of the site. It gets its own color, its own root class, a rounder typeface, and a confirmation modal on any outbound link, so a kid clicking something that leads off-site gets asked first.</p>
+
+        <p class="body-text">The coloring canvas is the hardest of the four to get right, and the one where the decisions are easiest to see.</p>
+
+        <figure class="cs-figure" data-zoom>
+          <img src="images/jennyfigment/coloring.webp" alt="The Arachna coloring canvas with Jenny Figment drawn across it in green beside a pink smiley face, a twelve-swatch palette and four brush sizes to the right, and Undo now enabled" loading="lazy">
+          <div class="cs-pins" aria-hidden="true">
+            <span class="cs-pin" style="left: 41.5%; top: 50%">1</span>
+            <span class="cs-pin" style="left: 73.5%; top: 26%">2</span>
+            <span class="cs-pin" style="left: 75%; top: 64%">3</span>
+            <span class="cs-pin" style="left: 74.5%; top: 88%">4</span>
+          </div>
+        </figure>
+
+        <div class="cs-notes">
+          <div class="cs-note">
+            <span class="cs-note-num">01</span>
+            <p class="cs-note-text">A canvas has a fixed logical resolution — 600&nbsp;×&nbsp;600 here — but renders at whatever size CSS hands it. Every pointer event therefore arrives in the wrong coordinate space and gets rescaled against the element's measured size before a single stroke lands. Touch listeners are registered non-passively too, or the page scrolls out from under a child trying to draw.</p>
+          </div>
+          <div class="cs-note">
+            <span class="cs-note-num">02</span>
+            <p class="cs-note-text">Twelve fixed swatches rather than a color picker. A seven-year-old can't produce a combination that looks broken, and the palette is drawn from the same character accent tokens the rest of the site themes with.</p>
+          </div>
+          <div class="cs-note">
+            <span class="cs-note-num">03</span>
+            <p class="cs-note-text">Undo walks a stack of fifteen canvas snapshots and disables itself at the bottom of it — which is why the button is live in this shot and greyed out on an empty canvas. Fifteen is a memory ceiling, not a design one; full-canvas bitmaps add up quickly.</p>
+          </div>
+          <div class="cs-note">
+            <span class="cs-note-num">04</span>
+            <p class="cs-note-text">A printable PDF sits under the canvas for anyone whose device can't give them a usable drawing surface. The activity degrades to crayons rather than to nothing, which for a kids' page matters more than it would anywhere else.</p>
+          </div>
+        </div>
+
+        <p class="body-text">The bilingual work shows up in two places, which is the argument for building it as a system rather than a one-off. <em>Lucky Penny</em> is a dual-language picture book, so its page carries the full English and Spanish text; Penny's Corner, over in the Kids Zone, reuses the same toggle for a vocabulary game. One control, two contexts, no duplicated machinery.</p>
+
+        <p class="body-text">The other two tracks are quieter and do the commercial work. Educators get a hub of printable activity PDFs with no login in the way; schools get a visits page where the testimonials sit beside the booking form rather than filed under a menu item nobody clicks. Each track carries its own accent color, driven by one page-level custom property rather than a second set of components.</p>
+
+        <div class="cs-shots">
+          <p class="cs-shots-title">The rest of the site, briefly</p>
+          <div class="cs-shots-grid">
+            <figure class="cs-shot-item">
+              <div class="cs-shot" data-zoom><img src="images/jennyfigment/kids-zone.webp" alt="The Kids Zone hub asking Who Do You Want to Visit, with four character cards — Jenny Figment, Grandpa Tony, Flora Margaret and Arachna — each edged in its own accent color" loading="lazy"></div>
+              <figcaption class="cs-shot-cap">Four characters, four accent colors, all drawn from the same token set the rest of the site themes with.</figcaption>
+            </figure>
+            <figure class="cs-shot-item">
+              <div class="cs-shot" data-zoom><img src="images/jennyfigment/lucky-penny.webp" alt="The Lucky Penny book page with the language toggle switched to Español and the Spanish synopsis rendering below it, under a papel picado banner" loading="lazy"></div>
+              <figcaption class="cs-shot-cap">The book page carries its full text in both languages, switched by one control rather than a second URL.</figcaption>
+            </figure>
+            <figure class="cs-shot-item">
+              <div class="cs-shot" data-zoom><img src="images/jennyfigment/penny-corner.webp" alt="Penny's Corner in the Kids Zone: the same English and Español toggle above six illustrated vocabulary cards for dog, home, bed, dish, friend and marigold" loading="lazy"></div>
+              <figcaption class="cs-shot-cap">The same toggle reused two clicks away, for a vocabulary game — which is the argument for building it as a system.</figcaption>
+            </figure>
+            <figure class="cs-shot-item">
+              <div class="cs-shot" data-zoom><img src="images/jennyfigment/educators.webp" alt="The Activity Guides and Resources page on the green educator theme, with category filter chips and a grid of free PDF download cards" loading="lazy"></div>
+              <figcaption class="cs-shot-cap">Resources are free and ungated. Nothing sits between a teacher and a printable PDF, which was the whole point.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="cs-pr" class="cs-section reveal">
+        <p class="section-head">The problem</p>
+        <p class="body-text">The site I inherited had done its job. It had grown a page at a time as books came out, which is how most author sites end up — each launch adds a link, nobody ever removes one, and after four books the menu is a list of everything that has ever happened.</p>
+        <p class="body-text">What it couldn't do was tell its visitors apart. Every page was reachable from the same flat row of links, in the same order, in the same voice, whether you were a child looking for a game or a media specialist trying to find a booking rate. The most valuable thing on the whole site — the review quotes and press coverage that actually sell books and win school visits — sat in the middle of that list with no more prominence than anything else.</p>
+        <p class="body-text">So the brief I wrote for myself wasn't "make it look better." It was: work out who actually shows up here, what each of them came to do, and give each one a path that doesn't make them wade through the other two. Everything else — the design system, the activities, the color themes — came out of answering that.</p>
+      </section>
+
+      <section id="cs-hl" class="cs-section reveal">
+        <p class="section-head">Highlights</p>
+        <ul class="highlights">
+          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Audience-based IA: three tracks instead of one menu. Kids Zone is sequestered behind its own theme and its own root class, with a confirmation modal intercepting outbound links so a child gets asked before they leave the site.</p></li>
+          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">A design system in plain CSS — around sixty custom properties, a fully fluid clamp() type scale, and five character accent colors. A single page-accent variable gives Books, Educators, and Kids Zone distinct color moods without a second copy of any component.</p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Five interactive activities in roughly 530 lines of vanilla JavaScript, including a coloring canvas with a fifteen-state undo stack and PNG export, and a joke deck that reshuffles with Fisher-Yates when it runs out.</p></li>
+          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">A bilingual page for <em>Lucky Penny</em>, built as an ARIA tab pattern with roving tabindex. Switching languages also pauses any video or audio in the panel being hidden, and posts a pause command to YouTube embeds so a hidden translation can't keep playing underneath.</p></li>
+          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Accessibility built in rather than bolted on: skip links, semantic landmarks, aria-labelledby on every section, focus returned to the trigger on modal close, and prefers-reduced-motion honored in the design system's own stylesheet, not just in JavaScript.</p></li>
+        </ul>
+      </section>
+
+      <section id="cs-uh" class="cs-section reveal">
+        <p class="section-head">Under the hood</p>
+        <p class="body-text">There is no framework here, and no build step for the JavaScript — nine files, 1,133 lines, loaded with plain script tags. That was a deliberate constraint. The site is hosted on shared cPanel hosting and will outlive my involvement with it, so I wanted something that a future developer could open and understand without first installing anything, and that wouldn't break because a dependency moved on without me.</p>
+        <p class="body-text">The cost of that choice shows up immediately in the header and footer, which have to be identical across every page and have no include mechanism to make them so. That problem is old enough to have a boring solution, and I wrote the boring one.</p>
+
+        <details class="cs-deep">
+          <summary>Deep dive — a 43-line build step instead of a static site generator</summary>
+          <p class="cs-deep-text">Two partials hold the real header and footer, with {{PAGE_CURRENT}} tokens marking where aria-current="page" should land. A Node script reads them, substitutes the token for whichever page it's writing, then finds the existing header in each target file and replaces it in place — matching everything between the skip link and the opening &lt;main&gt; tag.</p>
+<pre><code>const nextWithHeader = original.replace(
+  /\s*&lt;a href="#main-content" class="skip-link"&gt;[\s\S]*?&lt;main id="main-content"&gt;/,
+  `\n${withCurrent(headerTemplate, target.current)}\n\n  &lt;main id="main-content"&gt;`
+);</code></pre>
+          <p class="cs-deep-text">No dependencies, no config, no watcher — node tools/sync-layout.mjs and it's done. It is also honestly limited: it covers the five top-level pages and not the eleven nested ones, because nested pages need ../ prefixes on every link and the script has no path-rewriting logic. Those are still synced by hand, which is the kind of half-solution that works fine right up until it doesn't.</p>
+        </details>
+
+        <p class="body-text">The coloring canvas was the piece I expected to be simple and wasn't. A canvas has a fixed logical resolution — 600&nbsp;×&nbsp;600 here — but it renders at whatever size CSS gives it, so every pointer event arrives in the wrong coordinate space and has to be rescaled before it means anything. Touch made it harder: the listeners have to be registered non-passively so the handler is allowed to cancel the default, or the page scrolls away underneath a child trying to draw on it.</p>
+
+        <details class="cs-deep">
+          <summary>Deep dive — the carousel that refuses to scroll the page</summary>
+          <p class="cs-deep-text">The testimonials carousel is a real scrollable container, not a JavaScript transform, which means touch swiping is free and keyboard scrolling works without being reimplemented. Finding the centered card is then just geometry: measure each card against the viewport center with getBoundingClientRect() and take the nearest.</p>
+          <p class="cs-deep-text">Navigation deliberately uses scrollBy on the container rather than scrollIntoView on the card. scrollIntoView is the obvious call and it's wrong here — it scrolls the nearest scrollable ancestor too, so clicking "next" on a testimonial would yank the whole page. The comment in the source says exactly that, mostly so I don't forget and change it back.</p>
+        </details>
+
+        <p class="body-text">The last third of the project was almost entirely invisible work. Clean URLs meant hand-writing Apache rewrites: a 301 to strip .html from anything that asks for it, an internal rewrite to serve the file when it doesn't, and a filename check ordered ahead of the directory match so that /books resolves to books.html rather than the books/ directory sitting next to it with the same name. Then cache-busting on the stylesheets, the Formspree wiring for three forms, and an iOS navigation bug that took seven attempts to pin down.</p>
+
+        <p class="callout">"Nearly half the commits in the final stretch went to things no visitor will ever notice — URL rewrites, cache busting, and a mobile nav bug that only appeared on iOS. That work is invisible when it's right and the only thing anyone sees when it's wrong."</p>
+      </section>
+
+      <section id="cs-rf" class="cs-section reveal">
+        <p class="section-head">Reflection</p>
+        <p class="body-text">The thing I'd change first is the one I already know about. There are no responsive images anywhere on this site, no srcset, and no lazy loading — and it ships 39MB of assets, including a 5.7MB illustration and a 3MB book cover that also serves as the social preview image. On a school's wifi that's a real cost, and it's the gap between a site that works and a site that's actually fast. I know exactly what the fix is; I ran out of engagement before I did it.</p>
+        <p class="body-text">The design system is what I'd keep. Committing to custom properties and one page-accent variable early meant that when a fifth book arrived four months later with a bilingual requirement nobody had planned for, adding it was a new page and a set of tokens rather than a rewrite. That's the first time I've built something where coming back to it months later was genuinely easy, and it was a lesson in the value of deciding things once, properly, at the start.</p>
+        <p class="body-text">The other lesson was about scope. This was five months of part-time work for a client who is a friend's mother, agreed on a handshake, with no written scope and no deposit. The site is something I'm proud of. The way I ran the project is the part I'd do differently, and I've since written down what's included, what isn't, and what happens when it changes.</p>
+      </section>
+
+      <section id="cs-ts" class="cs-section reveal">
+        <p class="section-head">Tech stack</p>
+        <div class="stack-list">
+          <span class="stack-tag">HTML5</span><span class="stack-tag">CSS Custom Properties</span><span class="stack-tag">Vanilla JS</span><span class="stack-tag">Canvas API</span><span class="stack-tag">IntersectionObserver</span><span class="stack-tag">Node.js</span><span class="stack-tag">Apache</span><span class="stack-tag">cPanel</span><span class="stack-tag">Formspree</span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div class="case-nav">
+  <a class="case-nav-link" href="index.html#portfolio"><div class="case-nav-label">← All Work</div></a>
+  <a class="case-nav-link case-nav-next" href="brandle.html">
+    <div><div class="case-nav-label">Next Project</div><div class="case-nav-title">Brandle →</div></div>
+  </a>
+</div>
+
+<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
