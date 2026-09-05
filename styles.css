@@ -459,11 +459,12 @@ footer p {
   color: rgba(255, 255, 255, 0.88);
 }
 
-.hero-drawer .hero-peek-tab:nth-child(1) { --folder-color: #F1F3E0; top: 30px; animation-delay: 1.25s; }
-.hero-drawer .hero-peek-tab:nth-child(2) { --folder-color: #D2DCB6; top: 30px; animation-delay: 1.33s; }
-.hero-drawer .hero-peek-tab:nth-child(3) { --folder-color: #A1BC98; top: 26px; animation-delay: 1.41s; }
-.hero-drawer .hero-peek-tab:nth-child(4) { --folder-color: #778873; top: 32px; animation-delay: 1.49s; }
-.hero-drawer .hero-peek-tab:nth-child(5) { --folder-color: #313647; top: 32px; animation-delay: 1.57s; }
+/* Offset and stagger stay positional; colour comes from [data-folder]. */
+.hero-drawer .hero-peek-tab:nth-child(1) { top: 30px; animation-delay: 1.25s; }
+.hero-drawer .hero-peek-tab:nth-child(2) { top: 30px; animation-delay: 1.33s; }
+.hero-drawer .hero-peek-tab:nth-child(3) { top: 26px; animation-delay: 1.41s; }
+.hero-drawer .hero-peek-tab:nth-child(4) { top: 32px; animation-delay: 1.49s; }
+.hero-drawer .hero-peek-tab:nth-child(5) { top: 32px; animation-delay: 1.57s; }
 
 .hero-drawer .hero-peek-tab:nth-child(1):hover,
 .hero-drawer .hero-peek-tab:nth-child(1):focus-visible { top: 20px; }
@@ -1311,11 +1312,27 @@ body.portfolio-folder-open footer {
   }
 }
 
-.folder:nth-child(1) { --folder-color: #F1F3E0; --tab-offset: 3%; z-index: 1; }
-.folder:nth-child(2) { --folder-color: #D2DCB6; --tab-offset: 25%; z-index: 2; }
-.folder:nth-child(3) { --folder-color: #A1BC98; --tab-offset: 12%; z-index: 3; }
-.folder:nth-child(4) { --folder-color: #778873; --tab-offset: 35%; z-index: 4; }
-.folder:nth-child(5) { --folder-color: #313647; --tab-offset: 6%; z-index: 5; }
+/* Tab position and stacking are genuinely positional, so they stay on
+   nth-child. Colour is a property of the project, so it lives on
+   [data-folder] below and survives reordering the stack. */
+.folder:nth-child(1) { --tab-offset: 3%; z-index: 1; }
+.folder:nth-child(2) { --tab-offset: 25%; z-index: 2; }
+.folder:nth-child(3) { --tab-offset: 12%; z-index: 3; }
+.folder:nth-child(4) { --tab-offset: 35%; z-index: 4; }
+.folder:nth-child(5) { --tab-offset: 6%; z-index: 5; }
+
+/* Each project's own primary, lightened to a folder tint. Every one clears
+   9:1 against the tab ink. Toolkit isn't a project and keeps the dark navy. */
+.folder[data-folder="ordo"],
+.hero-drawer .hero-peek-tab[data-folder="ordo"]           { --folder-color: #E7C8B1; }
+.folder[data-folder="holoorbits"],
+.hero-drawer .hero-peek-tab[data-folder="holoorbits"]     { --folder-color: #B1BBE7; }
+.folder[data-folder="jennyfigment"],
+.hero-drawer .hero-peek-tab[data-folder="jennyfigment"]   { --folder-color: #E7B1C6; }
+.folder[data-folder="brandle"],
+.hero-drawer .hero-peek-tab[data-folder="brandle"]        { --folder-color: #DDE7B1; }
+.folder[data-folder="toolkit"],
+.hero-drawer .hero-peek-tab[data-folder="toolkit"]        { --folder-color: #313647; }
 .folder:nth-child(5) .folder-tab { cursor: pointer; color: rgba(255, 255, 255, 0.88); }
 .folder:nth-child(5) .folder-body { cursor: pointer; }
 .folder-panel[data-folder="toolkit"] { --folder-color: #313647; --tab-offset: 6%; }
@@ -1937,10 +1954,10 @@ body:has(#blog) {
 }
 
 .folder-panel[data-folder="aporia"] { --folder-color: #D2DCB6; --tab-offset: 3%; }
-.folder-panel[data-folder="jennyfigment"] { --folder-color: #A1BC98; --tab-offset: 3%; }
-.folder-panel[data-folder="ordo"] { --folder-color: #F1F3E0; --tab-offset: 25%; }
-.folder-panel[data-folder="brandle"] { --folder-color: #A1BC98; --tab-offset: 12%; }
-.folder-panel[data-folder="holoorbits"] { --folder-color: #778873; --tab-offset: 35%; }
+.folder-panel[data-folder="jennyfigment"] { --folder-color: #E7B1C6; --tab-offset: 3%; }
+.folder-panel[data-folder="ordo"] { --folder-color: #E7C8B1; --tab-offset: 25%; }
+.folder-panel[data-folder="brandle"] { --folder-color: #DDE7B1; --tab-offset: 12%; }
+.folder-panel[data-folder="holoorbits"] { --folder-color: #B1BBE7; --tab-offset: 35%; }
 
 /* ============================================================
    CASE STUDY DETAIL PAGES (Ordo, Aporia, Brandle, HoloOrbits)
@@ -1978,11 +1995,11 @@ body.case-study-page {
 }
 
 body.case-study-page.theme-ordo {
-  --accent: #7a7c30;
-  --asoft: rgb(226, 226, 209);
-  --band: #F1F3E0;
-  --panel: #F1F3E0;
-  --accent-dark: #5c5e21;
+  --accent: #774622;
+  --asoft: #E2DAD4;
+  --band: #E7C8B1;
+  --panel: #F7EFE9;
+  --accent-dark: #5A3419;
 }
 
 body.case-study-page.theme-aporia {
@@ -1994,28 +2011,28 @@ body.case-study-page.theme-aporia {
 }
 
 body.case-study-page.theme-jennyfigment {
-  --accent: #3b6c33;
-  --asoft: rgb(213, 222, 209);
-  --band: #A1BC98;
-  --panel: #E9F0E6;
-  --accent-dark: #2c5226;
+  --accent: #772243;
+  --asoft: #E2D4DA;
+  --band: #E7B1C6;
+  --panel: #F7E9EE;
+  --accent-dark: #5A1932;
 }
 
 body.case-study-page.theme-brandle {
-  --accent: #3e5240;
-  --asoft: rgb(214, 217, 212);
-  --band: #778873;
-  --panel: #EAEEEA;
-  --accent-dark: #2e3e30;
+  --accent: #687722;
+  --asoft: #E0E2D4;
+  --band: #DDE7B1;
+  --panel: #F4F7E9;
+  --accent-dark: #4E5A19;
   --hero-title-size: clamp(44px, 15vw, 200px);
 }
 
 body.case-study-page.theme-holoorbits {
-  --accent: #4f6535;
-  --asoft: rgb(217, 221, 210);
-  --band: #D2DCB6;
-  --panel: #EDF1E4;
-  --accent-dark: #3b4c27;
+  --accent: #223277;
+  --asoft: #D4D7E2;
+  --band: #B1BBE7;
+  --panel: #E9EBF7;
+  --accent-dark: #19255A;
   --hero-title-size: clamp(40px, 10vw, 140px);
 }
 
