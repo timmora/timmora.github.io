@@ -323,14 +323,14 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
   if (!hero || !layer || !clip || !swing) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var STRING = 26;      // px from cursor to the top of the clip; matches --string
+  var STRING = 16;      // px from cursor to the top of the clip; matches --string
   var CLIP_H = 42;      // clip artwork height; matches --clip-h
   var GRAVITY = 1.7;    // how hard it hangs — higher pulls back to vertical sooner
   var DRIVE = 0.55;     // how much the cursor's acceleration throws it
   var DRIVE_MAX = 4;    // px/frame^2 — pointer noise past this is not real motion
   var DAMP = 0.945;     // energy kept per frame — lower kills the swing sooner
   var OMEGA_MAX = 0.16; // rad/frame — caps how far a hard fling can throw it
-  var HOLD_X = 15;      // px the string hangs to the right of the cursor
+  var HOLD_X = 8;       // px the string hangs to the right of the cursor
   var ANCHOR_EASE = 0.4;
   var BITE_EASE = 0.16;
   var BITE_HOLD = 950;  // ms the clip stays on a tab before letting go
