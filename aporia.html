@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
 
   <meta name="description" content="A values-based portfolio generator that turns ethical exclusions into real allocation decisions, with a panel parsing quarterly SEC 13F filings.">
@@ -26,6 +27,7 @@
   <meta name="twitter:image" content="https://timmora.github.io/images/og/home.png">
 </head>
 <body class="case-study-page theme-aporia">
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <header>
   <div class="header-inner">
@@ -108,7 +110,7 @@
         </div>
       </nav>
     </aside>
-    <main class="main-col">
+    <main class="main-col" id="main-content" tabindex="-1">
       <section id="cs-ov" class="cs-section reveal">
         <p class="section-head">Overview</p>
         <p class="overview-text">Aporia builds you a personalized investment portfolio from a 3-step values questionnaire (your goals, risk tolerance through some behavioral scenarios, and any ethical dealbreakers) and keeps updating it as your life changes. Basically every other investing app optimizes for returns. Aporia optimizes for whether you can actually stand behind what you own.</p>
@@ -173,7 +175,7 @@
   </a>
 </div>
 
-<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
 </html>

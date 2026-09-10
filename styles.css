@@ -8,14 +8,8 @@
   --reveal-bg: #eae9e5;
   --shadow: rgba(0, 0, 0, 0.1);
   --footer-color: #4a4a4a;
-  --glass-nav-bg: rgba(248, 248, 248, 0.62);
   --glass-nav-border: rgba(0, 0, 0, 0.08);
-  --glass-link-hover: rgba(0, 0, 0, 0.05);
-  --glass-link-active: rgba(0, 0, 0, 0.08);
-  --bg-pattern: radial-gradient(circle, rgba(0, 0, 0, 0.055) 0.7px, transparent 0.9px);
-  --bg-pattern-size: 22px 22px;
   --cs-border: rgba(0, 0, 0, 0.1);
-  --cs-muted: rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fadeIn {
@@ -71,7 +65,7 @@ body {
   color: var(--text);
 }
 
-body, .section-cover, .section-reveal, footer, .paper, .paper-content, .envelope, .envelope-label, .envelope-date, .envelope-letter, .folder-panel-tab, .folder-panel-body {
+body, .section-cover, footer, .paper, .paper-content, .envelope, .envelope-label, .envelope-date, .envelope-letter, .folder-panel-tab, .folder-panel-body {
   transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
 
@@ -79,6 +73,42 @@ a {
   text-decoration: none;
   font-weight: bolder;
   color: inherit;
+}
+
+/* The three page-level layouts style their sections as direct children of
+   <body> (see body:has(#blog)), so the main landmark has to be transparent
+   to layout. display: contents gives the landmark without a layout box. */
+.page-main {
+  display: contents;
+}
+
+/* Off-screen until focused, then it lands over the header. */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: none;
+}
+
+/* Skip-link targets take focus programmatically via the fragment; they are
+   not interactive, so they get no ring of their own. */
+[tabindex="-1"]:focus {
+  outline: none;
 }
 
 h1 {
@@ -107,17 +137,6 @@ h2::before {
   position: relative;
   z-index: 2;
   background-color: var(--bg);
-}
-
-.section-reveal {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  background-color: var(--reveal-bg);
-  box-shadow: 0 -20px 0 0 var(--reveal-bg);
-  padding: 0px 56px 16px;
 }
 
 /* Header */
@@ -275,43 +294,6 @@ nav a.nav-active::after {
   transform: scaleX(1);
 }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 14px;
-}
-
-.header-right > a {
-  color: var(--footer-color);
-  display: flex;
-  align-items: center;
-  transition: color 0.3s ease;
-}
-
-.header-right > a:hover {
-  color: var(--text);
-}
-
-.header-right svg {
-  width: 20px;
-  height: 20px;
-}
-
-.lets-chat {
-  border: 1px solid var(--glass-nav-border);
-  border-radius: 999px;
-  padding: 7px 16px;
-  font-size: 17px;
-  font-family: "DM Sans", sans-serif;
-  color: var(--text);
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.lets-chat:hover {
-  background-color: var(--glass-link-hover);
-}
-
 @media (max-width: 700px) {
   .header-inner {
     padding: 0 24px;
@@ -332,14 +314,6 @@ nav a.nav-active::after {
     min-height: 40px;
   }
 
-  .header-right {
-    gap: 10px;
-  }
-
-  .lets-chat {
-    display: none;
-  }
-
   /* These four kept the desktop 56px side gutter at every width, unlike
      .header-inner / .about-main / the case-study .content, which all step
      down to 24px. On a 375px phone that was 112px of the viewport lost. */
@@ -351,12 +325,8 @@ nav a.nav-active::after {
     padding: 30px 24px 50px;
   }
 
-  #connect:not(.section-reveal) {
+  #connect {
     padding: 0 24px 40px;
-  }
-
-  .section-reveal {
-    padding: 0px 24px 16px;
   }
 }
 
@@ -404,10 +374,8 @@ footer {
   background-color: var(--reveal-bg);
 }
 
-/* Page-level footers (Home, Blog) sit on the main page surface,
-   not the cream reveal surface used inside about.html's .section-reveal.
-   The 16px bottom padding mirrors the .section-reveal padding-bottom that
-   gives about.html's nested footer its breathing room above the viewport. */
+/* Page-level footers (Home, About, Blog) sit directly on the page surface,
+   so they take the page background rather than the base footer's cream. */
 body > footer {
   background-color: var(--bg);
   padding: 12px 0 16px;
@@ -423,7 +391,7 @@ footer p {
 
 /* Home Page */
 
-/* Scoped to .section-cover so about.html's #connect.section-reveal
+/* Scoped to .section-cover so the case-study hero
    doesn't inherit the home hero's full-viewport height. */
 #hero.section-cover {
   /* svh is the *small* viewport height: the height with mobile browser chrome
@@ -436,6 +404,85 @@ footer p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* Hero paper clip — a clip dangling from the pointer on an invisible string.
+   This one is an actual driven pendulum rather than a follower easing toward a
+   target: the cursor is the anchor, gravity pulls the clip down, and the
+   anchor's own acceleration drives the swing. That is why it overshoots on a
+   direction change and keeps swinging after you stop, and why flinging it hard
+   enough sends it over the top and spinning — the angle is never clamped.
+
+   .clip-swing rotates about its own top edge, so the rotation alone places the
+   clip; the string length is just the empty space above the artwork inside it.
+
+   Hero children are flex items (or absolutely positioned), so z-index lifts
+   them over this layer without position: relative, which would break
+   .hero-drawer's bottom anchoring. That stacking is load-bearing here: on a
+   click the clip tucks behind a folder tab, and the tab covering its lower
+   half is what sells it as clipped on. */
+#hero-light {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+/* Nothing to hang from until there is a pointer. */
+#hero-light.lit { opacity: 1; }
+
+/* Zero-size anchor: JS only ever writes its transform. */
+.hero-clip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  will-change: transform;
+}
+
+.clip-swing {
+  --clip-w: 20px;
+  --clip-h: 42px;
+  --string: 26px; /* must match STRING in app.js */
+  position: absolute;
+  top: 0;
+  left: calc(var(--clip-w) / -2);
+  width: var(--clip-w);
+  height: calc(var(--string) + var(--clip-h));
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+.clip-swing svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--clip-w);
+  height: var(--clip-h);
+  overflow: visible;
+}
+
+.clip-swing path { fill: none; stroke-linecap: round; }
+
+.clip-shadow { stroke: rgba(0, 0, 0, 0.22); stroke-width: 5; }
+.clip-wire   { stroke: #A8ADB3; stroke-width: 3.6; }
+.clip-shine  { stroke: rgba(255, 255, 255, 0.85); stroke-width: 1.1; }
+
+/* Click: the clip bites onto a folder tab, then lets go. */
+@keyframes clipBite {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.16, 0.88); }
+  100% { transform: scale(1); }
+}
+
+#hero-light.biting .clip-swing svg { animation: clipBite 420ms cubic-bezier(0.3, 1.5, 0.5, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  #hero-light { display: none; }
 }
 
 #hero.section-cover > h1           { font-size: clamp(44px, 11vw, 104px); line-height: 1; text-align: center; overflow-wrap: break-word; will-change: transform, opacity, filter; animation: heroFade 0.45s ease both 0.05s, heroSlide 1.4s ease-out both 0.05s; }
@@ -591,7 +638,6 @@ footer p {
   z-index: 1;
 }
 
-
 #subtitle {
   font-family: "DM Sans", sans-serif;
   font-size: clamp(17px, 1.8vw, 22px);
@@ -676,19 +722,12 @@ footer p {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-/* Home-page connect section. The :not(.section-reveal) keeps these rules
-   from leaking onto about.html's connect section, which is also id="connect"
-   but uses .section-reveal's fixed positioning and cream background. */
-#connect:not(.section-reveal) {
+/* Home-page connect section. */
+#connect {
   background-color: var(--bg);
   position: relative;
   z-index: 1;
   padding: 0 56px 40px;
-}
-
-#connect.section-reveal {
-  background-color: #eae9e5;
-  box-shadow: 0 -20px 0 0 #eae9e5;
 }
 
 #connect-text {
@@ -832,7 +871,6 @@ footer p {
   padding: 20px 22px;
 }
 
-
 .about-now-label {
   font-family: "DM Sans", sans-serif;
   font-size: 11px;
@@ -875,15 +913,6 @@ footer p {
 .about-now-val {
   font-size: 14px;
   font-style: italic;
-}
-
-.about-eyebrow {
-  font-family: "DM Sans", sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.38);
-  margin-bottom: 18px;
 }
 
 .about-h1 {
@@ -994,10 +1023,6 @@ footer p {
   opacity: 0.75;
 }
 
-.about-connect-text {
-  margin-bottom: 18px;
-}
-
 .about-connect-links {
   display: flex;
   gap: 24px;
@@ -1065,57 +1090,6 @@ footer p {
   }
 }
 
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 10px;
-}
-
-.project-card {
-  text-align: center;
-  font-size: clamp(16px, 1.5vw, 18px);
-}
-
-.project-card h3 {
-  font-size: clamp(21px, 2.2vw, 26px);
-  margin-bottom: 4px;
-}
-
-.project-card a {
-  position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease;
-  display: inline-block;
-}
-
-.project-card a:hover {
-  transform: scale(1.1);
-}
-
-.project-card a::after {
-  content: '';
-  position: absolute;
-  left: -4px;
-  right: -4px;
-  bottom: 15%;
-  height: 40%;
-  background-color: rgba(255, 241, 50, 0.5);
-  z-index: -1;
-  transform: rotate(var(--highlight-angle, -1deg));
-  border-radius: 3px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.project-card a:hover::after {
-  opacity: 1;
-}
-
-.section-reveal > footer {
-  padding-top: 40px;
-  background-color: transparent;
-}
-
 #connect h2 {
   font-size: clamp(34px, 5.6vw, 68px);
 }
@@ -1156,6 +1130,12 @@ footer p {
   animation: heroIn 0.4s ease both;
 }
 
+/* An <h2> so the page has a single <h1>. It is a section title, not one of
+   the ruled subheadings, so it opts out of the h2::before hairline. */
+.portfolio-header::before {
+  display: none;
+}
+
 .portfolio-header {
   font-size: clamp(34px, 5.6vw, 68px);
   font-weight: bold;
@@ -1183,8 +1163,9 @@ body.portfolio-folder-open footer {
 }
 
 .folder-stack {
-  max-width: 1200px;                                                                                        
-  align-self: center;                                                                                                                      width: 100%; 
+  max-width: 1200px;
+  align-self: center;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1200,6 +1181,14 @@ body.portfolio-folder-open footer {
   transition: transform 0.4s ease, opacity 0.5s ease, filter 0.5s ease, margin-top 0.4s ease;
   transform: translateY(0);
   margin-top: -240px;
+  /* The case-study folders are anchors and Toolkit is a role=button div, so
+     the UA link styling and the global `a { font-weight: bolder }` have to be
+     undone for the stack to look the way it did as plain divs. */
+  display: block;
+  color: inherit;
+  font-weight: normal;
+  text-decoration: none;
+  text-align: left;
 }
 
 .folder:first-child {
@@ -1208,6 +1197,19 @@ body.portfolio-folder-open footer {
 
 .folder:not(.open).peeking {
   transform: translateY(-12px);
+}
+
+.folder:focus-visible {
+  outline: none;
+  transform: translateY(-12px);
+}
+
+/* The outline goes on the tab and body rather than the folder itself: the
+   folder box is mostly the transparent overlap of the one above it. */
+.folder:focus-visible .folder-tab,
+.folder:focus-visible .folder-body {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 /* Arrival pulse from the hero drawer tabs: lift only (no peek card), then a
@@ -1581,38 +1583,8 @@ p.folder-role {
   margin-bottom: 20px;
 }
 
-p.folder-role:has(+ .folder-links) {
-  margin-bottom: 10px;
-}
-
-.folder-content > .folder-role + .folder-links {
-  margin-top: 0;
-  margin-bottom: 22px;
-}
-
 .folder-section {
   margin-bottom: 18px;
-}
-
-.folder-list {
-  margin: 0 0 0 1.15em;
-  padding: 0;
-  font-size: clamp(16px, 1.5vw, 18px);
-  line-height: 1.55;
-  color: #333;
-  transition: color 0.5s ease;
-}
-
-.folder-list li {
-  margin-bottom: 0.4em;
-}
-
-.folder-list li:last-child {
-  margin-bottom: 0;
-}
-
-.folder-tag-group {
-  margin-bottom: 12px;
 }
 
 .folder-panel .folder-tag-label {
@@ -1681,43 +1653,13 @@ p.folder-role:has(+ .folder-links) {
   padding: 0;
 }
 
-/* Wavy underline on stack / tech chips in open folder panels (not feature bullets) */
-.folder-panel .folder-tag:not(.folder-feature-tag) {
+/* Wavy underline on the stack / tech chips inside an open folder panel. */
+.folder-panel .folder-tag {
   text-decoration-line: underline;
   text-decoration-style: wavy;
   text-decoration-color: currentColor;
   text-underline-offset: 0.22em;
   text-decoration-thickness: 1px;
-}
-
-.folder-desc {
-  font-size: clamp(16px, 1.5vw, 18px);
-  line-height: 1.6;
-  transition: color 0.5s ease;
-}
-
-.folder-links {
-  display: flex;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.folder-link {
-  font-size: 15px;
-  font-style: italic;
-  color: #333;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 1px;
-  transition: color 0.5s ease, opacity 0.2s ease;
-}
-
-.folder-link:hover {
-  opacity: 0.6;
-}
-
-.folder-feature-tag::before {
-  background-color: rgba(100, 160, 255, 0.35);
 }
 
 /* Blog Page */
@@ -1796,6 +1738,11 @@ body:has(#blog) {
   box-shadow: 0 4px 16px var(--shadow);
   cursor: pointer;
   transition: background-color 0.4s ease, opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+}
+
+.envelope:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
 }
 
 .envelope-flap {
@@ -2006,9 +1953,6 @@ body.case-study-page {
   --bg2: #EDE9DF;
   --muted: #8c887e;
   --border: rgba(24, 22, 20, 0.10);
-  --glass-bg: rgba(246, 243, 235, 0.72);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --dot: rgba(0, 0, 0, 0.055);
   --hero-title-size: clamp(44px, 14vw, 180px);
 
   /* Project accent defaults; overridden by .theme-* below */
@@ -2133,54 +2077,6 @@ body.case-study-page.theme-holoorbits {
   animation: heroIn 0.4s ease both 0.15s;
 }
 
-.case-study-page .hero-role {
-  font-family: "DM Sans", sans-serif;
-  font-size: clamp(16px, 1.8vw, 20px);
-  font-weight: 300;
-  color: var(--muted);
-  animation: heroIn 0.4s ease both 0.25s;
-  margin-bottom: 56px;
-}
-
-.case-study-page .visual-band {
-  width: 100%;
-  height: 360px;
-  background: var(--band);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 80px;
-  animation: heroIn 0.4s ease both 0.35s;
-}
-
-/* Real-asset placeholders (hero, gallery, video, code).
-   Reserved aspect ratios so swapping in <img> causes zero layout shift. */
-.case-study-page .cs-hero-media {
-  width: 100%;
-  margin-bottom: 80px;
-  animation: heroIn 0.4s ease both 0.35s;
-}
-
-.case-study-page .cs-hero-media .cs-media-placeholder {
-  border-radius: 0;
-  border-left: none;
-  border-right: none;
-  aspect-ratio: auto;
-  height: clamp(260px, 32vw, 420px);
-}
-
-.case-study-page .cs-hero-media img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
 .case-study-page .cs-media-placeholder {
   position: relative;
   width: 100%;
@@ -2254,59 +2150,8 @@ body.case-study-page.theme-holoorbits {
   margin-bottom: 56px;
 }
 
-.case-study-page .cs-gallery.cs-gallery-stack {
-  grid-template-columns: 1fr;
-}
-
 .case-study-page .cs-video {
   margin-bottom: 56px;
-}
-
-.case-study-page .cs-code {
-  margin-bottom: 56px;
-  padding: 24px 26px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg2);
-  overflow-x: auto;
-}
-
-.case-study-page .cs-code pre {
-  margin: 0;
-}
-
-.case-study-page .cs-code code {
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
-  line-height: 1.65;
-  color: var(--text);
-  white-space: pre;
-}
-
-.case-study-page .cs-code-title {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 6px 16px;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-}
-
-.case-study-page .cs-code-what {
-  font-family: "DM Sans", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.case-study-page .cs-code-file {
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: var(--muted);
 }
 
 @media (max-width: 900px) {
@@ -2315,70 +2160,10 @@ body.case-study-page.theme-holoorbits {
   }
 }
 
-.case-study-page .cs-screen-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 52px 28px;
-  justify-items: center;
-}
-
-.case-study-page .cs-screen-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  width: 100%;
-  max-width: 216px;
-}
-
-.case-study-page .cs-screen-frame {
-  width: 100%;
-  aspect-ratio: 856 / 1782;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.22));
-}
-
-.case-study-page .cs-media-photo .cs-screen-frame img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.case-study-page .cs-screen-caption {
-  text-align: center;
-  max-width: 216px;
-}
-
-.case-study-page .cs-screen-eyebrow {
-  font-family: "DM Sans", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.case-study-page .cs-screen-desc {
-  font-family: "DM Sans", sans-serif;
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.5;
-  color: var(--muted);
-  margin-top: 7px;
-}
-
 @media (max-width: 1180px) {
-  .case-study-page .cs-screen-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 480px) {
-  .case-study-page .cs-screen-grid {
-    gap: 40px 16px;
-  }
 }
 
 /* Dark UI-screenshot panel (e.g. game-flow walkthroughs on a colored band
@@ -2627,15 +2412,6 @@ body.case-study-page.theme-holoorbits {
   align-self: stretch;
 }
 
-.case-study-page .sidebar-inner {
-  position: sticky;
-  top: 100px;
-}
-
-.case-study-page .sidebar-block {
-  margin-bottom: 32px;
-}
-
 .case-study-page .sidebar-label {
   font-family: "DM Sans", sans-serif;
   font-size: 11px;
@@ -2651,40 +2427,6 @@ body.case-study-page.theme-holoorbits {
   font-weight: 300;
   color: var(--text);
   line-height: 1.5;
-}
-
-.case-study-page .sidebar-rule {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 28px 0;
-}
-
-.case-study-page .live-link {
-  font-family: "DM Sans", sans-serif;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 26px;
-  border-radius: 999px;
-  background: var(--band);
-  color: var(--text);
-  font-size: 15px;
-  font-weight: 600;
-  box-shadow: 0 0 0 0 var(--accent);
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
-}
-
-.case-study-page .live-link:hover {
-  background: var(--accent);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px -6px var(--accent);
-}
-
-.case-study-page .section-rule {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin-bottom: 32px;
 }
 
 .case-study-page .section-head {
@@ -2870,10 +2612,6 @@ body.case-study-page.theme-holoorbits {
     grid-template-columns: minmax(0, 1fr);
     gap: 48px;
   }
-
-  .case-study-page .sidebar-inner {
-    position: static;
-  }
 }
 
 @media (max-width: 640px) {
@@ -2882,15 +2620,6 @@ body.case-study-page.theme-holoorbits {
        least room. The mobile header is 8px taller, so a slightly smaller pad
        lands on the same visual gap below it as desktop. */
     padding: 56px 24px 0;
-  }
-
-  .case-study-page .visual-band {
-    height: 240px;
-    margin-bottom: 52px;
-  }
-
-  .case-study-page .cs-hero-media {
-    margin-bottom: 52px;
   }
 
   .case-study-page .content {
@@ -2932,8 +2661,7 @@ body.case-study-page.theme-holoorbits {
    annotated figure + zoom, note cards, deep dives, desktop shots.
    ============================================================ */
 
-/* Hero subtitle — one line of plain-language framing under the title.
-   Replaces the old .hero-role, which only restated the sidebar. */
+/* Hero subtitle — one line of plain-language framing under the title. */
 .case-study-page .hero-sub {
   font-family: "DM Sans", sans-serif;
   font-size: clamp(18px, 1.8vw, 22px);

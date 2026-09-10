@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tim Mora</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="https://unpkg.com/lenis@latest/dist/lenis.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="description" content="Frontend engineer with a learning sciences background — I build software for education and accessibility. Case studies on an AI study planner, a multiplayer classroom simulation, and a hand-built client site.">
+
+    <meta name="description" content="Frontend engineer with a learning sciences background — I build software for education and accessibility. Case studies on an AI study planner, a multiplayer classroom simulation, and a hand-built client site.">
   <link rel="canonical" href="https://timmora.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Tim Mora">
@@ -28,6 +28,7 @@
 </head>
 
   <body>
+    <a class="skip-link" href="#hero">Skip to content</a>
     <header>
       <div class="header-inner">
         <nav class="nav-left">
@@ -46,7 +47,19 @@
       </div>
     </header>
 
-    <section id="hero" class="section-cover">
+    <main class="page-main">
+    <section id="hero" class="section-cover" tabindex="-1">
+      <div id="hero-light" aria-hidden="true">
+        <div class="hero-clip">
+          <div class="clip-swing">
+            <svg viewBox="0 0 46 96">
+              <path class="clip-shadow" d="M16 78 V28 C16 15 35 15 35 28 V72 C35 83 18 83 18 72 V34" />
+              <path class="clip-wire" d="M15 77 V27 C15 14 34 14 34 27 V71 C34 82 17 82 17 71 V33" />
+              <path class="clip-shine" d="M15 70 V29" />
+            </svg>
+          </div>
+        </div>
+      </div>
       <h1> Hi, I'm <span class="hero-header-name">Tim Mora</span> </h1>
         <p id="subtitle">
           B.S. CS + Education, UIUC '26
@@ -71,47 +84,48 @@
     </section>
 
     <section id="portfolio" class="portfolio-animate">
-      <h1 class="portfolio-header"> A collection of things I've built, led, and figured out </h1>
+      <h2 class="portfolio-header"> A collection of things I've built, led, and figured out </h2>
       <div class="folder-stack">
 
-        <div class="folder" data-folder="ordo" data-href="/ordo">
+        <a class="folder" data-folder="ordo" href="/ordo">
           <div class="folder-tab-area">
             <div class="folder-tab">Ordo <span class="folder-tab-role">Full-Stack</span></div>
             <div class="folder-peek-card">
               <span class="folder-peek-icon" aria-hidden="true">
-                <img src="images/ordo-bean.png" alt="">
+                <img src="images/ordo-bean.png" alt="" decoding="async" loading="lazy">
               </span>
               <p>AI productivity app for students. Schedules work around your real day — classes, capacity, focus windows.</p>
             </div>
           </div>
           <div class="folder-body"></div>
-        </div>
+        </a>
 
-        <div class="folder" data-folder="holoorbits" data-href="/holoorbits">
+        <a class="folder" data-folder="holoorbits" href="/holoorbits">
           <div class="folder-tab-area">
             <div class="folder-tab">HoloOrbits <span class="folder-tab-role">UX Lead</span></div>
             <div class="folder-peek-card"><p>Multiplayer orbital mechanics simulation redesigned for real classroom collaboration.</p></div>
           </div>
           <div class="folder-body"></div>
-        </div>
+        </a>
 
-        <div class="folder" data-folder="jennyfigment" data-href="/jennyfigment">
+        <a class="folder" data-folder="jennyfigment" href="/jennyfigment">
           <div class="folder-tab-area">
             <div class="folder-tab">Jenny Figment <span class="folder-tab-role">Client / FE</span></div>
             <div class="folder-peek-card"><p>16-page site for a children's book author. Hand-built, zero dependencies — design system, five kids' activities, a bilingual book page.</p></div>
           </div>
           <div class="folder-body"></div>
-        </div>
+        </a>
 
-        <div class="folder" data-folder="brandle" data-href="/brandle">
+        <a class="folder" data-folder="brandle" href="/brandle">
           <div class="folder-tab-area">
             <div class="folder-tab">Brandle <span class="folder-tab-role">Game / FE</span></div>
             <div class="folder-peek-card"><p>Daily Wordle-like game for brand knowledge. Guess the mystery brand across five attributes.</p></div>
           </div>
           <div class="folder-body"></div>
-        </div>
+        </a>
 
-        <div class="folder" data-folder="toolkit">
+        <div class="folder" data-folder="toolkit" role="button" tabindex="0"
+             aria-expanded="false" aria-controls="folder-overlay" aria-label="Toolkit">
           <div class="folder-tab-area">
             <div class="folder-tab">Toolkit</div>
             <div class="folder-peek-card"><p>Languages, frameworks, and tools I reach for.</p></div>
@@ -141,6 +155,7 @@
         </a>
       </div>
     </section>
+    </main>
 
     <footer>
       <p> © Tim Mora 2026 </p>
@@ -216,88 +231,7 @@
         </div>
       </div>
     </div>
-    <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous"></script>
     <script src="app.js"></script>
-    <script>
-      const folders = document.querySelectorAll('.folder');
-      const overlay = document.getElementById('folder-overlay');
-      const portfolioSection = document.getElementById('portfolio');
-
-      function closeOverlay() {
-        const panel = overlay.querySelector('.folder-panel.active');
-        const openFolder = document.querySelector('.folder.open');
-        if (panel) panel.classList.remove('visible');
-        overlay.classList.remove('active');
-        portfolioSection.classList.remove('has-open-folder');
-        document.body.classList.remove('portfolio-folder-open');
-        if (openFolder) openFolder.classList.remove('open');
-        if (panel) {
-          panel.addEventListener('transitionend', function h() {
-            panel.classList.remove('active');
-            panel.removeEventListener('transitionend', h);
-          });
-        }
-      }
-
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeOverlay();
-      });
-
-      folders.forEach(folder => {
-        const href = folder.dataset.href;
-        const folderKey = folder.dataset.folder;
-        const tab = folder.querySelector('.folder-tab');
-
-        if (tab) {
-          tab.addEventListener('mouseenter', () => {
-            folder.classList.remove('hero-pulse');
-            if (href || folderKey === 'toolkit') folder.classList.add('peeking');
-          });
-          tab.addEventListener('mouseleave', () => {
-            folder.classList.remove('peeking');
-          });
-        }
-
-        if (href) {
-          folder.addEventListener('click', () => {
-            window.location.href = href;
-          });
-        } else if (folderKey === 'toolkit') {
-          folder.addEventListener('click', () => {
-            const panel = overlay.querySelector('.folder-panel[data-folder="toolkit"]');
-            folder.classList.add('open');
-            overlay.classList.add('active');
-            portfolioSection.classList.add('has-open-folder');
-            document.body.classList.add('portfolio-folder-open');
-            panel.classList.add('active');
-            requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('visible')));
-          });
-        }
-      });
-    </script>
-    <script>
-      (function () {
-        const roles = [
-          'Frontend Engineer',
-          'UI/UX Designer',
-          'Creator',
-        ];
-        const el = document.getElementById('subtitle-rotator');
-        let i = 0;
-        el.textContent = roles[0];
-        el.classList.add('blur-in');
-
-        setInterval(() => {
-          el.classList.add('blur-out');
-          el.classList.remove('blur-in');
-          setTimeout(() => {
-            i = (i + 1) % roles.length;
-            el.textContent = roles[i];
-            el.classList.remove('blur-out');
-            el.classList.add('blur-in');
-          }, 400);
-        }, 2800);
-      })();
-    </script>
   </body>
 </html>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tim Mora - Blog</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="https://unpkg.com/lenis@latest/dist/lenis.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="description" content="Notes on frontend engineering, design, and building software for learning.">
+
+    <meta name="description" content="Notes on frontend engineering, design, and building software for learning.">
   <link rel="canonical" href="https://timmora.github.io/blog">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Tim Mora">
@@ -28,6 +28,7 @@
 </head>
 
   <body>
+    <a class="skip-link" href="#blog">Skip to content</a>
     <header>
       <div class="header-inner">
         <nav class="nav-left">
@@ -46,11 +47,14 @@
       </div>
     </header>
 
-    <section id="blog">
+    <main class="page-main">
+    <section id="blog" tabindex="-1">
       <h1 class="blog-header"> What I'm Thinking About </h1>
       <div class="envelope-stack">
 
-        <div class="envelope" data-entry="0">
+        <div class="envelope" data-entry="0" role="button" tabindex="0"
+             aria-expanded="false" aria-controls="paper-overlay"
+             aria-label="Read: On Building Things">
           <div class="envelope-flap"></div>
           <div class="envelope-pocket"></div>
           <div class="envelope-letter"></div>
@@ -60,7 +64,9 @@
           </div>
         </div>
 
-        <div class="envelope" data-entry="1">
+        <div class="envelope" data-entry="1" role="button" tabindex="0"
+             aria-expanded="false" aria-controls="paper-overlay"
+             aria-label="Read: Design Isn't Decoration">
           <div class="envelope-flap"></div>
           <div class="envelope-pocket"></div>
           <div class="envelope-letter"></div>
@@ -70,7 +76,9 @@
           </div>
         </div>
 
-        <div class="envelope" data-entry="2">
+        <div class="envelope" data-entry="2" role="button" tabindex="0"
+             aria-expanded="false" aria-controls="paper-overlay"
+             aria-label="Read: The Search for Meaning">
           <div class="envelope-flap"></div>
           <div class="envelope-pocket"></div>
           <div class="envelope-letter"></div>
@@ -88,33 +96,33 @@
             <h3>On Building Things</h3>
             <p class="paper-date">March 15, 2026</p>
             <p>
-              I've been thinking a lot lately about what it means to build something well. Something that just feels right to use. The kind of product 
+              I've been thinking a lot lately about what it means to build something well. Something that just feels right to use. The kind of product
               where someone uses it and doesn't even notice the design, because it just works the way they expected it to.
             </p>
             <p>
-              The funny thing is, that bar is almost impossible to measure. You can't A/B test "feels right." There's no Jira ticket for intuitive. 
-              A lot of the time, the best design decision you make is the one nobody ever brings up in a meeting, because nobody needed to. It was just... 
+              The funny thing is, that bar is almost impossible to measure. You can't A/B test "feels right." There's no Jira ticket for intuitive.
+              A lot of the time, the best design decision you make is the one nobody ever brings up in a meeting, because nobody needed to. It was just...
               there. Quietly doing its job.
             </p>
             <p>
-              I think about this whenever I'm building something and I catch myself adding a feature because I can, not because anyone asked for it. 
-              That's usually a sign I've drifted. Good product thinking, at least the way I understand it, is less about what's possible and more about 
-              what's necessary. Scope creep isn't as much of a project management problem as it is a sign that you've lost the thread of what you were actually 
+              I think about this whenever I'm building something and I catch myself adding a feature because I can, not because anyone asked for it.
+              That's usually a sign I've drifted. Good product thinking, at least the way I understand it, is less about what's possible and more about
+              what's necessary. Scope creep isn't as much of a project management problem as it is a sign that you've lost the thread of what you were actually
               trying to solve.
             </p>
             <p>
-              There's also something humbling about realizing that "works the way they expected" requires you to actually know what they expected. Which 
-              means talking to people. Watching how they use things. Sitting with the discomfort of watching someone struggle with a thing you built and 
+              There's also something humbling about realizing that "works the way they expected" requires you to actually know what they expected. Which
+              means talking to people. Watching how they use things. Sitting with the discomfort of watching someone struggle with a thing you built and
               not jumping in to explain it (which I've learned is the hardest part), because if you have to explain it, you're losing the most valuable part
               of the exchange: actually learning from the person using it and making the thing better because of it.
             </p>
             <p>
-              I'm not claiming I've figured this out. Most days I'm still somewhere between "this is elegant" and "why does this button do that." But I think 
+              I'm not claiming I've figured this out. Most days I'm still somewhere between "this is elegant" and "why does this button do that." But I think
               the intention matters. Building with that standard in mind, even when you're cutting corners on a deadline, shapes the decisions you make. It
               keeps you honest!
             </p>
             <p>
-              That's what I keep coming back to: a genuine attempt to make something that respects the person using it. Something that got thought about. You 
+              That's what I keep coming back to: a genuine attempt to make something that respects the person using it. Something that got thought about. You
               can usually tell the difference between software that was shipped and software that was made.
             </p>
           </div>
@@ -124,33 +132,33 @@
             <h3>Design Isn't Decoration</h3>
             <p class="paper-date">February 22, 2026</p>
             <p>
-              One of the biggest misconceptions I had early on was that design is something you add on top. You build the thing, then you make it pretty. But the 
-              more I work on real projects, the more I realize design is the structure itself. The decisions about what to show and what to hide, when to ask and 
+              One of the biggest misconceptions I had early on was that design is something you add on top. You build the thing, then you make it pretty. But the
+              more I work on real projects, the more I realize design is the structure itself. The decisions about what to show and what to hide, when to ask and
               when to assume. Good design disappears.
             </p>
             <p>
-              I used to think Figma was the design part. Like, if I opened Figma, I was "doing design." Everything before that was just logic and functionality. 
-              Real engineering stuff. But that framing lets you off the hook too early. By the time you're picking colors and rounding corners, a hundred 
-              structural decisions have already been made for you, baked into the architecture, the data model, the user flow. The visual layer is just the last 
+              I used to think Figma was the design part. Like, if I opened Figma, I was "doing design." Everything before that was just logic and functionality.
+              Real engineering stuff. But that framing lets you off the hook too early. By the time you're picking colors and rounding corners, a hundred
+              structural decisions have already been made for you, baked into the architecture, the data model, the user flow. The visual layer is just the last
               thing to lie down on top of all of them.
             </p>
             <p>
-              The decisions that actually shape the experience are the quiet ones. Do we ask the user for this information upfront, or can we infer it? Do we 
-              show this error immediately, or wait until they try to submit? Do we give them five options or two? None of those questions live in a design file. 
-              They live in a conversation, or a whiteboard sketch, or honestly sometimes just in your head at 1am when you're trying to figure out why the flow 
+              The decisions that actually shape the experience are the quiet ones. Do we ask the user for this information upfront, or can we infer it? Do we
+              show this error immediately, or wait until they try to submit? Do we give them five options or two? None of those questions live in a design file.
+              They live in a conversation, or a whiteboard sketch, or honestly sometimes just in your head at 1am when you're trying to figure out why the flow
               feels off.
             </p>
             <p>
-              What to hide is just as important as what to show, maybe more. Every option you surface is cognitive load you're asking someone to carry. Every 
-              field in a form is a small tax on their attention. The restraint required to strip something down to only what it needs to be is genuinely hard, 
+              What to hide is just as important as what to show, maybe more. Every option you surface is cognitive load you're asking someone to carry. Every
+              field in a form is a small tax on their attention. The restraint required to strip something down to only what it needs to be is genuinely hard,
               especially when you've spent time building the thing you're now cutting.
             </p>
             <p>
-              And the "when to assume" part is where you really learn about your users. Assumptions made with care feel like the product gets you. Assumptions 
+              And the "when to assume" part is where you really learn about your users. Assumptions made with care feel like the product gets you. Assumptions
               made lazily feel like the product is ignoring you. The difference is whether you actually did the work to understand who's on the other end.
             </p>
             <p>
-              Good design disappearing is the goal, but it doesn't happen passively. It takes a lot of deliberate, tedious decision-making to get to something 
+              Good design disappearing is the goal, but it doesn't happen passively. It takes a lot of deliberate, tedious decision-making to get to something
               that feels effortless. The invisible work is still work.
             </p>
           </div>
@@ -160,174 +168,41 @@
             <h3>The Search for Meaning</h3>
             <p class="paper-date">January 10, 2026</p>
             <p>
-              I think about meaning more than I probably let on. In a background hum kind of way, the kind of question that sits 
-              quietly in the corner of your brain while you're doing something else entirely. You're folding laundry or out on a walk and suddenly 
+              I think about meaning more than I probably let on. In a background hum kind of way, the kind of question that sits
+              quietly in the corner of your brain while you're doing something else entirely. You're folding laundry or out on a walk and suddenly
               you're wondering about the meaning of everything you're doing.
             </p>
             <p>
-              The uncomfortable thing I've landed on is that meaning doesn't really announce itself. You don't find it the way you find your keys. Most of 
-              the time it shows up in retrospect, when you look back at something you did and realize it mattered, to you or to someone else or both. Which 
+              The uncomfortable thing I've landed on is that meaning doesn't really announce itself. You don't find it the way you find your keys. Most of
+              the time it shows up in retrospect, when you look back at something you did and realize it mattered, to you or to someone else or both. Which
               makes it hard to chase directly. For instance, every time I've tried to create a meaningful experience, I've mostly just created a mildly performative one.
             </p>
             <p>
-              What seems to work better, at least for me, is just paying attention to what I keep coming back to. Not what I think I should care about, not what 
-              looks good to talk about, just what actually pulls at me when nobody's watching. The stuff I do for free, the problems I think about without being 
-              asked to, the things that make me lose track of time in a way that doesn't feel like avoidance. That's usually a more honest signal than any 
+              What seems to work better, at least for me, is just paying attention to what I keep coming back to. Not what I think I should care about, not what
+              looks good to talk about, just what actually pulls at me when nobody's watching. The stuff I do for free, the problems I think about without being
+              asked to, the things that make me lose track of time in a way that doesn't feel like avoidance. That's usually a more honest signal than any
               framework or five-year plan.
             </p>
             <p>
-              I also think meaning is less about grand purpose and more about texture. The accumulation of small things done with some level of care and intention. 
-              A conversation where you were actually present. Something you built that solved a real problem for a real person. A moment where you were genuinely 
+              I also think meaning is less about grand purpose and more about texture. The accumulation of small things done with some level of care and intention.
+              A conversation where you were actually present. Something you built that solved a real problem for a real person. A moment where you were genuinely
               yourself and it landed. None of that sounds like a calling, but, over time, it adds up to something that feels a lot like one.
             </p>
             <p>
-              The search itself might be part of the point. Sitting with the question, staying curious about your own life, refusing to just go numb and let the 
+              The search itself might be part of the point. Sitting with the question, staying curious about your own life, refusing to just go numb and let the
               defaults run, being open to trying new things. That's actually the most meaningful part of it.
             </p>
           </div>
         </div>
       </div>
     </section>
+    </main>
 
     <footer>
       <p> © Tim Mora 2026 </p>
       <p id="footer-quote"> "In the world through which I travel, I am endlessly creating myself." </p>
     </footer>
-<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous"></script>
     <script src="app.js"></script>
-    <script>
-
-      document.querySelector('.blog-header').addEventListener('animationend', function() {
-        this.style.animation = 'none';
-      }, { once: true });
-
-      const envelopes = document.querySelectorAll('.envelope');
-      const stack = document.querySelector('.envelope-stack');
-
-      stack.classList.add('loading');
-      envelopes[envelopes.length - 1].addEventListener('animationend', function() {
-        stack.classList.remove('loading');
-      }, { once: true });
-      const overlay = document.getElementById('paper-overlay');
-
-      function setFlapSizes() {
-        envelopes.forEach(envelope => {
-          envelope.style.setProperty('--flap-size', (envelope.offsetWidth / 2) + 'px');
-        });
-      }
-      setFlapSizes();
-      window.addEventListener('resize', setFlapSizes);
-
-      const blogSection = document.getElementById('blog');
-      let activePaper = null;
-      let opening = false;
-
-      function closePaper(immediate) {
-        if (activePaper) {
-          activePaper.classList.remove('visible');
-          const paper = activePaper;
-          activePaper = null;
-          if (immediate) {
-            paper.classList.remove('active');
-            paper.style.width = '';
-          } else {
-            paper.addEventListener('transitionend', function onPaperTransitionEnd(e) {
-              if (e.target !== paper || e.propertyName !== 'transform') return;
-              paper.removeEventListener('transitionend', onPaperTransitionEnd);
-              paper.classList.remove('active');
-              paper.style.width = '';
-            });
-          }
-        }
-        const openEnvelope = document.querySelector('.envelope.open');
-        if (openEnvelope) openEnvelope.classList.remove('open', 'peeking');
-        stack.classList.remove('has-open');
-        blogSection.classList.remove('has-open-envelope');
-        overlay.classList.remove('active');
-        document.body.classList.remove('blog-paper-open');
-      }
-
-      const peekDuration = 500;
-
-      envelopes.forEach(envelope => {
-        let peekTimeout = null;
-        let peekStart = 0;
-
-        envelope.addEventListener('mouseenter', () => {
-          if (activePaper || opening) return;
-          envelope.classList.add('peeking');
-          peekStart = Date.now();
-        });
-
-        envelope.addEventListener('mouseleave', () => {
-          if (activePaper || opening) return;
-          if (!envelope.classList.contains('peeking')) return;
-          clearTimeout(peekTimeout);
-          peekTimeout = setTimeout(() => {
-            envelope.classList.remove('peeking');
-            envelope.classList.add('closing');
-            const flap = envelope.querySelector('.envelope-flap');
-            flap.addEventListener('transitionend', function handler() {
-              envelope.classList.remove('closing');
-              flap.removeEventListener('transitionend', handler);
-            });
-          }, peekDuration);
-        });
-
-        envelope.addEventListener('click', (e) => {
-          if (activePaper || opening) return;
-          clearTimeout(peekTimeout);
-          opening = true;
-          const wasPeeking = envelope.classList.contains('peeking');
-          envelope.classList.add('peeking');
-          if (!wasPeeking) peekStart = Date.now();
-
-          const entryId = envelope.dataset.entry;
-          const paper = overlay.querySelector(`.paper[data-entry="${entryId}"]`);
-          const elapsed = Date.now() - peekStart;
-          const delay = Math.max(0, 500 - elapsed);
-
-          setTimeout(() => {
-            var overlayPad = 48;
-            var maxPaperW = Math.max(280, document.documentElement.clientWidth - overlayPad);
-            var targetPaperW = Math.max(envelope.offsetWidth, 920);
-            paper.style.width = Math.min(targetPaperW, maxPaperW) + 'px';
-            envelope.classList.add('open');
-            stack.classList.add('has-open');
-            blogSection.classList.add('has-open-envelope');
-            overlay.classList.add('active');
-            paper.classList.add('active');
-            activePaper = paper;
-            opening = false;
-            document.body.classList.add('blog-paper-open');
-            requestAnimationFrame(function() {
-              requestAnimationFrame(function() {
-                paper.classList.add('visible');
-              });
-            });
-          }, delay);
-        });
-      });
-
-
-      document.addEventListener('click', (e) => {
-        if (!activePaper) return;
-        if (!activePaper.contains(e.target)) {
-          closePaper();
-        }
-      });
-
-      // The paper's width is computed once on open, so a width change has to
-      // close it. Height changes must not: on mobile the collapsing URL bar
-      // fires resize during ordinary scrolling, which slammed the article
-      // shut mid-read.
-      var lastPaperWidth = window.innerWidth;
-      window.addEventListener('resize', () => {
-        if (window.innerWidth === lastPaperWidth) return;
-        lastPaperWidth = window.innerWidth;
-        if (activePaper) closePaper(true);
-      });
-
-    </script>
   </body>
 </html>

@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
 
   <meta name="description" content="A daily brand-guessing game over a hand-curated dataset of 200+ companies, with deterministic daily seeding and color-coded proximity feedback across five attributes.">
@@ -26,6 +27,7 @@
   <meta name="twitter:image" content="https://timmora.github.io/images/og/brandle.png">
 </head>
 <body class="case-study-page theme-brandle">
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <header>
   <div class="header-inner">
@@ -47,11 +49,11 @@
 <section class="hero">
   <p class="hero-meta">Word Game &nbsp;·&nbsp; 2024</p>
   <h1 class="hero-title">Brandle</h1>
-  <p class="hero-sub">A daily brand-guessing game where the dataset, not the mechanic, turned out to be the design problem.</p>
+  <p class="hero-sub">A daily brand-guessing game where the dataset, turned out to be the design problem.</p>
 </section>
 
 <div class="cs-banner">
-  <img src="images/brandle/hero.png" alt="Brandle shown in two browser windows: the difficulty-select screen and a completed puzzle with a Correct! result">
+  <img src="images/brandle/hero.png" alt="Brandle shown in two browser windows: the difficulty-select screen and a completed puzzle with a Correct! result" decoding="async" fetchpriority="high">
 </div>
 
 <section class="cs-summary">
@@ -60,7 +62,7 @@
     <div class="cs-summary-grid">
       <div>
         <p class="cs-summary-label">Problem</p>
-        <p class="cs-summary-val">A weekend class project that had to justify existing outside the classroom. Everyone carries a fuzzy mental model of a company, and nothing ever tests it.</p>
+        <p class="cs-summary-val">A semester-long class project that had to justify existing outside the classroom. Everyone carries a fuzzy mental model of a company, and nothing ever tests it.</p>
       </div>
       <div>
         <p class="cs-summary-label">What I built</p>
@@ -72,7 +74,7 @@
       </div>
       <div>
         <p class="cs-summary-label">Where it landed</p>
-        <p class="cs-summary-val">Live on Vercel. Daily and unlimited modes, three difficulties, local stats and streaks, a share grid.</p>
+        <p class="cs-summary-val">Live on Vercel. Daily and unlimited modes, three difficulties, local stats and streaks, and a share grid.</p>
       </div>
     </div>
     <div class="cs-summary-foot">
@@ -106,10 +108,10 @@
         </div>
       </nav>
     </aside>
-    <main class="main-col">
+    <main class="main-col" id="main-content" tabindex="-1">
       <section id="cs-ov" class="cs-section reveal">
         <p class="section-head">Overview</p>
-        <p class="overview-text">Brandle is a daily brand-guessing game built on a hand-curated dataset of 200+ companies. Turns out the real design challenge wasn't the Wordle mechanic, it was the data. Inconsistent founding years, lagged revenue figures, subsidiary ambiguity: all of that decides whether the game feels fair or just random. You guess the mystery brand across five attributes (category, country, founding year, revenue, employees) and get color-coded feedback on how close you are.</p>
+        <p class="overview-text">Brandle is a daily brand-guessing game built on a hand-curated dataset of 200+ companies. Turns out the real design challenge was the dataset itself. Inconsistent founding years, lagged revenue figures, subsidiary ambiguity: all of that decides whether the game feels fair or just random. You guess the mystery brand across five attributes (category, country, founding year, revenue, employees) and get color-coded feedback on how close you are.</p>
       </section>
       <section id="cs-in" class="cs-section reveal">
         <p class="section-head">Inside Brandle</p>
@@ -117,14 +119,14 @@
           <p class="cs-panel-eyebrow">Setting up</p>
           <div class="cs-panel-grid">
             <div class="cs-panel-item">
-              <img src="images/brandle/mode.png" alt="Start screen: daily vs unlimited mode and difficulty selection" loading="lazy">
+              <img src="images/brandle/mode.png" alt="Start screen: daily vs unlimited mode and difficulty selection" loading="lazy" decoding="async">
               <div class="cs-panel-caption">
                 <p class="cs-panel-item-title">Start screen</p>
                 <p class="cs-panel-item-desc">Pick daily or unlimited, and a difficulty.</p>
               </div>
             </div>
             <div class="cs-panel-item">
-              <img src="images/brandle/category.png" alt="Category selection screen for filtering which brands appear" loading="lazy">
+              <img src="images/brandle/category.png" alt="Category selection screen for filtering which brands appear" loading="lazy" decoding="async">
               <div class="cs-panel-caption">
                 <p class="cs-panel-item-title">Category select</p>
                 <p class="cs-panel-item-desc">Focus unlimited play on one industry.</p>
@@ -137,21 +139,21 @@
           <p class="cs-panel-eyebrow">Playing</p>
           <div class="cs-panel-grid cs-panel-grid-3">
             <div class="cs-panel-item">
-              <img src="images/brandle/board.png" alt="Mid-game Brandle board with color-coded attribute feedback" loading="lazy">
+              <img src="images/brandle/board.png" alt="Mid-game Brandle board with color-coded attribute feedback" loading="lazy" decoding="async">
               <div class="cs-panel-caption">
                 <p class="cs-panel-item-title">Game board</p>
                 <p class="cs-panel-item-desc">Five attributes, color-coded feedback.</p>
               </div>
             </div>
             <div class="cs-panel-item">
-              <img src="images/brandle/stats.png" alt="Statistics panel with win rate, streaks, and guess distribution" loading="lazy">
+              <img src="images/brandle/stats.png" alt="Statistics panel with win rate, streaks, and guess distribution" loading="lazy" decoding="async">
               <div class="cs-panel-caption">
                 <p class="cs-panel-item-title">Stats &amp; streaks</p>
                 <p class="cs-panel-item-desc">Win rate, streak, and guess distribution.</p>
               </div>
             </div>
             <div class="cs-panel-item">
-              <img src="images/brandle/share.png" alt="Shareable spoiler-free result grid" loading="lazy">
+              <img src="images/brandle/share.png" alt="Shareable spoiler-free result grid" loading="lazy" decoding="async">
               <div class="cs-panel-caption">
                 <p class="cs-panel-item-title">Share grid</p>
                 <p class="cs-panel-item-desc">Spoiler-free results, ready to post.</p>
@@ -162,7 +164,7 @@
       </section>
       <section id="cs-pr" class="cs-section reveal">
         <p class="section-head">The problem</p>
-        <p class="body-text">Brandle started as a class project: build something with a Supabase backend. I threw together a Wordle clone in a weekend and submitted it. But halfway through, I realized the interesting version wasn't about words at all, it was about brands. Everyone has some fuzzy mental model of a company (where it's from, how big it is, what it actually does) and those models basically never get tested. The guessing mechanic felt like a perfect way to surface that.</p>
+        <p class="body-text">Brandle started as a class project for CS 222: Software Design Lab at the University of Illinois at Urbana-Champaign. I threw together a Wordle clone in a weekend and submitted it. But halfway through, I realized the interesting version wasn't about words at all, it was about brands. Everyone has some fuzzy mental model of a company (where it's from, how big it is, what it actually does) and those models basically never get tested. The guessing mechanic felt like a perfect way to surface that.</p>
         <p class="body-text">The real question was whether it had legs outside the classroom. A daily guessing game about brand attributes isn't an obvious hit. But Wordle already proved the format works, and brands have something words don't: people actually have opinions about them.</p>
       </section>
       <section id="cs-hl" class="cs-section reveal">
@@ -203,7 +205,7 @@
   </a>
 </div>
 
-<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
 </html>

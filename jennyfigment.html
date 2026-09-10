@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
 
   <meta name="description" content="A 16-page site for a children's book author, hand-built with no framework and zero dependencies — a CSS design system, five interactive activities, and bilingual English/Spanish support.">
@@ -26,6 +27,7 @@
   <meta name="twitter:image" content="https://timmora.github.io/images/og/jennyfigment.png">
 </head>
 <body class="case-study-page theme-jennyfigment">
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <header>
   <div class="header-inner">
@@ -52,7 +54,7 @@
 </section>
 
 <div class="cs-banner">
-  <img src="images/jennyfigment/banner.webp" alt="Two browser windows side by side: the jennyfigment.com homepage reading Simple stories, BIG imagination over lined-paper texture with the Lucky Penny card taped up beside it, and behind it the hot pink Imagination Zone landing for kids">
+  <img src="images/jennyfigment/banner.webp" alt="Two browser windows side by side: the jennyfigment.com homepage reading Simple stories, BIG imagination over lined-paper texture with the Lucky Penny card taped up beside it, and behind it the hot pink Imagination Zone landing for kids" decoding="async" fetchpriority="high">
 </div>
 
 <section class="cs-summary">
@@ -108,7 +110,7 @@
         </div>
       </nav>
     </aside>
-    <main class="main-col">
+    <main class="main-col" id="main-content" tabindex="-1">
 
       <section id="cs-ov" class="cs-section reveal">
         <p class="section-head">Overview</p>
@@ -176,7 +178,7 @@
         <p class="body-text">The coloring canvas is the hardest of the four to get right, and the one where the decisions are easiest to see.</p>
 
         <figure class="cs-figure" data-zoom>
-          <img src="images/jennyfigment/coloring.webp" alt="The Arachna coloring canvas with Jenny Figment drawn across it in green beside a pink smiley face, a twelve-swatch palette and four brush sizes to the right, and Undo now enabled" loading="lazy">
+          <img src="images/jennyfigment/coloring.webp" alt="The Arachna coloring canvas with Jenny Figment drawn across it in green beside a pink smiley face, a twelve-swatch palette and four brush sizes to the right, and Undo now enabled" loading="lazy" decoding="async">
           <div class="cs-pins" aria-hidden="true">
             <span class="cs-pin" style="left: 41.5%; top: 50%">1</span>
             <span class="cs-pin" style="left: 73.5%; top: 26%">2</span>
@@ -212,19 +214,19 @@
           <p class="cs-shots-title">The rest of the site, briefly</p>
           <div class="cs-shots-grid">
             <figure class="cs-shot-item">
-              <div class="cs-shot" data-zoom><img src="images/jennyfigment/kids-zone.webp" alt="The Kids Zone hub asking Who Do You Want to Visit, with four character cards — Jenny Figment, Grandpa Tony, Flora Margaret and Arachna — each edged in its own accent color" loading="lazy"></div>
+              <div class="cs-shot" data-zoom><img src="images/jennyfigment/kids-zone.webp" alt="The Kids Zone hub asking Who Do You Want to Visit, with four character cards — Jenny Figment, Grandpa Tony, Flora Margaret and Arachna — each edged in its own accent color" loading="lazy" decoding="async"></div>
               <figcaption class="cs-shot-cap">Four characters, four accent colors, all drawn from the same token set the rest of the site themes with.</figcaption>
             </figure>
             <figure class="cs-shot-item">
-              <div class="cs-shot" data-zoom><img src="images/jennyfigment/lucky-penny.webp" alt="The Lucky Penny book page with the language toggle switched to Español and the Spanish synopsis rendering below it, under a papel picado banner" loading="lazy"></div>
+              <div class="cs-shot" data-zoom><img src="images/jennyfigment/lucky-penny.webp" alt="The Lucky Penny book page with the language toggle switched to Español and the Spanish synopsis rendering below it, under a papel picado banner" loading="lazy" decoding="async"></div>
               <figcaption class="cs-shot-cap">The book page carries its full text in both languages, switched by one control rather than a second URL.</figcaption>
             </figure>
             <figure class="cs-shot-item">
-              <div class="cs-shot" data-zoom><img src="images/jennyfigment/penny-corner.webp" alt="Penny's Corner in the Kids Zone: the same English and Español toggle above six illustrated vocabulary cards for dog, home, bed, dish, friend and marigold" loading="lazy"></div>
+              <div class="cs-shot" data-zoom><img src="images/jennyfigment/penny-corner.webp" alt="Penny's Corner in the Kids Zone: the same English and Español toggle above six illustrated vocabulary cards for dog, home, bed, dish, friend and marigold" loading="lazy" decoding="async"></div>
               <figcaption class="cs-shot-cap">The same toggle reused two clicks away, for a vocabulary game — which is the argument for building it as a system.</figcaption>
             </figure>
             <figure class="cs-shot-item">
-              <div class="cs-shot" data-zoom><img src="images/jennyfigment/educators.webp" alt="The Activity Guides and Resources page on the green educator theme, with category filter chips and a grid of free PDF download cards" loading="lazy"></div>
+              <div class="cs-shot" data-zoom><img src="images/jennyfigment/educators.webp" alt="The Activity Guides and Resources page on the green educator theme, with category filter chips and a grid of free PDF download cards" loading="lazy" decoding="async"></div>
               <figcaption class="cs-shot-cap">Resources are free and ungated. Nothing sits between a teacher and a printable PDF, which was the whole point.</figcaption>
             </figure>
           </div>
@@ -302,7 +304,7 @@
   </a>
 </div>
 
-<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
 </html>

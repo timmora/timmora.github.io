@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
 
   <meta name="description" content="A full-stack AI planner that reads a student's syllabi and answers the only question that matters at 7pm on a Tuesday: what should I open first. React, TypeScript, FastAPI, Claude API.">
@@ -26,6 +27,7 @@
   <meta name="twitter:image" content="https://timmora.github.io/images/og/ordo.png">
 </head>
 <body class="case-study-page theme-ordo">
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <header>
   <div class="header-inner">
@@ -52,7 +54,7 @@
 </section>
 
 <div class="cs-banner">
-  <img src="images/ordo/banner.png" alt="Ordo on mobile and desktop: the daily plan with Bean's briefing, and the onboarding step that asks how much focus you can realistically give">
+  <img src="images/ordo/banner.png" alt="Ordo on mobile and desktop: the daily plan with Bean's briefing, and the onboarding step that asks how much focus you can realistically give" decoding="async" fetchpriority="high">
 </div>
 
 <section class="cs-summary">
@@ -108,7 +110,7 @@
         </div>
       </nav>
     </aside>
-    <main class="main-col">
+    <main class="main-col" id="main-content" tabindex="-1">
 
       <section id="cs-ov" class="cs-section reveal">
         <p class="section-head">Overview</p>
@@ -135,7 +137,7 @@
               <p class="cs-compare-when">Before</p>
               <p class="cs-compare-tag">Ordo v0</p>
             </div>
-            <div class="cs-compare-shot" data-zoom><img src="images/ordo/v0/overview.webp" alt="Ordo v0: top-center nav, a daily briefing panel that failed to load, four zeroed counters, and empty Events and Tasks lists under Today/Upcoming/To-do tabs" loading="lazy"></div>
+            <div class="cs-compare-shot" data-zoom><img src="images/ordo/v0/overview.webp" alt="Ordo v0: top-center nav, a daily briefing panel that failed to load, four zeroed counters, and empty Events and Tasks lists under Today/Upcoming/To-do tabs" loading="lazy" decoding="async"></div>
             <p class="cs-compare-desc">A flat list of assignments and a month grid. Nothing knew how long anything took, so nothing could be scheduled — only displayed back at you.</p>
           </div>
           <div class="cs-compare-arrow">
@@ -146,7 +148,7 @@
               <p class="cs-compare-when">After</p>
               <p class="cs-compare-tag">Shipped</p>
             </div>
-            <div class="cs-compare-shot" data-zoom><img src="images/ordo/desktop/overview.webp" alt="Ordo today: Today's Focus lists three tasks, each with the reason it was picked, above Bean's briefing and a three-week streak" loading="lazy"></div>
+            <div class="cs-compare-shot" data-zoom><img src="images/ordo/desktop/overview.webp" alt="Ordo today: Today's Focus lists three tasks, each with the reason it was picked, above Bean's briefing and a three-week streak" loading="lazy" decoding="async"></div>
             <p class="cs-compare-desc">Same data, three new questions answered: how long, when, and what first. That's the difference between a list and a plan, and it all lands in Today's Focus at the top.</p>
           </div>
         </div>
@@ -174,7 +176,7 @@
               <p class="cs-compare-when">Before</p>
               <p class="cs-compare-tag">New task, v0</p>
             </div>
-            <div class="cs-compare-shot" data-zoom><img src="images/ordo/v0/new-task.webp" alt="Ordo v0's New Task dialog with an empty Estimated hours field shown at full size in the middle of the form" loading="lazy"></div>
+            <div class="cs-compare-shot" data-zoom><img src="images/ordo/v0/new-task.webp" alt="Ordo v0's New Task dialog with an empty Estimated hours field shown at full size in the middle of the form" loading="lazy" decoding="async"></div>
             <p class="cs-compare-desc">An empty <em>Estimated hours</em> box, given equal billing with the due date — the one field nobody can answer honestly until the work is already underway.</p>
           </div>
           <div class="cs-compare-arrow">
@@ -185,7 +187,7 @@
               <p class="cs-compare-when">After</p>
               <p class="cs-compare-tag">New task, shipped</p>
             </div>
-            <div class="cs-compare-shot" data-zoom><img src="images/ordo/desktop/new-task.webp" alt="Ordo's New Task dialog today: estimated hours sits under advanced options while Bean offers to break the assignment into steps from a description or a PDF" loading="lazy"></div>
+            <div class="cs-compare-shot" data-zoom><img src="images/ordo/desktop/new-task.webp" alt="Ordo's New Task dialog today: estimated hours sits under advanced options while Bean offers to break the assignment into steps from a description or a PDF" loading="lazy" decoding="async"></div>
             <p class="cs-compare-desc">The estimate moved under <em>advanced options</em>, and the space it freed went to Bean offering to draft the steps from a description or a dropped PDF.</p>
           </div>
         </div>
@@ -276,7 +278,7 @@
         <p class="body-text">That warmth had to survive contact with the parts of the app that do the real work. Onboarding is the hardest test of it: the scheduler needs real numbers before it can do anything useful, so the app has to ask for genuine effort up front and make every question feel worth answering.</p>
 
         <figure class="cs-figure" data-zoom>
-          <img src="images/ordo/desktop/onboarding-capacity.webp" alt="Ordo onboarding step five: a slider for hours of focused work per day shown as blocks of thirty minutes, a time-of-day preference, and a live summary of how many focus blocks that allows" loading="lazy">
+          <img src="images/ordo/desktop/onboarding-capacity.webp" alt="Ordo onboarding step five: a slider for hours of focused work per day shown as blocks of thirty minutes, a time-of-day preference, and a live summary of how many focus blocks that allows" loading="lazy" decoding="async">
           <div class="cs-pins" aria-hidden="true">
             <span class="cs-pin" style="left: 51%; top: 24.2%">1</span>
             <span class="cs-pin" style="left: 90.6%; top: 3.8%">2</span>
@@ -303,19 +305,19 @@
           <p class="cs-shots-title">The rest of the app, briefly</p>
           <div class="cs-shots-grid">
             <figure class="cs-shot-item">
-              <div class="cs-shot" data-zoom><img src="images/ordo/desktop/calendar.webp" alt="Ordo's calendar: a full week of color-coded class blocks and scheduled work, with an Up next queue alongside it" loading="lazy"></div>
+              <div class="cs-shot" data-zoom><img src="images/ordo/desktop/calendar.webp" alt="Ordo's calendar: a full week of color-coded class blocks and scheduled work, with an Up next queue alongside it" loading="lazy" decoding="async"></div>
               <figcaption class="cs-shot-cap">Class blocks and scheduled work in one view, with what's next sitting alongside it rather than on another screen.</figcaption>
             </figure>
             <figure class="cs-shot-item">
-              <div class="cs-shot" data-zoom><img src="images/ordo/desktop/tasks.webp" alt="Ordo's task list: four tasks grouped by whether they still need a slot, each with a Break it down action" loading="lazy"></div>
+              <div class="cs-shot" data-zoom><img src="images/ordo/desktop/tasks.webp" alt="Ordo's task list: four tasks grouped by whether they still need a slot, each with a Break it down action" loading="lazy" decoding="async"></div>
               <figcaption class="cs-shot-cap">Tasks split by whether they've been given a slot yet — the only distinction that changes what you do next.</figcaption>
             </figure>
             <figure class="cs-shot-item">
-              <div class="cs-shot" data-zoom><img src="images/ordo/desktop/focus.webp" alt="Ordo's focus timer counting down 25 minutes against step 1 of 5 of an organic chemistry problem set" loading="lazy"></div>
+              <div class="cs-shot" data-zoom><img src="images/ordo/desktop/focus.webp" alt="Ordo's focus timer counting down 25 minutes against step 1 of 5 of an organic chemistry problem set" loading="lazy" decoding="async"></div>
               <figcaption class="cs-shot-cap">The timer runs against a single step, not the whole assignment. Starting step one of five is a much smaller ask.</figcaption>
             </figure>
             <figure class="cs-shot-item">
-              <div class="cs-shot" data-zoom><img src="images/ordo/desktop/journal.webp" alt="Ordo's journal: mood faces, an energy gradient, and the day's focus time, tasks done, and streak" loading="lazy"></div>
+              <div class="cs-shot" data-zoom><img src="images/ordo/desktop/journal.webp" alt="Ordo's journal: mood faces, an energy gradient, and the day's focus time, tasks done, and streak" loading="lazy" decoding="async"></div>
               <figcaption class="cs-shot-cap">Mood and energy — the only two things the morning briefing is ever shown, and never a word of what you wrote.</figcaption>
             </figure>
           </div>
@@ -455,7 +457,7 @@ sb.table("decompose_cache").upsert({"fingerprint": fp, "user_id": user_id,
   </a>
 </div>
 
-<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
 </html>
