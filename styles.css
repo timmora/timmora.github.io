@@ -140,71 +140,78 @@ h2::before {
 
 /* Header */
 
+/* The header is a folder tab hanging from the top edge of the window — the
+   portfolio folders' tabs turned upside down, in the same paper as the blog
+   letters. The <header> itself is only the sticky, full-width track the tab
+   hangs in: transparent, and click-through everywhere the tab isn't. */
 header {
+  --tab-paper: #FDFCFA;
+  --tab-shoulder: 12px;
   font-size: 22px;
   font-family: "DM Sans", sans-serif;
-  background-color: transparent;
-  border-bottom: 1px solid transparent;
   position: sticky;
   top: 0;
   z-index: 201;
-  transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.3s ease,
-    backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
-}
-
-/* Once content runs under it, the header turns to frosted glass rather than
-   an opaque strip: the page stays faintly visible through it, so the header
-   reads as a layer floating over the content instead of a wall above it. */
-header.scrolled {
-  background-color: rgba(248, 248, 248, 0.72); /* --bg at 72% */
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-}
-
-/* Scroll edge: instead of a hard 1px rule, the content softens into the
-   glass over a few pixels, and only once there is content under it. */
-header::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 14px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.035), rgba(0, 0, 0, 0));
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-header.scrolled::after { opacity: 1; }
-
-@media (prefers-reduced-transparency: reduce) {
-  header.scrolled {
-    background-color: var(--bg);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
-}
-
-@media (prefers-contrast: more) {
-  header.scrolled {
-    background-color: var(--bg);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    border-bottom-color: rgba(0, 0, 0, 0.35);
-  }
-
-  header::after { display: none; }
+  transition: transform 0.3s ease;
 }
 
 .header-inner {
-  max-width: 1320px;
+  position: relative;
+  width: fit-content;
+  max-width: calc(100% - 2 * var(--tab-shoulder) - 16px);
   margin: 0 auto;
-  padding: 0 56px;
+  padding: 0 30px;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  column-gap: 45px;
+  grid-template-columns: auto auto auto;
+  column-gap: 28px;
   align-items: center;
+  background-color: var(--tab-paper);
+  border-radius: 0 0 12px 12px;
+  pointer-events: auto;
+  /* drop-shadow, not box-shadow, so the shoulders cast it too and the tab
+     reads as one piece of card. It deepens once the page scrolls beneath,
+     the way the folders lift when they have something to sit over. */
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.06));
+  transition: filter 0.4s ease;
+}
+
+header.scrolled .header-inner {
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.11));
+}
+
+/* Shoulders: the concave curves where the tab meets the top edge, so it
+   hangs from the window like a real file tab instead of floating below it. */
+.header-inner::before,
+.header-inner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: var(--tab-shoulder);
+  height: var(--tab-shoulder);
+}
+
+.header-inner::before {
+  right: 100%;
+  background: radial-gradient(circle at 0 100%, transparent calc(var(--tab-shoulder) - 0.5px), var(--tab-paper) var(--tab-shoulder));
+}
+
+.header-inner::after {
+  left: 100%;
+  background: radial-gradient(circle at 100% 100%, transparent calc(var(--tab-shoulder) - 0.5px), var(--tab-paper) var(--tab-shoulder));
+}
+
+@media (prefers-contrast: more) {
+  .header-inner {
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    border-top: none;
+    filter: none;
+  }
+
+  /* The border can't follow the shoulder curves, so they go rather than
+     leave a gap in the outline. */
+  .header-inner::before,
+  .header-inner::after { display: none; }
 }
 
 .nav-left {
@@ -219,8 +226,8 @@ header.scrolled::after { opacity: 1; }
 
 /* Lenis.stop() used to be the only thing holding the page still behind an
    open overlay. Smooth scroll is now off on touch devices, so the lock has to
-   be a real one. The overlays themselves set overflow-y: auto and still scroll. */
-/* The lock goes on <html>, not <body>. Lenis puts overflow: clip on <html>
+   be a real one. The overlays themselves set overflow-y: auto and still scroll.
+   The lock goes on <html>, not <body>. Lenis puts overflow: clip on <html>
    while stopped, and once <html> is non-visible, a hidden <body> no longer
    hands its overflow to the viewport — body becomes its own scroll box, and
    every sticky element inside it (the case-study contents rail) sticks to
@@ -236,7 +243,13 @@ html:has(> body.cs-zoom-open) {
 body.portfolio-folder-open header,
 body.blog-paper-open header,
 body.cs-zoom-open header {
-  transform: translateY(-100%);
+  /* The extra 24px takes the tab's drop shadow up out of view with it. */
+  transform: translateY(calc(-100% - 24px));
+}
+
+body.portfolio-folder-open .header-inner,
+body.blog-paper-open .header-inner,
+body.cs-zoom-open .header-inner {
   pointer-events: none;
 }
 
