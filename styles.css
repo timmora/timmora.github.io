@@ -8,7 +8,6 @@
   --reveal-bg: #eae9e5;
   --shadow: rgba(0, 0, 0, 0.1);
   --footer-color: #4a4a4a;
-  --glass-nav-border: rgba(0, 0, 0, 0.08);
   --cs-border: rgba(0, 0, 0, 0.1);
 }
 
@@ -149,16 +148,53 @@ header {
   position: sticky;
   top: 0;
   z-index: 201;
-  transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+  transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.3s ease,
+    backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
 }
 
-header.scrolled,
-body.page-about header {
-  background-color: var(--bg);
-}
-
+/* Once content runs under it, the header turns to frosted glass rather than
+   an opaque strip: the page stays faintly visible through it, so the header
+   reads as a layer floating over the content instead of a wall above it. */
 header.scrolled {
-  border-bottom-color: var(--glass-nav-border);
+  background-color: rgba(248, 248, 248, 0.72); /* --bg at 72% */
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Scroll edge: instead of a hard 1px rule, the content softens into the
+   glass over a few pixels, and only once there is content under it. */
+header::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.035), rgba(0, 0, 0, 0));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+header.scrolled::after { opacity: 1; }
+
+@media (prefers-reduced-transparency: reduce) {
+  header.scrolled {
+    background-color: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  header.scrolled {
+    background-color: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom-color: rgba(0, 0, 0, 0.35);
+  }
+
+  header::after { display: none; }
 }
 
 .header-inner {
@@ -184,13 +220,22 @@ header.scrolled {
 /* Lenis.stop() used to be the only thing holding the page still behind an
    open overlay. Smooth scroll is now off on touch devices, so the lock has to
    be a real one. The overlays themselves set overflow-y: auto and still scroll. */
-body.portfolio-folder-open,
-body.blog-paper-open {
+/* The lock goes on <html>, not <body>. Lenis puts overflow: clip on <html>
+   while stopped, and once <html> is non-visible, a hidden <body> no longer
+   hands its overflow to the viewport — body becomes its own scroll box, and
+   every sticky element inside it (the case-study contents rail) sticks to
+   body's top instead of the window's and jumps out of view. */
+html:has(> body.portfolio-folder-open),
+html:has(> body.blog-paper-open),
+html:has(> body.cs-zoom-open) {
   overflow: hidden;
 }
 
+/* Every overlay moves the header out of the way the same way, so it never
+   sits dimmed behind one scrim on some pages and gone on others. */
 body.portfolio-folder-open header,
-body.blog-paper-open header {
+body.blog-paper-open header,
+body.cs-zoom-open header {
   transform: translateY(-100%);
   pointer-events: none;
 }
@@ -245,11 +290,24 @@ body.blog-paper-open header {
   display: inline-block;
   white-space: nowrap;
   transform: skewX(0deg);
-  transition: color 0.5s ease, opacity 0.2s ease, transform 0.3s ease;
+  transition: color 0.5s ease, opacity 0.2s ease, transform 0.3s ease, scale 0.15s ease-out;
 }
 
 .header-name:hover {
   opacity: 0.8;
+}
+
+/* Letters of the name, split by app.js so each can lean toward the pointer.
+   position: relative on the link makes it their offsetParent, which is what
+   app.js measures their centres against. They pivot at their middle rather
+   than the baseline: tops lean in while feet shift slightly out, so letters
+   either side of the pointer don't close the gap between "Tim" and "Mora". */
+.header-name { position: relative; }
+
+.header-name-letter {
+  display: inline-block;
+  transform-origin: 50% 55%;
+  will-change: transform;
 }
 
 nav ul {
@@ -276,7 +334,7 @@ nav a {
   color: var(--text);
   opacity: 0.6;
   cursor: pointer;
-  transition: color 0.5s ease, opacity 0.2s ease, letter-spacing 0.3s ease;
+  transition: color 0.5s ease, opacity 0.2s ease, letter-spacing 0.3s ease, scale 0.15s ease-out;
 }
 
 nav a:hover {
@@ -533,7 +591,7 @@ footer p {
   /* Sideways dodge uses `left` (not transform) because drawerRise's fill
      keeps owning the transform property after the entrance finishes. */
   left: 0;
-  transition: top 0.3s ease, left 0.3s ease, background-color 0.5s ease;
+  transition: top 0.3s ease, left 0.3s ease, background-color 0.5s ease, scale 0.15s ease-out;
   animation: drawerRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -608,7 +666,7 @@ footer p {
   margin-top: 44px;
   opacity: 0.85;
   will-change: transform, opacity, filter;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, scale 0.15s ease-out;
   animation: heroFade 0.45s ease both 1.2s, heroSlide 1.1s ease-out both 1.2s;
 }
 
@@ -1178,7 +1236,7 @@ body.portfolio-folder-open footer {
 .folder {
   position: relative;
   cursor: default;
-  transition: transform 0.4s ease, opacity 0.5s ease, filter 0.5s ease, margin-top 0.4s ease;
+  transition: transform 0.4s ease, opacity 0.5s ease, filter 0.5s ease, margin-top 0.4s ease, scale 0.15s ease-out;
   transform: translateY(0);
   margin-top: -240px;
   /* The case-study folders are anchors and Toolkit is a role=button div, so
@@ -1722,7 +1780,7 @@ body:has(#blog) {
   background-color: var(--envelope-color);
   box-shadow: 0 4px 16px var(--shadow);
   cursor: pointer;
-  transition: background-color 0.4s ease, opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+  transition: background-color 0.4s ease, opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease, scale 0.15s ease-out;
 }
 
 .envelope:focus-visible {
@@ -2616,12 +2674,43 @@ body.case-study-page.theme-holoorbits {
   }
 }
 
+/* Press feedback. Lands on pointer-down, so a tap registers before the click
+   resolves — and on touch, where hover never fires, it is the only feedback
+   there is. Uses the standalone `scale` property rather than transform so it
+   composes with the transforms these already own (the folder's peek lift,
+   drawerRise's fill on the hero tabs) instead of overwriting them. Large
+   surfaces dip less than small ones: 3% of a 1200px folder is a lurch. */
+nav a:active,
+.header-name:active,
+#view-my-work:active,
+.hero-peek-tab:active,
+.case-study-page [data-zoom]:active { scale: 0.97; }
+
+.envelope:active { scale: 0.985; }
+.folder:active   { scale: 0.99; }
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* Overlays still cross-fade instead of snapping. A fade explains that a
+     layer arrived or left without any travel, which is the part that can
+     bother a vestibular system — so the slide goes and the fade stays. */
+  .folder-overlay,
+  .paper-overlay,
+  .folder-panel,
+  .paper,
+  .cs-zoom::before {
+    transition: opacity 0.2s ease !important;
+  }
+
+  .folder-panel,
+  .paper {
+    transform: none !important;
   }
 
   /* Reveal elements start invisible and rely on JS + transition to appear;
@@ -3047,13 +3136,17 @@ body.case-study-page.theme-holoorbits {
 
 /* Nudge on hover so the zoom affordance is discoverable without a badge. */
 .case-study-page .cs-compare-shot[data-zoom],
-.case-study-page .cs-shot[data-zoom] { transition: opacity 0.2s ease; }
+.case-study-page .cs-shot[data-zoom],
+.case-study-page .cs-panel-item img[data-zoom] { transition: opacity 0.2s ease, scale 0.15s ease-out; }
+.case-study-page .cs-figure[data-zoom] { transition: scale 0.15s ease-out; }
 .case-study-page .cs-compare-shot[data-zoom]:hover,
-.case-study-page .cs-shot[data-zoom]:hover { opacity: 0.86; }
+.case-study-page .cs-shot[data-zoom]:hover,
+.case-study-page .cs-panel-item img[data-zoom]:hover { opacity: 0.86; }
 
 @media (prefers-reduced-motion: reduce) {
   .case-study-page .cs-compare-shot[data-zoom],
-  .case-study-page .cs-shot[data-zoom] { transition: none; }
+  .case-study-page .cs-shot[data-zoom],
+  .case-study-page .cs-panel-item img[data-zoom] { transition: none; }
 }
 
 .case-study-page .cs-figure .cs-media-placeholder { border-radius: 9px; }
@@ -3213,7 +3306,9 @@ body.case-study-page.theme-holoorbits {
   font-weight: 700;
 }
 
-.case-study-page .cs-deep[open] summary::before { content: '\2013'; }
+/* While closing, app.js keeps [open] on until the collapse finishes, so the
+   marker follows is-closing rather than [open] and flips on the click. */
+.case-study-page .cs-deep[open]:not(.is-closing) summary::before { content: '\2013'; }
 
 .case-study-page .cs-deep-text {
   font-family: "DM Sans", sans-serif;
@@ -3249,20 +3344,57 @@ body.case-study-page.theme-holoorbits {
   position: fixed;
   inset: 0;
   z-index: 300;
-  background: rgba(20, 19, 17, 0.82);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 40px; /* matches PAD in app.js */
   cursor: zoom-out;
+}
+
+/* The scrim is its own layer so it can fade while the image, which flies in
+   from the thumbnail, stays fully opaque. Blur and dim arrive together. */
+.cs-zoom::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 19, 17, 0.82);
   backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cs-zoom.is-open::before { opacity: 1; }
+.cs-zoom.is-closing::before { transition-duration: 0.25s; }
+
+/* While dragged, the scrim follows the sheet directly (app.js sets --scrim);
+   a transition here would make it lag behind the pointer. */
+.cs-zoom.is-dragging::before {
+  transition: none;
+  opacity: var(--scrim, 1);
 }
 
 .cs-zoom img {
+  position: relative;
   max-width: 100%;
   max-height: 100%;
   border-radius: 10px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  object-fit: contain; /* app.js sizes it in px; a later resize must not squash it */
+  cursor: grab;
+  touch-action: none; /* the drag is ours, not the browser's scroll */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform;
+}
+
+.cs-zoom.is-dragging img { cursor: grabbing; }
+
+@media (prefers-reduced-transparency: reduce) {
+  .cs-zoom::before {
+    background: rgb(20, 19, 17);
+    backdrop-filter: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

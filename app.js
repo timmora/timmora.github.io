@@ -80,10 +80,13 @@ var scroller = (function() {
   requestAnimationFrame(snap);
 })();
 
-// When a folder is open, Lenis stops so the folder overlay can scroll natively
+// When an overlay is open, Lenis stops so the overlay can scroll natively and
+// the wheel stops moving the page behind it. The CSS overflow lock alone does
+// not do that: Lenis drives window.scrollTo, which overflow does not block.
 (function syncLenisWhenFolderOpen() {
+  var OVERLAY_CLASSES = ['portfolio-folder-open', 'blog-paper-open', 'cs-zoom-open'];
   function sync() {
-    if (document.body.classList.contains('portfolio-folder-open') || document.body.classList.contains('blog-paper-open')) {
+    if (OVERLAY_CLASSES.some(function(c) { return document.body.classList.contains(c); })) {
       scroller.stop();
     } else {
       scroller.start();
@@ -92,6 +95,11 @@ var scroller = (function() {
   sync();
   new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 })();
+
+// iOS Safari only applies :active to elements when a touch listener exists
+// somewhere on the page; without one, the press states in styles.css never
+// show on a phone — the one device where hover gives no feedback either.
+document.addEventListener('touchstart', function() {}, { passive: true });
 
 (function() {
   var portfolio = document.getElementById('portfolio');
@@ -251,37 +259,354 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
   paint(sections[0].id);
 })();
 
+// Header name: the letters lean toward the pointer as it moves across the
+// header, and spring back upright when it goes. Each letter is its own spring
+// (Apple-style response/damping), so the lean follows the pointer without
+// lag, can change direction mid-swing, and the return carries a small wobble.
+(function() {
+  var name = document.querySelector('.header-name');
+  var header = document.querySelector('header');
+  if (!name || !header) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  // Kept gentle on purpose: letters on either side of the pointer tip toward
+  // each other, and past ~10deg the "m" and "M" meet and close the word gap.
+  var MAX_LEAN = 9;    // deg, reached by a letter one REACH from the pointer
+  var REACH = 22;      // px; past about three of these a letter barely stirs
+  var FALLOFF_Y = 40;  // px above or below the name before the pull fades
+  var RESPONSE = 0.35; // s — how quickly a letter gets where it is going
+  var DAMPING = 0.7;   // under 1, so the return overshoots a touch
+  var K = Math.pow(2 * Math.PI / RESPONSE, 2);
+  var C = 4 * Math.PI * DAMPING / RESPONSE;
+
+  // Split into letters. The link keeps the name as its accessible label, so
+  // screen readers hear "Tim Mora", not seven separate characters.
+  var text = name.textContent;
+  name.setAttribute('aria-label', text.trim());
+  name.textContent = '';
+  var letters = [];
+  text.split('').forEach(function(ch) {
+    if (ch === ' ') { name.appendChild(document.createTextNode(' ')); return; }
+    var span = document.createElement('span');
+    span.className = 'header-name-letter';
+    span.setAttribute('aria-hidden', 'true');
+    span.textContent = ch;
+    name.appendChild(span);
+    letters.push({ el: span, a: 0, v: 0, target: 0 });
+  });
+
+  var px = null, py = null, raf = 0, last = 0;
+
+  function aim() {
+    var r = name.getBoundingClientRect();
+    var cy = r.top + r.height / 2;
+    letters.forEach(function(l) {
+      if (px === null) { l.target = 0; return; }
+      var cx = r.left + l.el.offsetLeft + l.el.offsetWidth / 2;
+      // Derivative-of-Gaussian falloff: a letter right under the pointer
+      // stands straight, its neighbours lean in hardest one REACH out, and
+      // the pull fades smoothly beyond that. Positive rotates the top right.
+      var d = (px - cx) / REACH;
+      var pull = d * Math.exp(0.5 * (1 - d * d));
+      var dy = (py - cy) / FALLOFF_Y;
+      l.target = MAX_LEAN * pull * Math.exp(-dy * dy);
+    });
+  }
+
+  function frame(now) {
+    var dt = last ? Math.min(0.032, (now - last) / 1000) : 1 / 60;
+    last = now;
+    var moving = false;
+    letters.forEach(function(l) {
+      // Two half-steps keep the stiff spring stable through a slow frame.
+      for (var i = 0; i < 2; i++) {
+        l.v += (-K * (l.a - l.target) - C * l.v) * dt / 2;
+        l.a += l.v * dt / 2;
+      }
+      if (Math.abs(l.a - l.target) > 0.01 || Math.abs(l.v) > 0.05) moving = true;
+      else { l.a = l.target; l.v = 0; }
+      l.el.style.transform = l.a ? 'rotate(' + l.a.toFixed(2) + 'deg)' : '';
+    });
+    if (moving) { raf = requestAnimationFrame(frame); } else { raf = 0; last = 0; }
+  }
+
+  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+
+  header.addEventListener('pointermove', function(e) {
+    if (e.pointerType === 'touch') return;
+    px = e.clientX; py = e.clientY;
+    aim(); kick();
+  });
+  header.addEventListener('pointerleave', function() {
+    px = py = null;
+    aim(); kick();
+  });
+})();
+
+// Case-study deep dives are <details>, which snap open and shut. This grows
+// and shrinks them instead. Every run starts from the element's live height,
+// so clicking again mid-way turns it around rather than restarting or
+// jumping. Without JS they are still plain, working <details>.
+(function() {
+  var deeps = document.querySelectorAll('details.cs-deep');
+  if (!deeps.length || !Element.prototype.animate) return;
+  var EASE = 'cubic-bezier(0.32, 0.72, 0, 1)';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  deeps.forEach(function(el) {
+    var summary = el.querySelector('summary');
+    if (!summary) return;
+    var run = null, fade = null;
+    var wantOpen = el.open;
+
+    function body() { return el.querySelectorAll(':scope > :not(summary)'); }
+
+    summary.addEventListener('click', function(e) {
+      e.preventDefault();
+      wantOpen = !wantOpen;
+      el.classList.toggle('is-closing', !wantOpen);
+
+      if (reduceMotion.matches) {
+        // No growing; the content just fades in over the switch.
+        el.open = wantOpen;
+        el.classList.remove('is-closing');
+        if (wantOpen) body().forEach(function(n) { n.animate({ opacity: [0, 1] }, { duration: 180 }); });
+        return;
+      }
+
+      var from = el.getBoundingClientRect().height; // live, even mid-run
+      if (run) run.cancel();
+      if (fade) fade.forEach(function(a) { a.cancel(); });
+      el.open = false;
+      var closedH = el.getBoundingClientRect().height;
+      el.open = true;
+      var openH = el.getBoundingClientRect().height;
+      var to = wantOpen ? openH : closedH;
+
+      // Longer blocks get a little more time, so a tall code sample isn't
+      // whipped open at the same rate as a two-line note.
+      var duration = Math.min(560, 280 + Math.abs(to - from) * 0.3);
+      el.style.overflow = 'hidden';
+      run = el.animate({ height: [from + 'px', to + 'px'] }, { duration: duration, easing: EASE });
+      // The content fades in behind the growing edge, and out ahead of the
+      // shrinking one, so text never gets sliced mid-line at full strength.
+      fade = Array.prototype.map.call(body(), function(n) {
+        var start = +getComputedStyle(n).opacity;
+        return n.animate({ opacity: [start, wantOpen ? 1 : 0] },
+          { duration: wantOpen ? duration : duration * 0.6, easing: 'ease', fill: 'forwards' });
+      });
+      run.onfinish = function() {
+        run = null;
+        if (fade) fade.forEach(function(a) { a.cancel(); });
+        fade = null;
+        el.style.overflow = '';
+        el.classList.remove('is-closing');
+        el.open = wantOpen;
+      };
+    });
+  });
+})();
+
 // Click-to-zoom for case-study captures. Full-window app screenshots render
 // ~410px wide in the main column, so detail lives behind a click.
+//
+// The enlarged screenshot is a sheet: it rises from the bottom edge and
+// leaves the way it came. It can be dragged down to dismiss — it tracks the
+// pointer 1:1, a flick carries its speed into the exit, and a short pull
+// springs back. Every animation starts from wherever the sheet is on screen
+// right now, so it can be caught or turned around at any point.
 (function() {
   var figures = document.querySelectorAll('[data-zoom]');
   if (!figures.length) return;
-  var overlay = null;
+  var PAD = 40; // matches .cs-zoom padding
+  // The iOS sheet curve: leaves fast, settles long. Its starting slope is
+  // 0.72 / 0.32 = 2.25x its average speed, which is what lets a drag's
+  // release velocity be handed to it (see durationFor).
+  var EASE = 'cubic-bezier(0.32, 0.72, 0, 1)';
+  var EASE_SLOPE = 0.72 / 0.32;
+  var OPEN_MS = 460, CLOSE_MS = 320, SETTLE_MS = 380;
+  var DRAG_SLOP = 10; // px of travel before a press counts as a drag
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var overlay = null, big = null, flight = null, returnFocus = null;
+  var drag = null, swallowClick = false;
 
-  function close() {
-    if (!overlay) return;
-    overlay.remove();
-    overlay = null;
-    document.body.style.overflow = '';
+  function currentY() {
+    var t = getComputedStyle(big).transform;
+    return t && t !== 'none' ? new DOMMatrix(t).m42 : 0;
   }
 
-  function open(src, alt) {
-    close();
+  // Far enough down that the sheet, shadow included, is below the fold.
+  function belowFold() {
+    return window.innerHeight - big.offsetTop + 60;
+  }
+
+  // A duration that makes the curve's opening speed match the pointer's, so
+  // there is no seam between letting go and the sheet moving on its own.
+  // Only applies when the flick is heading the same way; otherwise, and for
+  // a slow release, the normal duration is used.
+  function durationFor(distance, velocity, fallback) {
+    if (!velocity || distance * velocity <= 0) return fallback;
+    return Math.max(140, Math.min(fallback, EASE_SLOPE * Math.abs(distance) / Math.abs(velocity)));
+  }
+
+  function slide(toY, duration, done) {
+    var fromY = currentY(); // read before cancelling, or it reads the end state
+    if (flight) flight.cancel();
+    big.style.transform = 'translateY(' + toY + 'px)';
+    flight = big.animate(
+      [{ transform: 'translateY(' + fromY + 'px)' }, { transform: 'translateY(' + toY + 'px)' }],
+      { duration: duration, easing: EASE }
+    );
+    flight.onfinish = function() { flight = null; if (done) done(); };
+  }
+
+  // Past the top edge the sheet resists more the further it is pulled.
+  function rubberband(over, dimension) {
+    var c = 0.55;
+    return (over * dimension * c) / (dimension + c * Math.abs(over));
+  }
+
+  function teardown() {
+    overlay.remove();
+    overlay = big = flight = drag = null;
+    document.body.classList.remove('cs-zoom-open');
+    if (returnFocus) { returnFocus.focus({ preventScroll: true }); returnFocus = null; }
+  }
+
+  function close(velocity) {
+    if (!overlay || overlay.classList.contains('is-closing')) return;
+    overlay.classList.add('is-closing');
+    overlay.classList.remove('is-open', 'is-dragging');
+    if (reduceMotion.matches || !big.animate) {
+      // No travel: sheet and scrim fade out together.
+      if (big.animate) big.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, fill: 'forwards' });
+      setTimeout(teardown, 200);
+      return;
+    }
+    var to = belowFold();
+    slide(to, durationFor(to - currentY(), velocity, CLOSE_MS), teardown);
+  }
+
+  function onPointerDown(e) {
+    if (e.button !== 0 || overlay.classList.contains('is-closing')) return;
+    swallowClick = false; // a stale flag from a drag that ended with no click
+    var y = currentY();
+    // Caught mid-flight: pin it where it is and hand it to the pointer.
+    if (flight) { flight.cancel(); flight = null; big.style.transform = 'translateY(' + y + 'px)'; }
+    drag = { id: e.pointerId, originY: e.clientY, baseY: y, y: y, active: false, samples: [] };
+    big.setPointerCapture(e.pointerId);
+  }
+
+  function onPointerMove(e) {
+    if (!drag || e.pointerId !== drag.id || overlay.classList.contains('is-closing')) return;
+    var dy = e.clientY - drag.originY;
+    if (!drag.active) {
+      if (Math.abs(dy) < DRAG_SLOP) return;
+      // Re-anchor at the point it became a drag, so the sheet doesn't jump
+      // by the slop distance the moment it starts following.
+      drag.active = true;
+      drag.originY = e.clientY;
+      dy = 0;
+      overlay.classList.add('is-dragging');
+    }
+    var y = drag.baseY + dy;
+    if (y < 0) y = rubberband(y, window.innerHeight);
+    drag.y = y;
+    big.style.transform = 'translateY(' + y + 'px)';
+    // The scrim thins as the sheet is pulled away, so the page behind
+    // previews what letting go will reveal.
+    overlay.style.setProperty('--scrim', Math.max(0, 1 - Math.max(0, y) / belowFold()).toFixed(3));
+    drag.samples.push({ t: e.timeStamp, y: e.clientY });
+    while (drag.samples.length > 2 && e.timeStamp - drag.samples[0].t > 80) drag.samples.shift();
+  }
+
+  function onPointerUp(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var d = drag;
+    drag = null;
+    if (!d.active) {
+      // A tap, not a drag; the click that follows will close the sheet. If
+      // the press pinned it mid-rise and no click comes (pointercancel),
+      // this sends it the rest of the way up rather than stranding it.
+      if (currentY() !== 0) slide(0, SETTLE_MS);
+      return;
+    }
+    swallowClick = true; // the click that follows a drag is not a tap
+    overlay.classList.remove('is-dragging');
+    var s = d.samples, v = 0;
+    if (s.length > 1) {
+      var first = s[0], last = s[s.length - 1];
+      v = (last.y - first.y) / Math.max(1, last.t - first.t); // px/ms
+    }
+    // Decide from where the gesture is heading, not where it let go: Apple's
+    // momentum projection (deceleration rate 0.998) says where a flick at this
+    // speed would come to rest.
+    var projected = d.y + v * 0.998 / (1 - 0.998);
+    if (v >= 0 && projected > belowFold() * 0.3) {
+      close(v);
+    } else {
+      slide(0, durationFor(-d.y, v, SETTLE_MS));
+    }
+  }
+
+  function open(source) {
+    if (overlay) return;
+    returnFocus = document.activeElement;
     overlay = document.createElement('div');
     overlay.className = 'cs-zoom';
-    var img = document.createElement('img');
-    img.src = src;
-    img.alt = alt || '';
-    overlay.appendChild(img);
-    overlay.addEventListener('click', close);
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Enlarged screenshot. Press Escape, click, or drag down to close.');
+    overlay.tabIndex = -1;
+    big = document.createElement('img');
+    big.src = source.currentSrc || source.src;
+    big.alt = source.alt || '';
+    big.draggable = false; // the browser's own image drag would steal the gesture
+
+    // Size it up front from the thumbnail's natural dimensions, so its resting
+    // position is known before it paints and the rise can be measured.
+    var nw = source.naturalWidth, nh = source.naturalHeight;
+    if (nw && nh) {
+      var fit = Math.min(1,
+        (document.documentElement.clientWidth - PAD * 2) / nw,
+        (window.innerHeight - PAD * 2) / nh);
+      big.style.width = Math.round(nw * fit) + 'px';
+      big.style.height = Math.round(nh * fit) + 'px';
+    }
+
+    overlay.appendChild(big);
+    overlay.addEventListener('click', function() {
+      if (swallowClick) { swallowClick = false; return; }
+      close();
+    });
+    big.addEventListener('pointerdown', onPointerDown);
+    big.addEventListener('pointermove', onPointerMove);
+    big.addEventListener('pointerup', onPointerUp);
+    big.addEventListener('pointercancel', onPointerUp);
     document.body.appendChild(overlay);
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('cs-zoom-open');
+    overlay.focus({ preventScroll: true });
+
+    // Next frame, so the scrim's transition sees a starting state to leave.
+    requestAnimationFrame(function() { if (overlay) overlay.classList.add('is-open'); });
+
+    if (!big.animate) return;
+    if (reduceMotion.matches) {
+      big.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
+      return;
+    }
+    big.style.transform = 'translateY(' + belowFold() + 'px)';
+    slide(0, OPEN_MS);
   }
 
   figures.forEach(function(figure) {
     figure.addEventListener('click', function() {
-      var img = figure.querySelector('img');
-      if (img) open(img.getAttribute('src'), img.getAttribute('alt'));
+      // data-zoom sits on a wrapper (.cs-shot, .cs-figure) where the caption is
+      // a sibling, and on the <img> itself where it isn't — panel grids put the
+      // image and its caption in one card, so the whole card must not be hot.
+      var img = figure.matches('img') ? figure : figure.querySelector('img');
+      if (img) open(img);
     });
   });
 
@@ -469,9 +794,14 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
       toolkitTrigger = null;
     }
     if (panel) {
-      panel.addEventListener('transitionend', function h() {
-        panel.classList.remove('active');
+      panel.addEventListener('transitionend', function h(e) {
+        // Child transitions bubble up here, so only the panel's own fade counts.
+        if (e.target !== panel || e.propertyName !== 'opacity') return;
         panel.removeEventListener('transitionend', h);
+        // Reopened mid-close: the fade that just ended was the way back in,
+        // and hiding now would blank the panel under a live overlay.
+        if (panel.classList.contains('visible')) return;
+        panel.classList.remove('active');
       });
     }
   }
@@ -587,10 +917,11 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
   setFlapSizes();
   window.addEventListener('resize', setFlapSizes);
 
-  var PEEK_DURATION = 500;
+  // Grace period before a peeked envelope closes once the pointer leaves, so
+  // skimming across the stack doesn't flap every envelope shut behind it.
+  var PEEK_CLOSE_DELAY = 500;
   var activePaper = null;
   var activeTrigger = null;
-  var opening = false;
 
   function closePaper(immediate) {
     if (activePaper) {
@@ -601,9 +932,13 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
         paper.classList.remove('active');
         paper.style.width = '';
       } else {
+        // Listens for opacity, not transform: reduced motion drops the slide
+        // but keeps the fade, so transform may never transition at all.
         paper.addEventListener('transitionend', function onEnd(e) {
-          if (e.target !== paper || e.propertyName !== 'transform') return;
+          if (e.target !== paper || e.propertyName !== 'opacity') return;
           paper.removeEventListener('transitionend', onEnd);
+          // Reopened before the fade-out finished — leave it on screen.
+          if (paper.classList.contains('visible')) return;
           paper.classList.remove('active');
           paper.style.width = '';
         });
@@ -626,16 +961,17 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
 
   envelopes.forEach(function(envelope) {
     var peekTimeout = null;
-    var peekStart = 0;
 
     envelope.addEventListener('mouseenter', function() {
-      if (activePaper || opening) return;
+      if (activePaper) return;
+      // Back inside before the grace period ran out: the pending close is
+      // stale, and letting it fire would shut the flap under the pointer.
+      clearTimeout(peekTimeout);
       envelope.classList.add('peeking');
-      peekStart = Date.now();
     });
 
     envelope.addEventListener('mouseleave', function() {
-      if (activePaper || opening) return;
+      if (activePaper) return;
       if (!envelope.classList.contains('peeking')) return;
       clearTimeout(peekTimeout);
       peekTimeout = setTimeout(function() {
@@ -646,42 +982,34 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
           envelope.classList.remove('closing');
           flap.removeEventListener('transitionend', handler);
         });
-      }, PEEK_DURATION);
+      }, PEEK_CLOSE_DELAY);
     });
 
+    // Opens on the spot. It used to hold the paper back until the flap had
+    // finished, which cost a keyboard or touch visitor half a second of
+    // nothing; the flap now opens alongside the paper instead of before it.
     function openPaper() {
-      if (activePaper || opening) return;
+      if (activePaper) return;
       clearTimeout(peekTimeout);
-      opening = true;
-      var wasPeeking = envelope.classList.contains('peeking');
-      envelope.classList.add('peeking');
-      if (!wasPeeking) peekStart = Date.now();
-
       var paper = overlay.querySelector('.paper[data-entry="' + envelope.dataset.entry + '"]');
-      if (!paper) { opening = false; return; }
-      // Let the flap finish opening before the paper slides out, whether the
-      // click followed a hover or arrived cold.
-      var delay = Math.max(0, PEEK_DURATION - (Date.now() - peekStart));
+      if (!paper) return;
 
-      setTimeout(function() {
-        var overlayPad = 48;
-        var maxPaperW = Math.max(280, document.documentElement.clientWidth - overlayPad);
-        var targetPaperW = Math.max(envelope.offsetWidth, 920);
-        paper.style.width = Math.min(targetPaperW, maxPaperW) + 'px';
-        envelope.classList.add('open');
-        stack.classList.add('has-open');
-        blogSection.classList.add('has-open-envelope');
-        overlay.classList.add('active');
-        paper.classList.add('active');
-        activePaper = paper;
-        activeTrigger = envelope;
-        envelope.setAttribute('aria-expanded', 'true');
-        opening = false;
-        document.body.classList.add('blog-paper-open');
-        requestAnimationFrame(function() {
-          requestAnimationFrame(function() { paper.classList.add('visible'); });
-        });
-      }, delay);
+      var overlayPad = 48;
+      var maxPaperW = Math.max(280, document.documentElement.clientWidth - overlayPad);
+      var targetPaperW = Math.max(envelope.offsetWidth, 920);
+      paper.style.width = Math.min(targetPaperW, maxPaperW) + 'px';
+      envelope.classList.add('peeking', 'open');
+      stack.classList.add('has-open');
+      blogSection.classList.add('has-open-envelope');
+      overlay.classList.add('active');
+      paper.classList.add('active');
+      activePaper = paper;
+      activeTrigger = envelope;
+      envelope.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('blog-paper-open');
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() { paper.classList.add('visible'); });
+      });
     }
 
     envelope.addEventListener('click', openPaper);
@@ -695,6 +1023,9 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
 
   document.addEventListener('click', function(e) {
     if (!activePaper) return;
+    // The click that opened the paper bubbles here too. Once a paper is up the
+    // envelopes sit under the overlay, so any click on one is that same click.
+    if (e.target.closest('.envelope')) return;
     if (!activePaper.contains(e.target)) closePaper();
   });
 
