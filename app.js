@@ -161,34 +161,15 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
   });
 });
 
-// Hero drawer tabs: scroll to the portfolio, then pulse the matching folder
-// so the clicked tab visibly "arrives" as its folder in the stack.
+// Hero drawer tabs: scroll to the portfolio stack. The folders themselves are
+// left alone — hover is the only thing that moves them.
 (function() {
   var portfolio = document.getElementById('portfolio');
   if (!portfolio) return;
-  var pulseTimer;
   document.querySelectorAll('.hero-peek-tab[data-folder]').forEach(function(tab) {
-    var folder = document.querySelector('.folder[data-folder="' + tab.dataset.folder + '"]');
     tab.addEventListener('click', function(e) {
       e.preventDefault();
-      // Explicit duration keeps onComplete prompt — lerp-mode scrolling has a
-      // long settling tail that would delay the pulse.
-      scroller.scrollTo(portfolio, {
-        duration: 0.7,
-        onComplete: function() {
-          // .peeking = already hovered; hover owns the folder, skip the pulse
-          if (!folder || folder.classList.contains('open') || folder.classList.contains('peeking')) return;
-          clearTimeout(pulseTimer);
-          document.querySelectorAll('.folder.hero-pulse').forEach(function(f) {
-            f.classList.remove('hero-pulse');
-          });
-          void folder.offsetWidth; // restart the animation on repeat clicks
-          folder.classList.add('hero-pulse');
-          pulseTimer = setTimeout(function() {
-            folder.classList.remove('hero-pulse');
-          }, 1250);
-        }
-      });
+      scroller.scrollTo(portfolio, { duration: 0.7 });
     });
   });
 })();
@@ -529,7 +510,6 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
 
     if (tab) {
       tab.addEventListener('mouseenter', function() {
-        folder.classList.remove('hero-pulse');
         if (href || folderKey === 'toolkit') folder.classList.add('peeking');
       });
       tab.addEventListener('mouseleave', function() {

@@ -67,7 +67,7 @@
       </div>
       <div>
         <p class="cs-summary-label">What I built</p>
-        <p class="cs-summary-val">A 16-page site with no framework and no dependencies. A CSS design system with per-audience theming, five interactive activities for kids, a bilingual book page, two forms, and a 43-line build step to keep the header and footer honest across every page.</p>
+        <p class="cs-summary-val">A 16-page site with no framework and no dependencies. A CSS design system with per-audience theming, five interactive activities for kids, a bilingual book page, two forms, and a dependency-free build step that keeps the header and footer identical across every page.</p>
       </div>
       <div>
         <p class="cs-summary-label">My role</p>
@@ -183,7 +183,6 @@
             <span class="cs-pin" style="left: 41.5%; top: 50%">1</span>
             <span class="cs-pin" style="left: 73.5%; top: 26%">2</span>
             <span class="cs-pin" style="left: 75%; top: 64%">3</span>
-            <span class="cs-pin" style="left: 74.5%; top: 88%">4</span>
           </div>
         </figure>
 
@@ -199,10 +198,6 @@
           <div class="cs-note">
             <span class="cs-note-num">03</span>
             <p class="cs-note-text">Undo walks a stack of fifteen canvas snapshots and disables itself at the bottom of it — which is why the button is live in this shot and greyed out on an empty canvas. Fifteen is a memory ceiling, not a design one; full-canvas bitmaps add up quickly.</p>
-          </div>
-          <div class="cs-note">
-            <span class="cs-note-num">04</span>
-            <p class="cs-note-text">A printable PDF sits under the canvas for anyone whose device can't give them a usable drawing surface. The activity degrades to crayons rather than to nothing, which for a kids' page matters more than it would anywhere else.</p>
           </div>
         </div>
 
@@ -254,16 +249,22 @@
       <section id="cs-uh" class="cs-section reveal">
         <p class="section-head">Under the hood</p>
         <p class="body-text">There is no framework here, and no build step for the JavaScript — nine files, 1,133 lines, loaded with plain script tags. That was a deliberate constraint. The site is hosted on shared cPanel hosting and will outlive my involvement with it, so I wanted something that a future developer could open and understand without first installing anything, and that wouldn't break because a dependency moved on without me.</p>
-        <p class="body-text">The cost of that choice shows up immediately in the header and footer, which have to be identical across every page and have no include mechanism to make them so. That problem is old enough to have a boring solution, and I wrote the boring one.</p>
+        <p class="body-text">The cost of that choice shows up immediately in the header and footer, which have to be identical across all seventeen pages and have no include mechanism to make them so. That problem is old enough to have a boring solution, and I wrote the boring one.</p>
 
         <details class="cs-deep">
-          <summary>Deep dive — a 43-line build step instead of a static site generator</summary>
-          <p class="cs-deep-text">Two partials hold the real header and footer, with {{PAGE_CURRENT}} tokens marking where aria-current="page" should land. A Node script reads them, substitutes the token for whichever page it's writing, then finds the existing header in each target file and replaces it in place — matching everything between the skip link and the opening &lt;main&gt; tag.</p>
-<pre><code>const nextWithHeader = original.replace(
-  /\s*&lt;a href="#main-content" class="skip-link"&gt;[\s\S]*?&lt;main id="main-content"&gt;/,
-  `\n${withCurrent(headerTemplate, target.current)}\n\n  &lt;main id="main-content"&gt;`
-);</code></pre>
-          <p class="cs-deep-text">No dependencies, no config, no watcher — node tools/sync-layout.mjs and it's done. It is also honestly limited: it covers the five top-level pages and not the eleven nested ones, because nested pages need ../ prefixes on every link and the script has no path-rewriting logic. Those are still synced by hand, which is the kind of half-solution that works fine right up until it doesn't.</p>
+          <summary>Deep dive — 101 lines of Node instead of a static site generator</summary>
+          <p class="cs-deep-text">Four partials hold the real markup: one footer and three header variants, because the Kids Zone runs a deliberately narrower nav than the rest of the site. A page table maps each file to the variant it wants and the nav key that should carry aria-current. Running <code>node tools/sync-layout.mjs</code> stamps all seventeen pages — six top-level, ten nested, and a 404 that gets the footer only.</p>
+          <p class="cs-deep-text">The obvious hard part is depth: a partial written for the site root has the wrong link targets inside /books/ or /kids-zone/. The usual answer is to rewrite every href per page and hope the regex is right. The better answer was to delete the problem — the partials use root-absolute links (/books, /about), which are correct at every depth because .htaccess already maps the clean URLs onto the .html files from the domain root. One template, byte for byte identical, drops into /index.html and /books/lucky-penny.html alike. No path-rewriting logic exists because none is needed.</p>
+          <p class="cs-deep-text">The subtler part is being safe to re-run. Each region is fenced by marker comments, so the script only ever overwrites what it owns and hand-written page content living between the nav and &lt;main&gt; — the Lucky Penny papel banner, say — survives untouched. The legacy pattern is the one-time migration path: it matches the original hand-written markup, gets used exactly once per page, and is then permanently superseded by the markers it just wrote.</p>
+<pre><code>function replaceRegion(html, name, body, legacy) {
+  const region = `&lt;!-- @${name} --&gt;\n${body}\n  &lt;!-- /@${name} --&gt;`;
+  const marked = new RegExp(`[ \\t]*&lt;!-- @${name} --&gt;[\\s\\S]*?&lt;!-- /@${name} --&gt;`);
+  if (marked.test(html)) return html.replace(marked, `  ${region}`);
+  if (!legacy.test(html)) throw new Error(`no ${name} region found`);
+  return html.replace(legacy, `  ${region}`);
+}</code></pre>
+          <p class="cs-deep-text">Two smaller things ride along, because the script is already the one place that touches every page. The active link is marked by turning a build-time <code>data-nav</code> hook into <code>aria-current="page"</code> and then stripping every remaining hook, so the authoring affordance never ships to the browser. And a single SITE_VERSION constant is stamped onto every local css and js URL, which means cache-busting is one edit in one file rather than a version number per page waiting to drift out of sync.</p>
+          <p class="cs-deep-text">No dependencies, no config, no watcher, no node_modules — one file, standard library only. A throw on an unknown nav variant or a missing region makes a bad edit fail loudly at build time rather than quietly shipping a page with no footer.</p>
         </details>
 
         <p class="body-text">The coloring canvas was the piece I expected to be simple and wasn't. A canvas has a fixed logical resolution — 600&nbsp;×&nbsp;600 here — but it renders at whatever size CSS gives it, so every pointer event arrives in the wrong coordinate space and has to be rescaled before it means anything. Touch made it harder: the listeners have to be registered non-passively so the handler is allowed to cancel the default, or the page scrolls away underneath a child trying to draw on it.</p>

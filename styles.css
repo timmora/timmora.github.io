@@ -1212,21 +1212,6 @@ body.portfolio-folder-open footer {
   outline-offset: 2px;
 }
 
-/* Arrival pulse from the hero drawer tabs: lift only (no peek card), then a
-   quick drop that overshoots and settles */
-@keyframes heroPulse {
-  0%   { transform: translateY(0); }
-  29%  { transform: translateY(-20px); }
-  60%  { transform: translateY(-20px); }
-  76%  { transform: translateY(3px); }
-  87%  { transform: translateY(-2px); }
-  100% { transform: translateY(0); }
-}
-
-.folder:not(.open).hero-pulse {
-  animation: heroPulse 1.2s ease both;
-}
-
 .folder-stack.has-open .folder:not(.open) {
   pointer-events: auto;
   margin-top: -225px;
