@@ -419,7 +419,6 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
 (function() {
   var figures = document.querySelectorAll('[data-zoom]');
   if (!figures.length) return;
-  var PAD = 40; // matches .cs-zoom padding
   // The iOS sheet curve: leaves fast, settles long. Its starting slope is
   // 0.72 / 0.32 = 2.25x its average speed, which is what lets a drag's
   // release velocity be handed to it (see durationFor).
@@ -564,17 +563,6 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
     big.alt = source.alt || '';
     big.draggable = false; // the browser's own image drag would steal the gesture
 
-    // Size it up front from the thumbnail's natural dimensions, so its resting
-    // position is known before it paints and the rise can be measured.
-    var nw = source.naturalWidth, nh = source.naturalHeight;
-    if (nw && nh) {
-      var fit = Math.min(1,
-        (document.documentElement.clientWidth - PAD * 2) / nw,
-        (window.innerHeight - PAD * 2) / nh);
-      big.style.width = Math.round(nw * fit) + 'px';
-      big.style.height = Math.round(nh * fit) + 'px';
-    }
-
     overlay.appendChild(big);
     overlay.addEventListener('click', function() {
       if (swallowClick) { swallowClick = false; return; }
@@ -586,6 +574,20 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
     big.addEventListener('pointercancel', onPointerUp);
     document.body.appendChild(overlay);
     document.body.classList.add('cs-zoom-open');
+
+    // Size it up front from the thumbnail's natural dimensions, so its resting
+    // position is known before it paints and the rise can be measured. The
+    // room comes from the overlay's own padding, which widens around a notch.
+    var nw = source.naturalWidth, nh = source.naturalHeight;
+    if (nw && nh) {
+      var cs = getComputedStyle(overlay);
+      var roomW = overlay.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      var roomH = overlay.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      var fit = Math.min(1, roomW / nw, roomH / nh);
+      big.style.width = Math.round(nw * fit) + 'px';
+      big.style.height = Math.round(nh * fit) + 'px';
+    }
+
     overlay.focus({ preventScroll: true });
 
     // Next frame, so the scrim's transition sees a starting state to leave.

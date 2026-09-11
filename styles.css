@@ -9,6 +9,23 @@
   --shadow: rgba(0, 0, 0, 0.1);
   --footer-color: #4a4a4a;
   --cs-border: rgba(0, 0, 0, 0.1);
+
+  /* Every page sets viewport-fit=cover, so the page draws under the notch /
+     Dynamic Island and the home indicator. These are how far in content has
+     to stay to clear them; all 0 on screens without them. */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  /* The header tab's height, cutout aside. Below 700px the nav links gain a
+     40px tap-target min-height, which makes the tab 8px taller. Anything that
+     lines up with the header's bottom edge should use this, not a literal. */
+  --header-h: 58px;
+}
+
+@media (max-width: 700px) {
+  :root { --header-h: 66px; }
 }
 
 @keyframes fadeIn {
@@ -58,7 +75,10 @@ body {
   font-weight: normal;
   font-style: normal;
   margin: 0px;
-  padding: 0;
+  /* Holds content clear of the notch in landscape and of the home indicator.
+     The page background is on <html>, so it still runs edge to edge. The top
+     is left to the header, which grows up behind the notch instead. */
+  padding: 0 var(--safe-right) var(--safe-bottom) var(--safe-left);
   background-color: transparent;
   animation: fadeIn 1s ease;
   color: var(--text);
@@ -84,8 +104,8 @@ a {
 /* Off-screen until focused, then it lands over the header. */
 .skip-link {
   position: fixed;
-  top: 8px;
-  left: 8px;
+  top: calc(8px + var(--safe-top));
+  left: calc(8px + var(--safe-left));
   z-index: 1000;
   padding: 10px 16px;
   border-radius: 6px;
@@ -95,7 +115,9 @@ a {
   font-family: "DM Sans", sans-serif;
   font-size: 14px;
   font-weight: normal;
-  transform: translateY(-150%);
+  /* Its own height plus the gap above it, so it clears the top however far
+     down the notch inset pushes it. A bare -150% stopped short on a phone. */
+  transform: translateY(calc(-100% - 8px - var(--safe-top) - 4px));
   transition: transform 0.2s ease;
 }
 
@@ -161,7 +183,10 @@ header {
   width: fit-content;
   max-width: calc(100% - 2 * var(--tab-shoulder) - 16px);
   margin: 0 auto;
-  padding: 0 30px;
+  /* On a phone with a notch or Dynamic Island, the tab grows up behind it,
+     so it still hangs from the very top of the screen and the links sit just
+     below the cutout. The same on every page. */
+  padding: var(--safe-top) 30px 0;
   display: grid;
   grid-template-columns: auto auto auto;
   column-gap: 28px;
@@ -367,7 +392,7 @@ nav a.nav-active::after {
 
 @media (max-width: 700px) {
   .header-inner {
-    padding: 0 24px;
+    padding: var(--safe-top) 24px 0;
     column-gap: 20px;
   }
 
@@ -424,7 +449,7 @@ nav a.nav-active::after {
 
 @media (max-width: 480px) {
   .header-inner {
-    padding: 0 14px;
+    padding: var(--safe-top) 14px 0;
   }
 
   nav a {
@@ -470,7 +495,9 @@ footer p {
      The vh line stays as the fallback for browsers without svh. */
   height: 100vh;
   height: 100svh;
-  margin-top: -58px;
+  /* Tucks up under the whole header, cutout included, so the hero starts at
+     the top of the screen and, at 100svh, ends exactly at the bottom. */
+  margin-top: calc(-1 * (var(--header-h) + var(--safe-top)));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -635,18 +662,14 @@ footer p {
 .hero-drawer .hero-peek-tab:nth-child(5):focus-visible { top: 22px; }
 
 @media (max-width: 700px) {
-  /* The hero is a full-viewport cover with its content centered, so on a tall
-     phone the copy floats mid-screen with ~270px of dead space above it and
-     another gap down to the drawer. Let it be as tall as its content instead;
-     the bottom padding reserves the band the absolutely-positioned drawer
-     sits in. #hero also carries margin-top: -58px to tuck under the header,
-     so the top padding must cover that before it becomes visible space. */
+  /* Stays a full-viewport cover on mobile, with the copy centred in the part
+     of it you can actually see: between the bottom of the header tab and the
+     top of the drawer. The top padding is the stretch #hero tucks up under
+     the header (its negative margin), the bottom padding is the drawer's
+     band, so centring the content box centres it in that visible window. */
   #hero.section-cover {
-    /* Stays a full-viewport cover on mobile. The content is top-aligned rather
-       than centered, so the slack falls below it instead of splitting into a
-       large gap above the copy and another down to the drawer. */
-    justify-content: flex-start;
-    padding: 180px 0 88px;
+    justify-content: center;
+    padding: calc(var(--header-h) + var(--safe-top)) 0 clamp(66px, 15vw, 70px);
   }
 
   /* Five tabs share the width, so type and padding scale together instead
@@ -868,7 +891,7 @@ footer p {
 .about-left {
   grid-area: left;
   position: sticky;
-  top: 80px;
+  top: calc(80px + var(--safe-top));
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -1522,18 +1545,28 @@ body.portfolio-folder-open footer {
   align-items: center;
   align-items: safe center;
   justify-content: center;
-  padding: 48px 24px 32px;
+  /* Fixed overlays ignore body's padding, so they clear the cutouts themselves. */
+  padding: calc(48px + var(--safe-top)) calc(24px + var(--safe-right))
+    calc(32px + var(--safe-bottom)) calc(24px + var(--safe-left));
   box-sizing: border-box;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  /* Closed, it is hidden outright, not just transparent. An invisible fixed
+     layer over the whole window is still a fixed layer at the top edge, and
+     iOS Safari takes it, instead of the header, as what to extend up behind
+     the notch / Dynamic Island. visibility waits out the fade before it
+     switches off, and switches on at once when opening. */
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
 }
 
 .folder-overlay.active {
   pointer-events: auto;
   opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0s;
 }
 
 .folder.open {
@@ -1555,8 +1588,9 @@ body.portfolio-folder-open footer {
 .folder-panel.active {
   display: flex;
   flex-direction: column;
-  /* Height follows content; overlay scrolls — uses full viewport instead of a nested body scroll */
-  max-width: calc(100vw - 48px);
+  /* Height follows content; overlay scrolls — uses full viewport instead of a nested body scroll.
+     100% caps it inside the overlay's padding, which grows around a notch in landscape. */
+  max-width: min(calc(100vw - 48px), 100%);
   margin: 0 auto;
   flex-shrink: 0;
 }
@@ -1935,17 +1969,21 @@ body:has(#blog) {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: calc(24px + var(--safe-top)) calc(24px + var(--safe-right))
+    calc(24px + var(--safe-bottom)) calc(24px + var(--safe-left));
   box-sizing: border-box;
   overflow-y: auto;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  visibility: hidden; /* see .folder-overlay — keeps it out of Safari's way */
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
 }
 
 .paper-overlay.active {
   pointer-events: auto;
   opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0s;
 }
 
 .paper {
@@ -1955,7 +1993,7 @@ body:has(#blog) {
   opacity: 0;
   transition: transform 0.4s ease, opacity 0.4s ease;
   background-color: #FDFCFA;
-  max-width: calc(100vw - 48px);
+  max-width: min(calc(100vw - 48px), 100%); /* 100%: see .folder-panel.active */
   max-height: min(80vh, calc(100vh - 48px));
   margin: auto;
   flex-shrink: 0;
@@ -2713,12 +2751,20 @@ nav a:active,
   /* Overlays still cross-fade instead of snapping. A fade explains that a
      layer arrived or left without any travel, which is the part that can
      bother a vestibular system — so the slide goes and the fade stays. */
-  .folder-overlay,
-  .paper-overlay,
   .folder-panel,
   .paper,
   .cs-zoom::before {
     transition: opacity 0.2s ease !important;
+  }
+
+  .folder-overlay,
+  .paper-overlay {
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s !important;
+  }
+
+  .folder-overlay.active,
+  .paper-overlay.active {
+    transition: opacity 0.2s ease, visibility 0s !important;
   }
 
   .folder-panel,
@@ -2876,7 +2922,7 @@ nav a:active,
 /* — sticky contents rail — */
 .case-study-page .cs-rail {
   position: sticky;
-  top: 92px;
+  top: calc(92px + var(--safe-top));
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -3360,7 +3406,9 @@ nav a:active,
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px; /* matches PAD in app.js */
+  /* app.js sizes the image from this box, cutout insets included. */
+  padding: calc(40px + var(--safe-top)) calc(40px + var(--safe-right))
+    calc(40px + var(--safe-bottom)) calc(40px + var(--safe-left));
   cursor: zoom-out;
 }
 
