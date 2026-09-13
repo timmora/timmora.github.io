@@ -1353,7 +1353,7 @@ body.portfolio-folder-open footer {
   margin-top: 0;
 }
 
-.folder:not(.open).peeking {
+.folder:is([href], [data-folder="toolkit"]):not(.open):has(.folder-tab:hover) {
   transform: translateY(-12px);
 }
 
@@ -1437,7 +1437,19 @@ body.portfolio-folder-open footer {
   font-weight: normal;
 }
 
-.folder:not(.open).peeking .folder-peek-card {
+/* Native :hover rather than a JS-applied class. mouseenter only fires on a
+   real boundary crossing, so a folder that reveals or scrolls into place under
+   an already-parked cursor never got its peek — invisible locally, where
+   everything is revealed before you reach it, and intermittent on the live
+   site, where images load slower and Lenis slides content under a still
+   pointer. :hover is re-evaluated by the browser in both of those cases.
+
+   :has(.folder-tab:hover) rather than a plain :hover on the folder, because
+   the trigger has always been the tab alone: the folder's body is 255px tall
+   and mostly sits under the folder above it, so hovering it should not peek.
+   The href / toolkit test the old listener did is static per folder, so it
+   collapses into the :is(). */
+.folder:is([href], [data-folder="toolkit"]):not(.open):has(.folder-tab:hover) .folder-peek-card {
   transform: translateY(0);
   opacity: 1;
 }
@@ -1464,7 +1476,7 @@ body.portfolio-folder-open footer {
   object-fit: contain;
 }
 
-.folder:not(.open).peeking .folder-peek-icon {
+.folder:is([href], [data-folder="toolkit"]):not(.open):has(.folder-tab:hover) .folder-peek-icon {
   transform: scale(1) rotate(0deg);
   opacity: 1;
 }
@@ -1569,9 +1581,11 @@ body.portfolio-folder-open footer {
 }
 
 /* While peeking, the folder lifts 12px and the tab can slide out from under
-   the cursor, firing mouseleave and dropping the peek. This invisible buffer
-   below the tab keeps the pointer inside the tab's hover area. */
-.folder:not(.open).peeking .folder-tab::after {
+   the cursor, which would drop :hover and undo the lift — leaving it to
+   flicker between the two states. This invisible buffer below the tab keeps
+   the pointer inside the tab's hover area. It's part of the tab for hit
+   testing, so hovering the buffer keeps .folder-tab:hover true. */
+.folder:is([href], [data-folder="toolkit"]):not(.open):has(.folder-tab:hover) .folder-tab::after {
   content: '';
   position: absolute;
   top: 100%;

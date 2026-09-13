@@ -844,16 +844,10 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
   folders.forEach(function(folder) {
     var href = folder.getAttribute('href');
     var folderKey = folder.dataset.folder;
-    var tab = folder.querySelector('.folder-tab');
 
-    if (tab) {
-      tab.addEventListener('mouseenter', function() {
-        if (href || folderKey === 'toolkit') folder.classList.add('peeking');
-      });
-      tab.addEventListener('mouseleave', function() {
-        folder.classList.remove('peeking');
-      });
-    }
+    // The hover peek is CSS :hover now — see .folder[href]:hover in styles.css.
+    // It used to be mouseenter on the tab, which silently missed any folder
+    // that appeared or moved under a stationary cursor.
 
     // Anchors navigate on their own; only the Toolkit trigger needs handlers,
     // including the Enter/Space that a real <button> would give for free.
