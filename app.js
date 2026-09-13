@@ -186,9 +186,15 @@ document.querySelectorAll('a[href^="#"]:not(.hero-peek-tab):not(.skip-link)').fo
 (function() {
   var header = document.querySelector('header');
   if (!header) return;
+  // Two thresholds, not one: the tab now resizes rather than just deepening
+  // its shadow, and a single boundary makes that flap while a trackpad idles
+  // on top of it. It shrinks at 24px and only expands again below 8px.
+  var SHRINK_AT = 24;
+  var GROW_AT = 8;
   var wasScrolled = false;
   window.addEventListener('scroll', function() {
-    var isScrolled = window.scrollY > 0;
+    var y = window.scrollY;
+    var isScrolled = wasScrolled ? y > GROW_AT : y > SHRINK_AT;
     if (isScrolled !== wasScrolled) {
       header.classList.toggle('scrolled', isScrolled);
       wasScrolled = isScrolled;

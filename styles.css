@@ -168,6 +168,14 @@ h2::before {
    hangs in: transparent, and click-through everywhere the tab isn't. */
 header {
   --tab-paper: #FDFCFA;
+  /* The tab is translucent rather than solid paper, so whatever scrolls
+     underneath reads faintly through the card without ever competing with the
+     links. --tab-surface is what the tab and its shoulders both paint with, so
+     the two can't drift apart — the high-contrast and reduced-transparency
+     blocks swap this one value back to solid paper and everything follows.
+     See .header-inner for why this is plain translucency and not a blur. */
+  --tab-glass: rgba(253, 252, 250, 0.82);
+  --tab-surface: var(--tab-glass);
   --tab-shoulder: 12px;
   font-size: 22px;
   font-family: "DM Sans", sans-serif;
@@ -191,19 +199,39 @@ header {
   grid-template-columns: auto auto auto;
   column-gap: 28px;
   align-items: center;
-  background-color: var(--tab-paper);
+  background-color: var(--tab-surface);
+  /* Deliberately translucent paint and NOT backdrop-filter. The shoulders are
+     pseudo-elements of this box, and backdrop-filter makes an element a
+     backdrop root: its children can then only sample what's painted inside it,
+     never the page. So a frosted tab leaves unfrostable shoulders, and the
+     mismatch shows as a chip at the corner curves — most visible on hover,
+     which resizes this fit-content box and slides the seam. Translucency alone
+     paints tab and shoulders identically, so there is no seam to see. */
   border-radius: 0 0 12px 12px;
   pointer-events: auto;
   /* drop-shadow, not box-shadow, so the shoulders cast it too and the tab
      reads as one piece of card. It deepens once the page scrolls beneath,
      the way the folders lift when they have something to sit over. */
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.06));
-  transition: filter 0.4s ease;
+  transition: filter 0.4s ease, background-color 0.4s ease, column-gap 0.3s ease;
+}
+
+/* Scrolled: the tab draws in. Type and padding tighten together so it reads as
+   the same card sitting closer to the edge, not a different header. The frost
+   also firms up — once content is moving underneath, a little more opacity
+   keeps the links legible over whatever passes behind them. */
+header.scrolled {
+  --tab-glass: rgba(253, 252, 250, 0.89);
 }
 
 header.scrolled .header-inner {
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.11));
+  column-gap: 22px;
 }
+
+header.scrolled nav ul { margin: 9px 0; }
+header.scrolled nav a { padding: 5px 13px; }
+header.scrolled .header-name { font-size: 23px; }
 
 /* Shoulders: the concave curves where the tab meets the top edge, so it
    hangs from the window like a real file tab instead of floating below it. */
@@ -218,12 +246,12 @@ header.scrolled .header-inner {
 
 .header-inner::before {
   right: 100%;
-  background: radial-gradient(circle at 0 100%, transparent calc(var(--tab-shoulder) - 0.5px), var(--tab-paper) var(--tab-shoulder));
+  background: radial-gradient(circle at 0 100%, transparent calc(var(--tab-shoulder) - 0.5px), var(--tab-surface) var(--tab-shoulder));
 }
 
 .header-inner::after {
   left: 100%;
-  background: radial-gradient(circle at 100% 100%, transparent calc(var(--tab-shoulder) - 0.5px), var(--tab-paper) var(--tab-shoulder));
+  background: radial-gradient(circle at 100% 100%, transparent calc(var(--tab-shoulder) - 0.5px), var(--tab-surface) var(--tab-shoulder));
 }
 
 @media (prefers-contrast: more) {
@@ -231,12 +259,23 @@ header.scrolled .header-inner {
     border: 1px solid rgba(0, 0, 0, 0.35);
     border-top: none;
     filter: none;
+    /* Solid paper again: text over moving content is the opposite of what
+       this mode is asking for. */
+    --tab-surface: var(--tab-paper);
   }
 
   /* The border can't follow the shoulder curves, so they go rather than
      leave a gap in the outline. */
   .header-inner::before,
   .header-inner::after { display: none; }
+}
+
+/* Same swap for anyone who's asked for less transparency: solid paper. The tab
+   keeps its shape, shoulders and scrolled shrink — only the see-through goes. */
+@media (prefers-reduced-transparency: reduce) {
+  .header-inner {
+    --tab-surface: var(--tab-paper);
+  }
 }
 
 .nav-left {
@@ -328,7 +367,7 @@ body.cs-zoom-open .header-inner {
   display: inline-block;
   white-space: nowrap;
   transform: skewX(0deg);
-  transition: color 0.5s ease, opacity 0.2s ease, transform 0.3s ease, scale 0.15s ease-out;
+  transition: color 0.5s ease, opacity 0.2s ease, transform 0.3s ease, scale 0.15s ease-out, font-size 0.3s ease;
 }
 
 .header-name:hover {
@@ -356,6 +395,7 @@ nav ul {
   padding: 0;
   margin: 13px 0;
   width: fit-content;
+  transition: margin 0.3s ease;
 }
 
 nav a {
@@ -372,7 +412,7 @@ nav a {
   color: var(--text);
   opacity: 0.6;
   cursor: pointer;
-  transition: color 0.5s ease, opacity 0.2s ease, letter-spacing 0.3s ease, scale 0.15s ease-out;
+  transition: color 0.5s ease, opacity 0.2s ease, letter-spacing 0.3s ease, scale 0.15s ease-out, padding 0.3s ease;
 }
 
 nav a:hover {
@@ -409,6 +449,15 @@ nav a.nav-active::after {
     padding: 10px 12px;
     min-height: 40px;
   }
+
+  /* The scrolled shrink applies to the tab's own margins, never the links:
+     a 40px tap target is the floor on touch regardless of scroll position. */
+  header.scrolled nav a {
+    padding: 10px 12px;
+    min-height: 40px;
+  }
+
+  header.scrolled nav ul { margin: 7px 0; }
 
   /* These four kept the desktop 56px side gutter at every width, unlike
      .header-inner / .about-main / the case-study .content, which all step
