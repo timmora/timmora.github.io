@@ -676,7 +676,10 @@ footer p {
      of sitting at a flat 14px. At 320px the old row measured 370px and the
      end tabs were quietly clipped by the drawer's overflow: hidden. */
   .hero-drawer {
-    gap: clamp(5px, 1.6vw, 8px);
+    /* Tabs overlap on mobile rather than sitting apart, so the row reads as
+       folders crowded in a drawer instead of five separate buttons. The
+       overlap is a negative margin on the tabs, so the gap goes to 0. */
+    gap: 0;
     /* Floor is 66px, not 58: the tabs are staggered 26-32px down inside the
        drawer, and at 58px the lowest one (Brandle) had its label clipped. */
     height: clamp(66px, 15vw, 70px);
@@ -685,6 +688,18 @@ footer p {
   .hero-peek-tab {
     font-size: clamp(15px, 4vw, 18px);
     padding: 10px clamp(10px, 2.6vw, 24px) 32px;
+  }
+
+  /* Each tab tucks under its left neighbour's right edge. DOM order does the
+     stacking, so they overlap left-to-right like a real row of folders. */
+  .hero-peek-tab + .hero-peek-tab {
+    margin-left: clamp(-5px, -1.2vw, -3px);
+  }
+
+  /* A pressed tab comes to the front so it isn't held down by the one
+     overlapping it. */
+  .hero-peek-tab:active {
+    z-index: 2;
   }
 }
 
