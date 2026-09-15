@@ -11,19 +11,19 @@
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
 
-  <meta name="description" content="A daily brand-guessing game over a hand-curated dataset of 200+ companies, with deterministic daily seeding and color-coded proximity feedback across five attributes.">
+  <meta name="description" content="A daily brand-guessing game I pitched and built the frontend for in a team of four, then forked two years later and rebuilt solo: Supabase, Vercel, daily puzzles, and brand data that refreshes itself from Wikidata.">
   <link rel="canonical" href="https://timmora.github.io/brandle">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Tim Mora">
   <meta property="og:title" content="Brandle — Tim Mora">
-  <meta property="og:description" content="A daily brand-guessing game over a hand-curated dataset of 200+ companies, with deterministic daily seeding and color-coded proximity feedback across five attributes.">
+  <meta property="og:description" content="A daily brand-guessing game I pitched and built the frontend for in a team of four, then forked two years later and rebuilt solo: Supabase, Vercel, daily puzzles, and brand data that refreshes itself from Wikidata.">
   <meta property="og:url" content="https://timmora.github.io/brandle">
   <meta property="og:image" content="https://timmora.github.io/images/og/brandle.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Brandle — Tim Mora">
-  <meta name="twitter:description" content="A daily brand-guessing game over a hand-curated dataset of 200+ companies, with deterministic daily seeding and color-coded proximity feedback across five attributes.">
+  <meta name="twitter:description" content="A daily brand-guessing game I pitched and built the frontend for in a team of four, then forked two years later and rebuilt solo: Supabase, Vercel, daily puzzles, and brand data that refreshes itself from Wikidata.">
   <meta name="twitter:image" content="https://timmora.github.io/images/og/brandle.png">
 </head>
 <body class="case-study-page theme-brandle">
@@ -47,9 +47,9 @@
   </div>
 </header>
 <section class="hero">
-  <p class="hero-meta">Word Game &nbsp;·&nbsp; 2024</p>
+  <p class="hero-meta">Word Game &nbsp;·&nbsp; 2024 / 2026</p>
   <h1 class="hero-title">Brandle</h1>
-  <p class="hero-sub">A daily brand-guessing game where the dataset, turned out to be the design problem.</p>
+  <p class="hero-sub">A class project I pitched in 2024, then came back to two years later to finish on my own.</p>
 </section>
 
 <div class="cs-banner">
@@ -62,19 +62,19 @@
     <div class="cs-summary-grid">
       <div>
         <p class="cs-summary-label">Problem</p>
-        <p class="cs-summary-val">A semester-long class project that had to justify existing outside the classroom. Everyone carries a fuzzy mental model of a company, and nothing ever tests it.</p>
+        <p class="cs-summary-val">Brandle was built by a team of four in one semester of CS 222 at UIUC, and it only ever ran on our laptops. I wanted to find out if it could hold up as a real game, with me as the only one maintaining it.</p>
       </div>
       <div>
         <p class="cs-summary-label">What I built</p>
-        <p class="cs-summary-val">A daily guessing game over a hand-curated set of 200+ brands, scored across five attributes with graduated, directional feedback.</p>
+        <p class="cs-summary-val">A daily guessing game where you name the mystery brand from five attributes, with graduated, directional feedback, three difficulties, and brand data that updates itself.</p>
       </div>
       <div>
         <p class="cs-summary-label">My role</p>
-        <p class="cs-summary-val">Developer and UI designer. Game logic, the feedback algorithm, dataset curation, and the Supabase schema.</p>
+        <p class="cs-summary-val">2024: came up with the idea and led the frontend. 2026: forked the repo and rebuilt it solo. New backend, game logic, feedback algorithm, data pipeline, and deployment.</p>
       </div>
       <div>
         <p class="cs-summary-label">Where it landed</p>
-        <p class="cs-summary-val">Live on Vercel. Daily and unlimited modes, three difficulties, local stats and streaks, and a share grid.</p>
+        <p class="cs-summary-val">Live on Vercel with a Supabase backend. Daily, unlimited, and by-category modes, hints, streaks, and a share grid.</p>
       </div>
     </div>
     <div class="cs-summary-foot">
@@ -82,7 +82,7 @@
       <span class="cs-chip">React 18</span>
       <span class="cs-chip">Supabase</span>
       <span class="cs-chip">PostgreSQL</span>
-      <span class="cs-chip">MUI</span>
+      <span class="cs-chip">Wikidata</span>
       <span class="cs-chip">Vercel</span>
     </div>
   </div>
@@ -94,15 +94,17 @@
       <nav class="cs-rail" aria-label="Contents">
         <p class="cs-rail-head">Contents</p>
         <a class="cs-rail-link" data-rail="cs-ov" href="#cs-ov"><span class="cs-rail-dot"></span>Overview</a>
+        <a class="cs-rail-link" data-rail="cs-pr" href="#cs-pr"><span class="cs-rail-dot"></span>Where it started</a>
+        <a class="cs-rail-link" data-rail="cs-tm" href="#cs-tm"><span class="cs-rail-dot"></span>Four people, one semester</a>
+        <a class="cs-rail-link" data-rail="cs-ba" href="#cs-ba"><span class="cs-rail-dot"></span>Picking it back up</a>
         <a class="cs-rail-link" data-rail="cs-in" href="#cs-in"><span class="cs-rail-dot"></span>Inside Brandle</a>
-        <a class="cs-rail-link" data-rail="cs-pr" href="#cs-pr"><span class="cs-rail-dot"></span>The problem</a>
         <a class="cs-rail-link" data-rail="cs-hl" href="#cs-hl"><span class="cs-rail-dot"></span>Highlights</a>
         <a class="cs-rail-link" data-rail="cs-uh" href="#cs-uh"><span class="cs-rail-dot"></span>Under the hood</a>
         <a class="cs-rail-link" data-rail="cs-rf" href="#cs-rf"><span class="cs-rail-dot"></span>Reflection</a>
         <a class="cs-rail-link" data-rail="cs-ts" href="#cs-ts"><span class="cs-rail-dot"></span>Tech stack</a>
         <div class="cs-rail-meta">
           <p class="sidebar-label">Year</p>
-          <p class="sidebar-val">2024</p>
+          <p class="sidebar-val">2024 / 2026</p>
           <p class="sidebar-label">Status</p>
           <p class="sidebar-val status-live">Live ↗</p>
         </div>
@@ -111,7 +113,70 @@
     <main class="main-col" id="main-content" tabindex="-1">
       <section id="cs-ov" class="cs-section reveal">
         <p class="section-head">Overview</p>
-        <p class="overview-text">Brandle is a daily brand-guessing game built on a hand-curated dataset of 200+ companies. Turns out the real design challenge was the dataset itself. Inconsistent founding years, lagged revenue figures, subsidiary ambiguity: all of that decides whether the game feels fair or just random. You guess the mystery brand across five attributes (category, country, founding year, revenue, employees) and get color-coded feedback on how close you are.</p>
+        <p class="overview-text">
+          Brandle is a daily brand-guessing game with two lives. The first was one semester in a team of four, where I pitched the idea and built the frontend.
+          The second started two years later, when I forked that repo and rebuilt it by myself. You guess the mystery brand and get color-coded feedback on
+          five attributes: category, country, founding year, revenue, and employees. The game itself was never the hard part. The hard part was the data,
+          and whether it was accurate enough that a close guess actually felt close.
+        </p>
+      </section>
+      <section id="cs-pr" class="cs-section reveal">
+        <p class="section-head">Where it started</p>
+        <p class="body-text">
+          Brandle started as a class project for CS 222: Software Design Lab at the University of Illinois at Urbana-Champaign, and it very nearly didn't happen.
+          Our assignment was to build an original full-stack application that was fun and interesting. I came in with a few pitches: a Spotify playlist generator
+          based on your mood, a mental health journal with guided prompts, and a productivity app for students (which I did end up building later as
+          <em><a href="/ordo">Ordo</a></em>, funnily enough). None of them really landed with my teammates, so we kept thinking.
+        </p>
+        <p class="body-text">
+          At a later meeting I was playing my daily game of Wordle, and that's where Brandle came from. Everyone has a fuzzy picture of a company in their head:
+          where it's from, how big it is, how long it's been around. Nobody ever checks that picture. A Wordle-style guessing game seemed like a fun way to do it.
+          The team liked it, and we decided to build it.
+        </p>
+      </section>
+      <section id="cs-tm" class="cs-section reveal">
+        <p class="section-head">Four people, one semester</p>
+        <p class="body-text">
+          We split the work the way most class teams do. Two teammates built the Node backend: an Express API, a Sequelize model on a local MySQL database,
+          and the tests. One owned the brand dataset and wrote the insert scripts that loaded it. I owned the frontend. I set up the React project, laid out the
+          guessing interface and navigation, wrote the first frontend tests, and reviewed and merged most of the frontend pull requests.
+        </p>
+        <p class="body-text">
+          My biggest change that semester came in the final stretch. The game logic lived partly on the server, so every guess made a round trip just to find out
+          which tiles should be green. I moved the logic into the frontend, simplified the backend down to serving brand data, and restyled every component
+          in the same pass. We ended the semester with a working game. It had 90 brands, a random answer on every page load, and it ran only on
+          localhost.
+        </p>
+      </section>
+      <section id="cs-ba" class="cs-section reveal">
+        <p class="section-head">Picking it back up</p>
+        <p class="body-text">
+          Two years later, in April 2026, I forked the repo to see whether I could take Brandle past where the class left it. I was a very different developer by then,
+          and the codebase felt like someone else's, even the parts I wrote. Recognizing my own components didn't help me remember <em>why</em> I'd written them
+          that way. So before changing anything I read through it all again, found the spots where it quietly broke, and started pulling on those.
+        </p>
+        <div class="cs-changes">
+          <div class="cs-change">
+            <p class="cs-change-label">Where it runs</p>
+            <p class="cs-change-text">The class version needed a MySQL server, an Express API, and a React dev server running at once, with CORS pinned to one localhost port. I moved the data to Supabase and had the client read it directly, with row-level security on every table. Then I deleted the whole Node backend and deployed the frontend to Vercel. Three processes became zero servers to look after.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change-label">The puzzle</p>
+            <p class="cs-change-text">The original picked a new random brand every time the page loaded, and printed the answer to the console. That makes a fine demo but it's not a daily game. Now each day has a numbered puzzle counted from January 1, 2026, everyone gets the same brand, and your finished result is saved so a refresh can't give you a second try.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change-label">The feedback</p>
+            <p class="cs-change-text">Revenue was stored as a string like "$300B+", so it could only ever be an exact match or wrong, and none of the numbers had arrows. I added a revenue tier scale so revenue gets "close" feedback too, put higher/lower arrows on all three numeric fields, and made the thresholds depend on difficulty.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change-label">Streaks</p>
+            <p class="cs-change-text">The old streak went up on every win, even if your last game was a month ago. It now checks when you last played. It also has a weekly streak pass, because losing a 20-day streak to one bad brand felt like the game punishing you for playing.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change-label">The data</p>
+            <p class="cs-change-text">Every number in the original was typed in by hand once, and started going stale right away. I matched each brand to its Wikidata entry, and wrote a Supabase Edge Function that pulls fresh employee counts, revenue, and founding years. A GitHub Actions job runs it on the first of every month.</p>
+          </div>
+        </div>
       </section>
       <section id="cs-in" class="cs-section reveal">
         <p class="section-head">Inside Brandle</p>
@@ -162,36 +227,122 @@
           </div>
         </div>
       </section>
-      <section id="cs-pr" class="cs-section reveal">
-        <p class="section-head">The problem</p>
-        <p class="body-text">Brandle started as a class project for CS 222: Software Design Lab at the University of Illinois at Urbana-Champaign. I threw together a Wordle clone in a weekend and submitted it. But halfway through, I realized the interesting version wasn't about words at all, it was about brands. Everyone has some fuzzy mental model of a company (where it's from, how big it is, what it actually does) and those models basically never get tested. The guessing mechanic felt like a perfect way to surface that.</p>
-        <p class="body-text">The real question was whether it had legs outside the classroom. A daily guessing game about brand attributes isn't an obvious hit. But Wordle already proved the format works, and brands have something words don't: people actually have opinions about them.</p>
-      </section>
       <section id="cs-hl" class="cs-section reveal">
         <p class="section-head">Highlights</p>
         <ul class="highlights">
-          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">Feedback across five attributes at once: green for exact, yellow for close, arrows showing higher or lower on the numeric ones. Five signals without it feeling like a mess.</p></li>
-          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">Daily mode uses a deterministic seed so everyone gets the same brand each day. Unlimited mode picks randomly if you want to keep playing. Both share stats, streaks, and a shareable result grid.</p></li>
-          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">Difficulty modes change your guess limit and how tight the numeric tolerance is. The same brand can feel easy or brutal depending on how narrow those windows are.</p></li>
-          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">Local stats and streaks: win rate, guess distribution, current and best streak. The Supabase data model is already set up for leaderboards once I add auth.</p></li>
-          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">Hard mode forces you to actually use the info you've already revealed in your next guess. It genuinely changes how you think through what's left.</p></li>
+          <li class="highlight-item"><span class="h-num">01</span><p class="h-text">
+            Five signals per guess: green for exact, yellow for close, and arrows pointing higher or lower on the numbers. A warmer/colder
+            indicator compares each guess to your last one, so you can tell if you're getting closer overall.
+          </p></li>
+          <li class="highlight-item"><span class="h-num">02</span><p class="h-text">
+            Three difficulties change more than the guess limit. Easy gives you 15 guesses and a ±20-year window on founding year. Hard gives
+            you 6 guesses and ±5 years. The same brand can feel easy or brutal depending on those windows.
+          </p></li>
+          <li class="highlight-item"><span class="h-num">03</span><p class="h-text">
+            Hard mode makes you use what you've already found. Once category, country, or founding year turns green, every later guess
+            has to match it.
+          </p></li>
+          <li class="highlight-item"><span class="h-num">04</span><p class="h-text">
+            Hints scale with difficulty: three on easy, two on normal, one on hard. On easy, every five wrong guesses automatically reveals
+            a field you still haven't gotten right, so you don't get stuck.
+          </p></li>
+          <li class="highlight-item"><span class="h-num">05</span><p class="h-text">
+            Results share as a spoiler-free emoji grid or as an image drawn on a canvas. Stats are kept separately for each difficulty,
+            and a signed-in player's games also save to Supabase. The leaderboard is built on that data.
+          </p></li>
         </ul>
       </section>
       <section id="cs-uh" class="cs-section reveal">
         <p class="section-head">Under the hood</p>
-        <p class="body-text">Daily mode uses a deterministic seed derived from the date, so it's the same brand for every player on the same day. That means consistent results without storing a "today's puzzle" record anywhere or managing server-side state for puzzle selection. Unlimited mode just picks randomly, excluding the last 30 days of daily brands so you don't see repeats.</p>
-        <p class="body-text">The feedback algorithm checks all five attributes at once. Category and country are binary, you're either right or you're not. The three numeric fields (founding year, revenue, employee count) get graduated proximity feedback with directional arrows. Tolerance thresholds change per difficulty mode, which is what actually makes hard mode hard: the windows get tighter, so a guess that would've scored yellow on normal mode just scores gray.</p>
-        <p class="callout">"For a content-driven game, curation basically is the design work. Getting 200 brands with consistent, verifiable data across five attributes took longer than building the actual game."</p>
+        <p class="body-text">
+          The daily puzzle doesn't need a server. The puzzle number is just the count of days since January 1, 2026, and that number, modulo the brand count,
+          picks the answer. Every player gets the same brand without a "today's puzzle" row, a cron job, or anything else to keep in sync. Unlimited and
+          by-category modes simply pick at random.
+        </p>
+        <p class="body-text">
+          The feedback algorithm checks all five attributes at once. Category and country are either right or wrong. Founding year, revenue tier,
+          and employee count get graduated proximity feedback with arrows. Each difficulty sets its own tolerances, which is what really makes hard mode hard:
+          a guess that shows yellow on normal shows gray on hard.
+        </p>
+        <p class="body-text">
+          The data refresh was the part I cared about most. A one-time script searches Wikidata for each brand and prints SQL for me to check by hand, because the
+          top result for "HP" isn't always the HP you mean. After that, the Edge Function sends one batched SPARQL query for every brand's employees, revenue, and
+          founding date. It maps revenue onto the same tier scale the game uses, and writes the results back to the table.
+        </p>
+        <p class="callout">
+          "For a content-driven game, curation basically is the design work. Keeping brands consistent and accurate across five attributes
+          took longer than building the game itself."
+        </p>
+        <details class="cs-deep">
+          <summary>Deep dive — architecture</summary>
+          <p class="cs-deep-text">The browser talks to Postgres directly, and row-level security decides what it can read and write. The only server-side code is the monthly refresh, which needs the service role key and shouldn't run in anyone's browser.</p>
+          <div class="cs-arch">
+            <div class="cs-arch-col">
+              <p class="cs-media-title cs-arch-col-title">Client</p>
+              <div class="cs-arch-box">
+                <div class="cs-arch-name">React on Vercel</div>
+                <div class="cs-arch-meta">Game logic · daily seed<br>local stats · share image</div>
+              </div>
+            </div>
+            <div class="cs-arch-arrow">
+              <svg width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M0 6h28M23 1.5L28 6l-5 4.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="cs-arch-arrow-label">anon key<br>+ RLS</span>
+            </div>
+            <div class="cs-arch-col">
+              <p class="cs-media-title cs-arch-col-title">Data</p>
+              <div class="cs-arch-box cs-arch-box-accent">
+                <div class="cs-arch-name">Supabase Postgres</div>
+                <div class="cs-arch-routes">
+                  <div class="cs-arch-route">brands</div>
+                  <div class="cs-arch-route">daily_results</div>
+                  <div class="cs-arch-route">user_stats</div>
+                  <div class="cs-arch-route">user_profiles</div>
+                </div>
+                <div class="cs-arch-note">Public read on brands<br>users write only their own rows</div>
+              </div>
+            </div>
+            <div class="cs-arch-arrow">
+              <svg width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M28 6H0M5 1.5L0 6l5 4.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="cs-arch-arrow-label">monthly<br>upsert</span>
+            </div>
+            <div class="cs-arch-col">
+              <p class="cs-media-title cs-arch-col-title">Refresh</p>
+              <div class="cs-arch-box">
+                <div class="cs-arch-name">Edge Function</div>
+                <div class="cs-arch-meta">Triggered by GitHub Actions<br>cron, bearer-token guarded</div>
+              </div>
+              <div class="cs-arch-box">
+                <div class="cs-arch-name">Wikidata</div>
+                <div class="cs-arch-meta">One batched SPARQL query<br>employees · revenue · founded</div>
+              </div>
+            </div>
+          </div>
+        </details>
       </section>
       <section id="cs-rf" class="cs-section reveal">
         <p class="section-head">Reflection</p>
-        <p class="body-text">The most interesting design problem in Brandle wasn't the game mechanic, it was the dataset. Inconsistent founding year data (acquisition date vs. original founding), revenue figures that lag by a year, subsidiary vs. parent company ambiguity: data quality directly decided game quality. I genuinely spent more time normalizing data than writing React components.</p>
-        <p class="body-text">The stats model was built with future features in mind. Local state handles your current and best streak, and a Supabase table gets populated on every completed game with a structure that's ready for a global leaderboard once auth is wired up. Building the data model before the feature existed was the right call. Retrofitting persistence later is miserable.</p>
+        <p class="body-text">
+          Brandle was the first project I built with a team, and the first full-stack app I helped ship. The class taught me the team side of software:
+          branches, pull requests, splitting up work, and merging someone else's code into mine the night before a deadline. The fork taught me the other side:
+          what it's like to maintain something by yourself, with nobody to ask why a file looks the way it does. Coming back to a codebase I had half-written
+          and completely forgotten was humbling, and I'm glad I did it.
+        </p>
+        <p class="body-text">
+          Most of the changes that mattered were small. A daily puzzle is a date and a modulo. A fair streak is one date comparison. What really decided
+          whether the game felt good was the data. Founding years that are really acquisition dates, revenue that lags a year behind, a subsidiary listed
+          as its parent company: any of those turns a smart guess into a wrong one, and the player blames the game. I ended up spending more time on data
+          than on React components, and I think that was the right call.
+        </p>
+        <p class="body-text">
+          The one thing I'd do differently is the daily seed. Stepping through the table in order is simple and needs no server, but anyone who knows the
+          order can see tomorrow's brand coming. Shuffling the table with a fixed seed first would keep every benefit and remove the pattern. That's next on the list,
+          along with actually putting the leaderboard in front of players.
+        </p>
       </section>
       <section id="cs-ts" class="cs-section reveal">
         <p class="section-head">Tech stack</p>
         <div class="stack-list">
-          <span class="stack-tag">React 18</span><span class="stack-tag">React Router</span><span class="stack-tag">Supabase</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">JavaScript</span><span class="stack-tag">MUI</span><span class="stack-tag">Vercel</span>
+          <span class="stack-tag">React 18</span><span class="stack-tag">React Router</span><span class="stack-tag">Supabase</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">Edge Functions</span><span class="stack-tag">Wikidata SPARQL</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">JavaScript</span><span class="stack-tag">MUI</span><span class="stack-tag">Vercel</span>
         </div>
       </section>
     </main>
